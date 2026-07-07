@@ -1,0 +1,362 @@
+{"kind":"deck","id":"pr/l94qsr","name":"Deck"}
+{"kind":"layout","layoutId":"51ce87ef-7951-40d9-b3c9-3896caccbeb0","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"3ff6b916-e3d1-4b6c-9037-0d6205e86fba","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/qpvn9a","slide":1,"title":"HATRPO / HAPPO","textShapes":10}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":1,"text":"HATRPO / HAPPO","textPreview":"HATRPO / HAPPO","textChars":14,"textLines":1,"bbox":[56,82,740,80]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":1,"text":"Trust Region MARL 的理论创新\n与防空编组启发","textPreview":"Trust Region MARL 的理论创新 | 与防空编组启发","textChars":31,"textLines":2,"bbox":[56,168,690,92]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":1,"text":"基于 ICLR 2022 论文精读整理","textPreview":"基于 ICLR 2022 论文精读整理","textChars":19,"textLines":1,"bbox":[58,286,520,34]}
+{"kind":"shape","id":"sh/i5sneloj","slide":1,"bbox":[790,86,390,430]}
+{"kind":"textbox","id":"sh/7qpg3ex0","slide":1,"text":"从单调改进理论\n到异质资源协同","textPreview":"从单调改进理论 | 到异质资源协同","textChars":15,"textLines":2,"bbox":[828,140,310,140]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":1,"text":"论文核心创新点\n背景知识\n防空编组场景映射","textPreview":"论文核心创新点 | 背景知识 | 防空编组场景映射","textChars":21,"textLines":3,"bbox":[848,322,270,120]}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":1,"bbox":[58,548,120,36]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":1,"text":"MARL","textPreview":"MARL","textChars":4,"textLines":1,"bbox":[70,555,96,24]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":1,"bbox":[196,548,176,36]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":1,"text":"Trust Region","textPreview":"Trust Region","textChars":12,"textLines":1,"bbox":[208,555,152,24]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":1,"bbox":[390,548,260,36]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":1,"text":"Heterogeneous Agents","textPreview":"Heterogeneous Agents","textChars":20,"textLines":1,"bbox":[402,555,236,24]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":1,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/qpvn9a","slide":1,"text":"开场强调：这不是普通 PPO 变体，而是把 trust region 的单调改进理论推进到合作 MARL，并自然对应异构防空资源。"}
+{"kind":"slide","id":"sl/j7avfl","slide":2,"title":"01 背景动机","textShapes":21}
+{"kind":"textbox","id":"sh/4zidonyd","slide":2,"text":"01 背景动机","textPreview":"01 背景动机","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/fepkzupw","slide":2,"text":"防空编组天然是异质多智能体协同问题","textPreview":"防空编组天然是异质多智能体协同问题","textChars":17,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/mtwra5gb","slide":2,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/xc3ylc7u","slide":2,"bbox":[72,182,167.2,75.2]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":2,"text":"资源/Agent","textPreview":"资源/Agent","textChars":8,"textLines":1,"bbox":[82,192,147.2,57.2]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":2,"bbox":[239.2,182,258.4,75.2]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":2,"text":"典型动作","textPreview":"典型动作","textChars":4,"textLines":1,"bbox":[249.2,192,238.4,57.2]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":2,"bbox":[497.6,182,334.4,75.2]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":2,"text":"协同难点","textPreview":"协同难点","textChars":4,"textLines":1,"bbox":[507.6,192,314.4,57.2]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":2,"bbox":[72,257.2,167.2,75.2]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":2,"text":"预警雷达","textPreview":"预警雷达","textChars":4,"textLines":1,"bbox":[82,267.2,147.2,57.2]}
+{"kind":"shape","id":"sh/oj2t83it","slide":2,"bbox":[239.2,257.2,258.4,75.2]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":2,"text":"搜索、跟踪、功率/波束调度","textPreview":"搜索、跟踪、功率/波束调度","textChars":13,"textLines":1,"bbox":[249.2,267.2,238.4,57.2]}
+{"kind":"shape","id":"sh/61032lsz","slide":2,"bbox":[497.6,257.2,334.4,75.2]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":2,"text":"信息贡献间接，动作不直接杀伤","textPreview":"信息贡献间接，动作不直接杀伤","textChars":14,"textLines":1,"bbox":[507.6,267.2,314.4,57.2]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":2,"bbox":[72,332.4,167.2,75.2]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":2,"text":"火控雷达","textPreview":"火控雷达","textChars":4,"textLines":1,"bbox":[82,342.4,147.2,57.2]}
+{"kind":"shape","id":"sh/6tovahoz","slide":2,"bbox":[239.2,332.4,258.4,75.2]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":2,"text":"目标指示、照射、通道分配","textPreview":"目标指示、照射、通道分配","textChars":12,"textLines":1,"bbox":[249.2,342.4,238.4,57.2]}
+{"kind":"shape","id":"sh/r65wjudg","slide":2,"bbox":[497.6,332.4,334.4,75.2]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":2,"text":"与拦截器强耦合","textPreview":"与拦截器强耦合","textChars":7,"textLines":1,"bbox":[507.6,342.4,314.4,57.2]}
+{"kind":"shape","id":"sh/9cvixcze","slide":2,"bbox":[72,407.6,167.2,75.2]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":2,"text":"拦截武器","textPreview":"拦截武器","textChars":4,"textLines":1,"bbox":[82,417.6,147.2,57.2]}
+{"kind":"shape","id":"sh/nih4byhg","slide":2,"bbox":[239.2,407.6,258.4,75.2]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":2,"text":"发射、目标选择、时机控制","textPreview":"发射、目标选择、时机控制","textChars":12,"textLines":1,"bbox":[249.2,417.6,238.4,57.2]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":2,"bbox":[497.6,407.6,334.4,75.2]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":2,"text":"资源不可逆，约束强","textPreview":"资源不可逆，约束强","textChars":9,"textLines":1,"bbox":[507.6,417.6,314.4,57.2]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":2,"bbox":[72,482.8,167.2,75.2]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":2,"text":"电子干扰","textPreview":"电子干扰","textChars":4,"textLines":1,"bbox":[82,492.8,147.2,57.2]}
+{"kind":"shape","id":"sh/sji5snel","slide":2,"bbox":[239.2,482.8,258.4,75.2]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":2,"text":"压制、欺骗、频段选择","textPreview":"压制、欺骗、频段选择","textChars":10,"textLines":1,"bbox":[249.2,492.8,238.4,57.2]}
+{"kind":"shape","id":"sh/adsji5sn","slide":2,"bbox":[497.6,482.8,334.4,75.2]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":2,"text":"效果不确定，易与探测冲突","textPreview":"效果不确定，易与探测冲突","textChars":12,"textLines":1,"bbox":[507.6,492.8,314.4,57.2]}
+{"kind":"shape","id":"sh/s72x4nap","slide":2,"bbox":[870,196,292,332]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":2,"text":"为什么不是简单参数共享","textPreview":"为什么不是简单参数共享","textChars":11,"textLines":1,"bbox":[892,224,250,34]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":2,"text":"• 动作空间不同\n• 观测信息不同\n• 资源约束不同\n• 收益贡献路径不同\n• 同时更新可能互相抵消","textPreview":"• 动作空间不同 | • 观测信息不同 | • 资源约束不同 | • 收益贡献路径不同 | • 同时更新可能互相抵消","textChars":50,"textLines":5,"bbox":[892,282,250,190]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":2,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/j7avfl","slide":2,"text":"把论文问题映射到防空编组：每类资源都是 agent，但动作和约束明显异质，参数共享并不自然。"}
+{"kind":"slide","id":"sl/73271d","slide":3,"title":"02 背景知识","textShapes":16}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":3,"text":"02 背景知识","textPreview":"02 背景知识","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":3,"text":"PPO 到 MAPPO 的关键假设没有解决联合单调改进","textPreview":"PPO 到 MAPPO 的关键假设没有解决联合单调改进","textChars":27,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/8bat47y1","slide":3,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/j2t83itg","slide":3,"bbox":[76,218,268.5,210]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":3,"text":"PPO","textPreview":"PPO","textChars":3,"textLines":1,"bbox":[92,236,236.5,34]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":3,"text":"actor-critic\nclip 限制单体策略更新","textPreview":"actor-critic | clip 限制单体策略更新","textChars":26,"textLines":2,"bbox":[92,284,236.5,132]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[345.5,299,16,40]}
+{"kind":"shape","id":"sh/j6tovaho","slide":3,"bbox":[362.5,218,268.5,210]}
+{"kind":"textbox","id":"sh/ulwval87","slide":3,"text":"IPPO","textPreview":"IPPO","textChars":4,"textLines":1,"bbox":[378.5,236,236.5,34]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":3,"text":"每个 agent 独立 PPO\n把其他 agent 当环境","textPreview":"每个 agent 独立 PPO | 把其他 agent 当环境","textChars":29,"textLines":2,"bbox":[378.5,284,236.5,132]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[632,299,16,40]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":3,"bbox":[649,218,268.5,210]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":3,"text":"MAPPO","textPreview":"MAPPO","textChars":5,"textLines":1,"bbox":[665,236,236.5,34]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":3,"text":"集中 critic\n分散 actor 执行","textPreview":"集中 critic | 分散 actor 执行","textChars":21,"textLines":2,"bbox":[665,284,236.5,132]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[918.5,299,16,40]}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":3,"bbox":[935.5,218,268.5,210]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":3,"text":"缺口","textPreview":"缺口","textChars":2,"textLines":1,"bbox":[951.5,236,236.5,34]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":3,"text":"局部变好\n不保证联合策略变好","textPreview":"局部变好 | 不保证联合策略变好","textChars":14,"textLines":2,"bbox":[951.5,284,236.5,132]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":3,"text":"论文关注点不是 MAPPO 能不能跑得好，而是它是否继承 trust region 的理论保证。","textPreview":"论文关注点不是 MAPPO 能不能跑得好，而是它是否继承 trust region 的理论保证。","textChars":48,"textLines":1,"bbox":[86,506,1060,48]}
+{"kind":"textbox","id":"sh/1gvy90je","slide":3,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/73271d","slide":3,"text":"解释 PPO/IPPO/MAPPO 的层级：PPO 稳定单智能体更新，IPPO 独立套用，MAPPO 引入集中价值函数，但论文指出仍缺少多智能体 trust region 的单调改进保证。"}
+{"kind":"slide","id":"sl/kbawjt","slide":4,"title":"03 核心瓶颈","textShapes":7}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":4,"text":"03 核心瓶颈","textPreview":"03 核心瓶颈","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":4,"text":"同时局部更新可能让联合回报下降","textPreview":"同时局部更新可能让联合回报下降","textChars":15,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/lkjm1cfa","slide":4,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/32lszqtc","slide":4,"bbox":[590,196,520,300]}
+{"kind":"textbox","id":"sh/sneloj2t","slide":4,"text":"反例直觉","textPreview":"反例直觉","textChars":4,"textLines":1,"bbox":[622,226,220,34]}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":4,"text":"• 每个 agent 的一维方向看似提升\n• 合成的二维联合方向可能变差\n• 参数不共享也不能自动获得保证\n• 需要改变多 agent 更新协议","textPreview":"• 每个 agent 的一维方向看似提升 | • 合成的二维联合方向可能变差 | • 参数不共享也不能自动获得保证 | • 需要改变多 agent 更新协议","textChars":72,"textLines":4,"bbox":[622,286,440,150]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":4,"text":"Source: paper Fig. 1, p.4","textPreview":"Source: paper Fig. 1, p.4","textChars":25,"textLines":1,"bbox":[74,560,360,22]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":4,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"image","id":"im/7qpg3ex0","slide":4,"name":"","alt":"Figure 1 counterexample","bbox":[74,186,460,360]}
+{"kind":"notes","id":"nt/kbawjt","slide":4,"text":"这是论文最重要的反例图：局部 trust region update 不等价于联合 trust region update。对应防空场景，雷达、火力、干扰各自朝局部收益更新，可能破坏总体拦截链路。"}
+{"kind":"slide","id":"sl/zjb3mm","slide":5,"title":"04 核心创新","textShapes":16}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":5,"text":"04 核心创新","textPreview":"04 核心创新","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":5,"text":"论文创新由一个分解引理和一个顺序更新协议支撑","textPreview":"论文创新由一个分解引理和一个顺序更新协议支撑","textChars":22,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/bat47y1k","slide":5,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/47y1kre1","slide":5,"bbox":[74,196,269.5,230]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":5,"text":"Lemma 1","textPreview":"Lemma 1","textChars":7,"textLines":1,"bbox":[90,214,237.5,34]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":5,"text":"联合 advantage\n拆成顺序局部 advantage","textPreview":"联合 advantage | 拆成顺序局部 advantage","textChars":29,"textLines":2,"bbox":[90,262,237.5,152]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[344.5,287,16,40]}
+{"kind":"shape","id":"sh/4byhgn29","slide":5,"bbox":[361.5,196,269.5,230]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":5,"text":"Algorithm 1","textPreview":"Algorithm 1","textChars":11,"textLines":1,"bbox":[377.5,214,237.5,34]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":5,"text":"随机排列 agent\n逐个更新策略","textPreview":"随机排列 agent | 逐个更新策略","textChars":17,"textLines":2,"bbox":[377.5,262,237.5,152]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[632,287,16,40]}
+{"kind":"shape","id":"sh/j6tovaho","slide":5,"bbox":[649,196,269.5,230]}
+{"kind":"textbox","id":"sh/ulwval87","slide":5,"text":"Theorem 2","textPreview":"Theorem 2","textChars":9,"textLines":1,"bbox":[665,214,237.5,34]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":5,"text":"每轮联合策略\n单调不降","textPreview":"每轮联合策略 | 单调不降","textChars":11,"textLines":2,"bbox":[665,262,237.5,152]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[919.5,287,16,40]}
+{"kind":"shape","id":"sh/ji5snelo","slide":5,"bbox":[936.5,196,269.5,230]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":5,"text":"HATRPO/HAPPO","textPreview":"HATRPO/HAPPO","textChars":12,"textLines":1,"bbox":[952.5,214,237.5,34]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":5,"text":"深度 MARL\n可实现版本","textPreview":"深度 MARL | 可实现版本","textChars":13,"textLines":2,"bbox":[952.5,262,237.5,152]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":5,"text":"创新点不在“加一个模块”，而在重新定义多智能体策略更新的顺序和目标。","textPreview":"创新点不在“加一个模块”，而在重新定义多智能体策略更新的顺序和目标。","textChars":34,"textLines":1,"bbox":[110,500,1040,52]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":5,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/zjb3mm","slide":5,"text":"用这一页建立主线：分解引理给出理论结构，顺序更新把结构落成算法，再由 HATRPO/HAPPO 转为深度学习实现。"}
+{"kind":"slide","id":"sl/4hvysi","slide":6,"title":"05 理论层","textShapes":11}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":6,"text":"05 理论层","textPreview":"05 理论层","textChars":6,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":6,"text":"Advantage decomposition 不要求联合 Q 函数可分解","textPreview":"Advantage decomposition 不要求联合 Q 函数可分解","textChars":37,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":6,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/83itgfml","slide":6,"bbox":[96,198,1088,150]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":6,"text":"A^{i1:m}_π(s, a_{i1:m}) = Σ_j A^{ij}_π(s, a_{i1:j-1}, a_{ij})","textPreview":"A^{i1:m}_π(s, a_{i1:m}) = Σ_j A^{ij}_π(s, a_{i1:j-1}, a_{ij})","textChars":61,"textLines":1,"bbox":[128,244,1024,48]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":6,"bbox":[112,402,315,132]}
+{"kind":"shape","id":"sh/fil0rqd4","slide":6,"bbox":[482,402,315,132]}
+{"kind":"shape","id":"sh/4zidonyd","slide":6,"bbox":[852,402,315,132]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":6,"text":"不是 VDN/QMIX","textPreview":"不是 VDN/QMIX","textChars":11,"textLines":1,"bbox":[136,430,260,28]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":6,"text":"不假设 Q 可加\n而是 advantage 望远镜分解","textPreview":"不假设 Q 可加 | 而是 advantage 望远镜分解","textChars":27,"textLines":2,"bbox":[136,474,250,50]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":6,"text":"顺序是内生的","textPreview":"顺序是内生的","textChars":6,"textLines":1,"bbox":[506,430,260,28]}
+{"kind":"textbox","id":"sh/ji5snelo","slide":6,"text":"第 j 个 agent 的优势\n依赖前序 agent 动作","textPreview":"第 j 个 agent 的优势 | 依赖前序 agent 动作","textChars":29,"textLines":2,"bbox":[506,474,250,50]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":6,"text":"适合异质 agent","textPreview":"适合异质 agent","textChars":10,"textLines":1,"bbox":[876,430,260,28]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":6,"text":"不要求动作空间\n和参数完全同质","textPreview":"不要求动作空间 | 和参数完全同质","textChars":15,"textLines":2,"bbox":[876,474,250,50]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":6,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/4hvysi","slide":6,"text":"强调区别：论文不是做价值函数分解，而是在 advantage 层面构造分解。因此对异质资源更友好。"}
+{"kind":"slide","id":"sl/9u6xwm","slide":7,"title":"06 算法协议","textShapes":16}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":7,"text":"06 算法协议","textPreview":"06 算法协议","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":7,"text":"顺序更新把联合策略改进拆成可保证的局部改进","textPreview":"顺序更新把联合策略改进拆成可保证的局部改进","textChars":21,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/8v6psfil","slide":7,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/fyxobm58","slide":7,"bbox":[74,202,269.5,246]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":7,"text":"采样轨迹","textPreview":"采样轨迹","textChars":4,"textLines":1,"bbox":[90,220,237.5,34]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":7,"text":"估计 joint advantage\n和状态分布","textPreview":"估计 joint advantage | 和状态分布","textChars":24,"textLines":2,"bbox":[90,268,237.5,168]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":7,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[344.5,301,16,40]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":7,"bbox":[361.5,202,269.5,246]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":7,"text":"随机排序","textPreview":"随机排序","textChars":4,"textLines":1,"bbox":[377.5,220,237.5,34]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":7,"text":"抽取 agent permutation\n避免固定顺序偏置","textPreview":"抽取 agent permutation | 避免固定顺序偏置","textChars":29,"textLines":2,"bbox":[377.5,268,237.5,168]}
+{"kind":"textbox","id":"sh/t83itgfm","slide":7,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[632,301,16,40]}
+{"kind":"shape","id":"sh/mhk3q5o7","slide":7,"bbox":[649,202,269.5,246]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":7,"text":"逐个更新","textPreview":"逐个更新","textChars":4,"textLines":1,"bbox":[665,220,237.5,34]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":7,"text":"后续 agent 条件在\n前序 agent 新策略上","textPreview":"后续 agent 条件在 | 前序 agent 新策略上","textChars":26,"textLines":2,"bbox":[665,268,237.5,168]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":7,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[919.5,301,16,40]}
+{"kind":"shape","id":"sh/m58z25kb","slide":7,"bbox":[936.5,202,269.5,246]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":7,"text":"合并策略","textPreview":"合并策略","textChars":4,"textLines":1,"bbox":[952.5,220,237.5,34]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":7,"text":"形成 π_{k+1}\n保证 J 不下降","textPreview":"形成 π_{k+1} | 保证 J 不下降","textChars":19,"textLines":2,"bbox":[952.5,268,237.5,168]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":7,"text":"防空类比：先更新探测/跟踪资源，再把新态势条件传给火力/干扰策略，而非全系统同时乱动。","textPreview":"防空类比：先更新探测/跟踪资源，再把新态势条件传给火力/干扰策略，而非全系统同时乱动。","textChars":43,"textLines":1,"bbox":[90,518,1100,40]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":7,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/9u6xwm","slide":7,"text":"Algorithm 1 的本质是每轮选择一个资源更新顺序。对防空编组，可以理解为资源类型或平台按顺序协调。"}
+{"kind":"slide","id":"sl/y90p9k","slide":8,"title":"07 实用算法","textShapes":20}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":8,"text":"07 实用算法","textPreview":"07 实用算法","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":8,"text":"HATRPO 更贴近理论，HAPPO 更适合作工程基线","textPreview":"HATRPO 更贴近理论，HAPPO 更适合作工程基线","textChars":27,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/yxobm58z","slide":8,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/9cvixcze","slide":8,"bbox":[90,190,220,69.6]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":8,"text":"维度","textPreview":"维度","textChars":2,"textLines":1,"bbox":[100,200,200,51.6]}
+{"kind":"shape","id":"sh/r65wjudg","slide":8,"bbox":[310,190,440,69.6]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":8,"text":"HATRPO","textPreview":"HATRPO","textChars":6,"textLines":1,"bbox":[320,200,420,51.6]}
+{"kind":"shape","id":"sh/90je9cvi","slide":8,"bbox":[750,190,440,69.6]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":8,"text":"HAPPO","textPreview":"HAPPO","textChars":5,"textLines":1,"bbox":[760,200,420,51.6]}
+{"kind":"shape","id":"sh/65wjudg7","slide":8,"bbox":[90,259.6,220,69.6]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":8,"text":"优化思想","textPreview":"优化思想","textChars":4,"textLines":1,"bbox":[100,269.6,200,51.6]}
+{"kind":"shape","id":"sh/obm58z25","slide":8,"bbox":[310,259.6,440,69.6]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":8,"text":"TRPO 式 KL 信任域","textPreview":"TRPO 式 KL 信任域","textChars":13,"textLines":1,"bbox":[320,269.6,420,51.6]}
+{"kind":"shape","id":"sh/6xkf6dcb","slide":8,"bbox":[750,259.6,440,69.6]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":8,"text":"PPO 式 clip objective","textPreview":"PPO 式 clip objective","textChars":20,"textLines":1,"bbox":[760,269.6,420,51.6]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":8,"bbox":[90,329.2,220,69.6]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":8,"text":"计算代价","textPreview":"计算代价","textChars":4,"textLines":1,"bbox":[100,339.2,200,51.6]}
+{"kind":"shape","id":"sh/al87ed8b","slide":8,"bbox":[310,329.2,440,69.6]}
+{"kind":"textbox","id":"sh/z61032ls","slide":8,"text":"二阶近似/共轭梯度，成本高","textPreview":"二阶近似/共轭梯度，成本高","textChars":13,"textLines":1,"bbox":[320,339.2,420,51.6]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":8,"bbox":[750,329.2,440,69.6]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":8,"text":"一阶 Adam 更新，易实现","textPreview":"一阶 Adam 更新，易实现","textChars":14,"textLines":1,"bbox":[760,339.2,420,51.6]}
+{"kind":"shape","id":"sh/tovahoza","slide":8,"bbox":[90,398.8,220,69.6]}
+{"kind":"textbox","id":"sh/032lszqt","slide":8,"text":"理论贴合","textPreview":"理论贴合","textChars":4,"textLines":1,"bbox":[100,408.8,200,51.6]}
+{"kind":"shape","id":"sh/bulwval8","slide":8,"bbox":[310,398.8,440,69.6]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":8,"text":"更接近 Algorithm 1","textPreview":"更接近 Algorithm 1","textChars":15,"textLines":1,"bbox":[320,408.8,420,51.6]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":8,"bbox":[750,398.8,440,69.6]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":8,"text":"保留顺序更新思想","textPreview":"保留顺序更新思想","textChars":8,"textLines":1,"bbox":[760,408.8,420,51.6]}
+{"kind":"shape","id":"sh/byhgn29g","slide":8,"bbox":[90,468.4,220,69.6]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":8,"text":"防空先验","textPreview":"防空先验","textChars":4,"textLines":1,"bbox":[100,478.4,200,51.6]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":8,"bbox":[310,468.4,440,69.6]}
+{"kind":"textbox","id":"sh/lwval87e","slide":8,"text":"适合高可靠验证","textPreview":"适合高可靠验证","textChars":7,"textLines":1,"bbox":[320,478.4,420,51.6]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":8,"bbox":[750,468.4,440,69.6]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":8,"text":"适合快速原型与大规模仿真","textPreview":"适合快速原型与大规模仿真","textChars":12,"textLines":1,"bbox":[760,478.4,420,51.6]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":8,"text":"工程路线建议：先用 MAPPO/IPPO 建基线，再以 HAPPO 作为异质资源协同主线。","textPreview":"工程路线建议：先用 MAPPO/IPPO 建基线，再以 HAPPO 作为异质资源协同主线。","textChars":45,"textLines":1,"bbox":[118,584,1040,34]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":8,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/y90p9k","slide":8,"text":"这页帮听众判断选择：HATRPO 理论硬但成本高，HAPPO 更适合先落地。"}
+{"kind":"slide","id":"sl/vn7o7r","slide":9,"title":"08 实验证据","textShapes":7}
+{"kind":"textbox","id":"sh/3m94fu18","slide":9,"text":"08 实验证据","textPreview":"08 实验证据","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":9,"text":"SMAC 结果说明：同质任务会掩盖异质算法优势","textPreview":"SMAC 结果说明：同质任务会掩盖异质算法优势","textChars":23,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":9,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/3ylc7u54","slide":9,"bbox":[980,190,198,254]}
+{"kind":"textbox","id":"sh/sji5snel","slide":9,"text":"读图要点","textPreview":"读图要点","textChars":4,"textLines":1,"bbox":[1004,214,150,28]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":9,"text":"• 最终均可 100% 胜率\n• SMAC 区分度不足\n• 参数共享在同质单位中有效","textPreview":"• 最终均可 100% 胜率 | • SMAC 区分度不足 | • 参数共享在同质单位中有效","textChars":42,"textLines":3,"bbox":[1004,262,150,112]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":9,"text":"Source: paper Fig. 2, p.8","textPreview":"Source: paper Fig. 2, p.8","textChars":25,"textLines":1,"bbox":[88,466,360,20]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":9,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/z61032ls","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"image","id":"im/7u54zido","slide":9,"name":"","alt":"Figure 2 SMAC results","bbox":[88,188,860,250]}
+{"kind":"notes","id":"nt/vn7o7r","slide":9,"text":"作者并不否认 MAPPO 在 SMAC 上强，而是认为 SMAC 同质性强，不能充分展示 HATRPO/HAPPO 的优势。"}
+{"kind":"slide","id":"sl/ipalnu","slide":10,"title":"09 实验证据","textShapes":7}
+{"kind":"textbox","id":"sh/5sneloj2","slide":10,"text":"09 实验证据","textPreview":"09 实验证据","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/u54zidon","slide":10,"text":"MuJoCo 结果更接近异构资源：agent 越多差距越明显","textPreview":"MuJoCo 结果更接近异构资源：agent 越多差距越明显","textChars":30,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/nqxs72x4","slide":10,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/5kb6xkf6","slide":10,"bbox":[820,204,330,300]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":10,"text":"核心结论","textPreview":"核心结论","textChars":4,"textLines":1,"bbox":[850,232,200,30]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":10,"text":"• 多数任务领先\n• 身体部件类比异质资源\n• agent 越多优势越明显\n• HATRPO 通常强于 HAPPO","textPreview":"• 多数任务领先 | • 身体部件类比异质资源 | • agent 越多优势越明显 | • HATRPO 通常强于 HAPPO","textChars":57,"textLines":4,"bbox":[850,292,280,148]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":10,"text":"Source: paper Fig. 3, p.9","textPreview":"Source: paper Fig. 3, p.9","textChars":25,"textLines":1,"bbox":[68,618,360,20]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":10,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"image","id":"im/9w3m94fu","slide":10,"name":"","alt":"Figure 3 MuJoCo results","bbox":[68,174,700,430]}
+{"kind":"notes","id":"nt/ipalnu","slide":10,"text":"把 MuJoCo 的机器人部件理解成防空系统中的不同资源类型：它们共享目标，但策略和动作空间不同。"}
+{"kind":"slide","id":"sl/jxkhx0","slide":11,"title":"10 场景映射","textShapes":19}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":11,"text":"10 场景映射","textPreview":"10 场景映射","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":11,"text":"防空编组可建模为 fully cooperative Markov game","textPreview":"防空编组可建模为 fully cooperative Markov game","textChars":38,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":11,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":11,"bbox":[74,176,203.76,78]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":11,"text":"论文对象","textPreview":"论文对象","textChars":4,"textLines":1,"bbox":[84,186,183.76,60]}
+{"kind":"shape","id":"sh/6xkf6dcb","slide":11,"bbox":[277.76,176,475.44,78]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":11,"text":"防空编组解释","textPreview":"防空编组解释","textChars":6,"textLines":1,"bbox":[287.76,186,455.44,60]}
+{"kind":"shape","id":"sh/orytsvu9","slide":11,"bbox":[753.2,176,452.8,78]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":11,"text":"建模提示","textPreview":"建模提示","textChars":4,"textLines":1,"bbox":[763.2,186,432.8,60]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":11,"bbox":[74,254,203.76,78]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":11,"text":"state s","textPreview":"state s","textChars":7,"textLines":1,"bbox":[84,264,183.76,60]}
+{"kind":"shape","id":"sh/vy90je9c","slide":11,"bbox":[277.76,254,475.44,78]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":11,"text":"空情态势、资源状态、链路状态","textPreview":"空情态势、资源状态、链路状态","textChars":14,"textLines":1,"bbox":[287.76,264,455.44,60]}
+{"kind":"shape","id":"sh/dsji5sne","slide":11,"bbox":[753.2,254,452.8,78]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":11,"text":"可含全局态势或局部观测","textPreview":"可含全局态势或局部观测","textChars":11,"textLines":1,"bbox":[763.2,264,432.8,60]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":11,"bbox":[74,332,203.76,78]}
+{"kind":"textbox","id":"sh/61032lsz","slide":11,"text":"agent i","textPreview":"agent i","textChars":7,"textLines":1,"bbox":[84,342,183.76,60]}
+{"kind":"shape","id":"sh/dg7adsji","slide":11,"bbox":[277.76,332,475.44,78]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":11,"text":"雷达、拦截单元、干扰单元、指挥节点","textPreview":"雷达、拦截单元、干扰单元、指挥节点","textChars":17,"textLines":1,"bbox":[287.76,342,455.44,60]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":11,"bbox":[753.2,332,452.8,78]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":11,"text":"按资源类型或平台建模","textPreview":"按资源类型或平台建模","textChars":10,"textLines":1,"bbox":[763.2,342,432.8,60]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":11,"bbox":[74,410,203.76,78]}
+{"kind":"textbox","id":"sh/vixczed8","slide":11,"text":"action a_i","textPreview":"action a_i","textChars":10,"textLines":1,"bbox":[84,420,183.76,60]}
+{"kind":"shape","id":"sh/kre1w7mp","slide":11,"bbox":[277.76,410,475.44,78]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":11,"text":"搜索、分配、发射、干扰、通信","textPreview":"搜索、分配、发射、干扰、通信","textChars":14,"textLines":1,"bbox":[287.76,420,455.44,60]}
+{"kind":"shape","id":"sh/6psfil0r","slide":11,"bbox":[753.2,410,452.8,78]}
+{"kind":"textbox","id":"sh/val87ed8","slide":11,"text":"允许异质动作空间","textPreview":"允许异质动作空间","textChars":8,"textLines":1,"bbox":[763.2,420,432.8,60]}
+{"kind":"shape","id":"sh/knih4byh","slide":11,"bbox":[74,488,203.76,78]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":11,"text":"reward r","textPreview":"reward r","textChars":8,"textLines":1,"bbox":[84,498,183.76,60]}
+{"kind":"shape","id":"sh/za1gvy90","slide":11,"bbox":[277.76,488,475.44,78]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":11,"text":"拦截成功、威胁降低、消耗惩罚","textPreview":"拦截成功、威胁降低、消耗惩罚","textChars":14,"textLines":1,"bbox":[287.76,498,455.44,60]}
+{"kind":"shape","id":"sh/hgn29gr2","slide":11,"bbox":[753.2,488,452.8,78]}
+{"kind":"textbox","id":"sh/svu9knih","slide":11,"text":"团队共享收益更贴合论文假设","textPreview":"团队共享收益更贴合论文假设","textChars":13,"textLines":1,"bbox":[763.2,498,432.8,60]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":11,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/jxkhx0","slide":11,"text":"这页给出正式建模入口：如果能把目标函数设计成团队共享 reward，就能更直接承接论文理论。"}
+{"kind":"slide","id":"sl/ltpxgf","slide":12,"title":"11 应用架构","textShapes":19}
+{"kind":"textbox","id":"sh/pkzupwb2","slide":12,"text":"11 应用架构","textPreview":"11 应用架构","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":12,"text":"HAPPO 可作为异构防空资源协同训练框架","textPreview":"HAPPO 可作为异构防空资源协同训练框架","textChars":21,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":12,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":12,"bbox":[58,196,218.4,238]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":12,"text":"态势输入","textPreview":"态势输入","textChars":4,"textLines":1,"bbox":[74,214,186.4,34]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":12,"text":"目标轨迹\n威胁等级\n资源余量","textPreview":"目标轨迹 | 威胁等级 | 资源余量","textChars":14,"textLines":3,"bbox":[74,262,186.4,160]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":12,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[277.4,291,16,40]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":12,"bbox":[294.4,196,218.4,238]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":12,"text":"联合 critic","textPreview":"联合 critic","textChars":9,"textLines":1,"bbox":[310.4,214,186.4,34]}
+{"kind":"textbox","id":"sh/lwval87e","slide":12,"text":"训练时读取\n全局态势","textPreview":"训练时读取 | 全局态势","textChars":10,"textLines":2,"bbox":[310.4,262,186.4,160]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":12,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[513.8,291,16,40]}
+{"kind":"shape","id":"sh/3q5o7qpg","slide":12,"bbox":[530.8,196,218.4,238]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":12,"text":"异质 actor","textPreview":"异质 actor","textChars":8,"textLines":1,"bbox":[546.8,214,186.4,34]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":12,"text":"雷达/火力/干扰\n各自策略网络","textPreview":"雷达/火力/干扰 | 各自策略网络","textChars":15,"textLines":2,"bbox":[546.8,262,186.4,160]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":12,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[750.2,291,16,40]}
+{"kind":"shape","id":"sh/3itgfmlk","slide":12,"bbox":[767.2,196,218.4,238]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":12,"text":"顺序更新","textPreview":"顺序更新","textChars":4,"textLines":1,"bbox":[783.2,214,186.4,34]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":12,"text":"按资源排列\n逐个优化","textPreview":"按资源排列 | 逐个优化","textChars":10,"textLines":2,"bbox":[783.2,262,186.4,160]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":12,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[986.6,291,16,40]}
+{"kind":"shape","id":"sh/8v6psfil","slide":12,"bbox":[1003.6,196,218.4,238]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":12,"text":"分散执行","textPreview":"分散执行","textChars":4,"textLines":1,"bbox":[1019.6,214,186.4,34]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":12,"text":"各平台按本地\n观测输出动作","textPreview":"各平台按本地 | 观测输出动作","textChars":13,"textLines":2,"bbox":[1019.6,262,186.4,160]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":12,"text":"关键不是让所有平台学同一个策略，而是让不同资源在统一团队收益下学会互补。","textPreview":"关键不是让所有平台学同一个策略，而是让不同资源在统一团队收益下学会互补。","textChars":36,"textLines":1,"bbox":[104,516,1070,44]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":12,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/ltpxgf","slide":12,"text":"训练时可以用 CTDE，执行时仍保持平台分散决策。HAPPO 的价值是把异质 actor 和顺序更新合到一个可实现框架里。"}
+{"kind":"slide","id":"sl/agx03y","slide":13,"title":"12 工程边界","textShapes":20}
+{"kind":"textbox","id":"sh/yxobm58z","slide":13,"text":"12 工程边界","textPreview":"12 工程边界","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":13,"text":"落地时要补上论文没有覆盖的硬约束","textPreview":"落地时要补上论文没有覆盖的硬约束","textChars":16,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":13,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/r65wjudg","slide":13,"bbox":[86,182,221.6,71.2]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":13,"text":"缺口","textPreview":"缺口","textChars":2,"textLines":1,"bbox":[96,192,201.6,53.2]}
+{"kind":"shape","id":"sh/9cvixcze","slide":13,"bbox":[307.6,182,421.04,71.2]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":13,"text":"防空中为什么重要","textPreview":"防空中为什么重要","textChars":8,"textLines":1,"bbox":[317.6,192,401.04,53.2]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":13,"bbox":[728.64,182,465.36,71.2]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":13,"text":"建议处理方式","textPreview":"建议处理方式","textChars":6,"textLines":1,"bbox":[738.64,192,445.36,53.2]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":13,"bbox":[86,253.2,221.6,71.2]}
+{"kind":"textbox","id":"sh/lwval87e","slide":13,"text":"安全约束","textPreview":"安全约束","textChars":4,"textLines":1,"bbox":[96,263.2,201.6,53.2]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":13,"bbox":[307.6,253.2,421.04,71.2]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":13,"text":"误击/漏击代价极高","textPreview":"误击/漏击代价极高","textChars":9,"textLines":1,"bbox":[317.6,263.2,401.04,53.2]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":13,"bbox":[728.64,253.2,465.36,71.2]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":13,"text":"约束 RL 或规则屏蔽","textPreview":"约束 RL 或规则屏蔽","textChars":11,"textLines":1,"bbox":[738.64,263.2,445.36,53.2]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":13,"bbox":[86,324.4,221.6,71.2]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":13,"text":"资源不可逆","textPreview":"资源不可逆","textChars":5,"textLines":1,"bbox":[96,334.4,201.6,53.2]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":13,"bbox":[307.6,324.4,421.04,71.2]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":13,"text":"导弹发射后无法回滚","textPreview":"导弹发射后无法回滚","textChars":9,"textLines":1,"bbox":[317.6,334.4,401.04,53.2]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":13,"bbox":[728.64,324.4,465.36,71.2]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":13,"text":"动作 masking 与预算状态","textPreview":"动作 masking 与预算状态","textChars":16,"textLines":1,"bbox":[738.64,334.4,445.36,53.2]}
+{"kind":"shape","id":"sh/36hcrmhk","slide":13,"bbox":[86,395.6,221.6,71.2]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":13,"text":"通信受限","textPreview":"通信受限","textChars":4,"textLines":1,"bbox":[96,405.6,201.6,53.2]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":13,"bbox":[307.6,395.6,421.04,71.2]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":13,"text":"节点间信息不同步","textPreview":"节点间信息不同步","textChars":8,"textLines":1,"bbox":[317.6,405.6,401.04,53.2]}
+{"kind":"shape","id":"sh/7u54zido","slide":13,"bbox":[728.64,395.6,465.36,71.2]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":13,"text":"部分可观测训练与鲁棒策略","textPreview":"部分可观测训练与鲁棒策略","textChars":12,"textLines":1,"bbox":[738.64,405.6,445.36,53.2]}
+{"kind":"shape","id":"sh/psfil0rq","slide":13,"bbox":[86,466.8,221.6,71.2]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":13,"text":"实时性","textPreview":"实时性","textChars":3,"textLines":1,"bbox":[96,476.8,201.6,53.2]}
+{"kind":"shape","id":"sh/65wjudg7","slide":13,"bbox":[307.6,466.8,421.04,71.2]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":13,"text":"决策窗口短","textPreview":"决策窗口短","textChars":5,"textLines":1,"bbox":[317.6,476.8,401.04,53.2]}
+{"kind":"shape","id":"sh/obm58z25","slide":13,"bbox":[728.64,466.8,465.36,71.2]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":13,"text":"离线训练 + 在线轻量推理","textPreview":"离线训练 + 在线轻量推理","textChars":13,"textLines":1,"bbox":[738.64,476.8,445.36,53.2]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":13,"text":"论文提供协同学习骨架，工程系统仍需要安全层、约束层和规则层共同托底。","textPreview":"论文提供协同学习骨架，工程系统仍需要安全层、约束层和规则层共同托底。","textChars":34,"textLines":1,"bbox":[112,590,1030,30]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":13,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/agx03y","slide":13,"text":"不要把论文算法直接等同于可部署系统。防空场景必须显式处理安全、资源和实时性约束。"}
+{"kind":"slide","id":"sl/w66abk","slide":14,"title":"13 研究设计","textShapes":16}
+{"kind":"textbox","id":"sh/zidonyd0","slide":14,"text":"13 研究设计","textPreview":"13 研究设计","textChars":7,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":14,"text":"建议实验路线：从可控仿真到异构协同验证","textPreview":"建议实验路线：从可控仿真到异构协同验证","textChars":19,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/hoza1gvy","slide":14,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/ap4r65wj","slide":14,"bbox":[74,206,269.5,230]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":14,"text":"阶段 1","textPreview":"阶段 1","textChars":4,"textLines":1,"bbox":[90,224,237.5,34]}
+{"kind":"textbox","id":"sh/svu9knih","slide":14,"text":"构建简化空情\n目标-资源-奖励","textPreview":"构建简化空情 | 目标-资源-奖励","textChars":15,"textLines":2,"bbox":[90,272,237.5,152]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":14,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[344.5,297,16,40]}
+{"kind":"shape","id":"sh/adsji5sn","slide":14,"bbox":[361.5,206,269.5,230]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":14,"text":"阶段 2","textPreview":"阶段 2","textChars":4,"textLines":1,"bbox":[377.5,224,237.5,34]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":14,"text":"IPPO/MAPPO\n作为强基线","textPreview":"IPPO/MAPPO | 作为强基线","textChars":16,"textLines":2,"bbox":[377.5,272,237.5,152]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":14,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[632,297,16,40]}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":14,"bbox":[649,206,269.5,230]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":14,"text":"阶段 3","textPreview":"阶段 3","textChars":4,"textLines":1,"bbox":[665,224,237.5,34]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":14,"text":"引入 HAPPO\n异质 actor","textPreview":"引入 HAPPO | 异质 actor","textChars":17,"textLines":2,"bbox":[665,272,237.5,152]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":14,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[919.5,297,16,40]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":14,"bbox":[936.5,206,269.5,230]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":14,"text":"阶段 4","textPreview":"阶段 4","textChars":4,"textLines":1,"bbox":[952.5,224,237.5,34]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":14,"text":"加入约束\n安全与资源预算","textPreview":"加入约束 | 安全与资源预算","textChars":12,"textLines":2,"bbox":[952.5,272,237.5,152]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":14,"text":"• 评价指标：拦截成功率、资源消耗、响应时间、协同冲突率\n• 关键消融：参数共享/非共享、固定顺序/随机顺序、无约束/有约束","textPreview":"• 评价指标：拦截成功率、资源消耗、响应时间、协同冲突率 | • 关键消融：参数共享/非共享、固定顺序/随机顺序、无约束/有约束","textChars":62,"textLines":2,"bbox":[120,500,1040,66]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":14,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/w66abk","slide":14,"text":"这里转成你后续可执行的研究路线。不要直接从复杂仿真开始，先建一个能体现异质性和资源约束的简化环境。"}
+{"kind":"slide","id":"sl/693usk","slide":15,"title":"14 总结","textShapes":11}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":15,"text":"14 总结","textPreview":"14 总结","textChars":5,"textLines":1,"bbox":[56,34,310,28]}
+{"kind":"textbox","id":"sh/83itgfml","slide":15,"text":"结论：这篇论文最值得迁移的是更新协议，而不只是算法名","textPreview":"结论：这篇论文最值得迁移的是更新协议，而不只是算法名","textChars":26,"textLines":1,"bbox":[56,68,1020,70]}
+{"kind":"shape","id":"sh/xobm58z2","slide":15,"bbox":[56,146,1168,1.2]}
+{"kind":"shape","id":"sh/m94fu18j","slide":15,"bbox":[96,190,320,260]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":15,"bbox":[480,190,320,260]}
+{"kind":"shape","id":"sh/4fu18jqh","slide":15,"bbox":[864,190,320,260]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":15,"text":"理论贡献","textPreview":"理论贡献","textChars":4,"textLines":1,"bbox":[128,224,260,32]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":15,"text":"优势分解 + 顺序更新\n把 TRPO 单调改进\n推广到合作 MARL","textPreview":"优势分解 + 顺序更新 | 把 TRPO 单调改进 | 推广到合作 MARL","textChars":34,"textLines":3,"bbox":[128,292,248,100]}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":15,"text":"算法价值","textPreview":"算法价值","textChars":4,"textLines":1,"bbox":[512,224,260,32]}
+{"kind":"textbox","id":"sh/vixczed8","slide":15,"text":"HATRPO 理论更硬\nHAPPO 更适合\n大规模工程原型","textPreview":"HATRPO 理论更硬 | HAPPO 更适合 | 大规模工程原型","textChars":29,"textLines":3,"bbox":[512,292,248,100]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":15,"text":"防空启发","textPreview":"防空启发","textChars":4,"textLines":1,"bbox":[896,224,260,32]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":15,"text":"异质资源不宜强行同质化\n应围绕团队 reward\n设计互补策略","textPreview":"异质资源不宜强行同质化 | 应围绕团队 reward | 设计互补策略","textChars":31,"textLines":3,"bbox":[896,292,248,100]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":15,"text":"下一步：构建异构防空 MARL 仿真环境，用 MAPPO/HAPPO 做可解释消融。","textPreview":"下一步：构建异构防空 MARL 仿真环境，用 MAPPO/HAPPO 做可解释消融。","textChars":42,"textLines":1,"bbox":[110,545,1040,44]}
+{"kind":"textbox","id":"sh/val87ed8","slide":15,"text":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textPreview":"Trust Region MARL | HATRPO/HAPPO | 防空编组映射","textChars":41,"textLines":1,"bbox":[56,666,640,24]}
+{"kind":"textbox","id":"sh/6psfil0r","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1168,660,56,30]}
+{"kind":"notes","id":"nt/693usk","slide":15,"text":"收束到迁移价值：这篇论文真正可复用的是理论更新协议和异质 agent 设定。"}
