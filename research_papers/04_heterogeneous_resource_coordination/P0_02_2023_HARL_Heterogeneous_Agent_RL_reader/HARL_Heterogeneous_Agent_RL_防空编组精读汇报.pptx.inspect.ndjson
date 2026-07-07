@@ -1,0 +1,151 @@
+{"kind":"slide","id":"sl/et1ijc","slide":1,"title":"HARL / HAML","textShapes":12}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":1,"textChars":11,"textLines":1}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":1,"textChars":22,"textLines":2}
+{"kind":"textbox","id":"sh/svu9knih","slide":1,"textChars":63,"textLines":1}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":1,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":1,"textChars":36,"textLines":3}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":1,"textChars":61,"textLines":3}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":1,"textChars":13,"textLines":1}
+{"kind":"textbox","id":"sh/d0z61032","slide":1,"textChars":17,"textLines":1}
+{"kind":"textbox","id":"sh/vu9knih4","slide":1,"textChars":15,"textLines":1}
+{"kind":"textbox","id":"sh/d8bat47y","slide":1,"textChars":16,"textLines":1}
+{"kind":"textbox","id":"sh/2lszqtcj","slide":1,"textChars":45,"textLines":1}
+{"kind":"textbox","id":"sh/v6psfil0","slide":1,"textChars":2,"textLines":1}
+{"kind":"notes","id":"nt/et1ijc","slide":1,"text":"开场要说明：HARL 不是单个算法名，而是一组面向异质智能体协作的算法族。PPT 将先讲理论骨架，再讲实验，再回到防空编组应用。"}
+{"kind":"slide","id":"sl/1tufjy","slide":2,"title":"01 问题背景","textShapes":21}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":2,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":2,"textChars":29,"textLines":1}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":2,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":2,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":2,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":2,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/onyd0z61","slide":2,"textChars":15,"textLines":1}
+{"kind":"textbox","id":"sh/6tovahoz","slide":2,"textChars":15,"textLines":1}
+{"kind":"textbox","id":"sh/ovahoza1","slide":2,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/61032lsz","slide":2,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":2,"textChars":18,"textLines":1}
+{"kind":"textbox","id":"sh/lwval87e","slide":2,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":2,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/loj2t83i","slide":2,"textChars":12,"textLines":1}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":2,"textChars":12,"textLines":1}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":2,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":2,"textChars":16,"textLines":1}
+{"kind":"textbox","id":"sh/0je9cvix","slide":2,"textChars":8,"textLines":1}
+{"kind":"textbox","id":"sh/byhgn29g","slide":2,"textChars":47,"textLines":4}
+{"kind":"textbox","id":"sh/idonyd0z","slide":2,"textChars":45,"textLines":1}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":2,"textChars":2,"textLines":1}
+{"kind":"notes","id":"nt/1tufjy","slide":2,"text":"这一页把研究问题讲清楚：作者不是简单追求更大网络，而是处理异质 agent 下参数共享不自然、同时更新破坏理论保证的问题。"}
+{"kind":"slide","id":"sl/2vurnu","slide":3,"title":"02 防空编组映射","textShapes":28}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":3,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":3,"textChars":24,"textLines":1}
+{"kind":"textbox","id":"sh/wval87ed","slide":3,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/epkzupwb","slide":3,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":3,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/nap4r65w","slide":3,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":3,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/nyd0z610","slide":3,"textChars":12,"textLines":1}
+{"kind":"textbox","id":"sh/54zidony","slide":3,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/judg7ads","slide":3,"textChars":12,"textLines":1}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":3,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/83itgfml","slide":3,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/m94fu18j","slide":3,"textChars":12,"textLines":1}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":3,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":3,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":3,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":3,"textChars":12,"textLines":1}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":3,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/7u54zido","slide":3,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/psfil0rq","slide":3,"textChars":12,"textLines":1}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":3,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":3,"textChars":38,"textLines":1}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":3,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/65wjudg7","slide":3,"textChars":35,"textLines":1}
+{"kind":"textbox","id":"sh/ixczed8v","slide":3,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":3,"textChars":31,"textLines":1}
+{"kind":"textbox","id":"sh/032lszqt","slide":3,"textChars":45,"textLines":1}
+{"kind":"textbox","id":"sh/tovahoza","slide":3,"textChars":2,"textLines":1}
+{"kind":"notes","id":"nt/2vurnu","slide":3,"text":"这里不是声称论文做了防空实验，而是把论文的异质智能体抽象映射到防空编组的资源类型、动作差异和约束差异。"}
+{"kind":"slide","id":"sl/ou24s1","slide":4,"title":"03 论文贡献","textShapes":19}
+{"kind":"textbox","id":"sh/4nap4r65","slide":4,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":4,"textChars":25,"textLines":1}
+{"kind":"textbox","id":"sh/bq1oryts","slide":4,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/m58z25kb","slide":4,"textChars":34,"textLines":1}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":4,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":4,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/sji5snel","slide":4,"textChars":30,"textLines":1}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":4,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/s72x4nap","slide":4,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":4,"textChars":25,"textLines":1}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":4,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/6psfil0r","slide":4,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/dcbulwva","slide":4,"textChars":27,"textLines":1}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":4,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/donyd0z6","slide":4,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":4,"textChars":34,"textLines":1}
+{"kind":"textbox","id":"sh/29gr2p8n","slide":4,"textChars":57,"textLines":1}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":4,"textChars":45,"textLines":1}
+{"kind":"textbox","id":"sh/1032lszq","slide":4,"textChars":2,"textLines":1}
+{"kind":"notes","id":"nt/ou24s1","slide":4,"text":"建议把这一页作为全 deck 的路线图：HATRL 是信任域路线，HAML 是更通用的算法生成器。"}
+{"kind":"slide","id":"sl/67rg95","slide":5,"title":"04 底层理论","textShapes":10}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":5,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":5,"textChars":22,"textLines":1}
+{"kind":"textbox","id":"sh/g7adsji5","slide":5,"textChars":36,"textLines":1}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":5,"textChars":55,"textLines":1}
+{"kind":"textbox","id":"sh/m94fu18j","slide":5,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":5,"textChars":26,"textLines":1}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":5,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":5,"textChars":26,"textLines":1}
+{"kind":"textbox","id":"sh/83itgfml","slide":5,"textChars":45,"textLines":1}
+{"kind":"textbox","id":"sh/xobm58z2","slide":5,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/s36hcrmh","slide":5,"name":"","alt":"Figure 2 advantage decomposition and sequential update","bbox":[70,180,740,258]}
+{"kind":"notes","id":"nt/67rg95","slide":5,"text":"这里讲 Lemma 4 的直觉即可：局部 advantage 不是孤立 agent 的收益，而是在前序 agent 行为已给定条件下的边际改进。"}
+{"kind":"slide","id":"sl/o9al48","slide":6,"title":"05 HATRL 保证","textShapes":24}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":6,"textChars":11,"textLines":1}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":6,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":6,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":6,"textChars":11,"textLines":1}
+{"kind":"textbox","id":"sh/83itgfml","slide":6,"textChars":16,"textLines":1}
+{"kind":"textbox","id":"sh/xobm58z2","slide":6,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":6,"textChars":17,"textLines":1}
+{"kind":"textbox","id":"sh/val87ed8","slide":6,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/donyd0z6","slide":6,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":6,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/d0z61032","slide":6,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":6,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":6,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/7qpg3ex0","slide":6,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":6,"textChars":16,"textLines":1}
+{"kind":"textbox","id":"sh/p4r65wju","slide":6,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/0nuxc3yl","slide":6,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":6,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/fepkzupw","slide":6,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/4zidonyd","slide":6,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":6,"textChars":11,"textLines":1}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":6,"textChars":37,"textLines":1}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":6,"textChars":45,"textLines":1}
+{"kind":"textbox","id":"sh/4r65wjud","slide":6,"textChars":2,"textLines":1}
+{"kind":"notes","id":"nt/o9al48","slide":6,"text":"这一页要强调两个定理：单调改进和 Nash equilibrium 极限点。随机顺序是保证各 agent 有公平更新机会的重要条件。"}
+{"kind":"slide","id":"sl/4198y1","slide":7,"title":"06 HAML 框架","textShapes":12}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":7,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":7,"textChars":25,"textLines":1}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":7,"textChars":35,"textLines":1}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":7,"textChars":11,"textLines":2}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":7,"textChars":37,"textLines":1}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":7,"textChars":18,"textLines":2}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":7,"textChars":30,"textLines":1}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":7,"textChars":13,"textLines":2}
+{"kind":"textbox","id":"sh/72x4nap4","slide":7,"textChars":43,"textLines":1}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":7,"textChars":54,"textLines":1}
+{"kind":"textbox","id":"sh/p4r65wju","slide":7,"textChars":45,"textLines":1}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":7,"textChars":2,"textLines":1}
+{"kind":"notes","id":"nt/4198y1","slide":7,"text":"HAML 是本文最重要的新增点。讲者可以把它称为算法生成器：只要 drift、邻域和采样分布满足条件，就能继承基本理论保证。"}
+{"kind":"slide","id":"sl/1bv6xn","slide":8,"title":"07 HAML 实例","textShapes":12}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":8,"textChars":10,"textLines":1}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":8,"textChars":24,"textLines":1}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":8,"textChars":36,"textLines":1}
+{"kind":"textbox","id":"sh/s72x4nap","slide":8,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":8,"textChars":29,"textLines":1}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":8,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":8,"textChars":24,"textLines":1}
+{"kind":"textbox","id":"sh/z61032ls","slide":8,"textChars":14,"textLines":1}
+{"kind":"notice","message":"Truncated: omitted 158 lines. Increase maxChars or narrow target."}
