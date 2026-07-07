@@ -1,0 +1,15 @@
+priority,dataset_name,category,data_type,primary_use,source_url,notes
+P0,Anti-UAV / Anti-UAV410,real_vision,visible_infrared_video,UAV detection and tracking; trajectory extraction,https://anti-uav.github.io/,Closest public benchmark family to anti-UAV visual tracking.
+P0,HIT-UAV,real_thermal,infrared_images_and_annotations,Thermal target detection; night/low-light sensing,https://github.com/suojiashun/HIT-UAV-Infrared-Thermal-Dataset,Useful for infrared sensing models and detection uncertainty calibration.
+P0,DroneRF,real_rf,radio_frequency_signals,Drone presence/type identification; RF sensor modeling,https://data.mendeley.com/,Verify exact DOI/version before download from Mendeley Data.
+P0,RFUAV,real_rf,radio_frequency_signals,Drone RF classification and identification,https://github.com/kitoweeknd/RFUAV,Complementary RF data source for non-visual sensing.
+P0,AirSim,simulator,synthetic_sensor_simulation,High-fidelity scenario generation and visual simulation,https://github.com/microsoft/AirSim,Good for synthetic visual data and realistic validation; heavier for MARL training.
+P0,gym-pybullet-drones,simulator,physics_rl_environment,Multi-drone RL and controllable dynamics,https://github.com/utiasDSL/gym-pybullet-drones,Lightweight environment for early MARL experiments.
+P1,MMAUD,real_multimodal,multimodal_anti_uav_data,Multimodal drone detection and sensing fusion,https://github.com/ntu-aris/MMAUD,Useful for visual/acoustic/RF-like multimodal sensor modeling.
+P1,VisDrone,real_vision,drone_platform_images_videos,Small-object detection and tracking pretraining,https://github.com/VisDrone/VisDrone-Dataset,Large-scale aerial perception data; not incoming-drone targets.
+P1,UAVDT,real_vision,drone_platform_tracking_videos,Aerial detection/tracking and trajectory extraction,https://sites.google.com/view/grli-uavdt/,Useful for perception pretraining and tracking baselines.
+P1,Flightmare,simulator,visual_rl_simulation,High-speed drone control and vision-based RL,https://github.com/uzh-rpg/flightmare,Good middle ground between visual realism and RL-oriented simulation.
+P1,VMAS,simulator,vectorized_multi_agent_simulation,Fast custom MARL training and stress tests,https://github.com/proroklab/VectorizedMultiAgentSimulator,Recommended backend for large-scale anti-UAV MARL environment.
+P1,PettingZoo MPE,simulator,marl_benchmark_environment,MARL algorithm debugging and baseline verification,https://pettingzoo.farama.org/environments/mpe/,Use for algorithm scaffolding before custom anti-UAV environment.
+P2,Stanford Drone Dataset,real_trajectory,top_down_crowd_trajectories,Group motion and trajectory model calibration,https://cvgl.stanford.edu/projects/uav_data/,Not drone swarm data; useful for multi-agent motion patterns.
+P2,Drone-vs-Bird,real_vision,drone_bird_images_videos,False alarm control and drone/bird discrimination,https://wosdetc2021.wordpress.com/drone-vs-bird-detection-challenge/,Useful for visual false-positive modeling.

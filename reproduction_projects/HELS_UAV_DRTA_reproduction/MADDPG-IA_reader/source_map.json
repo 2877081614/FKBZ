@@ -1,0 +1,789 @@
+{
+  "paper": {
+    "title": "Dynamic Resource Target Assignment Problem for Laser Systems' Defense Against Malicious UAV Swarms Based on MADDPG-IA",
+    "venue": "Aerospace 2025, 12, 729",
+    "source_type": "pdf",
+    "language": "en",
+    "source_path": "MADDPG-IA_paper.pdf",
+    "doi": "https://doi.org/10.3390/aerospace12080729"
+  },
+  "blocks": [
+    {
+      "id": "S001",
+      "page": 1,
+      "type": "paragraph",
+      "order": 1,
+      "original_text": "Academic Editor: Gokhan Inalhan Received: 14 July 2025 Revised: 12 August 2025 Accepted: 15 August 2025 Published: 17 August 2025 Citation: Liu, W.; Zhang, L.; Wang, W.; Fang, H.; Zhang, J.; Zhang, B. Dynamic Resource Target Assignment Problem for Laser Systems’ Defense Against Malicious UAV Swarms Based on MADDPG-IA. Aerospace 2025, 12, 729. https://doi.org/10.3390/ aerospace12080729 Copyright: © 2025 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access article dist...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S001"
+    },
+    {
+      "id": "S002",
+      "page": 2,
+      "type": "paragraph",
+      "order": 2,
+      "original_text": "1. Introduction Rapid advances in unmanned aerial vehicle (UAV) technology have expanded its applications across diverse civilian domains, including logistics, surveying and mapping, and agriculture [1]. However, the misuse or malfunction of UAVs also poses substantial threats to public safety. This is particularly critical in sensitive areas such as airport clear zone security, the protection of critical infrastructure (e.g., power plants and oil depots), security for large-scale public events,...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S002"
+    },
+    {
+      "id": "S003",
+      "page": 3,
+      "type": "paragraph",
+      "order": 3,
+      "original_text": "combat performance of photoelectric systems. However, due to their high computational complexity, these methods are unable to handle real-time decision-making in dynamic environments, and their work ignores laser degradation caused by weather and assumes that the target assignment is synchronous. Traditional dynamic target assignment methods assume instantaneous interception with fixed resource constraints, while high-energy laser systems (HELSs) introduce unique challenges: (1) continuous irrad...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S003"
+    },
+    {
+      "id": "S004",
+      "page": 4,
+      "type": "paragraph",
+      "order": 4,
+      "original_text": "damage effects. Based on the real-time situation of malicious UAV swarms and the need for defense benefits, an HELS–UAV–DRTA model focused on optimal damage effectiveness has been established. This has further evolved into strategies such as delaying decision-making to await optimal timing and intercepting in different areas in coordination, to optimally achieve the intention. (2) To tackle the challenges of dynamically varying state dimensions, sparse extrinsic rewards, and limited resources wh...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S004"
+    },
+    {
+      "id": "S005",
+      "page": 5,
+      "type": "paragraph",
+      "order": 5,
+      "original_text": "Figure 1. Framework of the HELS–UAV–DRTA model. 2.1.1. Laser Atmospheric Transmission Model The most significant constraint on laser transmission in the atmosphere is the Fraun- hofer diffraction limit, which determines the size of the laser spot that can be formed at a distance [27]. Ideally, the radius rspot of the far-field laser spot is measured in proportion to the wavelength λ and the aperture D; that is, rspot = 1.22 λ D Lβ (1) where L represents the transmission distance and β is the bea...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S005"
+    },
+    {
+      "id": "S006",
+      "page": 6,
+      "type": "paragraph",
+      "order": 6,
+      "original_text": "Figure 2. The process of laser atmospheric transmission. (1) The influence of atmospheric turbulence on βT Atmospheric turbulence can cause phenomena such as beam expansion, spot drift, intensity fluctuation, and phase distortion during the transmission of the laser. The level of atmospheric turbulence depends on local meteorological conditions, such as the tempera- ture, air pressure, wind speed, sunshine duration, season, time, height from the ground, topography, etc., and is characterized by ...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S006"
+    },
+    {
+      "id": "S007",
+      "page": 7,
+      "type": "paragraph",
+      "order": 7,
+      "original_text": "turbulence model, the slant path H–V model for slant correction proposed by Jan and Przemysław [30] is further adopted for calculation; that is, C2 n,HV(L) ≃C2 n(h) · exp[−L · sin(θ)/h0,HV] = h 5.94 × 10−23(v/27)2h10 exp(−h) + 2.7 × 10−16× exp(−2h/3)+C2 n(0) · exp(−10h) \u0003 · exp[−L · sin(θ)/h0,HV] (3) where h0,HV = 0.1 km is the height for which the C2 n,HV(L) drops to level 1/e as per the H–V model, h is the height of the UAV, and θ is the elevation angle. C2 n(0) repre- sents the intensity cons...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S007"
+    },
+    {
+      "id": "S008",
+      "page": 8,
+      "type": "paragraph",
+      "order": 8,
+      "original_text": "During the laser emission process, the precise tracking and aiming of the target need to be accomplished through the acquisition tracking pointing (ATP) system. However, the inevitable jitter of the system during the aiming process causes the expansion of the beam. The tracking accuracy is defined as the root mean square value of the instantaneous centroid change in the laser spot on the target around its average centroid position, which is the actual tracking error on the laser-irradiated targe...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S008"
+    },
+    {
+      "id": "S009",
+      "page": 9,
+      "type": "paragraph",
+      "order": 9,
+      "original_text": "By combining Formulae (9) and (11) simultaneously, the average laser power density Itarget on the target surface is as follows: Itarget = η0 · τ(L, κ, ν) · Pe πr2 spot (12) 2.1.2. Laser Thermal Damage Model When a laser irradiates a target, there are phenomena of laser energy being emitted, absorbed, and transmitted by the target surface. Among them, the energy absorbed by the target causes the thermal damage effect [14]. Suppose the laser beam is incident perpendicularly on the target surface (...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S009"
+    },
+    {
+      "id": "S010",
+      "page": 10,
+      "type": "paragraph",
+      "order": 10,
+      "original_text": "where T0 represents the initial temperature. When continuously irradiated, the phase transformation stage of the material begins when the temperature of the surface material reaches the melting point. After simplifying the above heat conduction, assuming that the density of the melted material is equal to that of the solid, that is, ρm = ρs = ρ, the solid-liquid surface condition can be expressed as follows: ( Ts = Tq = Tm −kq ∂Tq ∂z + ks ∂Ts ∂z = ρLm dzm dt , t > tm, z = zm(t) (15) where the su...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S010"
+    },
+    {
+      "id": "S011",
+      "page": 10,
+      "type": "paragraph",
+      "order": 11,
+      "original_text": "z = zd t = tm = T(zd, tm) = Tm · [1 + Lm/(cs · Tm)] (16) Substitute the above equation into Equation (14) to obtain tm, which can then be used as the penetration time of the zd thickness material. However, it is difficult to precisely solve the laser melting problem. Therefore, an approximation assumption is adopted: when the thickness of the melting layer is much smaller than the thickness of the sheet, it can be regarded as steady-state melting; that is, the solid–liquid surface moves towards ...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S011"
+    },
+    {
+      "id": "S012",
+      "page": 11,
+      "type": "paragraph",
+      "order": 12,
+      "original_text": "Furthermore, the damage time of the HELS can be defined as follows: tdamage ≈ 1.222πzmρ[cs(Tm −T0) + Lm]λ2L2\u0010 β2 0 + β2 T + β2 B + β2 J \u0011 η0τP0D2 (20) Based on the above analysis, the damage time mainly depends on the characteristics of the laser transmitted through the atmosphere and the thermal damage effect. Specifically, under the given conditions of the laser’s wavelength, aperture, and other characteristics, the laser damage time will approximately linearly decrease as the laser power P0 i...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S012"
+    },
+    {
+      "id": "S013",
+      "page": 11,
+      "type": "paragraph",
+      "order": 13,
+      "original_text": "Figure 5. Laser damage time vs. distance under different atmospheric conditions. Furthermore, the damage times of various materials under the same irradiation condi- tions were compared. Given that the main structures of UAVs are generally made of metal materials such as aluminum alloy, titanium alloy, high-strength steel, and carbon fiber reinforced resin-based composite materials, the differences in their resistance to damage are significant. Among them, the damage mechanism of composite mater...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S013"
+    },
+    {
+      "id": "S014",
+      "page": 12,
+      "type": "paragraph",
+      "order": 14,
+      "original_text": "Figure 6. Laser damage time vs. various materials. It is easy to observe that the material significantly affects the destructive power of the laser. If the UAV adopts composite materials made of carbon fiber and coated with ceramic coatings, materials with high melting points (such as titanium alloy or high-strength steel), these materials can either scatter the laser radiation or remain undissolved rapidly at high temperatures, thereby significantly reducing the effect of the HELS damage effect...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S014"
+    },
+    {
+      "id": "S015",
+      "page": 13,
+      "type": "paragraph",
+      "order": 15,
+      "original_text": "swarm, it is divided into two cluster modes: multi-direction and multi-batch intrusion and large-scale simultaneous intrusion [44]. Suppose the time interval for each batch of UAV to reach the coverage area of the HELS is a random variable with an independent and uniform distribution f (t), and the time intervals for the arrival of the UAV swarm in the two patterns are described, respectively, by the following distribution functions: (1) The malicious UAV swarm density model of multi-direction a...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S015"
+    },
+    {
+      "id": "S016",
+      "page": 14,
+      "type": "paragraph",
+      "order": 16,
+      "original_text": "2.3. HELS–UAV–DRTA Model Formulation with Threat and Benefit Factors In this section, the target threat of UAV and the defense benefit factors are estab- lished, respectively, thereby conducting a precise quantitative calculation of the damage effectiveness. Subsequently, based on the principle of optimal defense effectiveness, the HELS–UAV–DRTA model is constructed to achieve the dynamic and optimal assignment of HELS resources. 2.3.1. Quantification of Target Threat and Defense Benefit Factors...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S016"
+    },
+    {
+      "id": "S017",
+      "page": 14,
+      "type": "paragraph",
+      "order": 17,
+      "original_text": "\u0013 (26) where Trv,j is the normalized threat factor of UAVs based on the velocity; vj represents the actual flight velocity of each UAV; and v0 is the preset speed. The physical meaning is as follows: the closer the velocity of the UAV is to v0, the more threatening it is. Both too high and too low a velocity will reduce its threat level. (3) The threat factor of the safe distance from the protected assets. The safe distance refers to the remaining distance for the UAV to invade the protected tar...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S017"
+    },
+    {
+      "id": "S018",
+      "page": 15,
+      "type": "paragraph",
+      "order": 18,
+      "original_text": "the remaining distance between the UAV and the protected assets is, the greater the threat is. (4) The benefit factor of HELS resource consumption. The energy storage of HELS is limited [43]. When dealing with UAV swarms, priority should be given to targets with shorter damage times to defend more targets with limited resources. Further- more, UAVs with similar spatial angles should be selected in order to reduce the irradiation transmission time and improve the damage efficiency. Therefore, the...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S018"
+    },
+    {
+      "id": "S019",
+      "page": 16,
+      "type": "paragraph",
+      "order": 19,
+      "original_text": "max T ∑ tk=1 m ∑ i=1 ∑ j∈A(tk) xi,j(tk) n λ1 h λ11Trh,j(tk) + λ12Trv,j(tk) + λ13TrL,j(tk) i +λ2 \u0002 λ21Brc,ij(tk) + λ22Brs,j(tk) \u0003 (30) s.t.                                        A(tk+1) = A(tk) ∪B(tk) −K(tk) (a) tbattery,i(tk+1) = tbattery,i(tk) − n ∑ j=1 xij(tk) · tdamage,ij(tk), i = 1, 2, . . . , m (b) xij(tk) · tbattery,i(tk) ≤Wi(tk), i = 1, 2, . . . , m (c) tk+1 = tk + min \u0010h xij(tk) · tperiod,ij(tk) ̸= 0 i , △t \u0011 , ∃tbattery,i(tk) > 0 ∩∀Lj(tk+1) > Lsaf...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S019"
+    },
+    {
+      "id": "S020",
+      "page": 17,
+      "type": "paragraph",
+      "order": 20,
+      "original_text": "Constraint (g). When the i-th HELS performs an irradiation mission to the j-th target, the start and end time periods of this mission are from the moment the irradiation mission is carried out to the moment when one period of damage is completed. Constraint (h). The decision variable xij for each HELS takes the value 0 (standby) or 1 (the i-th HELS irradiates to the j-th target). The computational complexity of this two-stage assignment model is analyzed as follows: The worst-case complexity is ...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S020"
+    },
+    {
+      "id": "S021",
+      "page": 18,
+      "type": "paragraph",
+      "order": 21,
+      "original_text": "intrinsic reward module is proposed to solve the HELS–UAV–DRTA model to achieve the optimal decision-making. Here, the attention mechanism acts like a spotlight that lets each HELS focus on the most relevant UAVs regardless of how many targets appear, while the intrinsic reward module supplies an extra reward for visiting new states, alleviating the sparse-reward problem. 3.1. MADDPG Framework in HELS–UAV–DRTA The MADDPG algorithm is an extension of DDPG in the multi-agent domain and is an algor...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S021"
+    },
+    {
+      "id": "S022",
+      "page": 18,
+      "type": "paragraph",
+      "order": 22,
+      "original_text": ", and the action set is a = {a1, · · · , an}. Then, the cumulative expected reward J(θi) and policy gradient ∇θπ i J(πi) of the i-th agent are as follows: J(θi) = Es∼pπ,ai∼πi \" ∞ ∑ t=0 γtrt i # (32) ∇θπ i J(πi) = Es,a∼D \u0014 ∇θπ i πi(ai|si) · ∇aiQπ i (s, a1, · · · , an)",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S022"
+    },
+    {
+      "id": "S023",
+      "page": 18,
+      "type": "paragraph",
+      "order": 23,
+      "original_text": "ai=πi(si) \u0015 (33) where γt is the discount factor, representing the influence of the current action on the expected reward of the subsequent actions; rt i represents the expected reward; pπ refers to the probability distribution of the global state s when the strategy π is executed; and Qi(s, a1, · · · , an) is the centralized action value function. For deterministic strategies πi, the above gradient formula will be as follows: ∇θπ i J(πi) = Es,a∼D h ∇θπ i log πi(ai|si)Qπ i (s, a1, · · · , an) i ...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S023"
+    },
+    {
+      "id": "S024",
+      "page": 19,
+      "type": "paragraph",
+      "order": 24,
+      "original_text": "network at certain time steps. Each agent updates the parameters of the target network through a soft update. The update rule is as follows: θπ′ i ←ϖθπ i −(1 −ϖ)θπ′ i θQ′ i ←ϖθQ i −(1 −ϖ)θQ′ i (37) where ϖ is the soft update coefficient. Throughout the entire process, each agent sam- ples independently and learns uniformly, and each agent can have an independent reward mechanism. Next, the HELS–UAV–DRTA model is subject to environmental transformation to adapt to the computational framework of t...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S024"
+    },
+    {
+      "id": "S025",
+      "page": 20,
+      "type": "paragraph",
+      "order": 25,
+      "original_text": "specific actions, which means that the action space is m + 1 dimensions. The design of the action space is as follows:   a1 a2 ... an   =   1 0 · · · 0 0 0 1 · · · 0 0 ... ... ... ... ... 0 0 · · · 1 0 0 0 · · · 0 1   n×(m+1) (41) An explanation of the action space: decode a2 = h 0 1 · · · 0 0 i as argmax(a2) = 2, which indicates that HELS agent 2 performs the irradiation task on the 2-th target; decode ai = h 0 0 · · · 0 1 i as argmax(ai) = m + 1, which indicates tha...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S025"
+    },
+    {
+      "id": "S026",
+      "page": 21,
+      "type": "paragraph",
+      "order": 26,
+      "original_text": "dimension of the input vector of the HELS-agent may be different at each moment, because the number of UAV targets decreases with the damage of other HELS agents and changes constantly with the influx of target flows. However, the traditional neural network structure is unable to handle such variable-length inputs. The number of randomly occurring and damaged or vanished UAVs leads to the agent’s inability to fit the dimensions. (2) The agents are short-sighted. During the decision-making proces...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S026"
+    },
+    {
+      "id": "S027",
+      "page": 21,
+      "type": "paragraph",
+      "order": 27,
+      "original_text": "Figure 8. State coding network based on attention mechanism. In Figure 8, the state sLaWS i of the agent itself is used as the Query, and the state sUAV i of each UAV target in the target observation set is used as the Key and Value, respectively,",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S027"
+    },
+    {
+      "id": "S028",
+      "page": 22,
+      "type": "paragraph",
+      "order": 28,
+      "original_text": "input into the corresponding networks Wq, Wk, and Wv used to calculate the Query, Key, and Value matrices in the attention mechanism, as follows:      Qi = Wq · sLaWS i ∈Rdk Kj = Wk · sUAV i ∈Rdk Vj = Wv · sUAV i ∈Rdv (43) After the network transformation, Qi represents the current ability and intention of the agent, Kj represents the attentiveness of the target, and Vj carries complete information of the target. The attention weight aij is obtained by calculating the similarity between Qi ...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S028"
+    },
+    {
+      "id": "S029",
+      "page": 22,
+      "type": "paragraph",
+      "order": 29,
+      "original_text": ", \b Wv · sUAV i \u0001 ∈Rdattn (45) where dattn is the attention network hyperparameter, and Attn(·) is the attention mechanism function. The improvement of the state dimension based on the attention mechanism can convert the dynamic UAV state information randomly appearing in the airspace and real- time interception into feature information with fixed dimensions, which is convenient for the input of the subsequent neural network. At the same time, it also has different focuses on the state informati...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S029"
+    },
+    {
+      "id": "S030",
+      "page": 23,
+      "type": "paragraph",
+      "order": 30,
+      "original_text": "Figure 9. Architecture of the RND-based intrinsic reward module. Specifically, the RND-based intrinsic reward module contains two neural networks. (1) Target network φ: randomly initialized and fixed to generate a feature representation of the state. (2) Prediction Network eφ: trained on data collected by the agent, the goal is to minimize the prediction error from the target network, which is the intrinsic reward rc i . RND uses this prediction error to encourage the agent to explore unseen or ...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S030"
+    },
+    {
+      "id": "S031",
+      "page": 23,
+      "type": "paragraph",
+      "order": 31,
+      "original_text": "∼φ \u0012 ∼s t+1 i \u0013 −φ \u0012 ∼s t+1 i \u0013",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S031"
+    },
+    {
+      "id": "S032",
+      "page": 23,
+      "type": "paragraph",
+      "order": 32,
+      "original_text": "(46) where βr is the adaptive coefficient. βr = βr0 · e−kr·t adopts the curriculum-learning strategy, which decays with the number of training steps. kr is the control parameter and is set to 1 × 104. To perform the multi-agent cooperative interception mission in a continuous environment with a discrete action space, the reward re i obtained by interacting with the environment reward and the intrinsic reward rc i are mixed to obtain the hybrid reward rh i as follows: rh,t i = γre,t i + (1 −γ)rc,...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S032"
+    },
+    {
+      "id": "S033",
+      "page": 24,
+      "type": "paragraph",
+      "order": 33,
+      "original_text": "Algorithm 1. Pseudocode of the MADDPG-IA Algorithm for the HELS–UAV–DRTA Environment 1. Initialize. Initialize the parameters of Actor network and Critic network θπ, θπ′, θQ, θQ′, experience replay pool D, discount factor γ, soft update parameter ϖ, adaptive coefficient βr, βd the RND-based intrinsic reward module’s target network parameters φ and predict network parameters eφ. 2. For episode = 1 to MaxEpisode Do 3. Reset. HELS–UAV–DRTA environment; obtain the initial state \b s0 i n i=1. 4. Whil...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S033"
+    },
+    {
+      "id": "S034",
+      "page": 25,
+      "type": "paragraph",
+      "order": 34,
+      "original_text": "4. Simulation and Analysis 4.1. Experimental Environment and Parameter Settings The experimental platform is developed using PyCharm 2024.3.1.1, leveraging Ana- conda3 (2024.10) as the Python environment, on Windows 11. The experimental program was written using Python 3.12.9, and the neural network was built using torch 2.6.0 + cu126. The computer is equipped with AMD Ryzen 7 5800H with Radeon Graphics@3.20 GHz, 32 GB of RAM, and NVIDIA GeForce RTX 3060 Laptop. The experiment is divided into tw...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S034"
+    },
+    {
+      "id": "S035",
+      "page": 26,
+      "type": "paragraph",
+      "order": 35,
+      "original_text": "Table 1. Cont. Category Attribute Value Atmospheric parameters Atmospheric turbulence Cn2(0) 1 × 10−17, 1 × 10−15 Aerosol model constant K 2.828 (rural), 2.496 (desert), 4.453 (maritime) Visibility ν 10 km (sunshine), 5 km (light haze) Wind speed vg 5 m/s MADDPG-IA parameters Size of the experience pool 1 × 106 Batch size 2048 Max episode 2000 Actor network learning rate 1 × 10−3 Critic network learning rate 1 × 10−3 Soft update parameter ϖ 1 × 10−2 Discount factor γ 0.95 4.2. Typical Scenario E...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S035"
+    },
+    {
+      "id": "S036",
+      "page": 26,
+      "type": "paragraph",
+      "order": 36,
+      "original_text": "(a) Front view (b) Top view Figure 11. The spatial situation after decision-making: (a) front view; and (b) top view. In Figure 11, the rhombus pattern represents the distribution positions of the HELS agent. The red curves represent the flight trajectories of UAVs in various directions and heights. The invasion target of the UAV swarm is the protected asset at the origin (also the position of HELS agent 5). The circles of different colors on the curve are marked as the damage decision positions...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S036"
+    },
+    {
+      "id": "S037",
+      "page": 27,
+      "type": "paragraph",
+      "order": 37,
+      "original_text": "Each HELS agent conducts intelligent damage based on the observation status of UAVs entering its coverage range. Figure 12. Irradiation timing of each HELS agent. In the early stages of decision-making in Figure 12, due to the large number of UAVs in the air, the strategy of delaying decision-making to await the optimal timing is risky. HELS agents 2, 4, and 5 were the first to start irradiating targets at distances (height) of 7.32 km (0.3 km), 7.27 km (0.3 km), and 7.25 km (0.5 km) from the pr...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S037"
+    },
+    {
+      "id": "S038",
+      "page": 28,
+      "type": "paragraph",
+      "order": 38,
+      "original_text": "100 times. One of the simulation results is shown in Figure 13. The full statistical analysis of the damage rate in large-scale scenarios can be found in Table 2.",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S038"
+    },
+    {
+      "id": "S039",
+      "page": 28,
+      "type": "paragraph",
+      "order": 39,
+      "original_text": "(c) (d) (e) (f) Figure 13. Solving the HELS–UAV–DRTA problem in different scenarios based on the MADDPG-IA: (a) small-scale, sunshine, weak turbulence, and desert; (b) large-scale, light haze, medium turbulence, and rural; (c) small-scale, light haze, medium turbulence, and rural; (d) large-scale, sunshine, weak turbulence, and desert; (e) small-scale, sunshine, weak turbulence, coastal (rural–marine); and (f) large-scale, sunshine, weak turbulence, and coastal (rural–marine).",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S039"
+    },
+    {
+      "id": "S040",
+      "page": 29,
+      "type": "paragraph",
+      "order": 40,
+      "original_text": "Table 2. Full statistical analysis of damage rate in large-scale scenarios. Environment MADDPG-IA Mean ± Std (%) Traditional Strategy Mean ± Std (%) MADDPG-IA 95% CI Rural (sunshine) 99.65 ± 0.32 72.64 ± 3.21 [99.54, 99.76] Desert (light haze) 79.37 ± 2.15 51.29 ± 4.87 [78.82, 79.92] Coastal (sunshine) 91.25 ± 1.78 67.38 ± 3.95 [90.82, 91.68] Note: The standard deviation (Std) and confidence interval (CI) are calculated based on 100 independent runs with unique random seeds, ensuring no overlap ...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S040"
+    },
+    {
+      "id": "S041",
+      "page": 30,
+      "type": "paragraph",
+      "order": 41,
+      "original_text": "condition of only adjusting the number of HELSs, the laser power, number of UAVs, and the intensity of atmospheric turbulence, the mean damage rate was analyzed, as shown in Table 3. The data in Table 3 are caused by the change in a single variable. Table 3. The results of the parameter variation experiment. Parameters Damage Rate (Mean ± Std) HELS number 3 HELS 72.3% ± 3.5% 4 HELS 89.5% ± 2.1% 5 HELS 99.6% ± 0.3% 6 HELS 99.7% ± 0.25% 7 HELS 99.8% ± 0.2% Average laser power 20 kW 65.1% ± 4.1% 25...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S041"
+    },
+    {
+      "id": "S042",
+      "page": 31,
+      "type": "paragraph",
+      "order": 42,
+      "original_text": "sessions for 2000 rounds. The corresponding curves of the reward values of each agent and the global revenue are shown in Figure 14. Figure 14. Rewards for each HELS agent and sum rewards. In Figure 14, the horizontal axis represents the number of training episodes, the vertical axis represents the reward, the shaded area is the result of 100 training runs, and the solid line part is the average reward. It is not difficult to find that, in the early stage of training, the agent is primarily in t...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S042"
+    },
+    {
+      "id": "S043",
+      "page": 32,
+      "type": "paragraph",
+      "order": 43,
+      "original_text": "Figure 15. Results of ablation experiments. Compared with the MADDPG-Basic algorithm, MADDPG-Attn can always focus on high-threat targets, so it can obtain higher global benefits. However, due to its low ability to discover new states, the exploration efficiency is about 1 time lower than that of the MADDPG-IA algorithm. MADDPG-RND has a faster convergence ability than the MADDPG-Basic algorithm, but, because it cannot effectively deal with variable-length input, it cannot give priority to attac...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S043"
+    },
+    {
+      "id": "S044",
+      "page": 33,
+      "type": "paragraph",
+      "order": 44,
+      "original_text": "MADDPG-IA algorithm exhibits rapid convergence and stability in small-scale scenarios by relying on the attention mechanism and intrinsic reward. The global average revenue is 48.2%, 20.1%, and 14.7% higher than that of the DQN, QMIX, and MAPPO algorithms, respectively, and it has a stronger exploration ability. (a) Small-scale (b) Large-scale Figure 16. Algorithm comparison results: (a) small-scale; and (b) large-scale. In the 5 HELSs–50 UAVs scenario, the real-time execution latencies of the D...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S044"
+    },
+    {
+      "id": "S045",
+      "page": 34,
+      "type": "paragraph",
+      "order": 45,
+      "original_text": "turbulence), and coastal (sunshine/weak turbulence) environments, respectively (100 runs per scenario). Compared with the interception rates of 72.64% ± 3.21%, 51.29% ± 4.87%, and 67.38% ± 3.95% of the traditional “detect and intercept” strategy (100 runs per scenario), it can significantly enhance the interception efficiency of multiple HELSs against UAV swarms. The algorithm comparison experiments show that the MADDPG-IA algorithm has a better convergence speed and stability in small- scale sc...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S045"
+    },
+    {
+      "id": "S046",
+      "page": 35,
+      "type": "paragraph",
+      "order": 46,
+      "original_text": "12. Xu, H.; Zhang, A.; Bi, W.; Xu, S. Dynamic Gaussian Mutation Beetle Swarm Optimization Method for Large-Scale Weapon Target Assignment Problems. Appl. Soft Comput. 2024, 162, 111798. [CrossRef] 13. Hanák, J.; Novák, J.; Ben-Asher, J.Z.; Chudý, P. Cross-Entropy Method for Laser Defense Applications. J. Aerosp. Inf. Syst. 2025, 22, 53–58. [CrossRef] 14. Taylor, A.B. Counter-Unmanned Aerial Vehicles Study: Shipboard Laser Weapon System Engagement Strategies for Countering Drone Swarm Threats in ...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S046"
+    },
+    {
+      "id": "S047",
+      "page": 36,
+      "type": "paragraph",
+      "order": 47,
+      "original_text": "39. Wi´sniewski, T.S. Transient Heat Conduction in Semi-Infinite Solid with Specified Surface Heat Flux. In Encyclopedia of Thermal Stresses; Hetnarski, R.B., Ed.; Springer: Dordrecht, The Netherlands, 2014; pp. 6164–6171. ISBN 978-94-007-2739-7. 40. Liu, L.; Xu, C.; Zheng, C.; Cai, S.; Wang, C.; Guo, J. Vulnerability Assessment of UAV Engine to Laser Based on Improved Shotline Method. Def. Technol. 2023, 3, 588–600. [CrossRef] 41. Li, Q. Damage Effects of Vehicles Irradiated by Intense Lasers; ...",
+      "confidence": "high",
+      "refs": [],
+      "insert_after": "S047"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "block_ids": [
+        "S001"
+      ]
+    },
+    {
+      "page": 2,
+      "block_ids": [
+        "S002"
+      ]
+    },
+    {
+      "page": 3,
+      "block_ids": [
+        "S003"
+      ]
+    },
+    {
+      "page": 4,
+      "block_ids": [
+        "S004"
+      ]
+    },
+    {
+      "page": 5,
+      "block_ids": [
+        "S005"
+      ]
+    },
+    {
+      "page": 6,
+      "block_ids": [
+        "S006"
+      ]
+    },
+    {
+      "page": 7,
+      "block_ids": [
+        "S007"
+      ]
+    },
+    {
+      "page": 8,
+      "block_ids": [
+        "S008"
+      ]
+    },
+    {
+      "page": 9,
+      "block_ids": [
+        "S009"
+      ]
+    },
+    {
+      "page": 10,
+      "block_ids": [
+        "S010",
+        "S011"
+      ]
+    },
+    {
+      "page": 11,
+      "block_ids": [
+        "S012",
+        "S013"
+      ]
+    },
+    {
+      "page": 12,
+      "block_ids": [
+        "S014"
+      ]
+    },
+    {
+      "page": 13,
+      "block_ids": [
+        "S015"
+      ]
+    },
+    {
+      "page": 14,
+      "block_ids": [
+        "S016",
+        "S017"
+      ]
+    },
+    {
+      "page": 15,
+      "block_ids": [
+        "S018"
+      ]
+    },
+    {
+      "page": 16,
+      "block_ids": [
+        "S019"
+      ]
+    },
+    {
+      "page": 17,
+      "block_ids": [
+        "S020"
+      ]
+    },
+    {
+      "page": 18,
+      "block_ids": [
+        "S021",
+        "S022",
+        "S023"
+      ]
+    },
+    {
+      "page": 19,
+      "block_ids": [
+        "S024"
+      ]
+    },
+    {
+      "page": 20,
+      "block_ids": [
+        "S025"
+      ]
+    },
+    {
+      "page": 21,
+      "block_ids": [
+        "S026",
+        "S027"
+      ]
+    },
+    {
+      "page": 22,
+      "block_ids": [
+        "S028",
+        "S029"
+      ]
+    },
+    {
+      "page": 23,
+      "block_ids": [
+        "S030",
+        "S031",
+        "S032"
+      ]
+    },
+    {
+      "page": 24,
+      "block_ids": [
+        "S033"
+      ]
+    },
+    {
+      "page": 25,
+      "block_ids": [
+        "S034"
+      ]
+    },
+    {
+      "page": 26,
+      "block_ids": [
+        "S035",
+        "S036"
+      ]
+    },
+    {
+      "page": 27,
+      "block_ids": [
+        "S037"
+      ]
+    },
+    {
+      "page": 28,
+      "block_ids": [
+        "S038",
+        "S039"
+      ]
+    },
+    {
+      "page": 29,
+      "block_ids": [
+        "S040"
+      ]
+    },
+    {
+      "page": 30,
+      "block_ids": [
+        "S041"
+      ]
+    },
+    {
+      "page": 31,
+      "block_ids": [
+        "S042"
+      ]
+    },
+    {
+      "page": 32,
+      "block_ids": [
+        "S043"
+      ]
+    },
+    {
+      "page": 33,
+      "block_ids": [
+        "S044"
+      ]
+    },
+    {
+      "page": 34,
+      "block_ids": [
+        "S045"
+      ]
+    },
+    {
+      "page": 35,
+      "block_ids": [
+        "S046"
+      ]
+    },
+    {
+      "page": 36,
+      "block_ids": [
+        "S047"
+      ]
+    }
+  ],
+  "figures": [],
+  "glossary": [
+    {
+      "term": "HELS",
+      "translation": "高能激光系统",
+      "note": "High-Energy Laser System"
+    },
+    {
+      "term": "UAV",
+      "translation": "无人机",
+      "note": "Unmanned Aerial Vehicle"
+    },
+    {
+      "term": "DRTA",
+      "translation": "动态资源目标分配",
+      "note": "Dynamic Resource Target Assignment"
+    },
+    {
+      "term": "MADDPG",
+      "translation": "多智能体深度确定性策略梯度",
+      "note": "Multi-Agent Deep Deterministic Policy Gradient"
+    },
+    {
+      "term": "MADDPG-IA",
+      "translation": "MADDPG-IA算法(I:内在奖励, A:注意力机制)",
+      "note": "MADDPG with Intrinsic reward and Attention"
+    },
+    {
+      "term": "RND",
+      "translation": "随机网络蒸馏",
+      "note": "Random Network Distillation"
+    },
+    {
+      "term": "MARL",
+      "translation": "多智能体强化学习",
+      "note": "Multi-Agent Reinforcement Learning"
+    },
+    {
+      "term": "DRL",
+      "translation": "深度强化学习",
+      "note": "Deep Reinforcement Learning"
+    },
+    {
+      "term": "CTDE",
+      "translation": "集中训练分散执行",
+      "note": "Centralized Training with Decentralized Execution"
+    },
+    {
+      "term": "ATP",
+      "translation": "捕获跟踪瞄准",
+      "note": "Acquisition Tracking Pointing"
+    },
+    {
+      "term": "FSM",
+      "translation": "快速转向镜",
+      "note": "Fast Steering Mirror"
+    },
+    {
+      "term": "thermal blooming",
+      "translation": "热晕效应",
+      "note": "Laser-induced thermal distortion in atmosphere"
+    },
+    {
+      "term": "Fraunhofer diffraction",
+      "translation": "夫琅禾费衍射",
+      "note": "Far-field diffraction limit"
+    },
+    {
+      "term": "Beer-Lambert law",
+      "translation": "比尔-朗伯定律",
+      "note": "Light attenuation through a medium"
+    },
+    {
+      "term": "Gumbel-Softmax",
+      "translation": "Gumbel-Softmax方法",
+      "note": "Continuous approximation for discrete sampling"
+    }
+  ]
+}

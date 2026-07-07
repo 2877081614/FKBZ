@@ -1,0 +1,12 @@
+priority,dataset_name,category,data_type,primary_use,source_url,notes
+P0,EuRoC MAV,real_trajectory,pose_imu_ground_truth,UAV motion calibration; velocity acceleration and attitude statistics,https://projects.asl.ethz.ch/datasets/,Use pose IMU and ground-truth only; ignore camera streams.
+P0,Blackbird Dataset,real_trajectory,aggressive_quadrotor_mocap_imu_motor,UAV aggressive maneuver model calibration,http://blackbird-dataset.mit.edu/,Use mocap trajectories IMU and motor data for high-maneuver intruder models.
+P0,Drone Racing Dataset,real_trajectory,fpv_drone_state_control_csv,High-speed UAV trajectory and control-input statistics,https://github.com/tii-racing/drone-racing-dataset,Use CSV state and control fields only; ignore image and gate annotations.
+P0,VMAS,simulator,vectorized_multi_agent_simulation,Fast custom MARL training and stress tests,https://github.com/proroklab/VectorizedMultiAgentSimulator,Recommended core backend for non-CV anti-UAV MARL environment.
+P0,gym-pybullet-drones,simulator,physics_rl_environment,Multi-drone dynamics validation and RL experiments,https://github.com/utiasDSL/gym-pybullet-drones,Use after VMAS for dynamics-aware validation.
+P1,Anti-UAV / Anti-UAV410,real_trajectory_from_annotations,bounding_box_derived_trajectory,Optional trajectory extraction only,https://anti-uav.github.io/,Use only if you want real video-derived 2D tracks; do not train CV models.
+P1,Flightmare,simulator,visual_rl_simulation,High-speed drone control and RL validation,https://github.com/uzh-rpg/flightmare,Use as simulator; avoid image pipeline unless later needed.
+P1,PettingZoo MPE,simulator,marl_benchmark_environment,MARL algorithm debugging and baseline verification,https://pettingzoo.farama.org/environments/mpe/,Use for algorithm scaffolding before custom anti-UAV environment.
+P2,Stanford Drone Dataset,real_trajectory,top_down_crowd_trajectories,Group motion and trajectory interaction templates,https://cvgl.stanford.edu/projects/uav_data/,Not UAV physics; use only for multi-agent motion motifs after rescaling.
+P2,INTERACTION Dataset,real_trajectory,traffic_agent_trajectories,Multi-agent interaction pattern templates,https://interaction-dataset.com/,Not UAV physics; use only for swarm interaction templates after rescaling.
+P2,highD Dataset,real_trajectory,highway_vehicle_trajectories,Group motion and interaction templates,http://www.highd-dataset.com/,Not UAV physics; optional for multi-agent behavior motifs.

@@ -1,0 +1,37 @@
+name: rein-learning
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - numpy
+      - scipy
+      - pandas
+      - matplotlib
+      - seaborn
+      - tqdm
+      - rich
+      - pyyaml
+      - hydra-core
+      - tensorboard
+      - jupyterlab
+      - ipykernel
+      - pytest
+      - gymnasium
+      - stable-baselines3[extra]
+      - sb3-contrib
+      - ray[rllib]
+      - pettingzoo
+      - supersuit
+      - tianshou
+      - torchrl
+      - wandb
+      - ale-py
+      - mujoco
+      - moviepy
+      - pygame-ce
+      - opencv-python
+      - pygame
+      - networkx
+      - scikit-learn

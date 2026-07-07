@@ -1,0 +1,17 @@
+gymnasium
+stable-baselines3[extra]
+sb3-contrib
+ray[rllib]
+pettingzoo
+supersuit
+tianshou
+torchrl
+wandb
+ale-py
+mujoco
+moviepy
+pygame-ce
+opencv-python
+pygame
+networkx
+scikit-learn

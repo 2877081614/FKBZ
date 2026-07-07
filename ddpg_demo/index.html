@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple DDPG Demo</title>
+  <style>
+    :root {
+      --bg: #f7f7f2;
+      --panel: #ffffff;
+      --ink: #202124;
+      --muted: #6b7280;
+      --line: #d8d8cf;
+      --green: #1f8a70;
+      --blue: #2563eb;
+      --red: #dc2626;
+      --amber: #c47f00;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    header {
+      padding: 24px 28px 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fffdf7;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      font-weight: 760;
+    }
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 980px;
+    }
+    main {
+      padding: 20px 28px 32px;
+      display: grid;
+      gap: 16px;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      padding: 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    button {
+      border: 1px solid #174f43;
+      background: var(--green);
+      color: white;
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 650;
+    }
+    button.secondary {
+      color: var(--ink);
+      background: #f4f4ed;
+      border-color: var(--line);
+    }
+    button:disabled {
+      opacity: 0.55;
+      cursor: wait;
+    }
+    label {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    input[type="number"] {
+      width: 74px;
+      height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0 8px;
+    }
+    .stats {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-width: 0;
+    }
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 260px;
+      border: 1px solid #ecece4;
+      border-radius: 6px;
+      background: #fff;
+    }
+    .wide { grid-column: 1 / -1; }
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .note {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+      min-height: 112px;
+    }
+    .note strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    .note span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    @media (max-width: 820px) {
+      .grid, .notes { grid-template-columns: 1fr; }
+      .stats { margin-left: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DDPG 连续控制极简演示</h1>
+    <p>任务：控制一维小车回到目标点 0。Actor 输出连续加速度，Critic 评估状态-动作价值；训练过程中展示奖励、损失、轨迹和学到的策略。</p>
+  </header>
+
+  <main>
+    <section class="toolbar">
+      <button id="trainBtn">Train DDPG</button>
+      <button id="rolloutBtn" class="secondary">Run Rollout</button>
+      <button id="resetBtn" class="secondary">Reset</button>
+      <label>Episodes <input id="episodesInput" type="number" min="50" max="800" value="240"></label>
+      <label>Batch <input id="batchInput" type="number" min="16" max="128" value="64"></label>
+      <label>Noise <input id="noiseInput" type="number" min="0" max="1" step="0.05" value="0.35"></label>
+      <div class="stats" id="stats">Ready. 点击训练，通常几秒内完成。</div>
+    </section>
+
+    <section class="notes">
+      <div class="note">
+        <strong>DDPG 架构</strong>
+        <span>Actor 学动作，Critic 学 Q 值；Target Actor/Critic 用软更新稳定 TD 目标。</span>
+      </div>
+      <div class="note">
+        <strong>环境</strong>
+        <span>状态为位置和速度，动作是连续加速度。奖励惩罚偏离目标、速度过大和控制能量。</span>
+      </div>
+      <div class="note">
+        <strong>怎么看结果</strong>
+        <span>奖励曲线越往上越好；rollout 轨迹应逐渐靠近 0；策略图应在左侧给正加速度、右侧给负加速度。</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>训练奖励</h2>
+        <canvas id="rewardCanvas" width="760" height="300"></canvas>
+      </div>
+      <div class="panel">
+        <h2>Actor / Critic 损失</h2>
+        <canvas id="lossCanvas" width="760" height="300"></canvas>
+      </div>
+      <div class="panel">
+        <h2>训练后 Rollout 轨迹</h2>
+        <canvas id="trajCanvas" width="760" height="300"></canvas>
+      </div>
+      <div class="panel">
+        <h2>学到的策略：position -> action</h2>
+        <canvas id="policyCanvas" width="760" height="300"></canvas>
+      </div>
+      <div class="panel wide">
+        <h2>控制动画</h2>
+        <canvas id="animCanvas" width="1280" height="260"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+    const rand = (lo, hi) => lo + Math.random() * (hi - lo);
+    const tanh = Math.tanh;
+    const dtanhFromA = a => 1 - a * a;
+
+    class PointEnv {
+      constructor() { this.maxSteps = 90; this.reset(); }
+      reset(x = rand(-1.2, 1.2), v = rand(-0.25, 0.25)) {
+        this.x = x; this.v = v; this.t = 0;
+        return this.state();
+      }
+      state() { return [this.x, this.v]; }
+      step(action) {
+        const a = clamp(action, -1, 1);
+        this.v += (a - 0.05 * this.v) * 0.08;
+        this.x += this.v * 0.08;
+        this.t += 1;
+        const reward = -(this.x * this.x + 0.12 * this.v * this.v + 0.01 * a * a);
+        const done = this.t >= this.maxSteps || (Math.abs(this.x) < 0.025 && Math.abs(this.v) < 0.025);
+        return { state: this.state(), reward, done };
+      }
+    }
+
+    class ReplayBuffer {
+      constructor(capacity) { this.capacity = capacity; this.data = []; this.pos = 0; }
+      push(item) {
+        if (this.data.length < this.capacity) this.data.push(item);
+        else this.data[this.pos] = item;
+        this.pos = (this.pos + 1) % this.capacity;
+      }
+      sample(n) {
+        const out = [];
+        for (let i = 0; i < n; i++) out.push(this.data[Math.floor(Math.random() * this.data.length)]);
+        return out;
+      }
+      get length() { return this.data.length; }
+    }
+
+    class MLP {
+      constructor(sizes, finalAct = "linear") {
+        this.sizes = sizes;
+        this.finalAct = finalAct;
+        this.W = [];
+        this.b = [];
+        this.gW = [];
+        this.gb = [];
+        for (let l = 0; l < sizes.length - 1; l++) {
+          const fanIn = sizes[l], fanOut = sizes[l + 1];
+          const scale = Math.sqrt(2 / (fanIn + fanOut));
+          const Wl = Array.from({ length: fanOut }, () => Array.from({ length: fanIn }, () => rand(-scale, scale)));
+          const bl = Array.from({ length: fanOut }, () => 0);
+          this.W.push(Wl); this.b.push(bl);
+          this.gW.push(Array.from({ length: fanOut }, () => Array.from({ length: fanIn }, () => 0)));
+          this.gb.push(Array.from({ length: fanOut }, () => 0));
+        }
+      }
+      clone() {
+        const m = new MLP(this.sizes, this.finalAct);
+        for (let l = 0; l < this.W.length; l++) {
+          for (let i = 0; i < this.W[l].length; i++) {
+            m.b[l][i] = this.b[l][i];
+            for (let j = 0; j < this.W[l][i].length; j++) m.W[l][i][j] = this.W[l][i][j];
+          }
+        }
+        return m;
+      }
+      zeroGrad() {
+        for (let l = 0; l < this.gW.length; l++) {
+          for (let i = 0; i < this.gW[l].length; i++) {
+            this.gb[l][i] = 0;
+            for (let j = 0; j < this.gW[l][i].length; j++) this.gW[l][i][j] = 0;
+          }
+        }
+      }
+      forward(input) {
+        const activations = [input.slice()];
+        const preActs = [];
+        let a = input.slice();
+        for (let l = 0; l < this.W.length; l++) {
+          const z = [];
+          const next = [];
+          for (let i = 0; i < this.W[l].length; i++) {
+            let s = this.b[l][i];
+            for (let j = 0; j < a.length; j++) s += this.W[l][i][j] * a[j];
+            z.push(s);
+            const isLast = l === this.W.length - 1;
+            next.push(isLast && this.finalAct === "linear" ? s : tanh(s));
+          }
+          preActs.push(z);
+          activations.push(next);
+          a = next;
+        }
+        return { output: a, activations, preActs };
+      }
+      backward(cache, gradOut, accumulate = true) {
+        let grad = gradOut.slice();
+        for (let l = this.W.length - 1; l >= 0; l--) {
+          const isLast = l === this.W.length - 1;
+          const aPrev = cache.activations[l];
+          const aCurr = cache.activations[l + 1];
+          const dz = grad.map((g, i) => {
+            const deriv = isLast && this.finalAct === "linear" ? 1 : dtanhFromA(aCurr[i]);
+            return g * deriv;
+          });
+          const gradPrev = Array(aPrev.length).fill(0);
+          for (let i = 0; i < this.W[l].length; i++) {
+            if (accumulate) this.gb[l][i] += dz[i];
+            for (let j = 0; j < this.W[l][i].length; j++) {
+              if (accumulate) this.gW[l][i][j] += dz[i] * aPrev[j];
+              gradPrev[j] += this.W[l][i][j] * dz[i];
+            }
+          }
+          grad = gradPrev;
+        }
+        return grad;
+      }
+      applyGrad(lr, batchSize, clip = 1.0) {
+        for (let l = 0; l < this.W.length; l++) {
+          for (let i = 0; i < this.W[l].length; i++) {
+            const gb = clamp(this.gb[l][i] / batchSize, -clip, clip);
+            this.b[l][i] -= lr * gb;
+            for (let j = 0; j < this.W[l][i].length; j++) {
+              const gw = clamp(this.gW[l][i][j] / batchSize, -clip, clip);
+              this.W[l][i][j] -= lr * gw;
+            }
+          }
+        }
+      }
+      softUpdateFrom(src, tau) {
+        for (let l = 0; l < this.W.length; l++) {
+          for (let i = 0; i < this.W[l].length; i++) {
+            this.b[l][i] = tau * src.b[l][i] + (1 - tau) * this.b[l][i];
+            for (let j = 0; j < this.W[l][i].length; j++) {
+              this.W[l][i][j] = tau * src.W[l][i][j] + (1 - tau) * this.W[l][i][j];
+            }
+          }
+        }
+      }
+    }
+
+    class DDPG {
+      constructor() { this.reset(); }
+      reset() {
+        this.actor = new MLP([2, 24, 24, 1], "tanh");
+        this.critic = new MLP([3, 48, 48, 1], "linear");
+        this.targetActor = this.actor.clone();
+        this.targetCritic = this.critic.clone();
+        this.buffer = new ReplayBuffer(16000);
+        this.gamma = 0.97;
+        this.tau = 0.025;
+        this.actorLr = 0.0008;
+        this.criticLr = 0.0025;
+        this.rewardHistory = [];
+        this.actorLossHistory = [];
+        this.criticLossHistory = [];
+      }
+      act(state, noise = 0) {
+        const a = this.actor.forward(state).output[0] + rand(-noise, noise);
+        return clamp(a, -1, 1);
+      }
+      update(batchSize) {
+        if (this.buffer.length < batchSize) return null;
+        const batch = this.buffer.sample(batchSize);
+        let criticLoss = 0, actorLoss = 0;
+
+        this.critic.zeroGrad();
+        for (const tr of batch) {
+          const nextA = this.targetActor.forward(tr.s2).output[0];
+          const targetQ = this.targetCritic.forward([tr.s2[0], tr.s2[1], nextA]).output[0];
+          const y = tr.r + (tr.done ? 0 : this.gamma * targetQ);
+          const c = this.critic.forward([tr.s[0], tr.s[1], tr.a]);
+          const err = c.output[0] - y;
+          criticLoss += err * err;
+          this.critic.backward(c, [2 * err], true);
+        }
+        this.critic.applyGrad(this.criticLr, batchSize, 2.0);
+
+        this.actor.zeroGrad();
+        for (const tr of batch) {
+          const ac = this.actor.forward(tr.s);
+          const a = ac.output[0];
+          const cc = this.critic.forward([tr.s[0], tr.s[1], a]);
+          actorLoss += -cc.output[0];
+          const dQdInput = this.critic.backward(cc, [1], false);
+          const dQdA = dQdInput[2];
+          this.actor.backward(ac, [-dQdA], true);
+        }
+        this.actor.applyGrad(this.actorLr, batchSize, 1.0);
+
+        this.targetActor.softUpdateFrom(this.actor, this.tau);
+        this.targetCritic.softUpdateFrom(this.critic, this.tau);
+        return { criticLoss: criticLoss / batchSize, actorLoss: actorLoss / batchSize };
+      }
+    }
+
+    let agent = new DDPG();
+    let lastRollout = [];
+    let animTimer = null;
+
+    function movingAverage(arr, win) {
+      return arr.map((_, i) => {
+        const a = Math.max(0, i - win + 1);
+        let s = 0;
+        for (let j = a; j <= i; j++) s += arr[j];
+        return s / (i - a + 1);
+      });
+    }
+
+    function drawAxes(ctx, w, h, title) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = "#d8d8cf";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(38, 18, w - 56, h - 46);
+      ctx.fillStyle = "#6b7280";
+      ctx.font = "13px sans-serif";
+      ctx.fillText(title, 42, 14);
+    }
+
+    function plotLine(canvas, series, color, minY = null, maxY = null) {
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width, h = canvas.height;
+      if (!series.length) return;
+      const padL = 42, padR = 18, padT = 22, padB = 28;
+      const values = series.filter(Number.isFinite);
+      const lo = minY ?? Math.min(...values);
+      const hi = maxY ?? Math.max(...values);
+      const span = Math.max(1e-6, hi - lo);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      series.forEach((v, i) => {
+        const x = padL + (w - padL - padR) * (i / Math.max(1, series.length - 1));
+        const y = h - padB - (h - padT - padB) * ((v - lo) / span);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      ctx.fillStyle = "#6b7280";
+      ctx.font = "12px sans-serif";
+      ctx.fillText(hi.toFixed(2), 4, padT + 4);
+      ctx.fillText(lo.toFixed(2), 4, h - padB);
+    }
+
+    function redrawAll() {
+      const rewardCanvas = document.getElementById("rewardCanvas");
+      drawAxes(rewardCanvas.getContext("2d"), rewardCanvas.width, rewardCanvas.height, "raw + smoothed");
+      const rewards = agent.rewardHistory;
+      if (rewards.length) {
+        const lo = Math.min(...rewards), hi = Math.max(...rewards);
+        plotLine(rewardCanvas, rewards, "rgba(37,99,235,0.35)", lo, hi);
+        plotLine(rewardCanvas, movingAverage(rewards, 16), "#1f8a70", lo, hi);
+      }
+
+      const lossCanvas = document.getElementById("lossCanvas");
+      drawAxes(lossCanvas.getContext("2d"), lossCanvas.width, lossCanvas.height, "blue=critic, amber=actor");
+      const losses = agent.criticLossHistory.concat(agent.actorLossHistory);
+      if (losses.length) {
+        const lo = Math.min(...losses), hi = Math.max(...losses);
+        plotLine(lossCanvas, agent.criticLossHistory, "#2563eb", lo, hi);
+        plotLine(lossCanvas, agent.actorLossHistory, "#c47f00", lo, hi);
+      }
+      drawPolicy();
+      drawTrajectory(lastRollout);
+      drawAnimationFrame(lastRollout, 0);
+    }
+
+    function rollout(x = 1.1, v = 0) {
+      const env = new PointEnv();
+      let s = env.reset(x, v);
+      const traj = [{ x: s[0], v: s[1], a: 0, r: 0 }];
+      for (let t = 0; t < env.maxSteps; t++) {
+        const a = agent.act(s, 0);
+        const step = env.step(a);
+        traj.push({ x: step.state[0], v: step.state[1], a, r: step.reward });
+        s = step.state;
+        if (step.done) break;
+      }
+      lastRollout = traj;
+      return traj;
+    }
+
+    function drawTrajectory(traj) {
+      const canvas = document.getElementById("trajCanvas");
+      const ctx = canvas.getContext("2d");
+      drawAxes(ctx, canvas.width, canvas.height, "position over time");
+      if (!traj || traj.length < 2) return;
+      const xs = traj.map(p => p.x);
+      plotLine(canvas, xs, "#dc2626", -1.25, 1.25);
+      const y0 = canvas.height - 28 - (canvas.height - 50) * ((0 + 1.25) / 2.5);
+      ctx.strokeStyle = "#111827";
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(42, y0);
+      ctx.lineTo(canvas.width - 18, y0);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    function drawPolicy() {
+      const canvas = document.getElementById("policyCanvas");
+      const ctx = canvas.getContext("2d");
+      drawAxes(ctx, canvas.width, canvas.height, "velocity fixed at 0");
+      const series = [];
+      for (let i = 0; i < 120; i++) {
+        const x = -1.4 + 2.8 * i / 119;
+        series.push(agent.act([x, 0], 0));
+      }
+      plotLine(canvas, series, "#1f8a70", -1.05, 1.05);
+      const y0 = canvas.height - 28 - (canvas.height - 50) * ((0 + 1.05) / 2.1);
+      ctx.strokeStyle = "#111827";
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(42, y0);
+      ctx.lineTo(canvas.width - 18, y0);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    function drawAnimationFrame(traj, idx) {
+      const canvas = document.getElementById("animCanvas");
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, w, h);
+      const left = 70, right = w - 70, midY = h / 2;
+      ctx.strokeStyle = "#d8d8cf";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(left, midY);
+      ctx.lineTo(right, midY);
+      ctx.stroke();
+      const toPx = x => left + (right - left) * ((clamp(x, -1.5, 1.5) + 1.5) / 3);
+      ctx.strokeStyle = "#111827";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(toPx(0), midY - 38);
+      ctx.lineTo(toPx(0), midY + 38);
+      ctx.stroke();
+      ctx.fillStyle = "#111827";
+      ctx.font = "14px sans-serif";
+      ctx.fillText("target 0", toPx(0) - 26, midY + 58);
+      if (!traj || !traj.length) return;
+      const p = traj[Math.min(idx, traj.length - 1)];
+      const x = toPx(p.x);
+      ctx.fillStyle = "#2563eb";
+      ctx.beginPath();
+      ctx.arc(x, midY, 18, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#6b7280";
+      ctx.fillText(`x=${p.x.toFixed(3)}  v=${p.v.toFixed(3)}  a=${p.a.toFixed(3)}`, 24, 30);
+    }
+
+    async function train() {
+      const trainBtn = document.getElementById("trainBtn");
+      const stats = document.getElementById("stats");
+      const episodes = Number(document.getElementById("episodesInput").value);
+      const batchSize = Number(document.getElementById("batchInput").value);
+      const baseNoise = Number(document.getElementById("noiseInput").value);
+      trainBtn.disabled = true;
+      const env = new PointEnv();
+      for (let ep = 0; ep < episodes; ep++) {
+        let s = env.reset();
+        let total = 0;
+        const noise = baseNoise * Math.max(0.04, 1 - ep / episodes);
+        let lastLoss = null;
+        for (let t = 0; t < env.maxSteps; t++) {
+          const a = agent.act(s, noise);
+          const step = env.step(a);
+          agent.buffer.push({ s: s.slice(), a, r: step.reward, s2: step.state.slice(), done: step.done });
+          lastLoss = agent.update(batchSize) || lastLoss;
+          total += step.reward;
+          s = step.state;
+          if (step.done) break;
+        }
+        agent.rewardHistory.push(total);
+        if (lastLoss) {
+          agent.criticLossHistory.push(lastLoss.criticLoss);
+          agent.actorLossHistory.push(lastLoss.actorLoss);
+        } else {
+          agent.criticLossHistory.push(0);
+          agent.actorLossHistory.push(0);
+        }
+        if (ep % 12 === 0 || ep === episodes - 1) {
+          stats.textContent = `Training ${ep + 1}/${episodes} | reward ${total.toFixed(2)} | buffer ${agent.buffer.length}`;
+          rollout();
+          redrawAll();
+          await new Promise(r => setTimeout(r, 1));
+        }
+      }
+      rollout();
+      redrawAll();
+      stats.textContent = `Done. Final reward ${agent.rewardHistory.at(-1).toFixed(2)} | buffer ${agent.buffer.length}`;
+      trainBtn.disabled = false;
+    }
+
+    function animateRollout() {
+      if (!lastRollout.length) rollout();
+      if (animTimer) clearInterval(animTimer);
+      let i = 0;
+      animTimer = setInterval(() => {
+        drawAnimationFrame(lastRollout, i++);
+        if (i >= lastRollout.length) clearInterval(animTimer);
+      }, 45);
+    }
+
+    document.getElementById("trainBtn").addEventListener("click", train);
+    document.getElementById("rolloutBtn").addEventListener("click", () => {
+      rollout();
+      redrawAll();
+      animateRollout();
+    });
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (animTimer) clearInterval(animTimer);
+      agent = new DDPG();
+      lastRollout = [];
+      document.getElementById("stats").textContent = "Reset. Ready.";
+      redrawAll();
+    });
+
+    rollout();
+    redrawAll();
+  </script>
+</body>
+</html>
