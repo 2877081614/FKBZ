@@ -1,4 +1,4 @@
-from .dqn_agent import DQNAgent, DQNConfig
+from .dqn_agent import DQNAgent, DQNConfig, VectorDQNAgent
 from .reinforce_agent import (
     REINFORCEAgent,
     REINFORCEConfig,
@@ -14,4 +14,5 @@ __all__ = [
     "REINFORCEConfig",
     "REINFORCETrajectoryStep",
     "TabularQLearningAgent",
+    "VectorDQNAgent",
 ]

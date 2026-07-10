@@ -1,6 +1,6 @@
 # Academic Project Progress
 
-Updated: 2026-07-08
+Updated: 2026-07-10
 
 ## 1. Current Project Position
 
@@ -83,17 +83,18 @@ Implemented and tested:
 
 ```text
 Q-learning
-DQN
+DQN for discrete-state GridWorld
+masked vector-observation DQN for AirDefenseResourceAssignmentEnv v0
 REINFORCE
 ```
 
 Current verification:
 
 ```text
-pytest: 18 passed
+pytest: 50 passed
 ```
 
-Q-learning and DQN have been verified on GridWorld. REINFORCE is present as a policy-gradient baseline and has smoke-test coverage.
+Q-learning and the first DQN implementation have been verified on GridWorld. REINFORCE is present as a policy-gradient baseline and has smoke-test coverage. The AirDefense DQN path adds vector observations, action masking, replay buffer support for continuous observations, and a trainer for the air-defense task.
 
 ### Air-Defense Environment v0 Initial Implementation
 
@@ -157,6 +158,109 @@ greedy_expected         1.47     0.30       0.72   0.15  14.83  14.83      0.24 
 
 This indicates that the environment has a meaningful decision structure: a stronger rule policy performs clearly better than random/simple heuristics.
 
+### AirDefense DQN Training Path
+
+Implemented the first learning-based trainer for:
+
+```text
+AirDefenseResourceAssignmentEnv v0
+```
+
+Implemented components:
+
+- vector-observation Q-network
+- vector replay buffer
+- masked DQN action selection
+- masked target-Q calculation
+- AirDefense DQN trainer
+- AirDefense DQN script entrypoint
+- trainer smoke tests
+
+Run:
+
+```powershell
+conda run -n rein-learning python scripts\train_air_defense_dqn.py
+```
+
+Short smoke evaluation after 5 training episodes:
+
+```text
+episodes=2
+avg_reward=-33.29
+intercept_rate=0.40
+leak_rate=0.40
+avg_invalid_actions=0.00
+```
+
+This confirms the training and evaluation pipeline is executable. The short run is not a performance claim.
+
+### AirDefense RL Environment Model Design
+
+Added a literature-grounded environment design document:
+
+```text
+docs/air_defense_rl_environment_model_design.md
+```
+
+The document synthesizes the local papers in:
+
+```text
+research_papers/05_anti_uav_rl_environment_model/
+```
+
+It defines the recommended next environment model around:
+
+- protected zones and damage-aware objectives
+- hostile UAV targets as spatio-temporal tasks
+- heterogeneous defense units and effectors
+- centralized single-agent v1.0 and later multi-agent Dec-POMDP versions
+- vector, masked, and later graph-based observations
+- joint resource-target action spaces
+- reward terms for interception, protection, tracking, jamming, resource cost, conflict, overkill, and invalid actions
+- a staged roadmap from Gymnasium to PettingZoo/MAPPO-compatible environments
+
+### AirDefenseResourceAssignmentEnv v1.0 Implementation
+
+Implemented the first v1.0 environment:
+
+```text
+rein_learning/envs/air_defense_v1/
+```
+
+Implemented components:
+
+- multiple protected zones
+- hostile targets with `payload`, `target_zone`, and `time_to_impact`
+- heterogeneous defense units
+- centralized Gymnasium environment
+- joint `MultiDiscrete` resource-target action space
+- per-unit action masks
+- damage-aware reward breakdown
+- conflict and overkill penalties
+- render and info metrics
+- unit tests
+
+Implemented v1.0 baseline policies:
+
+- random legal joint action
+- nearest target joint assignment
+- highest threat joint assignment
+- time-to-impact priority
+- greedy expected damage reduction
+
+First 50-episode baseline evaluation:
+
+```text
+policy              avg_reward  success  intercept  leak   damage  ammo  shots  hit/shot  invalid
+random_joint          -54.15     0.08       0.41   0.41     1.39  15.82  15.82      0.14     0.00
+nearest_joint         -49.85     0.10       0.42   0.38     1.35  15.70  15.70      0.13     0.00
+highest_threat        -60.47     0.04       0.34   0.45     1.51  15.84  15.84      0.11     0.00
+time_to_impact        -58.36     0.04       0.36   0.43     1.47  15.86  15.86      0.11     0.00
+greedy_damage         -41.22     0.12       0.48   0.34     1.17  15.52  15.52      0.15     0.00
+```
+
+The strongest rule policy is `greedy_damage`, but success remains low. This indicates that the v1.0 environment now exposes a meaningful research pressure point: simple heuristics struggle under joint allocation, finite ammunition, stochastic interception, and damage-aware objectives.
+
 ## 3. Literature and Reproduction Progress
 
 The project has collected and organized literature around:
@@ -182,7 +286,7 @@ This reproduction code and paper material are useful as the closest current refe
 
 ## 4. Current Main Gap
 
-The project can now run basic RL algorithms, but the academic research problem is not yet fully formalized.
+The project can now run basic RL algorithms, a first learning-based method on v0, and rule-based baselines on the v1.0 damage-aware air-defense environment. The academic experiment pipeline is becoming concrete, but learning-based comparisons on v1.0 are not yet implemented.
 
 The previous missing core was:
 
@@ -190,11 +294,13 @@ The previous missing core was:
 a simplified but publishable air-defense resource-assignment environment.
 ```
 
-The first implementation of this environment has now started, and rule-based baselines are available. The next remaining gap is to train and compare learning-based methods:
+That core now has a v0 implementation, rule-based baselines, a first DQN training path, a literature-grounded v1 environment design, and an executable v1.0 environment with baseline results. The next remaining gap is to train and compare learning-based methods on v1.0:
 
-- DQN/PPO training scripts
+- PPO / Maskable PPO training on v1.0
+- unified comparison script for rules and learning methods
 - experiment logging
 - scenario parameter sweeps
+- analysis of why simple baselines fail
 
 ## 5. Recommended Next Research Step
 
@@ -203,21 +309,19 @@ The next priority is not implementing more generic algorithms.
 The next priority is:
 
 ```text
-Design AirDefenseResourceAssignmentEnv v0.
+Train and evaluate PPO / Maskable PPO on AirDefenseResourceAssignmentEnv v1.0.
 ```
 
-Suggested first version:
+The next comparison loop should include:
 
-- multiple defense units
-- multiple incoming UAV targets
-- discrete time steps
-- finite ammunition / resource capacity
-- target threat level
-- target movement toward protected asset
-- action: assign defense resource to target, or no-op
-- reward: intercept high-threat targets, protect asset, avoid wasted fire, penalize leakage
-
-This environment should first be simple enough for DQN/PPO/MARL baselines, then gradually extended.
+- random joint baseline
+- greedy damage-reduction baseline
+- PPO
+- Maskable PPO
+- fixed evaluation seeds
+- aggregate metrics table
+- saved experiment results
+- scenario parameter sweeps
 
 ## 6. Short-Term Roadmap
 
@@ -244,7 +348,7 @@ rein_learning/envs/air_defense/
 rein_learning/simulators/
 ```
 
-Start with deterministic or lightly stochastic simulation. Keep physics simple.
+Status: completed as an initial v0.
 
 ### Step 3: Baseline Experiments
 
@@ -272,20 +376,20 @@ Avoid combining too many innovations too early.
 
 ## 7. Immediate Next Task
 
-Recommended next task after the initial v0 environment implementation:
+Recommended next task after the v1.0 environment and baseline run:
 
 ```text
-Implement the first DQN/PPO training scripts for AirDefenseResourceAssignmentEnv v0.
+Implement PPO / Maskable PPO trainers for AirDefenseResourceAssignmentEnv v1.0,
+then compare them against the v1.0 rule-based baselines.
 ```
 
 Target output:
 
 ```text
-rein_learning/trainers/air_defense_dqn.py
-rein_learning/trainers/air_defense_ppo.py
-scripts/train_air_defense_dqn.py
-scripts/train_air_defense_ppo.py
-tests/test_air_defense_trainers.py
+rein_learning/trainers/air_defense_v1_ppo.py
+scripts/train_air_defense_v1_ppo.py
+scripts/compare_air_defense_v1_methods.py
+tests/test_air_defense_v1_trainers.py
 ```
 
-This will turn the environment from a code-level simulation into an experiment-ready research platform.
+This will move the project from rule-based environment validation into learning-based experimental comparison.

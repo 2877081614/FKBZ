@@ -1,4 +1,5 @@
 from rein_learning.trainers import (
+    train_air_defense_dqn,
     train_grid_world_dqn,
     train_grid_world_q_learning,
     train_grid_world_reinforce,
@@ -6,6 +7,7 @@ from rein_learning.trainers import (
 
 
 def test_trainer_functions_are_importable() -> None:
+    assert callable(train_air_defense_dqn)
     assert callable(train_grid_world_q_learning)
     assert callable(train_grid_world_dqn)
     assert callable(train_grid_world_reinforce)

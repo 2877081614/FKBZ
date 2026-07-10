@@ -1,6 +1,6 @@
 # Implemented Algorithms
 
-This project currently includes three baseline algorithms for discrete-state, discrete-action environments.
+This project currently includes baseline algorithms for discrete-action reinforcement learning.
 
 ## Q-learning
 
@@ -51,6 +51,35 @@ Run:
 conda run -n rein-learning python scripts\train_dqn_grid_world.py
 ```
 
+## Masked Vector DQN for AirDefenseEnv
+
+Files:
+
+- `rein_learning/models/q_network.py`
+- `rein_learning/buffers/replay_buffer.py`
+- `rein_learning/agents/dqn_agent.py`
+- `rein_learning/trainers/air_defense_dqn.py`
+- `scripts/train_air_defense_dqn.py`
+
+Purpose:
+
+```text
+Train DQN on vector observations from AirDefenseResourceAssignmentEnv v0.
+```
+
+Key differences from the GridWorld DQN:
+
+- uses `VectorQNetwork` instead of one-hot discrete-state encoding
+- stores vector observations in `VectorReplayBuffer`
+- uses `action_mask` during epsilon-greedy action selection
+- masks illegal next actions when computing the DQN target
+
+Run:
+
+```powershell
+conda run -n rein-learning python scripts\train_air_defense_dqn.py
+```
+
 ## REINFORCE
 
 Files:
@@ -88,8 +117,9 @@ conda run -n rein-learning python -m pytest tests
 Latest verification:
 
 ```text
-18 passed
+36 passed
 Q-learning greedy evaluation: total_reward=3.0, steps=8
 DQN greedy evaluation: total_reward=3.0, steps=8, device=cuda
 REINFORCE smoke train: episode=001, avg_reward=-33.00, loss=0.0051, device=cuda
+AirDefense DQN smoke evaluation: intercept_rate=0.40, leak_rate=0.40, avg_invalid_actions=0.00
 ```
