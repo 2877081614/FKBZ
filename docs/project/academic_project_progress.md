@@ -199,7 +199,7 @@ This confirms the training and evaluation pipeline is executable. The short run 
 Added a literature-grounded environment design document:
 
 ```text
-docs/air_defense_rl_environment_model_design.md
+docs/environments/air_defense/air_defense_rl_environment_model_design.md
 ```
 
 The document synthesizes the local papers in:
@@ -374,22 +374,107 @@ Choose one main innovation axis:
 
 Avoid combining too many innovations too early.
 
-## 7. Immediate Next Task
+## 7. Completed Learning Baseline Step
 
-Recommended next task after the v1.0 environment and baseline run:
+The previously recommended next task after the v1.0 environment and rule baseline run was:
 
 ```text
 Implement PPO / Maskable PPO trainers for AirDefenseResourceAssignmentEnv v1.0,
 then compare them against the v1.0 rule-based baselines.
 ```
 
-Target output:
+Status: completed as an executable first version.
+
+Implemented output:
 
 ```text
 rein_learning/trainers/air_defense_v1_ppo.py
 scripts/train_air_defense_v1_ppo.py
 scripts/compare_air_defense_v1_methods.py
 tests/test_air_defense_v1_trainers.py
+docs/experiments/air_defense_v1_learning_baselines.md
 ```
 
-This will move the project from rule-based environment validation into learning-based experimental comparison.
+Verification:
+
+```text
+conda run -n rein-learning python -m pytest tests
+54 passed
+```
+
+The unified comparison framework has been upgraded with:
+
+- five complete rule baselines;
+- PPO and Maskable PPO;
+- multiple training seeds and paired evaluation scenario blocks;
+- held-out periodic evaluation curves;
+- Student-t confidence intervals across runs;
+- raw run rows and aggregated result tables;
+- SVG/PDF/PNG learning-curve exports;
+- complete environment, training, runtime, and command-line configuration records;
+- separate requested and actual SB3 rollout timesteps.
+
+Implemented output:
+
+```text
+rein_learning/experiments/air_defense_v1_benchmark.py
+tests/test_air_defense_v1_experiments.py
+```
+
+Multi-seed smoke comparison:
+
+```text
+conda run -n rein-learning python scripts\compare_air_defense_v1_methods.py --timesteps 128 --n-steps 64 --batch-size 32 --eval-episodes 2 --seeds 0 1 --curve-eval-freq 64 --curve-eval-episodes 1 --no-save-models --experiment-name benchmark_smoke_multiseed_v2
+```
+
+Smoke artifacts are stored under:
+
+```text
+results/air_defense_v1/benchmark_smoke_multiseed_v2/
+```
+
+The short smoke run is not a performance claim. It verifies that the complete multi-seed comparison pipeline executes, records reproducibility metadata, and shows the expected action-validity difference: Maskable PPO has zero invalid actions while plain PPO does not.
+
+## 8. Formal v1.0 Learning Benchmark
+
+The first formal controlled benchmark is complete:
+
+```text
+Train PPO / Maskable PPO with five seeds on AirDefenseResourceAssignmentEnv v1.0,
+compare them with all five rule baselines, inspect learning curves and confidence
+intervals, then analyze why each method succeeds or fails.
+```
+
+Main result:
+
+```text
+Maskable PPO: avg_reward=-35.93, intercept_rate=0.561, damage=1.052
+Greedy damage: avg_reward=-38.75, intercept_rate=0.517, damage=1.052
+Plain PPO:     avg_reward=-86.52, intercept_rate=0.398, damage=1.534
+```
+
+Maskable PPO consistently outperforms plain PPO and eliminates invalid actions. It reaches the strongest rule baseline, but paired confidence intervals do not yet establish a stable advantage over `greedy_damage`.
+
+Formal report:
+
+```text
+docs/experiments/air_defense_v1_formal_benchmark_100k.md
+```
+
+## 9. Immediate Next Task
+
+The next task is environment difficulty stratification and generalization testing:
+
+```text
+Define easy, medium, and hard AirDefense v1.0 scenario profiles,
+then rerun the same multi-seed protocol to determine where Maskable PPO,
+greedy assignment, and later graph-based policies separate.
+```
+
+Recommended additions before the first novel model:
+
+- fixed scenario profiles;
+- Hungarian/optimization assignment baseline;
+- conflict and overkill metrics;
+- cross-difficulty and unseen-scenario evaluation;
+- resource-target graph encoder as the leading algorithmic direction.

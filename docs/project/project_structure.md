@@ -17,12 +17,19 @@ This project is organized around reinforcement-learning boundaries: environments
 │   ├── configs/
 │   ├── models/
 │   ├── simulators/
+│   ├── experiments/
 │   ├── trainers/
 │   └── wrappers/
 ├── rl_envs/
 ├── scripts/
 ├── tests/
 ├── docs/
+│   ├── README.md
+│   ├── project/
+│   ├── environments/
+│   │   └── air_defense/
+│   ├── algorithms/
+│   └── experiments/
 ├── datasets/
 ├── research_papers/
 └── reproduction_projects/
@@ -67,9 +74,19 @@ Use `rein_learning/buffers/` for replay buffers and rollout buffers.
 
 Use `rein_learning/trainers/` for executable training loops and evaluation orchestration.
 
+Use `rein_learning/experiments/` for reusable multi-seed benchmark protocols, confidence-interval aggregation, artifact recording, and scientific result plotting.
+
 Use `scripts/` for small command-line entry points and checks. Keep scripts thin: they should import a package-level trainer and call `main()`.
 
 Use `tests/` for unit tests and fast integration tests.
+
+Use `docs/project/` for project-level progress, environment setup, and structure notes.
+
+Use `docs/environments/` for environment design documents, architecture diagrams, and scenario diagrams.
+
+Use `docs/algorithms/` for implemented algorithm notes and algorithm-paper reading reports.
+
+Use `docs/experiments/` for baseline results, experiment tables, and comparison records.
 
 ## Import Examples
 

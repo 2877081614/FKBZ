@@ -2,7 +2,7 @@
 
 更新时间：2026-07-10
 
-本文档根据 [air_defense_rl_environment_model_design.md](D:/huang/Programs/防空编组/docs/air_defense_rl_environment_model_design.md) 绘制，用于指导 `AirDefenseResourceAssignmentEnv v1.0` 的环境实现。
+本文档根据 [air_defense_rl_environment_model_design.md](air_defense_rl_environment_model_design.md) 绘制，用于指导 `AirDefenseResourceAssignmentEnv v1.0` 的环境实现。
 
 ## 1. 总体分层架构
 

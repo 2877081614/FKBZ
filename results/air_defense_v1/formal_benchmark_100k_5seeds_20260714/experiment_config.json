@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "started_at_utc": "2026-07-14T15:19:59.779592+00:00",
+  "completed_at_utc": "2026-07-14T15:54:27.784665+00:00",
+  "benchmark": {
+    "train_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eval_episodes": 100,
+    "eval_seed": 200,
+    "curve_eval_freq": 5000,
+    "curve_eval_episodes": 20,
+    "curve_eval_seed": 10000,
+    "confidence_level": 0.95,
+    "include_learning": true,
+    "save_models": true,
+    "create_plot": true
+  },
+  "training": {
+    "total_timesteps": 100000,
+    "learning_rate": 0.0003,
+    "n_steps": 256,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "gamma": 0.98,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.01,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "net_arch": [
+      128,
+      128
+    ],
+    "seed": 42,
+    "device": "cpu",
+    "verbose": 0,
+    "tensorboard_log": null,
+    "progress_bar": false
+  },
+  "environment": {
+    "protected_zones": [
+      {
+        "position": [
+          0.0,
+          0.0
+        ],
+        "radius": 5.0,
+        "value": 1.0,
+        "priority": 1.0,
+        "zone_type": "command"
+      },
+      {
+        "position": [
+          25.0,
+          -10.0
+        ],
+        "radius": 4.0,
+        "value": 0.8,
+        "priority": 0.8,
+        "zone_type": "radar"
+      }
+    ],
+    "defense_units": [
+      {
+        "resource_type": "missile",
+        "position": [
+          -12.0,
+          0.0
+        ],
+        "ammo": 3,
+        "max_range": 85.0,
+        "base_hit_probability": 0.88,
+        "cost": 2.0,
+        "cooldown_after_fire": 1,
+        "energy": 1.0
+      },
+      {
+        "resource_type": "missile",
+        "position": [
+          12.0,
+          0.0
+        ],
+        "ammo": 3,
+        "max_range": 85.0,
+        "base_hit_probability": 0.88,
+        "cost": 2.0,
+        "cooldown_after_fire": 1,
+        "energy": 1.0
+      },
+      {
+        "resource_type": "laser",
+        "position": [
+          3.0,
+          12.0
+        ],
+        "ammo": 10,
+        "max_range": 55.0,
+        "base_hit_probability": 0.68,
+        "cost": 0.5,
+        "cooldown_after_fire": 0,
+        "energy": 1.0
+      }
+    ],
+    "targets": [],
+    "num_random_targets": 5,
+    "map_size": 100.0,
+    "target_spawn_min_distance": 60.0,
+    "target_spawn_max_distance": 100.0,
+    "target_min_speed": 1.0,
+    "target_max_speed": 3.0,
+    "target_min_threat": 0.5,
+    "target_max_threat": 1.0,
+    "target_min_payload": 0.6,
+    "target_max_payload": 1.5,
+    "dt": 1.0,
+    "max_steps": 50,
+    "max_allowed_damage": 2.5,
+    "success_damage_threshold": 0.0,
+    "intercept_reward_weight": 8.0,
+    "damage_penalty_weight": 30.0,
+    "invalid_action_penalty": -5.0,
+    "time_penalty": -0.1,
+    "assignment_conflict_penalty": 1.0,
+    "overkill_penalty": 0.5,
+    "success_bonus": 25.0,
+    "failure_penalty": -25.0
+  },
+  "methods": {
+    "rule": [
+      "random_joint",
+      "nearest_joint",
+      "highest_threat",
+      "time_to_impact",
+      "greedy_damage"
+    ],
+    "learning": [
+      "ppo",
+      "maskable_ppo"
+    ]
+  },
+  "evaluation_protocol": {
+    "paired_scenario_blocks": true,
+    "final_evaluation_seed_formula": "eval_seed + run_index * eval_episodes",
+    "curve_evaluation_seed_formula": "curve_eval_seed + run_index * curve_eval_episodes",
+    "confidence_interval": "two-sided Student-t interval across runs",
+    "training_seed_source": "benchmark.train_seeds; the training template seed is overwritten for each run",
+    "timestep_accounting": "requested_timesteps is the configured budget; training_timesteps is the actual SB3 rollout count"
+  },
+  "runtime": {
+    "python": "3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:28:51) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.22631-SP0",
+    "packages": {
+      "gymnasium": "1.2.2",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "stable-baselines3": "2.9.0",
+      "sb3-contrib": "2.9.0",
+      "torch": "2.11.0+cu128"
+    },
+    "command": [
+      "scripts\\compare_air_defense_v1_methods.py",
+      "--timesteps",
+      "100000",
+      "--eval-episodes",
+      "100",
+      "--seeds",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "--curve-eval-freq",
+      "5000",
+      "--curve-eval-episodes",
+      "20",
+      "--experiment-name",
+      "formal_benchmark_100k_5seeds_20260714"
+    ]
+  },
+  "artifacts": {
+    "output_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\formal_benchmark_100k_5seeds_20260714",
+    "config": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\formal_benchmark_100k_5seeds_20260714\\experiment_config.json",
+    "runs": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\formal_benchmark_100k_5seeds_20260714\\runs.csv",
+    "summary": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\formal_benchmark_100k_5seeds_20260714\\summary.csv",
+    "learning_curves": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\formal_benchmark_100k_5seeds_20260714\\learning_curves.csv",
+    "learning_curve_summary": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\formal_benchmark_100k_5seeds_20260714\\learning_curve_summary.csv",
+    "curve_figure_base": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\formal_benchmark_100k_5seeds_20260714\\learning_curves",
+    "models_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\formal_benchmark_100k_5seeds_20260714\\models",
+    "tensorboard_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\formal_benchmark_100k_5seeds_20260714\\tensorboard"
+  },
+  "figure_contract": {
+    "core_conclusion": "Compare PPO and Maskable PPO learning dynamics and uncertainty under the same held-out air-defense scenarios.",
+    "archetype": "asymmetric quantitative grid",
+    "backend": "Python/matplotlib",
+    "statistics": "mean and 95% Student-t confidence interval across experiment seeds",
+    "source_data": "learning_curve_summary.csv"
+  },
+  "result_counts": {
+    "run_rows": 35,
+    "curve_rows": 220
+  }
+}
