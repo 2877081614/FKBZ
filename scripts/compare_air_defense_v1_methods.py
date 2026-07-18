@@ -11,9 +11,12 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from rein_learning.experiments import (
+    ALL_BENCHMARK_METHODS,
     AirDefenseV1BenchmarkConfig,
+    RULE_POLICY_FACTORIES,
     run_air_defense_v1_benchmark,
 )
+from rein_learning.envs import AIR_DEFENSE_V1_SCENARIO_NAMES
 from rein_learning.trainers.air_defense_v1_ppo import AirDefenseV1PPOConfig
 
 
@@ -24,6 +27,12 @@ DISPLAY_METRICS = (
     "leak_rate",
     "avg_total_damage",
     "avg_invalid_actions",
+    "avg_decision_time_ms",
+    "high_threat_leak_rate",
+    "assignment_conflict_rate",
+    "overkill_rate",
+    "damage_reduction_per_ammo",
+    "avg_resource_cost",
 )
 
 
@@ -70,13 +79,36 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--curve-eval-episodes", type=int, default=10)
     parser.add_argument("--curve-eval-seed", type=int, default=10_000)
     parser.add_argument("--confidence-level", type=float, default=0.95)
+    parser.add_argument("--high-threat-threshold", type=float, default=0.8)
+    parser.add_argument(
+        "--train-scenario",
+        dest="train_scenarios",
+        nargs="+",
+        choices=AIR_DEFENSE_V1_SCENARIO_NAMES,
+        default=("medium",),
+        help="One or more named scenarios used to train each learning method.",
+    )
+    parser.add_argument(
+        "--eval-scenarios",
+        nargs="+",
+        choices=AIR_DEFENSE_V1_SCENARIO_NAMES,
+        default=("medium",),
+        help="Named scenarios evaluated with paired scenario seeds.",
+    )
+    parser.add_argument(
+        "--methods",
+        nargs="+",
+        choices=ALL_BENCHMARK_METHODS,
+        default=None,
+        help="Methods to include; defaults to all rule and learning methods.",
+    )
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--verbose", type=int, default=0)
     parser.add_argument("--progress-bar", action="store_true")
     parser.add_argument(
         "--rules-only",
         action="store_true",
-        help="Run all five rule baselines without PPO training.",
+        help="Run all six rule baselines without PPO training.",
     )
     parser.add_argument(
         "--output-dir",
@@ -100,6 +132,28 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--no-save-models", action="store_true")
     parser.add_argument("--no-plot", action="store_true")
+    parser.add_argument(
+        "--record-decisions",
+        action="store_true",
+        help="Write unit-level final-evaluation decisions and leak attributions.",
+    )
+    parser.add_argument(
+        "--record-training-dynamics",
+        action="store_true",
+        help="Record PPO optimization statistics at fixed training intervals.",
+    )
+    parser.add_argument(
+        "--diagnostics-freq",
+        type=int,
+        default=1_000,
+        help="Training-step interval for optimization and policy-probe diagnostics.",
+    )
+    parser.add_argument(
+        "--probe-corpus",
+        type=Path,
+        default=None,
+        help="Directory or probe_states.npz used for frozen-state diagnostics.",
+    )
     return parser.parse_args()
 
 
@@ -122,22 +176,41 @@ def _experiment_output_dir(args: argparse.Namespace) -> Path:
 
 def _print_summary(summary_rows: tuple[dict[str, object], ...]) -> None:
     indexed = {
-        (str(row["method"]), str(row["metric"])): row
+        (
+            str(row["method"]),
+            str(row["train_scenario"]),
+            str(row["eval_scenario"]),
+            str(row["metric"]),
+        ): row
         for row in summary_rows
     }
-    methods = sorted({str(row["method"]) for row in summary_rows})
-    print(
-        "method                 n    reward [CI]       success   intercept "
-        " leak     damage   invalid"
+    evaluation_groups = sorted(
+        {
+            (
+                str(row["method"]),
+                str(row["train_scenario"]),
+                str(row["eval_scenario"]),
+            )
+            for row in summary_rows
+        }
     )
-    for method in methods:
-        reward = indexed[(method, "avg_reward")]
+    print(
+        "method                            train          eval           n    reward [CI]       success   intercept "
+        " leak     damage   invalid  decision_ms  high_leak  conflict  "
+        "overkill  dmg/ammo  cost"
+    )
+    for method, train_scenario, eval_scenario in evaluation_groups:
+        reward = indexed[(method, train_scenario, eval_scenario, "avg_reward")]
         values = {
-            metric: float(indexed[(method, metric)]["mean"])
+            metric: float(
+                indexed[(method, train_scenario, eval_scenario, metric)]["mean"]
+            )
             for metric in DISPLAY_METRICS
         }
         print(
-            f"{method:<22}"
+            f"{method:<34}"
+            f"{train_scenario:<15}"
+            f"{eval_scenario:<15}"
             f"{int(reward['n_runs']):>3}  "
             f"{values['avg_reward']:>7.2f} "
             f"[{float(reward['ci_low']):>7.2f}, {float(reward['ci_high']):>7.2f}]"
@@ -146,13 +219,26 @@ def _print_summary(summary_rows: tuple[dict[str, object], ...]) -> None:
             f"{values['leak_rate']:>7.2f}"
             f"{values['avg_total_damage']:>9.2f}"
             f"{values['avg_invalid_actions']:>10.2f}"
+            f"{values['avg_decision_time_ms']:>13.3f}"
+            f"{values['high_threat_leak_rate']:>11.2f}"
+            f"{values['assignment_conflict_rate']:>10.2f}"
+            f"{values['overkill_rate']:>10.2f}"
+            f"{values['damage_reduction_per_ammo']:>10.2f}"
+            f"{values['avg_resource_cost']:>7.2f}"
         )
 
 
 def main() -> None:
     args = parse_args()
+    if args.rules_only and args.methods is not None:
+        raise ValueError("Use either --rules-only or --methods, not both")
     seeds = _resolve_seeds(args)
     output_dir = _experiment_output_dir(args)
+    selected_methods = None
+    if args.rules_only:
+        selected_methods = tuple(RULE_POLICY_FACTORIES)
+    elif args.methods is not None:
+        selected_methods = tuple(args.methods)
     protocol = AirDefenseV1BenchmarkConfig(
         train_seeds=seeds,
         eval_episodes=args.eval_episodes,
@@ -161,9 +247,21 @@ def main() -> None:
         curve_eval_episodes=args.curve_eval_episodes,
         curve_eval_seed=args.curve_eval_seed,
         confidence_level=args.confidence_level,
+        high_threat_threshold=args.high_threat_threshold,
+        train_scenarios=tuple(args.train_scenarios),
+        eval_scenarios=tuple(args.eval_scenarios),
+        methods=selected_methods,
         include_learning=not args.rules_only,
         save_models=not args.no_save_models,
         create_plot=not args.no_plot,
+        record_decisions=args.record_decisions,
+        record_training_dynamics=(
+            args.record_training_dynamics or args.probe_corpus is not None
+        ),
+        diagnostics_freq=args.diagnostics_freq,
+        probe_corpus_path=(
+            str(args.probe_corpus) if args.probe_corpus is not None else None
+        ),
     )
     training = AirDefenseV1PPOConfig(
         total_timesteps=args.timesteps,
@@ -193,11 +291,18 @@ def main() -> None:
     print(f"experiment_dir={result.artifacts.output_dir}")
     print(f"config={result.artifacts.config}")
     print(f"runs={result.artifacts.runs}")
+    print(f"episodes={result.artifacts.episodes}")
     print(f"summary={result.artifacts.summary}")
+    print(f"paired_differences={result.artifacts.paired_differences}")
+    print(f"generalization_matrix={result.artifacts.generalization_matrix}")
     if result.curve_rows:
         print(f"learning_curves={result.artifacts.learning_curves}")
-        for figure_path in result.figure_paths:
-            print(f"curve_figure={figure_path}")
+    if result.training_dynamics_rows:
+        print(f"training_dynamics={result.artifacts.training_dynamics}")
+    if result.probe_dynamics_rows:
+        print(f"probe_dynamics={result.artifacts.probe_dynamics}")
+    for figure_path in result.figure_paths:
+        print(f"figure={figure_path}")
 
 
 if __name__ == "__main__":

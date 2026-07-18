@@ -1,0 +1,2 @@
+hetero_high_leak_range,time_resource_cost_range,hetero_damage_range,hetero_collapsed_unit_total,high_leak_range_pass,resource_cost_range_pass,damage_range_pass,all_orders_no_collapsed_units_pass,order_robustness_pass
+0.13792710953553938,2.1766666666666663,0.41408244475010836,14,False,False,False,False,False

@@ -392,4 +392,3 @@ R = + 拦截成功奖励
 
 9. Khawaja et al., 2022, radar/communication aerial threat survey。
 10. Souli et al., 2022, jamming and relative positioning counter-drone system。
-

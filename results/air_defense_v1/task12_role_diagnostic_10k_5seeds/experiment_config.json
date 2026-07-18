@@ -1,0 +1,505 @@
+{
+  "schema_version": 8,
+  "status": "completed",
+  "started_at_utc": "2026-07-17T16:26:21.820164+00:00",
+  "completed_at_utc": "2026-07-17T16:31:51.918519+00:00",
+  "benchmark": {
+    "train_seeds": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "eval_episodes": 10,
+    "eval_seed": 200,
+    "curve_eval_freq": 1000,
+    "curve_eval_episodes": 10,
+    "curve_eval_seed": 10000,
+    "confidence_level": 0.95,
+    "high_threat_threshold": 0.8,
+    "train_scenarios": [
+      "medium"
+    ],
+    "eval_scenarios": [
+      "medium"
+    ],
+    "methods": [
+      "role_conditioned_ar_ppo_order_012"
+    ],
+    "include_learning": true,
+    "save_models": true,
+    "create_plot": false,
+    "record_decisions": false,
+    "record_training_dynamics": true,
+    "diagnostics_freq": 1000,
+    "probe_corpus_path": "results\\air_defense_v1\\task12_probe_corpus"
+  },
+  "training": {
+    "total_timesteps": 10000,
+    "learning_rate": 0.0003,
+    "n_steps": 256,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "gamma": 0.98,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.01,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "net_arch": [
+      128,
+      128
+    ],
+    "seed": 42,
+    "device": "cpu",
+    "verbose": 0,
+    "tensorboard_log": null,
+    "progress_bar": false
+  },
+  "environment": {
+    "protected_zones": [
+      {
+        "position": [
+          0.0,
+          0.0
+        ],
+        "radius": 5.0,
+        "value": 1.0,
+        "priority": 1.0,
+        "zone_type": "command"
+      },
+      {
+        "position": [
+          25.0,
+          -10.0
+        ],
+        "radius": 4.0,
+        "value": 0.8,
+        "priority": 0.8,
+        "zone_type": "radar"
+      }
+    ],
+    "defense_units": [
+      {
+        "resource_type": "missile",
+        "position": [
+          -12.0,
+          0.0
+        ],
+        "ammo": 3,
+        "max_range": 85.0,
+        "base_hit_probability": 0.88,
+        "cost": 2.0,
+        "cooldown_after_fire": 1,
+        "energy": 1.0
+      },
+      {
+        "resource_type": "missile",
+        "position": [
+          12.0,
+          0.0
+        ],
+        "ammo": 3,
+        "max_range": 85.0,
+        "base_hit_probability": 0.88,
+        "cost": 2.0,
+        "cooldown_after_fire": 1,
+        "energy": 1.0
+      },
+      {
+        "resource_type": "laser",
+        "position": [
+          3.0,
+          12.0
+        ],
+        "ammo": 10,
+        "max_range": 55.0,
+        "base_hit_probability": 0.68,
+        "cost": 0.5,
+        "cooldown_after_fire": 0,
+        "energy": 1.0
+      }
+    ],
+    "targets": [],
+    "num_random_targets": 5,
+    "map_size": 100.0,
+    "target_spawn_min_distance": 60.0,
+    "target_spawn_max_distance": 100.0,
+    "target_min_speed": 1.0,
+    "target_max_speed": 3.0,
+    "target_min_threat": 0.5,
+    "target_max_threat": 1.0,
+    "target_min_payload": 0.6,
+    "target_max_payload": 1.5,
+    "dt": 1.0,
+    "max_steps": 50,
+    "max_allowed_damage": 2.5,
+    "success_damage_threshold": 0.0,
+    "intercept_reward_weight": 8.0,
+    "damage_penalty_weight": 30.0,
+    "invalid_action_penalty": -5.0,
+    "time_penalty": -0.1,
+    "assignment_conflict_penalty": 1.0,
+    "overkill_penalty": 0.5,
+    "success_bonus": 25.0,
+    "failure_penalty": -25.0
+  },
+  "scenarios": {
+    "training": {
+      "medium": {
+        "protected_zones": [
+          {
+            "position": [
+              0.0,
+              0.0
+            ],
+            "radius": 5.0,
+            "value": 1.0,
+            "priority": 1.0,
+            "zone_type": "command"
+          },
+          {
+            "position": [
+              25.0,
+              -10.0
+            ],
+            "radius": 4.0,
+            "value": 0.8,
+            "priority": 0.8,
+            "zone_type": "radar"
+          }
+        ],
+        "defense_units": [
+          {
+            "resource_type": "missile",
+            "position": [
+              -12.0,
+              0.0
+            ],
+            "ammo": 3,
+            "max_range": 85.0,
+            "base_hit_probability": 0.88,
+            "cost": 2.0,
+            "cooldown_after_fire": 1,
+            "energy": 1.0
+          },
+          {
+            "resource_type": "missile",
+            "position": [
+              12.0,
+              0.0
+            ],
+            "ammo": 3,
+            "max_range": 85.0,
+            "base_hit_probability": 0.88,
+            "cost": 2.0,
+            "cooldown_after_fire": 1,
+            "energy": 1.0
+          },
+          {
+            "resource_type": "laser",
+            "position": [
+              3.0,
+              12.0
+            ],
+            "ammo": 10,
+            "max_range": 55.0,
+            "base_hit_probability": 0.68,
+            "cost": 0.5,
+            "cooldown_after_fire": 0,
+            "energy": 1.0
+          }
+        ],
+        "targets": [],
+        "num_random_targets": 5,
+        "map_size": 100.0,
+        "target_spawn_min_distance": 60.0,
+        "target_spawn_max_distance": 100.0,
+        "target_min_speed": 1.0,
+        "target_max_speed": 3.0,
+        "target_min_threat": 0.5,
+        "target_max_threat": 1.0,
+        "target_min_payload": 0.6,
+        "target_max_payload": 1.5,
+        "dt": 1.0,
+        "max_steps": 50,
+        "max_allowed_damage": 2.5,
+        "success_damage_threshold": 0.0,
+        "intercept_reward_weight": 8.0,
+        "damage_penalty_weight": 30.0,
+        "invalid_action_penalty": -5.0,
+        "time_penalty": -0.1,
+        "assignment_conflict_penalty": 1.0,
+        "overkill_penalty": 0.5,
+        "success_bonus": 25.0,
+        "failure_penalty": -25.0
+      }
+    },
+    "evaluation": {
+      "medium": {
+        "protected_zones": [
+          {
+            "position": [
+              0.0,
+              0.0
+            ],
+            "radius": 5.0,
+            "value": 1.0,
+            "priority": 1.0,
+            "zone_type": "command"
+          },
+          {
+            "position": [
+              25.0,
+              -10.0
+            ],
+            "radius": 4.0,
+            "value": 0.8,
+            "priority": 0.8,
+            "zone_type": "radar"
+          }
+        ],
+        "defense_units": [
+          {
+            "resource_type": "missile",
+            "position": [
+              -12.0,
+              0.0
+            ],
+            "ammo": 3,
+            "max_range": 85.0,
+            "base_hit_probability": 0.88,
+            "cost": 2.0,
+            "cooldown_after_fire": 1,
+            "energy": 1.0
+          },
+          {
+            "resource_type": "missile",
+            "position": [
+              12.0,
+              0.0
+            ],
+            "ammo": 3,
+            "max_range": 85.0,
+            "base_hit_probability": 0.88,
+            "cost": 2.0,
+            "cooldown_after_fire": 1,
+            "energy": 1.0
+          },
+          {
+            "resource_type": "laser",
+            "position": [
+              3.0,
+              12.0
+            ],
+            "ammo": 10,
+            "max_range": 55.0,
+            "base_hit_probability": 0.68,
+            "cost": 0.5,
+            "cooldown_after_fire": 0,
+            "energy": 1.0
+          }
+        ],
+        "targets": [],
+        "num_random_targets": 5,
+        "map_size": 100.0,
+        "target_spawn_min_distance": 60.0,
+        "target_spawn_max_distance": 100.0,
+        "target_min_speed": 1.0,
+        "target_max_speed": 3.0,
+        "target_min_threat": 0.5,
+        "target_max_threat": 1.0,
+        "target_min_payload": 0.6,
+        "target_max_payload": 1.5,
+        "dt": 1.0,
+        "max_steps": 50,
+        "max_allowed_damage": 2.5,
+        "success_damage_threshold": 0.0,
+        "intercept_reward_weight": 8.0,
+        "damage_penalty_weight": 30.0,
+        "invalid_action_penalty": -5.0,
+        "time_penalty": -0.1,
+        "assignment_conflict_penalty": 1.0,
+        "overkill_penalty": 0.5,
+        "success_bonus": 25.0,
+        "failure_penalty": -25.0
+      }
+    },
+    "space_signatures": {
+      "medium": [
+        [
+          142
+        ],
+        [
+          6,
+          6,
+          6
+        ]
+      ]
+    }
+  },
+  "methods": {
+    "selected": [
+      "role_conditioned_ar_ppo_order_012"
+    ],
+    "rule": [],
+    "learning": [
+      "role_conditioned_ar_ppo_order_012"
+    ],
+    "space_signatures": {
+      "role_conditioned_ar_ppo_order_012": {
+        "observation_shape": [
+          142
+        ],
+        "action_space": {
+          "type": "MultiDiscrete",
+          "nvec": [
+            6,
+            6,
+            6
+          ]
+        },
+        "action_generator": {
+          "type": "role_conditioned_autoregressive_conflict_free",
+          "unit_order": [
+            0,
+            1,
+            2
+          ],
+          "conditional_target_mask": true,
+          "joint_log_prob": "sum_of_conditional_log_probs",
+          "environment_steps_per_joint_action": 1,
+          "actor_head": {
+            "type": "shared_unit_target_relation_mlp",
+            "entity_embedding_dim": 32,
+            "context_dim": 96,
+            "relation_hidden_dim": 64,
+            "unit_index_embedding": false,
+            "shared_noop_head": true
+          },
+          "observation_layout": {
+            "num_zones": 2,
+            "num_targets": 5,
+            "num_units": 3,
+            "zone_feature_dim": 7,
+            "target_feature_dim": 15,
+            "unit_feature_dim": 15,
+            "global_feature_dim": 8
+          }
+        }
+      }
+    }
+  },
+  "evaluation_protocol": {
+    "paired_scenario_blocks": true,
+    "final_evaluation_seed_formula": "eval_seed + run_index * len(eval_scenarios) * eval_episodes + eval_scenario_index * eval_episodes",
+    "curve_evaluation_seed_formula": "curve_eval_seed + run_index * curve_eval_episodes",
+    "confidence_interval": "two-sided Student-t interval across runs",
+    "high_threat_definition": "target.threat >= benchmark.high_threat_threshold",
+    "diagnostic_aggregation": "rates are recomputed from pooled raw episode counts; damage and cost are episode means",
+    "decision_time_scope": "action selection only; environment.step state transition is excluded",
+    "decision_trace_scope": "final evaluation only when benchmark.record_decisions is true; training rollouts and curve evaluations are excluded",
+    "training_seed_source": "benchmark.train_seeds; the training template seed is overwritten for each run",
+    "timestep_accounting": "requested_timesteps is the configured budget; training_timesteps is the actual SB3 rollout count",
+    "learning_curve_scenario": "each model is evaluated on its own training scenario",
+    "paired_difference_definition": "method_a - method_b across matched runs",
+    "parameter_count_contract": "actor includes policy_net and action_net; critic includes value branch and value_net; shared parameters are reported separately"
+  },
+  "runtime": {
+    "python": "3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:28:51) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.22631-SP0",
+    "packages": {
+      "gymnasium": "1.2.2",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "stable-baselines3": "2.9.0",
+      "sb3-contrib": "2.9.0",
+      "torch": "2.11.0+cu128"
+    },
+    "command": [
+      "scripts/compare_air_defense_v1_methods.py",
+      "--timesteps",
+      "10000",
+      "--n-steps",
+      "256",
+      "--batch-size",
+      "64",
+      "--n-epochs",
+      "10",
+      "--seeds",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "--eval-episodes",
+      "10",
+      "--curve-eval-freq",
+      "1000",
+      "--curve-eval-episodes",
+      "10",
+      "--train-scenario",
+      "medium",
+      "--eval-scenarios",
+      "medium",
+      "--methods",
+      "role_conditioned_ar_ppo_order_012",
+      "--device",
+      "cpu",
+      "--verbose",
+      "0",
+      "--no-plot",
+      "--record-training-dynamics",
+      "--diagnostics-freq",
+      "1000",
+      "--probe-corpus",
+      "results/air_defense_v1/task12_probe_corpus",
+      "--experiment-name",
+      "task12_role_diagnostic_10k_5seeds"
+    ]
+  },
+  "artifacts": {
+    "output_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds",
+    "config": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\experiment_config.json",
+    "runs": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\runs.csv",
+    "episodes": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\episodes.csv",
+    "decisions": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\decisions.csv",
+    "decision_summary": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\decision_summary.csv",
+    "leak_attributions": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\leak_attributions.csv",
+    "leak_attribution_summary": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\leak_attribution_summary.csv",
+    "summary": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\summary.csv",
+    "paired_differences": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\paired_differences.csv",
+    "generalization_matrix": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\generalization_matrix.csv",
+    "learning_curves": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\learning_curves.csv",
+    "learning_curve_summary": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\learning_curve_summary.csv",
+    "model_parameter_counts": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\model_parameter_counts.json",
+    "training_dynamics": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\training_dynamics.csv",
+    "probe_dynamics": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\probe_dynamics.csv",
+    "curve_figure_base": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\learning_curves",
+    "generalization_figure_base": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\generalization",
+    "models_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\models",
+    "tensorboard_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_role_diagnostic_10k_5seeds\\tensorboard"
+  },
+  "figure_contract": {
+    "core_conclusion": "Compare selected learning methods and rule baselines under the same held-out air-defense scenarios.",
+    "archetype": "asymmetric quantitative grid",
+    "backend": "Python/matplotlib",
+    "statistics": "mean and 95% Student-t confidence interval across experiment seeds",
+    "source_data": "learning_curve_summary.csv"
+  },
+  "result_counts": {
+    "run_rows": 5,
+    "episode_rows": 50,
+    "decision_rows": 0,
+    "decision_summary_rows": 0,
+    "leak_attribution_rows": 0,
+    "leak_attribution_summary_rows": 0,
+    "paired_difference_rows": 0,
+    "generalization_rows": 20,
+    "curve_rows": 60,
+    "training_dynamics_rows": 55,
+    "probe_dynamics_rows": 220,
+    "model_parameter_records": 5
+  }
+}

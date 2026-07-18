@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "content_sha256": "2a58e44b9054945fa8e12bc44c8956d43d898b68b2571b3dcf4d237b000be4ef",
+  "num_states": 768,
+  "observation_shape": [
+    142
+  ],
+  "action_mask_shape": [
+    18
+  ],
+  "scenario_counts": {
+    "heterogeneity_pressure": 256,
+    "medium": 256,
+    "time_pressure": 256
+  },
+  "source_counts": {
+    "hungarian": 258,
+    "task10_order_012_seed0": 255,
+    "task11_role_order_012_seed0": 255
+  },
+  "phase_counts": {
+    "early": 198,
+    "initial": 200,
+    "middle": 198,
+    "near_terminal": 172
+  },
+  "metadata": {
+    "scenarios": [
+      "medium",
+      "time_pressure",
+      "heterogeneity_pressure"
+    ],
+    "states_per_scenario": 256,
+    "seed_start": 40000,
+    "phase_bins": [
+      "initial",
+      "early",
+      "middle",
+      "near_terminal"
+    ],
+    "task10_model": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task10_order_screening_30k_3seeds\\models\\medium\\autoregressive_ppo_order_012_seed0.zip",
+    "task11_model": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task11_role_conditioned_screening_30k_3seeds\\models\\medium\\role_conditioned_ar_ppo_order_012_seed0.zip"
+  }
+}

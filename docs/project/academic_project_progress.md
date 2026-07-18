@@ -1,6 +1,6 @@
 # Academic Project Progress
 
-Updated: 2026-07-10
+Updated: 2026-07-17
 
 ## 1. Current Project Position
 
@@ -461,20 +461,356 @@ Formal report:
 docs/experiments/air_defense_v1_formal_benchmark_100k.md
 ```
 
-## 9. Immediate Next Task
+## 9. Frozen Baseline and Scenario Profiles
 
-The next task is environment difficulty stratification and generalization testing:
+The default AirDefense v1.0 formal benchmark configuration is now frozen as the
+canonical `medium` scenario. The snapshot is explicit and independent from
+future `AirDefenseV1EnvConfig` default changes.
+
+Implemented scenario profiles:
 
 ```text
-Define easy, medium, and hard AirDefense v1.0 scenario profiles,
-then rerun the same multi-seed protocol to determine where Maskable PPO,
-greedy assignment, and later graph-based policies separate.
+difficulty: easy, medium, hard
+pressure:   time_pressure, resource_pressure, intercept_uncertainty,
+            damage_pressure, heterogeneity_pressure
 ```
 
-Recommended additions before the first novel model:
+All profiles keep the same two zones, three defense units, five targets,
+observation shape, joint action shape, and action-mask shape.
 
-- fixed scenario profiles;
-- Hungarian/optimization assignment baseline;
-- conflict and overkill metrics;
-- cross-difficulty and unseen-scenario evaluation;
-- resource-target graph encoder as the leading algorithmic direction.
+The first difficulty calibration used `greedy_damage` on 500 paired scenario
+seeds per profile:
+
+```text
+scenario  avg_reward  avg_damage  intercept  success
+easy         -15.91       0.266      0.646    0.132
+medium       -40.03       1.055      0.507    0.046
+hard        -108.11       2.822      0.334    0.002
+```
+
+The paired hard-minus-easy damage difference was `+2.556`, with 95% CI
+`[2.492, 2.619]`. The profile ordering therefore passes the initial difficulty
+calibration criterion.
+
+Implemented output:
+
+```text
+rein_learning/envs/air_defense_v1/scenarios.py
+tests/test_air_defense_v1_scenarios.py
+docs/environments/air_defense/air_defense_v1_scenario_profiles.md
+docs/task_guides/next_research_phase_difficulty_generalization.md
+```
+
+## 10. Hungarian Optimization Baseline
+
+The strong one-step optimization baseline is now implemented and registered as
+`hungarian_damage`. It uses the same expected damage-reduction score as
+`greedy_damage`, excludes illegal and nonpositive assignments, and adds one
+independent no-op dummy column per defense unit.
+
+Correctness checks cover known small matrices, one-to-one constraints,
+deterministic actions, and equality with brute-force optimal objectives. Rule
+and learning policy evaluation now records average decision time per step.
+
+The first 50-episode `medium` evaluation block produced:
+
+```text
+method              avg_reward  avg_damage  invalid  decision_ms
+greedy_damage          -41.22        1.17      0.00        0.019
+hungarian_damage       -40.48        1.15      0.00        0.028
+```
+
+This is an implementation acceptance run, not a statistical claim that
+Hungarian has better long-horizon performance.
+
+Implemented output:
+
+```text
+rein_learning/baselines/air_defense_v1.py
+tests/test_air_defense_v1_hungarian.py
+docs/algorithms/hungarian_damage_reduction_baseline.md
+```
+
+## 11. Diagnostic Evaluation Metrics
+
+The evaluation pipeline now records raw episode diagnostics and aggregates them
+with one shared implementation for rule policies, PPO, and Maskable PPO.
+
+Added diagnostics:
+
+```text
+high_threat_leak_rate, avg_zone_weighted_damage,
+assignment_conflict_rate, overkill_rate,
+damage_reduction_per_ammo, avg_resource_cost,
+avg_decision_time_ms
+```
+
+The experiment bundle schema is now version 2 and adds `episodes.csv`. Raw
+numerators and denominators can reproduce every run-level diagnostic. Existing
+metric names and formulas remain unchanged, and legacy episode rows can still
+reconstruct the old metrics.
+
+Implemented output:
+
+```text
+rein_learning/common/air_defense_v1_metrics.py
+tests/test_air_defense_v1_diagnostics.py
+docs/experiments/air_defense_v1_diagnostic_metrics.md
+```
+
+## 12. Cross-Scenario Benchmark and Generalization Matrix
+
+The unified benchmark now supports explicit method selection and one or more
+training and evaluation scenarios. Learning models train once per training
+scenario and seed, then reuse the model across paired evaluation scenario
+blocks. Rule methods share the same blocks and are repeated across training
+scenario rows for direct comparison.
+
+Schema version 3 adds:
+
+```text
+train_scenario, eval_scenario, scenario space signatures,
+paired_differences.csv, generalization_matrix.csv,
+generalization figures, scenario-scoped model and TensorBoard paths
+```
+
+The task-five acceptance run completed a two-training-scenario by
+two-evaluation-scenario matrix with `greedy_damage`, `maskable_ppo`, and two
+seeds. It generated 16 run rows, 32 raw episodes, four models, four TensorBoard
+runs, paired statistics, learning curves, and generalization figures.
+
+Implemented output:
+
+```text
+rein_learning/experiments/air_defense_v1_benchmark.py
+scripts/compare_air_defense_v1_methods.py
+tests/test_air_defense_v1_experiments.py
+docs/experiments/air_defense_v1_cross_scenario_benchmark.md
+results/air_defense_v1/task5_smoke_2x2/
+```
+
+Current verification:
+
+```text
+pytest: 99 passed
+```
+
+## 13. Three-Seed Screening and Failure Diagnosis
+
+Task six is complete. The screening experiment trained PPO and Maskable PPO on
+`medium` for 20,000 requested steps with seeds `0/1/2`, then evaluated them
+with Greedy and Hungarian on eight paired scenarios. The bundle contains 96
+run rows, 4,800 raw evaluation episodes, six models, six TensorBoard runs,
+paired confidence intervals, learning curves, and generalization figures.
+
+The screening identified three main watersheds:
+
+```text
+action validity: plain PPO collapses to an all-no-op policy by 5k steps
+training stability: 20k Maskable PPO has a seed-dependent low-engagement trap
+scenario pressure: time and heterogeneity pressure separate rules from learning
+```
+
+`hard` is a feasibility boundary where success is near-unreachable for every
+method, while Greedy and Hungarian remain practically indistinguishable. The
+full diagnosis and exact failure episodes are recorded in:
+
+```text
+docs/experiments/air_defense_v1_task6_screening.md
+results/air_defense_v1/task6_screening_medium_20k_3seeds/
+```
+
+## 14. Core-Scenario Formal Benchmark
+
+Task seven is complete. Five Maskable PPO models were trained on `medium` for
+100,000 requested steps and evaluated with Greedy and Hungarian on `medium`,
+`time_pressure`, and `heterogeneity_pressure`. The completed bundle contains
+45 run rows, 4,500 paired episodes, five models, five TensorBoard runs, and
+153 rows each of summary, paired-difference, and generalization statistics.
+
+Main findings:
+
+```text
+reward and damage: no significant Maskable PPO versus rule difference
+medium: Maskable PPO has a significantly higher intercept rate
+time pressure: Maskable PPO uses significantly less ammunition and cost
+heterogeneity: Maskable PPO has a significantly higher high-threat leak rate
+all scenarios: Maskable PPO retains 1.6%-2.5% joint assignment conflicts
+```
+
+The 100k budget resolves the persistent low-engagement behavior seen in the
+20k screening experiment. The remaining limitation is no longer basic action
+validity or insufficient engagement; it is conflict-free joint coordination
+and high-value target prioritization under heterogeneous resource relations.
+
+Formal report and result bundle:
+
+```text
+docs/experiments/air_defense_v1_task7_formal_100k.md
+results/air_defense_v1/task7_formal_medium_100k_5seeds/
+```
+
+## 15. Conflict-Free Joint-Action Screening
+
+Task eight implemented a deterministic `Discrete(136)` codec and dynamic joint
+mask over all one-to-one assignments. The wrapper leaves AirDefense v1.0
+dynamics, reward, observations, MLP, and PPO hyperparameters unchanged. The
+trainer and unified benchmark now support `conflict_free_maskable_ppo`, and
+experiment schema version 4 records method-specific action-space signatures.
+
+The smoke run passed, followed by a 30k by three-seed screening on `medium`,
+`time_pressure`, and `heterogeneity_pressure`. The new method reduced invalid
+actions, assignment conflicts, and overkill to exactly zero. Its mean reward,
+damage, and high-threat leak trends improved across the three scenarios, but
+`time_pressure` resource cost increased by `3.49`, exceeding the frozen `+0.50`
+screening limit. All major paired confidence intervals crossed zero.
+
+The conditional 100k by five-seed experiment was therefore not run. The codec
+remains a valid structural ablation baseline, but it does not yet preserve the
+resource-efficiency signal established in task seven.
+
+```text
+docs/algorithms/conflict_free_joint_action_masking.md
+docs/experiments/air_defense_v1_task8_screening.md
+results/air_defense_v1/task8_conflict_free_screening_30k_3seeds/
+```
+
+## 16. Autoregressive Joint-Action Screening
+
+Task nine implemented a fixed-order autoregressive masked policy while keeping
+the AirDefense v1.0 environment, reward, shared MLP encoder, critic, and PPO
+hyperparameters fixed. The joint action remains one environment decision; its
+log probability is reconstructed as the sum of conditional unit log
+probabilities. Experiment schema version 5 records the action-generator
+contract separately from the Gym action-space signature.
+
+The smoke run passed, followed by a 30k by three-seed screening with the
+original Maskable PPO, the `Discrete(136)` conflict-free baseline, Greedy, and
+Hungarian. The completed bundle contains 45 run rows, 2,250 raw episodes, nine
+models, nine TensorBoard logs, and paired cross-scenario statistics.
+
+Main findings:
+
+```text
+structural validity: invalid actions, conflicts, and overkill are exactly zero
+time pressure: resource cost is 1.47 below original Maskable PPO
+joint enumeration: autoregression saves 4.96 resource-cost units
+medium performance: reward and damage remain within screening limits
+heterogeneity: high-threat leak falls by 0.01483, below the 0.02 gate
+```
+
+All gates except the heterogeneous high-threat leak magnitude passed. The
+conditional 100k experiment was therefore not run. The result separates the
+resource-efficiency problem from the remaining heterogeneous target-priority
+problem more clearly.
+
+```text
+docs/algorithms/autoregressive_conflict_free_policy.md
+docs/experiments/air_defense_v1_task9_screening.md
+results/air_defense_v1/task9_autoregressive_screening_30k_3seeds/
+```
+
+## 17. Immediate Next Task
+
+Add unit-level action, no-op, resource-type, target-threat, and assignment-order
+diagnostics. Then run a small fixed-order sensitivity ablation to determine
+whether seed-dependent high-threat leaks are caused by decoder order or by the
+MLP's inability to represent heterogeneous resource-target relations. Do not
+start the 100k formal experiment or introduce a GNN before this diagnosis.
+
+The diagnostic fields, three-order ablation, screening gates, independent-seed
+confirmation protocol, and GNN entry conditions are frozen in:
+
+```text
+docs/task_guides/next_research_phase_order_bias_diagnostics.md
+```
+
+## 18. Task-Ten Order-Bias Diagnosis
+
+Task ten is complete. The autoregressive generator now accepts an explicit
+unit permutation while preserving environment action indices. Schema version
+6 adds final-evaluation decision traces, pooled opportunity metrics, and six
+mutually exclusive high-threat leak attributions.
+
+Three frozen task-nine models were replayed for 900 episodes. The earlier seed-2
+failure was traced to low engagement: unit 1 never assigned a target, the laser
+assigned in only 0.28% of decisions, and 80% of its heterogeneous high-threat
+leaks were attributable to legal-but-unassigned opportunities.
+
+The three-order 30k by three-seed screening completed 27 evaluation blocks,
+1,350 episodes, 169,887 decision rows, and nine saved models. Order `201`
+reduced heterogeneous high-threat leak by 0.021729 with 2/3 seeds improving,
+but increased time-pressure resource cost by 4.253 relative to order `012`.
+No candidate passed all frozen gates, so the independent 100k confirmation was
+not run.
+
+The evidence supports a real order/role interaction, but not a cost-preserving
+fixed-order replacement. The next research step is a lightweight
+role-conditioned or permutation-equivariant action head while keeping the
+environment, reward, and GNN work frozen.
+
+```text
+docs/algorithms/autoregressive_order_ablation.md
+docs/experiments/air_defense_v1_task10_order_diagnostics.md
+results/air_defense_v1/task10_frozen_model_diagnostics/
+results/air_defense_v1/task10_order_screening_30k_3seeds/
+```
+
+## 19. Task-Eleven Role-Conditioned Action Head
+
+Task eleven is complete. A model-side observation layout and a shared
+unit-target relation actor replaced the independent positional logits while
+the environment, reward, critic, and PPO hyperparameters remained frozen. The
+new actor has 34,946 parameters versus 37,138 in task ten (-5.90%), and the
+critic is unchanged. Unit and target permutation tests, non-default-order model
+loading, schema-7 parameter records, and all regression tests passed.
+
+The 30k by three-seed screening completed nine models, 1,350 episodes, and
+164,868 decision rows. The canonical order `012` improved reward, damage, and
+resource cost relative to task ten, but high-threat leak worsened by 0.00335,
+only one of three seeds improved, five heterogeneous unit-runs collapsed, and
+decision latency increased 73.51%. All cross-order robustness gates failed.
+
+The relation scorer achieved high matching efficiency when it acted, but 94.8%
+of canonical heterogeneous high-threat leaks were legal-but-unassigned. The
+next bottleneck is therefore no-op probability and PPO optimization stability,
+not pair matching capacity. The 100k confirmation and GNN work remain frozen.
+
+```text
+docs/algorithms/role_conditioned_autoregressive_policy.md
+docs/experiments/air_defense_v1_task11_role_conditioned_screening.md
+results/air_defense_v1/task11_role_conditioned_screening_30k_3seeds/
+```
+
+## 20. Task Twelve: No-Op Optimization Stability
+
+Task twelve is complete. A frozen corpus of 768 policy-probe states now records
+engagement probability, no-op margin, entropy, value, PPO losses, KL, clipping,
+advantages, and gradient norms. Frozen task-eleven replay showed that seed 1 is
+all-noop under deterministic evaluation in all three core scenarios, while its
+stochastic engagement rate remains 0.36-0.41. The failure therefore includes
+categorical argmax probability fragmentation rather than probability-level zero
+engagement alone.
+
+A 10k five-seed diagnostic reproduced an early training bifurcation: seeds 3
+and 6 engaged, while seeds 4, 5, and 7 reached 100% all-noop. A factorized
+engagement-target actor was then implemented with the environment, reward,
+critic, relation scorer, PPO hyperparameters, and order `012` frozen.
+
+The paired 30k three-seed screening completed six models, 18 evaluation blocks,
+900 deterministic episodes, 109,041 decision rows, and 1,047 leak attributions.
+The candidate preserved zero invalid actions/conflicts and reduced the
+heterogeneous unassigned-leak share by 0.1716, but retained six collapsed
+scenario-seed combinations. It also degraded reward, damage, resource cost,
+calibration, and latency. Only 6 of 19 gates passed, so the conditional 100k
+confirmation was not run.
+
+The next bottleneck is engagement calibration and Actor-Critic optimization
+stability. GNN work remains deferred because representation capacity is not yet
+the controlled limiting variable.
+
+```text
+docs/algorithms/factorized_engagement_policy.md
+docs/experiments/air_defense_v1_task12_noop_stability.md
+results/air_defense_v1/task12_analysis/
+```

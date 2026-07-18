@@ -24,6 +24,7 @@ from .config import (
     TargetV1Config,
 )
 from .entities import DefenseUnitV1State, ProtectedZoneState, TargetV1State
+from .scenarios import default_air_defense_v1_config
 
 
 @dataclass(frozen=True)
@@ -51,7 +52,7 @@ class AirDefenseResourceAssignmentEnvV1(gym.Env):
         config: AirDefenseV1EnvConfig | None = None,
         render_mode: str | None = None,
     ) -> None:
-        self.config = config or AirDefenseV1EnvConfig()
+        self.config = config or default_air_defense_v1_config()
         self.render_mode = render_mode
         if render_mode is not None and render_mode not in self.metadata["render_modes"]:
             raise ValueError(f"Unsupported render_mode: {render_mode}")

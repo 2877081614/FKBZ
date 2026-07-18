@@ -116,6 +116,10 @@ def test_v1_run_episode_returns_metrics() -> None:
     assert metrics.num_targets == 2
     assert metrics.steps > 0
     assert metrics.total_reward != 0.0
+    assert metrics.decision_time_seconds >= 0.0
+    assert 0.0 <= metrics.high_threat_leak_rate <= 1.0
+    assert 0.0 <= metrics.assignment_conflict_rate <= 1.0
+    assert 0.0 <= metrics.overkill_rate <= 1.0
 
 
 def test_v1_evaluate_policy_returns_aggregate_metrics() -> None:
@@ -130,3 +134,6 @@ def test_v1_evaluate_policy_returns_aggregate_metrics() -> None:
     assert 0.0 <= metrics["intercept_rate"] <= 1.0
     assert 0.0 <= metrics["leak_rate"] <= 1.0
     assert metrics["avg_steps"] > 0.0
+    assert metrics["avg_decision_time_ms"] >= 0.0
+    assert metrics["avg_zone_weighted_damage"] >= 0.0
+    assert metrics["avg_resource_cost"] >= 0.0

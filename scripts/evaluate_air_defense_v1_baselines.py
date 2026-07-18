@@ -9,6 +9,7 @@ if str(PROJECT_ROOT) not in sys.path:
 from rein_learning.baselines import (
     GreedyDamageReductionPolicy,
     HighestThreatJointPolicy,
+    HungarianDamageReductionPolicy,
     NearestTargetJointPolicy,
     RandomLegalJointPolicy,
     TimeToImpactJointPolicy,
@@ -25,12 +26,14 @@ def main() -> None:
         "highest_threat": lambda seed: HighestThreatJointPolicy(),
         "time_to_impact": lambda seed: TimeToImpactJointPolicy(),
         "greedy_damage": lambda seed: GreedyDamageReductionPolicy(),
+        "hungarian_damage": lambda seed: HungarianDamageReductionPolicy(),
     }
 
     print(f"Evaluating AirDefense v1 baselines over {episodes} episodes")
     print(
         "policy              avg_reward  success  intercept  leak   damage  "
-        "ammo  shots  hit/shot  invalid"
+        "ammo  shots  hit/shot  invalid  decision_ms  high_leak  conflict  "
+        "overkill  dmg/ammo  cost"
     )
 
     for name, policy_factory in policies.items():
@@ -51,6 +54,12 @@ def main() -> None:
             f"{metrics['avg_shots']:>7.2f}"
             f"{metrics['hit_rate_per_shot']:>10.2f}"
             f"{metrics['avg_invalid_actions']:>9.2f}"
+            f"{metrics['avg_decision_time_ms']:>13.3f}"
+            f"{metrics['high_threat_leak_rate']:>11.2f}"
+            f"{metrics['assignment_conflict_rate']:>10.2f}"
+            f"{metrics['overkill_rate']:>10.2f}"
+            f"{metrics['damage_reduction_per_ammo']:>10.2f}"
+            f"{metrics['avg_resource_cost']:>7.2f}"
         )
 
 

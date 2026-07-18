@@ -1,0 +1,12 @@
+method,method_type,train_scenario,eval_scenario,run_index,train_seed,evaluation_seed,episode_index,episode_seed,target_index,target_threat,target_payload,target_class,attribution
+role_conditioned_ar_ppo_order_012,learning,medium,medium,0,8,200,1,201,0,0.8420367132471509,1.0677337632844333,decoy,unassigned
+factorized_engagement_ar_ppo_order_012,learning,medium,medium,0,8,200,0,200,3,0.9248442583499341,1.427710962541492,loitering_munition,attempted_miss
+factorized_engagement_ar_ppo_order_012,learning,medium,medium,0,8,200,1,201,0,0.8420367132471509,1.0677337632844333,decoy,attempted_miss
+role_conditioned_ar_ppo_order_012,learning,medium,medium,1,9,204,0,204,3,0.837353892472961,1.2587968749770213,loitering_munition,prefix_denied
+role_conditioned_ar_ppo_order_012,learning,medium,heterogeneity_pressure,1,9,206,0,206,1,0.8944048812044247,1.4572351588422823,decoy,attempted_miss
+role_conditioned_ar_ppo_order_012,learning,medium,heterogeneity_pressure,1,9,206,0,206,2,0.9081031613079442,1.1054872720324505,decoy,unassigned
+role_conditioned_ar_ppo_order_012,learning,medium,heterogeneity_pressure,1,9,206,1,207,0,0.9055975691529208,1.0315643307330864,small_uav,unassigned
+factorized_engagement_ar_ppo_order_012,learning,medium,medium,1,9,204,0,204,3,0.837353892472961,1.2587968749770213,loitering_munition,prefix_denied
+factorized_engagement_ar_ppo_order_012,learning,medium,heterogeneity_pressure,1,9,206,0,206,1,0.8944048812044247,1.4572351588422823,decoy,attempted_miss
+factorized_engagement_ar_ppo_order_012,learning,medium,heterogeneity_pressure,1,9,206,0,206,2,0.9081031613079442,1.1054872720324505,decoy,attempted_miss
+factorized_engagement_ar_ppo_order_012,learning,medium,heterogeneity_pressure,1,9,206,1,207,0,0.9055975691529208,1.0315643307330864,small_uav,attempted_miss

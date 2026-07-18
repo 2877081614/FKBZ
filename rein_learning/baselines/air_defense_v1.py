@@ -1,10 +1,18 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Callable, Protocol
+from dataclasses import asdict, dataclass
+from time import perf_counter
+from typing import Any, Callable, Protocol
 
 import numpy as np
+from scipy.optimize import linear_sum_assignment
 
+from ..common import (
+    DEFAULT_HIGH_THREAT_THRESHOLD,
+    AirDefenseV1DecisionTracker,
+    AirDefenseV1DiagnosticsTracker,
+    aggregate_air_defense_v1_episode_metrics,
+)
 from ..envs.air_defense_v1 import AirDefenseResourceAssignmentEnvV1
 from ..simulators import euclidean_distance
 
@@ -26,7 +34,27 @@ class AirDefenseV1EpisodeMetrics:
     shots: int
     hits: int
     invalid_actions: int
+    unit_decisions: int
+    actionable_decisions: int
+    engagements: int
+    actionable_engagements: int
+    all_noop_episode: bool
     success: bool
+    decision_time_seconds: float
+    decision_time_ms: float
+    high_threat_threshold: float
+    num_high_threat_targets: int
+    num_high_threat_leaked: int
+    high_threat_leak_rate: float
+    zone_weighted_damage: float
+    engaged_target_events: int
+    conflict_target_events: int
+    assignment_conflict_rate: float
+    overkill_assignments: int
+    overkill_rate: float
+    intercepted_damage_potential: float
+    damage_reduction_per_ammo: float
+    resource_cost: float
 
 
 class RandomLegalJointPolicy:
@@ -87,7 +115,7 @@ class GreedyDamageReductionPolicy:
     def select_action(self, env: AirDefenseResourceAssignmentEnvV1) -> np.ndarray:
         return _greedy_joint_assignment(
             env,
-            score_fn=lambda unit_index, target_index: _expected_damage_reduction(
+            score_fn=lambda unit_index, target_index: expected_damage_reduction_score(
                 env,
                 unit_index,
                 target_index,
@@ -96,10 +124,80 @@ class GreedyDamageReductionPolicy:
         )
 
 
+class HungarianDamageReductionPolicy:
+    """Globally maximize immediate expected damage reduction one-to-one."""
+
+    def select_action(self, env: AirDefenseResourceAssignmentEnvV1) -> np.ndarray:
+        real_scores = build_expected_damage_reduction_matrix(env)
+        num_units, num_targets = real_scores.shape
+        augmented_scores = np.full(
+            (num_units, num_targets + num_units),
+            -np.inf,
+            dtype=np.float64,
+        )
+
+        positive_legal = np.isfinite(real_scores) & (real_scores > 0.0)
+        augmented_scores[:, :num_targets][positive_legal] = real_scores[positive_legal]
+        for unit_index in range(num_units):
+            augmented_scores[unit_index, num_targets + unit_index] = 0.0
+
+        row_indices, column_indices = linear_sum_assignment(-augmented_scores)
+        actions = np.full(num_units, env.noop_action, dtype=np.int64)
+        for unit_index, column_index in zip(row_indices, column_indices):
+            if column_index < num_targets:
+                actions[unit_index] = column_index
+        return actions
+
+
+def build_expected_damage_reduction_matrix(
+    env: AirDefenseResourceAssignmentEnvV1,
+) -> np.ndarray:
+    """Return unit-target scores, using ``-inf`` for illegal assignments."""
+
+    scores = np.full(
+        (env.num_defense_units, env.num_targets),
+        -np.inf,
+        dtype=np.float64,
+    )
+    for unit_index in range(env.num_defense_units):
+        for target_index in range(env.num_targets):
+            if env.is_unit_target_action_legal(unit_index, target_index):
+                scores[unit_index, target_index] = expected_damage_reduction_score(
+                    env,
+                    unit_index,
+                    target_index,
+                )
+    return scores
+
+
+def expected_damage_reduction_score(
+    env: AirDefenseResourceAssignmentEnvV1,
+    unit_index: int,
+    target_index: int,
+) -> float:
+    """Score one legal assignment as expected avoided loss minus resource cost."""
+
+    unit = env.defense_units[unit_index]
+    hit_probability = env.hit_probability(unit_index, target_index)
+    target_priority = _target_priority(env, target_index)
+    avoided_damage_reward = (
+        hit_probability
+        * env.config.damage_penalty_weight
+        * env.target_damage_potential(target_index)
+    )
+    intercept_reward = (
+        hit_probability * env.config.intercept_reward_weight * target_priority
+    )
+    return float(avoided_damage_reward + intercept_reward - unit.cost)
+
+
 def run_air_defense_v1_episode(
     env: AirDefenseResourceAssignmentEnvV1,
     policy: AirDefenseV1Policy,
     seed: int | None = None,
+    high_threat_threshold: float = DEFAULT_HIGH_THREAT_THRESHOLD,
+    decision_trace_callback: Callable[[dict[str, Any]], None] | None = None,
+    leak_attribution_callback: Callable[[dict[str, Any]], None] | None = None,
 ) -> AirDefenseV1EpisodeMetrics:
     _, initial_info = env.reset(seed=seed)
     initial_ammo = int(initial_info["ammo_remaining"])
@@ -110,16 +208,52 @@ def run_air_defense_v1_episode(
     shots = 0
     hits = 0
     invalid_actions = 0
+    unit_decisions = 0
+    actionable_decisions = 0
+    engagements = 0
+    actionable_engagements = 0
+    decision_time_seconds = 0.0
+    diagnostics = AirDefenseV1DiagnosticsTracker(
+        high_threat_threshold=high_threat_threshold
+    )
+    decision_tracker = AirDefenseV1DecisionTracker(
+        unit_order=tuple(range(env.num_defense_units)),
+        num_units=env.num_defense_units,
+        num_targets=env.num_targets,
+        high_threat_threshold=high_threat_threshold,
+    )
     info = initial_info
 
     while not (terminated or truncated):
+        base_mask = env.action_mask()
+        actionable_units = np.any(base_mask[:, : env.num_targets], axis=1)
+        decision_started = perf_counter()
         action = policy.select_action(env)
+        decision_time_seconds += perf_counter() - decision_started
+        action_array = np.asarray(action, dtype=np.int64).reshape(-1)
+        engaged_units = action_array != env.noop_action
+        unit_decisions += env.num_defense_units
+        actionable_decisions += int(np.sum(actionable_units))
+        engagements += int(np.sum(engaged_units))
+        actionable_engagements += int(np.sum(engaged_units & actionable_units))
+        decision_rows = decision_tracker.before_step(env, action)
         _, reward, terminated, truncated, info = env.step(action)
+        decision_tracker.after_step(env, info, decision_rows)
+        if decision_trace_callback is not None:
+            for row in decision_rows:
+                decision_trace_callback(row.copy())
         total_reward += reward
         steps += 1
         shots += int(info["shots"])
         hits += int(info["hits"])
         invalid_actions += int(info["invalid_actions"])
+        diagnostics.record_step(info)
+
+    ammo_used = initial_ammo - int(info["ammo_remaining"])
+    diagnostic_metrics = diagnostics.finalize(env, ammo_used=ammo_used)
+    if leak_attribution_callback is not None:
+        for row in decision_tracker.finalize_leak_attributions(env):
+            leak_attribution_callback(row.copy())
 
     return AirDefenseV1EpisodeMetrics(
         total_reward=float(total_reward),
@@ -128,11 +262,19 @@ def run_air_defense_v1_episode(
         num_intercepted=int(info["num_intercepted"]),
         num_leaked=int(info["num_leaked"]),
         total_damage=float(info["total_damage"]),
-        ammo_used=initial_ammo - int(info["ammo_remaining"]),
+        ammo_used=ammo_used,
         shots=shots,
         hits=hits,
         invalid_actions=invalid_actions,
+        unit_decisions=unit_decisions,
+        actionable_decisions=actionable_decisions,
+        engagements=engagements,
+        actionable_engagements=actionable_engagements,
+        all_noop_episode=bool(actionable_decisions > 0 and engagements == 0),
         success=bool(info["num_alive"] == 0 and info["total_damage"] == 0.0),
+        decision_time_seconds=decision_time_seconds,
+        decision_time_ms=(1_000.0 * decision_time_seconds / steps),
+        **diagnostic_metrics,
     )
 
 
@@ -141,45 +283,45 @@ def evaluate_air_defense_v1_policy(
     policy_factory: Callable[[int], AirDefenseV1Policy],
     episodes: int = 30,
     seed: int = 0,
+    high_threat_threshold: float = DEFAULT_HIGH_THREAT_THRESHOLD,
+    episode_metrics_callback: Callable[
+        [dict[str, float | int | bool]], None
+    ]
+    | None = None,
+    decision_trace_callback: Callable[[int, dict[str, Any]], None] | None = None,
+    leak_attribution_callback: Callable[[int, dict[str, Any]], None] | None = None,
 ) -> dict[str, float]:
     if episodes <= 0:
         raise ValueError("episodes must be positive")
 
-    episode_metrics = []
+    episode_metrics: list[dict[str, float | int | bool]] = []
     for episode_index in range(episodes):
         episode_seed = seed + episode_index
         env = env_factory()
         policy = policy_factory(episode_seed)
-        metrics = run_air_defense_v1_episode(env, policy, seed=episode_seed)
-        episode_metrics.append(metrics)
+        metrics = run_air_defense_v1_episode(
+            env,
+            policy,
+            seed=episode_seed,
+            high_threat_threshold=high_threat_threshold,
+            decision_trace_callback=(
+                lambda row, index=episode_index: decision_trace_callback(index, row)
+                if decision_trace_callback is not None
+                else None
+            ),
+            leak_attribution_callback=(
+                lambda row, index=episode_index: leak_attribution_callback(index, row)
+                if leak_attribution_callback is not None
+                else None
+            ),
+        )
+        raw_metrics = asdict(metrics)
+        episode_metrics.append(raw_metrics)
+        if episode_metrics_callback is not None:
+            episode_metrics_callback(raw_metrics.copy())
         env.close()
 
-    rewards = np.asarray([metrics.total_reward for metrics in episode_metrics])
-    steps = np.asarray([metrics.steps for metrics in episode_metrics])
-    intercepted = np.asarray([metrics.num_intercepted for metrics in episode_metrics])
-    leaked = np.asarray([metrics.num_leaked for metrics in episode_metrics])
-    targets = np.asarray([metrics.num_targets for metrics in episode_metrics])
-    damage = np.asarray([metrics.total_damage for metrics in episode_metrics])
-    ammo_used = np.asarray([metrics.ammo_used for metrics in episode_metrics])
-    shots = np.asarray([metrics.shots for metrics in episode_metrics])
-    hits = np.asarray([metrics.hits for metrics in episode_metrics])
-    invalid_actions = np.asarray([metrics.invalid_actions for metrics in episode_metrics])
-    success = np.asarray([metrics.success for metrics in episode_metrics], dtype=np.float32)
-
-    return {
-        "episodes": float(episodes),
-        "avg_reward": float(np.mean(rewards)),
-        "std_reward": float(np.std(rewards)),
-        "avg_steps": float(np.mean(steps)),
-        "success_rate": float(np.mean(success)),
-        "intercept_rate": float(np.sum(intercepted) / np.sum(targets)),
-        "leak_rate": float(np.sum(leaked) / np.sum(targets)),
-        "avg_total_damage": float(np.mean(damage)),
-        "avg_ammo_used": float(np.mean(ammo_used)),
-        "avg_shots": float(np.mean(shots)),
-        "hit_rate_per_shot": float(np.sum(hits) / max(1, np.sum(shots))),
-        "avg_invalid_actions": float(np.mean(invalid_actions)),
-    }
+    return aggregate_air_defense_v1_episode_metrics(episode_metrics)
 
 
 def _greedy_joint_assignment(
@@ -228,23 +370,3 @@ def _target_priority(env: AirDefenseResourceAssignmentEnvV1, target_index: int) 
 def _target_urgency(env: AirDefenseResourceAssignmentEnvV1, target_index: int) -> float:
     target = env.targets[target_index]
     return float(_target_priority(env, target_index) / (target.time_to_impact + 1.0))
-
-
-def _expected_damage_reduction(
-    env: AirDefenseResourceAssignmentEnvV1,
-    unit_index: int,
-    target_index: int,
-) -> float:
-    unit = env.defense_units[unit_index]
-    hit_probability = env.hit_probability(unit_index, target_index)
-    avoided_damage_reward = (
-        hit_probability
-        * env.config.damage_penalty_weight
-        * env.target_damage_potential(target_index)
-    )
-    intercept_reward = (
-        hit_probability
-        * env.config.intercept_reward_weight
-        * _target_priority(env, target_index)
-    )
-    return float(avoided_damage_reward + intercept_reward - unit.cost)

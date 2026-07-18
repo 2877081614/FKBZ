@@ -1,0 +1,11 @@
+dimension,name,count
+scenario,heterogeneity_pressure,256
+scenario,medium,256
+scenario,time_pressure,256
+source,hungarian,258
+source,task10_order_012_seed0,255
+source,task11_role_order_012_seed0,255
+phase,early,198
+phase,initial,200
+phase,middle,198
+phase,near_terminal,172

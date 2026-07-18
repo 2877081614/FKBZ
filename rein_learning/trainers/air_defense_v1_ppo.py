@@ -2,14 +2,32 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from time import perf_counter
 from typing import Any, Callable, Literal
 
 import numpy as np
 
-from ..envs import AirDefenseResourceAssignmentEnvV1, AirDefenseV1EnvConfig
+from ..common import (
+    DEFAULT_HIGH_THREAT_THRESHOLD,
+    AirDefenseV1DecisionTracker,
+    AirDefenseV1DiagnosticsTracker,
+    aggregate_air_defense_v1_episode_metrics,
+)
+from ..envs import (
+    AirDefenseResourceAssignmentEnvV1,
+    AirDefenseV1EnvConfig,
+    ConflictFreeJointActionWrapper,
+)
 
 
-AlgorithmName = Literal["ppo", "maskable_ppo"]
+AlgorithmName = Literal[
+    "ppo",
+    "maskable_ppo",
+    "conflict_free_maskable_ppo",
+    "autoregressive_maskable_ppo",
+    "role_conditioned_autoregressive_ppo",
+    "factorized_engagement_autoregressive_ppo",
+]
 
 
 @dataclass(frozen=True)
@@ -79,6 +97,92 @@ def train_maskable_ppo(
     )
 
 
+def train_conflict_free_maskable_ppo(
+    *,
+    env_config: AirDefenseV1EnvConfig | None = None,
+    train_config: AirDefenseV1PPOConfig | None = None,
+    save_path: str | Path | None = None,
+    callback: Any | None = None,
+    tb_log_name: str | None = None,
+) -> Any:
+    """Train Maskable PPO on the conflict-free Discrete joint action space."""
+
+    return _train_sb3_model(
+        algorithm="conflict_free_maskable_ppo",
+        env_config=env_config,
+        train_config=train_config,
+        save_path=save_path,
+        callback=callback,
+        tb_log_name=tb_log_name,
+    )
+
+
+def train_autoregressive_maskable_ppo(
+    *,
+    env_config: AirDefenseV1EnvConfig | None = None,
+    train_config: AirDefenseV1PPOConfig | None = None,
+    save_path: str | Path | None = None,
+    callback: Any | None = None,
+    tb_log_name: str | None = None,
+    unit_order: tuple[int, ...] | None = None,
+) -> Any:
+    """Train Maskable PPO with prefix-conditioned conflict-free actions."""
+
+    return _train_sb3_model(
+        algorithm="autoregressive_maskable_ppo",
+        env_config=env_config,
+        train_config=train_config,
+        save_path=save_path,
+        callback=callback,
+        tb_log_name=tb_log_name,
+        unit_order=unit_order,
+    )
+
+
+def train_role_conditioned_autoregressive_ppo(
+    *,
+    env_config: AirDefenseV1EnvConfig | None = None,
+    train_config: AirDefenseV1PPOConfig | None = None,
+    save_path: str | Path | None = None,
+    callback: Any | None = None,
+    tb_log_name: str | None = None,
+    unit_order: tuple[int, ...] | None = None,
+) -> Any:
+    """Train the shared role-conditioned autoregressive policy."""
+
+    return _train_sb3_model(
+        algorithm="role_conditioned_autoregressive_ppo",
+        env_config=env_config,
+        train_config=train_config,
+        save_path=save_path,
+        callback=callback,
+        tb_log_name=tb_log_name,
+        unit_order=unit_order,
+    )
+
+
+def train_factorized_engagement_autoregressive_ppo(
+    *,
+    env_config: AirDefenseV1EnvConfig | None = None,
+    train_config: AirDefenseV1PPOConfig | None = None,
+    save_path: str | Path | None = None,
+    callback: Any | None = None,
+    tb_log_name: str | None = None,
+    unit_order: tuple[int, ...] | None = None,
+) -> Any:
+    """Train the engagement-target factorized autoregressive policy."""
+
+    return _train_sb3_model(
+        algorithm="factorized_engagement_autoregressive_ppo",
+        env_config=env_config,
+        train_config=train_config,
+        save_path=save_path,
+        callback=callback,
+        tb_log_name=tb_log_name,
+        unit_order=unit_order,
+    )
+
+
 def train(
     algorithm: AlgorithmName = "maskable_ppo",
     *,
@@ -104,6 +208,38 @@ def train(
             callback=callback,
             tb_log_name=tb_log_name,
         )
+    if algorithm == "conflict_free_maskable_ppo":
+        return train_conflict_free_maskable_ppo(
+            env_config=env_config,
+            train_config=train_config,
+            save_path=save_path,
+            callback=callback,
+            tb_log_name=tb_log_name,
+        )
+    if algorithm == "autoregressive_maskable_ppo":
+        return train_autoregressive_maskable_ppo(
+            env_config=env_config,
+            train_config=train_config,
+            save_path=save_path,
+            callback=callback,
+            tb_log_name=tb_log_name,
+        )
+    if algorithm == "role_conditioned_autoregressive_ppo":
+        return train_role_conditioned_autoregressive_ppo(
+            env_config=env_config,
+            train_config=train_config,
+            save_path=save_path,
+            callback=callback,
+            tb_log_name=tb_log_name,
+        )
+    if algorithm == "factorized_engagement_autoregressive_ppo":
+        return train_factorized_engagement_autoregressive_ppo(
+            env_config=env_config,
+            train_config=train_config,
+            save_path=save_path,
+            callback=callback,
+            tb_log_name=tb_log_name,
+        )
     raise ValueError(f"Unsupported algorithm: {algorithm}")
 
 
@@ -116,6 +252,15 @@ def evaluate_air_defense_v1_model(
     seed: int = 1_000,
     deterministic: bool = True,
     use_action_masks: bool | None = None,
+    high_threat_threshold: float = DEFAULT_HIGH_THREAT_THRESHOLD,
+    episode_metrics_callback: Callable[
+        [dict[str, float | int | bool]], None
+    ]
+    | None = None,
+    decision_trace_callback: Callable[[int, dict[str, object]], None]
+    | None = None,
+    leak_attribution_callback: Callable[[int, dict[str, object]], None]
+    | None = None,
 ) -> dict[str, float]:
     """Evaluate a trained SB3-style model with the same metrics as rule baselines."""
 
@@ -126,11 +271,24 @@ def evaluate_air_defense_v1_model(
     if use_action_masks is None:
         use_action_masks = _looks_like_maskable_model(model)
 
-    episode_metrics = []
+    episode_metrics: list[dict[str, float | int | bool]] = []
     for episode_index in range(episodes):
         episode_seed = seed + episode_index
         env = env_factory()
         obs, initial_info = env.reset(seed=episode_seed)
+        base_env = env.unwrapped
+        if not isinstance(base_env, AirDefenseResourceAssignmentEnvV1):
+            raise TypeError(
+                "AirDefense v1 evaluation requires an "
+                "AirDefenseResourceAssignmentEnvV1 base environment"
+            )
+        unit_order = _model_unit_order(model, base_env.num_defense_units)
+        decision_tracker = AirDefenseV1DecisionTracker(
+            unit_order=unit_order,
+            num_units=base_env.num_defense_units,
+            num_targets=base_env.num_targets,
+            high_threat_threshold=high_threat_threshold,
+        )
         initial_ammo = int(initial_info["ammo_remaining"])
         terminated = False
         truncated = False
@@ -139,9 +297,24 @@ def evaluate_air_defense_v1_model(
         shots = 0
         hits = 0
         invalid_actions = 0
+        unit_decisions = 0
+        actionable_decisions = 0
+        engagements = 0
+        actionable_engagements = 0
+        decision_time_seconds = 0.0
+        diagnostics = AirDefenseV1DiagnosticsTracker(
+            high_threat_threshold=high_threat_threshold
+        )
         info = initial_info
 
         while not (terminated or truncated):
+            base_action_mask = np.asarray(base_env.action_masks(), dtype=bool).reshape(
+                base_env.num_defense_units, -1
+            )
+            actionable_units = np.any(
+                base_action_mask[:, : base_env.num_targets], axis=1
+            )
+            decision_started = perf_counter()
             if use_action_masks:
                 action, _ = model.predict(
                     obs,
@@ -150,29 +323,62 @@ def evaluate_air_defense_v1_model(
                 )
             else:
                 action, _ = model.predict(obs, deterministic=deterministic)
+            decision_time_seconds += perf_counter() - decision_started
 
+            joint_action = _decode_evaluation_action(env, action)
+            joint_action_array = np.asarray(joint_action, dtype=np.int64).reshape(-1)
+            engaged_units = joint_action_array != base_env.num_targets
+            unit_decisions += base_env.num_defense_units
+            actionable_decisions += int(np.sum(actionable_units))
+            engagements += int(np.sum(engaged_units))
+            actionable_engagements += int(
+                np.sum(engaged_units & actionable_units)
+            )
+            decision_rows = decision_tracker.before_step(base_env, joint_action)
             obs, reward, terminated, truncated, info = env.step(action)
+            decision_tracker.after_step(base_env, info, decision_rows)
+            if decision_trace_callback is not None:
+                for row in decision_rows:
+                    decision_trace_callback(episode_index, row.copy())
             total_reward += float(reward)
             steps += 1
             shots += int(info["shots"])
             hits += int(info["hits"])
             invalid_actions += int(info["invalid_actions"])
+            diagnostics.record_step(info)
 
-        episode_metrics.append(
-            {
-                "total_reward": total_reward,
-                "steps": steps,
-                "num_targets": env.num_targets,
-                "num_intercepted": int(info["num_intercepted"]),
-                "num_leaked": int(info["num_leaked"]),
-                "total_damage": float(info["total_damage"]),
-                "ammo_used": initial_ammo - int(info["ammo_remaining"]),
-                "shots": shots,
-                "hits": hits,
-                "invalid_actions": invalid_actions,
-                "success": float(info["num_alive"] == 0 and info["total_damage"] == 0.0),
-            }
-        )
+        ammo_used = initial_ammo - int(info["ammo_remaining"])
+        if leak_attribution_callback is not None:
+            for row in decision_tracker.finalize_leak_attributions(base_env):
+                leak_attribution_callback(episode_index, row.copy())
+        raw_metrics: dict[str, float | int | bool] = {
+            "total_reward": total_reward,
+            "steps": steps,
+            "num_targets": base_env.num_targets,
+            "num_intercepted": int(info["num_intercepted"]),
+            "num_leaked": int(info["num_leaked"]),
+            "total_damage": float(info["total_damage"]),
+            "ammo_used": ammo_used,
+            "shots": shots,
+            "hits": hits,
+            "invalid_actions": invalid_actions,
+            "unit_decisions": unit_decisions,
+            "actionable_decisions": actionable_decisions,
+            "engagements": engagements,
+            "actionable_engagements": actionable_engagements,
+            "all_noop_episode": bool(
+                actionable_decisions > 0 and engagements == 0
+            ),
+            "success": bool(
+                info["num_alive"] == 0 and info["total_damage"] == 0.0
+            ),
+            "decision_time_seconds": decision_time_seconds,
+            "decision_time_ms": 1_000.0 * decision_time_seconds / steps,
+            **diagnostics.finalize(base_env, ammo_used=ammo_used),
+        }
+        episode_metrics.append(raw_metrics)
+        if episode_metrics_callback is not None:
+            episode_metrics_callback(raw_metrics.copy())
         env.close()
 
     return _aggregate_episode_metrics(episode_metrics)
@@ -186,12 +392,43 @@ def _train_sb3_model(
     save_path: str | Path | None,
     callback: Any | None,
     tb_log_name: str | None,
+    unit_order: tuple[int, ...] | None = None,
 ) -> Any:
     config = train_config or default_air_defense_v1_ppo_config()
-    env = AirDefenseResourceAssignmentEnvV1(config=env_config)
+    env = _create_training_environment(algorithm, env_config)
     model_class = _load_algorithm_class(algorithm)
+    policy: Any = "MlpPolicy"
+    if algorithm in {
+        "autoregressive_maskable_ppo",
+        "role_conditioned_autoregressive_ppo",
+        "factorized_engagement_autoregressive_ppo",
+    }:
+        from ..algorithms.policy_gradient.autoregressive_ppo import (
+            AutoregressiveMaskableActorCriticPolicy,
+        )
+
+        policy = AutoregressiveMaskableActorCriticPolicy
+    if algorithm == "role_conditioned_autoregressive_ppo":
+        from ..algorithms.policy_gradient.role_conditioned_autoregressive_ppo import (
+            RoleConditionedAutoregressiveActorCriticPolicy,
+        )
+
+        policy = RoleConditionedAutoregressiveActorCriticPolicy
+    if algorithm == "factorized_engagement_autoregressive_ppo":
+        from ..algorithms.policy_gradient.factorized_engagement_ppo import (
+            FactorizedEngagementActorCriticPolicy,
+        )
+
+        policy = FactorizedEngagementActorCriticPolicy
+    policy_kwargs: dict[str, Any] = {"net_arch": list(config.net_arch)}
+    if algorithm in {
+        "autoregressive_maskable_ppo",
+        "role_conditioned_autoregressive_ppo",
+        "factorized_engagement_autoregressive_ppo",
+    }:
+        policy_kwargs["unit_order"] = unit_order
     model = model_class(
-        "MlpPolicy",
+        policy,
         env,
         learning_rate=config.learning_rate,
         n_steps=config.n_steps,
@@ -203,7 +440,7 @@ def _train_sb3_model(
         ent_coef=config.ent_coef,
         vf_coef=config.vf_coef,
         max_grad_norm=config.max_grad_norm,
-        policy_kwargs={"net_arch": list(config.net_arch)},
+        policy_kwargs=policy_kwargs,
         seed=config.seed,
         device=config.device,
         verbose=config.verbose,
@@ -240,7 +477,7 @@ def _load_algorithm_class(algorithm: AlgorithmName) -> Any:
                 "Install the rein-learning environment dependencies first."
             ) from exc
         return PPO
-    if algorithm == "maskable_ppo":
+    if algorithm in {"maskable_ppo", "conflict_free_maskable_ppo"}:
         try:
             from sb3_contrib import MaskablePPO
         except ImportError as exc:  # pragma: no cover - exercised only without deps
@@ -249,42 +486,64 @@ def _load_algorithm_class(algorithm: AlgorithmName) -> Any:
                 "Install the rein-learning environment dependencies first."
             ) from exc
         return MaskablePPO
+    if algorithm == "autoregressive_maskable_ppo":
+        from ..algorithms.policy_gradient.autoregressive_ppo import (
+            AutoregressiveMaskablePPO,
+        )
+
+        return AutoregressiveMaskablePPO
+    if algorithm == "role_conditioned_autoregressive_ppo":
+        from ..algorithms.policy_gradient.role_conditioned_autoregressive_ppo import (
+            RoleConditionedAutoregressiveMaskablePPO,
+        )
+
+        return RoleConditionedAutoregressiveMaskablePPO
+    if algorithm == "factorized_engagement_autoregressive_ppo":
+        from ..algorithms.policy_gradient.factorized_engagement_ppo import (
+            FactorizedEngagementMaskablePPO,
+        )
+
+        return FactorizedEngagementMaskablePPO
     raise ValueError(f"Unsupported algorithm: {algorithm}")
 
 
+def _create_training_environment(
+    algorithm: AlgorithmName,
+    env_config: AirDefenseV1EnvConfig | None,
+) -> Any:
+    env = AirDefenseResourceAssignmentEnvV1(config=env_config)
+    if algorithm == "conflict_free_maskable_ppo":
+        return ConflictFreeJointActionWrapper(env)
+    return env
+
+
 def _looks_like_maskable_model(model: Any) -> bool:
-    return model.__class__.__name__ == "MaskablePPO"
+    return model.__class__.__name__ in {
+        "MaskablePPO",
+        "AutoregressiveMaskablePPO",
+        "RoleConditionedAutoregressiveMaskablePPO",
+        "FactorizedEngagementMaskablePPO",
+    }
+
+
+def _model_unit_order(model: Any, num_units: int) -> tuple[int, ...]:
+    signature = getattr(model, "action_generator_signature", None)
+    if isinstance(signature, dict) and "unit_order" in signature:
+        return tuple(int(value) for value in signature["unit_order"])
+    return tuple(range(num_units))
+
+
+def _decode_evaluation_action(env: Any, action: Any) -> Any:
+    if isinstance(env, ConflictFreeJointActionWrapper):
+        encoded_action = int(np.asarray(action).reshape(-1)[0])
+        return env.codec.decode(encoded_action)
+    return action
 
 
 def _aggregate_episode_metrics(
-    episode_metrics: list[dict[str, float]],
+    episode_metrics: list[dict[str, float | int | bool]],
 ) -> dict[str, float]:
-    rewards = np.asarray([metrics["total_reward"] for metrics in episode_metrics])
-    steps = np.asarray([metrics["steps"] for metrics in episode_metrics])
-    intercepted = np.asarray([metrics["num_intercepted"] for metrics in episode_metrics])
-    leaked = np.asarray([metrics["num_leaked"] for metrics in episode_metrics])
-    targets = np.asarray([metrics["num_targets"] for metrics in episode_metrics])
-    damage = np.asarray([metrics["total_damage"] for metrics in episode_metrics])
-    ammo_used = np.asarray([metrics["ammo_used"] for metrics in episode_metrics])
-    shots = np.asarray([metrics["shots"] for metrics in episode_metrics])
-    hits = np.asarray([metrics["hits"] for metrics in episode_metrics])
-    invalid_actions = np.asarray([metrics["invalid_actions"] for metrics in episode_metrics])
-    success = np.asarray([metrics["success"] for metrics in episode_metrics])
-
-    return {
-        "episodes": float(len(episode_metrics)),
-        "avg_reward": float(np.mean(rewards)),
-        "std_reward": float(np.std(rewards)),
-        "avg_steps": float(np.mean(steps)),
-        "success_rate": float(np.mean(success)),
-        "intercept_rate": float(np.sum(intercepted) / np.sum(targets)),
-        "leak_rate": float(np.sum(leaked) / np.sum(targets)),
-        "avg_total_damage": float(np.mean(damage)),
-        "avg_ammo_used": float(np.mean(ammo_used)),
-        "avg_shots": float(np.mean(shots)),
-        "hit_rate_per_shot": float(np.sum(hits) / max(1, np.sum(shots))),
-        "avg_invalid_actions": float(np.mean(invalid_actions)),
-    }
+    return aggregate_air_defense_v1_episode_metrics(episode_metrics)
 
 
 def main() -> None:

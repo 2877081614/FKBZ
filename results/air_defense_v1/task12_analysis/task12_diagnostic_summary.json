@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "frozen_replay": {
+    "seed_1_deterministic_all_noop_rate": {
+      "medium": 1.0,
+      "time_pressure": 1.0,
+      "heterogeneity_pressure": 1.0
+    },
+    "seed_1_stochastic_all_noop_rate": {
+      "medium": 0.0,
+      "time_pressure": 0.0,
+      "heterogeneity_pressure": 0.0
+    },
+    "seed_1_stochastic_engagement_gap": {
+      "medium": 0.36436863302534944,
+      "time_pressure": 0.4079207920792079,
+      "heterogeneity_pressure": 0.36852589641434264
+    },
+    "seed_1_probe_engage_probability": 0.47261273860931396,
+    "seed_1_probe_noop_probability": 0.527387261390686,
+    "inference": "deterministic_argmax_amplification"
+  },
+  "training_diagnostic": {
+    "num_seeds": 5,
+    "collapsed_seed_count": 3,
+    "successful_seed_count": 2,
+    "seeds": [
+      {
+        "train_seed": 3,
+        "timesteps": 10240,
+        "collapsed": false,
+        "avg_reward": -81.01985996756336,
+        "actionable_engagement_rate": 0.9411764705882353,
+        "all_noop_episode_rate": 0.0,
+        "probe_engage_probability": 0.7870675325393677,
+        "probe_noop_margin": -0.6630065441131592,
+        "probe_engagement_entropy": 0.49186673760414124,
+        "first_stable_branch_timestep": 1024
+      },
+      {
+        "train_seed": 4,
+        "timesteps": 10240,
+        "collapsed": true,
+        "avg_reward": -95.06366547203845,
+        "actionable_engagement_rate": 0.0,
+        "all_noop_episode_rate": 1.0,
+        "probe_engage_probability": 0.5892232060432434,
+        "probe_noop_margin": 0.430420458316803,
+        "probe_engagement_entropy": 0.6385343670845032,
+        "first_stable_branch_timestep": 1024
+      },
+      {
+        "train_seed": 5,
+        "timesteps": 10240,
+        "collapsed": true,
+        "avg_reward": -91.25569800080972,
+        "actionable_engagement_rate": 0.0,
+        "all_noop_episode_rate": 1.0,
+        "probe_engage_probability": 0.44956621527671814,
+        "probe_noop_margin": 1.007399559020996,
+        "probe_engagement_entropy": 0.6503571271896362,
+        "first_stable_branch_timestep": 1024
+      },
+      {
+        "train_seed": 6,
+        "timesteps": 10240,
+        "collapsed": false,
+        "avg_reward": -66.41714656423106,
+        "actionable_engagement_rate": 0.8051282051282052,
+        "all_noop_episode_rate": 0.0,
+        "probe_engage_probability": 0.7221055030822754,
+        "probe_noop_margin": -0.2874000370502472,
+        "probe_engagement_entropy": 0.5557223558425903,
+        "first_stable_branch_timestep": 4096
+      },
+      {
+        "train_seed": 7,
+        "timesteps": 10240,
+        "collapsed": true,
+        "avg_reward": -86.6669263189014,
+        "actionable_engagement_rate": 0.0,
+        "all_noop_episode_rate": 1.0,
+        "probe_engage_probability": 0.38503149151802063,
+        "probe_noop_margin": 1.3104591369628906,
+        "probe_engagement_entropy": 0.6268832087516785,
+        "first_stable_branch_timestep": 7168
+      }
+    ]
+  },
+  "screening": {
+    "means": {
+      "role_conditioned_ar_ppo_order_012/medium": {
+        "avg_reward": -60.15780294526072,
+        "avg_total_damage": 1.8306128382883948,
+        "avg_resource_cost": 3.9066666666666663,
+        "high_threat_leak_rate": 0.5027833513402274,
+        "actionable_engagement_rate": 0.027357998493829166,
+        "all_noop_episode_rate": 0.3,
+        "avg_decision_time_ms": 2.032946445976469
+      },
+      "role_conditioned_ar_ppo_order_012/time_pressure": {
+        "avg_reward": -78.36485846697893,
+        "avg_total_damage": 2.2510069367275465,
+        "avg_resource_cost": 3.276666666666667,
+        "high_threat_leak_rate": 0.6576148978109763,
+        "actionable_engagement_rate": 0.029280900416130736,
+        "all_noop_episode_rate": 0.3866666666666667,
+        "avg_decision_time_ms": 1.9386908201015682
+      },
+      "role_conditioned_ar_ppo_order_012/heterogeneity_pressure": {
+        "avg_reward": -60.015136798667754,
+        "avg_total_damage": 1.8235149798639239,
+        "avg_resource_cost": 4.780333333333334,
+        "high_threat_leak_rate": 0.494686934774518,
+        "actionable_engagement_rate": 0.031047500644032472,
+        "all_noop_episode_rate": 0.2333333333333333,
+        "avg_decision_time_ms": 2.2669346174096403
+      },
+      "factorized_engagement_ar_ppo_order_012/medium": {
+        "avg_reward": -76.79910889256134,
+        "avg_total_damage": 2.0843070517347804,
+        "avg_resource_cost": 6.4799999999999995,
+        "high_threat_leak_rate": 0.564346349745331,
+        "actionable_engagement_rate": 0.323147426464722,
+        "all_noop_episode_rate": 0.41333333333333333,
+        "avg_decision_time_ms": 1.9886593521909803
+      },
+      "factorized_engagement_ar_ppo_order_012/time_pressure": {
+        "avg_reward": -91.2020890910942,
+        "avg_total_damage": 2.3922060439661155,
+        "avg_resource_cost": 6.066666666666666,
+        "high_threat_leak_rate": 0.6964415395787945,
+        "actionable_engagement_rate": 0.3189373360776571,
+        "all_noop_episode_rate": 0.5333333333333333,
+        "avg_decision_time_ms": 2.022585102207246
+      },
+      "factorized_engagement_ar_ppo_order_012/heterogeneity_pressure": {
+        "avg_reward": -70.21280657667528,
+        "avg_total_damage": 1.9314569001578057,
+        "avg_resource_cost": 5.8790000000000004,
+        "high_threat_leak_rate": 0.5418674868907511,
+        "actionable_engagement_rate": 0.3345300237150404,
+        "all_noop_episode_rate": 0.38666666666666666,
+        "avg_decision_time_ms": 2.2135085492677518
+      }
+    },
+    "scenario_all_noop_means": {
+      "medium": 0.41333333333333333,
+      "time_pressure": 0.5333333333333333,
+      "heterogeneity_pressure": 0.38666666666666666
+    },
+    "collapsed_scenario_seeds": [
+      [
+        "heterogeneity_pressure",
+        "8"
+      ],
+      [
+        "heterogeneity_pressure",
+        "9"
+      ],
+      [
+        "medium",
+        "8"
+      ],
+      [
+        "medium",
+        "9"
+      ],
+      [
+        "time_pressure",
+        "8"
+      ],
+      [
+        "time_pressure",
+        "9"
+      ]
+    ],
+    "heterogeneity_unassigned_rates": {
+      "baseline": 0.9363057324840764,
+      "candidate": 0.7647058823529411
+    },
+    "heterogeneity_high_leak_improved_seeds": 2,
+    "gates": [
+      {
+        "name": "structural_zero_violations",
+        "category": "structure",
+        "value": 0.0,
+        "threshold": "== 0",
+        "passed": true
+      },
+      {
+        "name": "actor_parameter_ratio",
+        "category": "structure",
+        "value": 1.0,
+        "threshold": "0.90 <= ratio <= 1.10",
+        "passed": true
+      },
+      {
+        "name": "critic_parameters_equal",
+        "category": "structure",
+        "value": true,
+        "threshold": "true",
+        "passed": true
+      },
+      {
+        "name": "candidate_collapsed_scenario_seeds",
+        "category": "stability",
+        "value": 6,
+        "threshold": "== 0",
+        "passed": false
+      },
+      {
+        "name": "max_scenario_mean_all_noop_episode_rate",
+        "category": "stability",
+        "value": 0.5333333333333333,
+        "threshold": "<= 0.02",
+        "passed": false
+      },
+      {
+        "name": "heterogeneity_unassigned_leak_reduction",
+        "category": "mission",
+        "value": 0.17159985013113532,
+        "threshold": ">= 0.15",
+        "passed": true
+      },
+      {
+        "name": "heterogeneity_high_threat_leak_mean_reduction",
+        "category": "mission",
+        "value": -0.047180552116233176,
+        "threshold": ">= 0.02 and >= 2/3 seeds",
+        "passed": false
+      },
+      {
+        "name": "medium_reward_delta",
+        "category": "noninferiority",
+        "value": -16.641305947300616,
+        "threshold": ">= -5.0",
+        "passed": false
+      },
+      {
+        "name": "medium_damage_delta",
+        "category": "noninferiority",
+        "value": 0.25369421344638554,
+        "threshold": "<= 0.1",
+        "passed": false
+      },
+      {
+        "name": "time_pressure_resource_cost_delta",
+        "category": "noninferiority",
+        "value": 2.7899999999999996,
+        "threshold": "<= 0.5",
+        "passed": false
+      },
+      {
+        "name": "heterogeneity_damage_delta",
+        "category": "noninferiority",
+        "value": 0.10794192029388183,
+        "threshold": "<= 0.1",
+        "passed": false
+      },
+      {
+        "name": "max_absolute_stochastic_engagement_gap",
+        "category": "calibration",
+        "value": 0.4037302462493838,
+        "threshold": "<= 0.05",
+        "passed": false
+      },
+      {
+        "name": "decision_latency_increase_vs_task10",
+        "category": "efficiency",
+        "value": 0.6922637978041233,
+        "threshold": "<= 0.25",
+        "passed": false
+      },
+      {
+        "name": "external_medium_reward",
+        "category": "external",
+        "value": -42.449988187596176,
+        "threshold": ">= -5.0",
+        "passed": false
+      },
+      {
+        "name": "external_time_pressure_reward",
+        "category": "external",
+        "value": -45.89951232741159,
+        "threshold": ">= -5.0",
+        "passed": false
+      },
+      {
+        "name": "external_medium_damage",
+        "category": "external",
+        "value": 1.064550960640447,
+        "threshold": "<= 0.1",
+        "passed": false
+      },
+      {
+        "name": "external_heterogeneity_damage",
+        "category": "external",
+        "value": 0.5427277488530418,
+        "threshold": "<= 0.1",
+        "passed": false
+      },
+      {
+        "name": "external_time_pressure_cost",
+        "category": "external",
+        "value": -9.318333333333333,
+        "threshold": "<= 0.5",
+        "passed": true
+      },
+      {
+        "name": "time_pressure_cost_below_discrete_136",
+        "category": "external",
+        "value": -7.35,
+        "threshold": "< 0",
+        "passed": true
+      }
+    ],
+    "passed_gate_count": 6,
+    "failed_gate_count": 13,
+    "screening_passed": false,
+    "run_100k": false
+  }
+}

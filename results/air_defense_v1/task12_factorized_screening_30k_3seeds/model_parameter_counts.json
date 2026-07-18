@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "train_scenario": "medium",
+      "run_index": 0,
+      "train_seed": 8,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds\\models\\medium\\factorized_engagement_ar_ppo_order_012_seed8.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "train_scenario": "medium",
+      "run_index": 1,
+      "train_seed": 9,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds\\models\\medium\\factorized_engagement_ar_ppo_order_012_seed9.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "train_scenario": "medium",
+      "run_index": 2,
+      "train_seed": 10,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds\\models\\medium\\factorized_engagement_ar_ppo_order_012_seed10.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "role_conditioned_ar_ppo_order_012",
+      "train_scenario": "medium",
+      "run_index": 0,
+      "train_seed": 8,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds\\models\\medium\\role_conditioned_ar_ppo_order_012_seed8.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "role_conditioned_ar_ppo_order_012",
+      "train_scenario": "medium",
+      "run_index": 1,
+      "train_seed": 9,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds\\models\\medium\\role_conditioned_ar_ppo_order_012_seed9.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "role_conditioned_ar_ppo_order_012",
+      "train_scenario": "medium",
+      "run_index": 2,
+      "train_seed": 10,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds\\models\\medium\\role_conditioned_ar_ppo_order_012_seed10.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    }
+  ]
+}

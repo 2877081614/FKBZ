@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "method": "role_conditioned_ar_ppo_order_012",
+      "train_scenario": "medium",
+      "run_index": 0,
+      "train_seed": 0,
+      "model_path": "results\\air_defense_v1\\task11_role_conditioned_smoke\\models\\medium\\role_conditioned_ar_ppo_order_012_seed0.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "role_conditioned_ar_ppo_order_012",
+      "train_scenario": "medium",
+      "run_index": 1,
+      "train_seed": 1,
+      "model_path": "results\\air_defense_v1\\task11_role_conditioned_smoke\\models\\medium\\role_conditioned_ar_ppo_order_012_seed1.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "role_conditioned_ar_ppo_order_120",
+      "train_scenario": "medium",
+      "run_index": 0,
+      "train_seed": 0,
+      "model_path": "results\\air_defense_v1\\task11_role_conditioned_smoke\\models\\medium\\role_conditioned_ar_ppo_order_120_seed0.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "role_conditioned_ar_ppo_order_120",
+      "train_scenario": "medium",
+      "run_index": 1,
+      "train_seed": 1,
+      "model_path": "results\\air_defense_v1\\task11_role_conditioned_smoke\\models\\medium\\role_conditioned_ar_ppo_order_120_seed1.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "role_conditioned_ar_ppo_order_201",
+      "train_scenario": "medium",
+      "run_index": 0,
+      "train_seed": 0,
+      "model_path": "results\\air_defense_v1\\task11_role_conditioned_smoke\\models\\medium\\role_conditioned_ar_ppo_order_201_seed0.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "role_conditioned_ar_ppo_order_201",
+      "train_scenario": "medium",
+      "run_index": 1,
+      "train_seed": 1,
+      "model_path": "results\\air_defense_v1\\task11_role_conditioned_smoke\\models\\medium\\role_conditioned_ar_ppo_order_201_seed1.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    }
+  ]
+}

@@ -9,12 +9,15 @@ from .air_defense import (
 )
 from .air_defense_v1 import (
     AirDefenseV1EpisodeMetrics,
+    HungarianDamageReductionPolicy,
     GreedyDamageReductionPolicy,
     HighestThreatJointPolicy,
     NearestTargetJointPolicy,
     RandomLegalJointPolicy,
     TimeToImpactJointPolicy,
+    build_expected_damage_reduction_matrix,
     evaluate_air_defense_v1_policy,
+    expected_damage_reduction_score,
     run_air_defense_v1_episode,
 )
 
@@ -23,6 +26,7 @@ __all__ = [
     "AirDefenseV1EpisodeMetrics",
     "GreedyExpectedBenefitPolicy",
     "GreedyDamageReductionPolicy",
+    "HungarianDamageReductionPolicy",
     "HighestThreatPolicy",
     "HighestThreatJointPolicy",
     "NearestTargetPolicy",
@@ -30,8 +34,10 @@ __all__ = [
     "RandomLegalPolicy",
     "RandomLegalJointPolicy",
     "TimeToImpactJointPolicy",
+    "build_expected_damage_reduction_matrix",
     "evaluate_air_defense_policy",
     "evaluate_air_defense_v1_policy",
+    "expected_damage_reduction_score",
     "run_air_defense_episode",
     "run_air_defense_v1_episode",
 ]

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-07-17T16:20:32.598950+00:00",
+  "task": "task12_task11_frozen_noop_replay",
+  "models_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task11_role_conditioned_screening_30k_3seeds\\models\\medium",
+  "probe_corpus": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_probe_corpus",
+  "probe_sha256": "2a58e44b9054945fa8e12bc44c8956d43d898b68b2571b3dcf4d237b000be4ef",
+  "train_seeds": [
+    0,
+    1,
+    2
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "episodes": 100,
+  "eval_seed": 50000,
+  "evaluation_modes": [
+    "deterministic",
+    "stochastic"
+  ],
+  "run_rows": 18,
+  "episode_rows": 1800,
+  "probe_rows": 24
+}

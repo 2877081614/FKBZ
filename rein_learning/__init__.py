@@ -1,10 +1,17 @@
 """Reinforcement learning playground package."""
 
 from .envs import (
+    AIR_DEFENSE_V1_DEFAULT_SCENARIO,
+    AIR_DEFENSE_V1_DIFFICULTY_SCENARIOS,
+    AIR_DEFENSE_V1_PRESSURE_SCENARIOS,
+    AIR_DEFENSE_V1_SCENARIO_NAMES,
     AirDefenseEnvConfig,
     AirDefenseResourceAssignmentEnv,
     AirDefenseResourceAssignmentEnvV1,
     AirDefenseV1EnvConfig,
+    AirDefenseV1ScenarioProfile,
+    ConflictFreeJointActionCodec,
+    ConflictFreeJointActionWrapper,
     DefenseUnitConfig,
     DefenseUnitV1Config,
     GridWorldConfig,
@@ -12,6 +19,10 @@ from .envs import (
     SmallGridWorldEnv,
     TargetConfig,
     TargetV1Config,
+    default_air_defense_v1_config,
+    get_air_defense_v1_scenario,
+    get_air_defense_v1_scenario_profile,
+    list_air_defense_v1_scenarios,
 )
 
 __all__ = [
@@ -19,6 +30,13 @@ __all__ = [
     "AirDefenseResourceAssignmentEnv",
     "AirDefenseResourceAssignmentEnvV1",
     "AirDefenseV1EnvConfig",
+    "AirDefenseV1ScenarioProfile",
+    "ConflictFreeJointActionCodec",
+    "ConflictFreeJointActionWrapper",
+    "AIR_DEFENSE_V1_DEFAULT_SCENARIO",
+    "AIR_DEFENSE_V1_DIFFICULTY_SCENARIOS",
+    "AIR_DEFENSE_V1_PRESSURE_SCENARIOS",
+    "AIR_DEFENSE_V1_SCENARIO_NAMES",
     "DefenseUnitConfig",
     "DefenseUnitV1Config",
     "GridWorldConfig",
@@ -26,4 +44,8 @@ __all__ = [
     "SmallGridWorldEnv",
     "TargetConfig",
     "TargetV1Config",
+    "default_air_defense_v1_config",
+    "get_air_defense_v1_scenario",
+    "get_air_defense_v1_scenario_profile",
+    "list_air_defense_v1_scenarios",
 ]

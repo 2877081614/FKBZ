@@ -1,0 +1,365 @@
+{
+  "schema_version": 6,
+  "experiment_type": "task10_frozen_model_decision_diagnostics",
+  "created_at_utc": "2026-07-17T11:16:59.162111+00:00",
+  "method": "autoregressive_ppo_order_012",
+  "train_scenario": "medium",
+  "model_source": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task9_autoregressive_screening_30k_3seeds\\models\\medium",
+  "models": [
+    {
+      "run_index": 0,
+      "train_seed": 0,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task9_autoregressive_screening_30k_3seeds\\models\\medium\\autoregressive_maskable_ppo_seed0.zip",
+      "action_generator_signature": {
+        "type": "autoregressive_conflict_free",
+        "unit_order": [
+          0,
+          1,
+          2
+        ],
+        "conditional_target_mask": true,
+        "joint_log_prob": "sum_of_conditional_log_probs",
+        "environment_steps_per_joint_action": 1
+      }
+    },
+    {
+      "run_index": 1,
+      "train_seed": 1,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task9_autoregressive_screening_30k_3seeds\\models\\medium\\autoregressive_maskable_ppo_seed1.zip",
+      "action_generator_signature": {
+        "type": "autoregressive_conflict_free",
+        "unit_order": [
+          0,
+          1,
+          2
+        ],
+        "conditional_target_mask": true,
+        "joint_log_prob": "sum_of_conditional_log_probs",
+        "environment_steps_per_joint_action": 1
+      }
+    },
+    {
+      "run_index": 2,
+      "train_seed": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task9_autoregressive_screening_30k_3seeds\\models\\medium\\autoregressive_maskable_ppo_seed2.zip",
+      "action_generator_signature": {
+        "type": "autoregressive_conflict_free",
+        "unit_order": [
+          0,
+          1,
+          2
+        ],
+        "conditional_target_mask": true,
+        "joint_log_prob": "sum_of_conditional_log_probs",
+        "environment_steps_per_joint_action": 1
+      }
+    }
+  ],
+  "protocol": {
+    "train_seeds": [
+      0,
+      1,
+      2
+    ],
+    "eval_scenarios": [
+      "medium",
+      "time_pressure",
+      "heterogeneity_pressure"
+    ],
+    "eval_episodes": 100,
+    "eval_seed": 30000,
+    "scenario_seed_formula": "eval_seed + scenario_index * eval_episodes + episode_index; identical episode seeds are paired across frozen models",
+    "deterministic": true,
+    "high_threat_threshold": 0.8,
+    "confidence_level": 0.95,
+    "record_decisions": true,
+    "retraining": false
+  },
+  "scenarios": {
+    "medium": {
+      "protected_zones": [
+        {
+          "position": [
+            0.0,
+            0.0
+          ],
+          "radius": 5.0,
+          "value": 1.0,
+          "priority": 1.0,
+          "zone_type": "command"
+        },
+        {
+          "position": [
+            25.0,
+            -10.0
+          ],
+          "radius": 4.0,
+          "value": 0.8,
+          "priority": 0.8,
+          "zone_type": "radar"
+        }
+      ],
+      "defense_units": [
+        {
+          "resource_type": "missile",
+          "position": [
+            -12.0,
+            0.0
+          ],
+          "ammo": 3,
+          "max_range": 85.0,
+          "base_hit_probability": 0.88,
+          "cost": 2.0,
+          "cooldown_after_fire": 1,
+          "energy": 1.0
+        },
+        {
+          "resource_type": "missile",
+          "position": [
+            12.0,
+            0.0
+          ],
+          "ammo": 3,
+          "max_range": 85.0,
+          "base_hit_probability": 0.88,
+          "cost": 2.0,
+          "cooldown_after_fire": 1,
+          "energy": 1.0
+        },
+        {
+          "resource_type": "laser",
+          "position": [
+            3.0,
+            12.0
+          ],
+          "ammo": 10,
+          "max_range": 55.0,
+          "base_hit_probability": 0.68,
+          "cost": 0.5,
+          "cooldown_after_fire": 0,
+          "energy": 1.0
+        }
+      ],
+      "targets": [],
+      "num_random_targets": 5,
+      "map_size": 100.0,
+      "target_spawn_min_distance": 60.0,
+      "target_spawn_max_distance": 100.0,
+      "target_min_speed": 1.0,
+      "target_max_speed": 3.0,
+      "target_min_threat": 0.5,
+      "target_max_threat": 1.0,
+      "target_min_payload": 0.6,
+      "target_max_payload": 1.5,
+      "dt": 1.0,
+      "max_steps": 50,
+      "max_allowed_damage": 2.5,
+      "success_damage_threshold": 0.0,
+      "intercept_reward_weight": 8.0,
+      "damage_penalty_weight": 30.0,
+      "invalid_action_penalty": -5.0,
+      "time_penalty": -0.1,
+      "assignment_conflict_penalty": 1.0,
+      "overkill_penalty": 0.5,
+      "success_bonus": 25.0,
+      "failure_penalty": -25.0
+    },
+    "time_pressure": {
+      "protected_zones": [
+        {
+          "position": [
+            0.0,
+            0.0
+          ],
+          "radius": 5.0,
+          "value": 1.0,
+          "priority": 1.0,
+          "zone_type": "command"
+        },
+        {
+          "position": [
+            25.0,
+            -10.0
+          ],
+          "radius": 4.0,
+          "value": 0.8,
+          "priority": 0.8,
+          "zone_type": "radar"
+        }
+      ],
+      "defense_units": [
+        {
+          "resource_type": "missile",
+          "position": [
+            -12.0,
+            0.0
+          ],
+          "ammo": 3,
+          "max_range": 85.0,
+          "base_hit_probability": 0.88,
+          "cost": 2.0,
+          "cooldown_after_fire": 1,
+          "energy": 1.0
+        },
+        {
+          "resource_type": "missile",
+          "position": [
+            12.0,
+            0.0
+          ],
+          "ammo": 3,
+          "max_range": 85.0,
+          "base_hit_probability": 0.88,
+          "cost": 2.0,
+          "cooldown_after_fire": 1,
+          "energy": 1.0
+        },
+        {
+          "resource_type": "laser",
+          "position": [
+            3.0,
+            12.0
+          ],
+          "ammo": 10,
+          "max_range": 55.0,
+          "base_hit_probability": 0.68,
+          "cost": 0.5,
+          "cooldown_after_fire": 0,
+          "energy": 1.0
+        }
+      ],
+      "targets": [],
+      "num_random_targets": 5,
+      "map_size": 100.0,
+      "target_spawn_min_distance": 60.0,
+      "target_spawn_max_distance": 100.0,
+      "target_min_speed": 2.0,
+      "target_max_speed": 3.5,
+      "target_min_threat": 0.5,
+      "target_max_threat": 1.0,
+      "target_min_payload": 0.6,
+      "target_max_payload": 1.5,
+      "dt": 1.0,
+      "max_steps": 50,
+      "max_allowed_damage": 2.5,
+      "success_damage_threshold": 0.0,
+      "intercept_reward_weight": 8.0,
+      "damage_penalty_weight": 30.0,
+      "invalid_action_penalty": -5.0,
+      "time_penalty": -0.1,
+      "assignment_conflict_penalty": 1.0,
+      "overkill_penalty": 0.5,
+      "success_bonus": 25.0,
+      "failure_penalty": -25.0
+    },
+    "heterogeneity_pressure": {
+      "protected_zones": [
+        {
+          "position": [
+            0.0,
+            0.0
+          ],
+          "radius": 5.0,
+          "value": 1.0,
+          "priority": 1.0,
+          "zone_type": "command"
+        },
+        {
+          "position": [
+            25.0,
+            -10.0
+          ],
+          "radius": 4.0,
+          "value": 0.8,
+          "priority": 0.8,
+          "zone_type": "radar"
+        }
+      ],
+      "defense_units": [
+        {
+          "resource_type": "missile",
+          "position": [
+            -12.0,
+            0.0
+          ],
+          "ammo": 3,
+          "max_range": 92.0,
+          "base_hit_probability": 0.94,
+          "cost": 2.8,
+          "cooldown_after_fire": 1,
+          "energy": 1.0
+        },
+        {
+          "resource_type": "missile",
+          "position": [
+            12.0,
+            0.0
+          ],
+          "ammo": 3,
+          "max_range": 72.0,
+          "base_hit_probability": 0.78,
+          "cost": 1.5,
+          "cooldown_after_fire": 1,
+          "energy": 1.0
+        },
+        {
+          "resource_type": "laser",
+          "position": [
+            3.0,
+            12.0
+          ],
+          "ammo": 10,
+          "max_range": 45.0,
+          "base_hit_probability": 0.5,
+          "cost": 0.25,
+          "cooldown_after_fire": 0,
+          "energy": 1.0
+        }
+      ],
+      "targets": [],
+      "num_random_targets": 5,
+      "map_size": 100.0,
+      "target_spawn_min_distance": 60.0,
+      "target_spawn_max_distance": 100.0,
+      "target_min_speed": 1.0,
+      "target_max_speed": 3.0,
+      "target_min_threat": 0.5,
+      "target_max_threat": 1.0,
+      "target_min_payload": 0.6,
+      "target_max_payload": 1.5,
+      "dt": 1.0,
+      "max_steps": 50,
+      "max_allowed_damage": 2.5,
+      "success_damage_threshold": 0.0,
+      "intercept_reward_weight": 8.0,
+      "damage_penalty_weight": 30.0,
+      "invalid_action_penalty": -5.0,
+      "time_penalty": -0.1,
+      "assignment_conflict_penalty": 1.0,
+      "overkill_penalty": 0.5,
+      "success_bonus": 25.0,
+      "failure_penalty": -25.0
+    }
+  },
+  "runtime": {
+    "python": "3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:28:51) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.22631-SP0",
+    "device": "cpu",
+    "packages": {
+      "gymnasium": "1.2.2",
+      "numpy": "2.2.6",
+      "stable-baselines3": "2.9.0",
+      "sb3-contrib": "2.9.0",
+      "torch": "2.11.0+cu128"
+    }
+  },
+  "result_counts": {
+    "runs_rows": 9,
+    "episodes_rows": 900,
+    "summary_rows": 51,
+    "decisions_rows": 112623,
+    "decision_summary_rows": 27,
+    "leak_attributions_rows": 1096,
+    "leak_attribution_summary_rows": 54
+  }
+}
