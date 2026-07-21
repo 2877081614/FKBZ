@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "model_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds",
+  "source_seeds": [
+    8,
+    10
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "episodes_per_stratum": 8,
+  "states_per_stratum": 3,
+  "rollouts": 4,
+  "gamma": 0.98,
+  "eval_seed": 337000,
+  "split_seed": 31,
+  "train_seeds": [
+    17
+  ],
+  "epochs": 5,
+  "patience": 2,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "selected_utility": {
+    "cost_weight": 1.0,
+    "damage_weight": 30.0,
+    "high_threat_leak_weight": 0.0,
+    "cvar_weight": 0.0,
+    "cvar_alpha": 0.25
+  }
+}

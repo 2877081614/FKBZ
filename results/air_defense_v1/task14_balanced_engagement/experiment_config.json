@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "historical_dataset": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_engagement_utility\\dataset.npz",
+  "source_seeds": [
+    8,
+    10
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "episodes_per_stratum": 48,
+  "states_per_stratum": 24,
+  "rollouts": 32,
+  "gamma": 0.98,
+  "eval_seed": 419000,
+  "split_seed": 37,
+  "train_seeds": [
+    20,
+    21,
+    22
+  ],
+  "epochs": 300,
+  "patience": 40,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "frozen_utility": {
+    "cost_weight": 2.0,
+    "damage_weight": 30.0,
+    "high_threat_leak_weight": 0.0,
+    "cvar_weight": 0.5,
+    "cvar_alpha": 0.25
+  }
+}

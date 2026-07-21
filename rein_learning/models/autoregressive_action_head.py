@@ -99,6 +99,47 @@ class AutoregressiveMaskedMultiCategorical:
             entropy=torch.stack(entropies, dim=1).sum(dim=1),
         )
 
+    def sample_with_engagement_threshold(
+        self, threshold: float
+    ) -> AutoregressiveActionEvaluation:
+        """Threshold aggregate target mass before selecting the best target."""
+
+        if not 0.0 <= threshold <= 1.0:
+            raise ValueError("Engagement threshold must be in [0, 1]")
+        actions = torch.empty(
+            (self.logits.shape[0], self.num_units),
+            device=self.logits.device,
+            dtype=torch.long,
+        )
+        log_probs: list[torch.Tensor] = []
+        entropies: list[torch.Tensor] = []
+        used_targets = torch.zeros(
+            (self.logits.shape[0], self.num_targets),
+            device=self.logits.device,
+            dtype=torch.bool,
+        )
+        for unit_index in self.unit_order:
+            conditional_mask = self._unit_mask(unit_index, used_targets)
+            distribution = self._categorical(unit_index, conditional_mask)
+            probabilities = distribution.probs
+            engage_probability = probabilities[:, : self.num_targets].sum(dim=1)
+            target_action = probabilities[:, : self.num_targets].argmax(dim=1)
+            actionable = conditional_mask[:, : self.num_targets].any(dim=1)
+            action = torch.where(
+                actionable & (engage_probability >= threshold),
+                target_action,
+                torch.full_like(target_action, self.noop_action),
+            )
+            actions[:, unit_index] = action
+            log_probs.append(distribution.log_prob(action))
+            entropies.append(distribution.entropy())
+            used_targets = self._add_selected_target(used_targets, action)
+        return AutoregressiveActionEvaluation(
+            actions=actions,
+            log_prob=torch.stack(log_probs, dim=1).sum(dim=1),
+            entropy=torch.stack(entropies, dim=1).sum(dim=1),
+        )
+
     def evaluate(self, actions: torch.Tensor) -> AutoregressiveActionEvaluation:
         actions = actions.long().reshape(-1, self.num_units)
         if actions.shape[0] != self.logits.shape[0]:
@@ -156,11 +197,36 @@ class AutoregressiveMaskedMultiCategorical:
             )
         return masks
 
-    def diagnostics(self, deterministic: bool = True) -> dict[str, torch.Tensor]:
+    def conditional_probabilities(
+        self, actions: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        """Return per-unit categorical probabilities along an action prefix."""
+
+        actions = actions.long().reshape(-1, self.num_units)
+        masks = self.conditional_masks(actions)
+        probabilities = torch.zeros_like(masks, dtype=self.logits.dtype)
+        batch_indices = torch.arange(actions.shape[0], device=actions.device)
+        for unit_index in self.unit_order:
+            action = actions[:, unit_index]
+            if not bool(torch.all(masks[:, unit_index, :][batch_indices, action])):
+                raise ValueError("Action is illegal under the autoregressive mask")
+            probabilities[:, unit_index, :] = self._categorical(
+                unit_index, masks[:, unit_index, :]
+            ).probs
+        return probabilities, masks
+
+    def diagnostics(
+        self,
+        deterministic: bool = True,
+        actions: torch.Tensor | None = None,
+    ) -> dict[str, torch.Tensor]:
         """Evaluate engagement statistics along the sampled action prefix."""
 
-        evaluation = self.sample(deterministic=deterministic)
-        actions = evaluation.actions
+        if actions is None:
+            actions = self.sample(deterministic=deterministic).actions
+        actions = actions.long().reshape(-1, self.num_units)
+        if actions.shape[0] != self.logits.shape[0]:
+            raise ValueError("Action and logit batches must match")
         used_targets = torch.zeros(
             (actions.shape[0], self.num_targets),
             device=actions.device,
@@ -173,7 +239,12 @@ class AutoregressiveMaskedMultiCategorical:
             "engagement_entropy": [],
             "conditional_target_entropy": [],
             "actionable": [],
+            "selected_engage": [],
+            "target_probability": [],
+            "engagement_log_prob": [],
+            "target_log_prob": [],
         }
+        batch_indices = torch.arange(actions.shape[0], device=actions.device)
         for unit_index in self.unit_order:
             mask = self._unit_mask(unit_index, used_targets)
             distribution = self._categorical(unit_index, mask)
@@ -196,6 +267,13 @@ class AutoregressiveMaskedMultiCategorical:
             target_probabilities = target_probabilities / engage_probability[
                 :, None
             ].clamp_min(1e-20)
+            action = actions[:, unit_index]
+            if not bool(torch.all(mask[batch_indices, action])):
+                raise ValueError("Action is illegal under the autoregressive mask")
+            engaged = action != self.noop_action
+            selected_target_probability = target_probabilities[
+                batch_indices, torch.minimum(action, torch.full_like(action, self.num_targets - 1))
+            ]
             binary = torch.stack((engage_probability, noop_probability), dim=1)
             for key, value in (
                 ("engage_probability", engage_probability),
@@ -207,6 +285,31 @@ class AutoregressiveMaskedMultiCategorical:
                     self._probability_entropy(target_probabilities),
                 ),
                 ("actionable", actionable.to(probabilities.dtype)),
+                ("selected_engage", engaged.to(probabilities.dtype)),
+                (
+                    "target_probability",
+                    torch.where(
+                        engaged,
+                        selected_target_probability,
+                        torch.full_like(selected_target_probability, torch.nan),
+                    ),
+                ),
+                (
+                    "engagement_log_prob",
+                    torch.where(
+                        engaged,
+                        torch.log(engage_probability.clamp_min(1e-20)),
+                        torch.log(noop_probability.clamp_min(1e-20)),
+                    ),
+                ),
+                (
+                    "target_log_prob",
+                    torch.where(
+                        engaged,
+                        torch.log(selected_target_probability.clamp_min(1e-20)),
+                        torch.zeros_like(selected_target_probability),
+                    ),
+                ),
             ):
                 fields[key].append(value)
             used_targets = self._add_selected_target(

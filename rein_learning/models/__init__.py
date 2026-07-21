@@ -17,6 +17,23 @@ from .factorized_engagement_action_head import (
     FactorizedEngagementAirDefenseActionHead,
     FactorizedEngagementAutoregressiveDistribution,
 )
+from .masked_action_q_critic import (
+    MaskedActionQCritic,
+    MaskedActionQCriticConfig,
+)
+from .hierarchical_masked_q_critic import (
+    HierarchicalMaskedQCritic,
+    HierarchicalMaskedQCriticConfig,
+)
+from .risk_aware_engagement_critic import (
+    RiskAwareEngagementCritic,
+    RiskAwareEngagementCriticConfig,
+)
+from .state_conditioned_engagement_value import (
+    StateConditionedEngagementOutput,
+    StateConditionedEngagementValue,
+    StateConditionedEngagementValueConfig,
+)
 
 __all__ = [
     "AutoregressiveActionEvaluation",
@@ -28,6 +45,15 @@ __all__ = [
     "FactorizedEngagementActionHeadConfig",
     "FactorizedEngagementAirDefenseActionHead",
     "FactorizedEngagementAutoregressiveDistribution",
+    "MaskedActionQCritic",
+    "MaskedActionQCriticConfig",
+    "HierarchicalMaskedQCritic",
+    "HierarchicalMaskedQCriticConfig",
+    "RiskAwareEngagementCritic",
+    "RiskAwareEngagementCriticConfig",
+    "StateConditionedEngagementOutput",
+    "StateConditionedEngagementValue",
+    "StateConditionedEngagementValueConfig",
     "DiscretePolicyNetwork",
     "DiscreteQNetwork",
     "VectorQNetwork",

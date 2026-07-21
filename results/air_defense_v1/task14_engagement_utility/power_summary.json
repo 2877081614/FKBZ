@@ -1,0 +1,15 @@
+{
+  "test_valid_groups": 57,
+  "test_engage_groups": 3,
+  "observed_engage_rate": 0.05263157894736842,
+  "engage_rate_wilson_95": [
+    0.01805996809628102,
+    0.14369777660471303
+  ],
+  "required_engage_groups": 8,
+  "point_required_test_valid_groups": 152,
+  "conservative_required_test_valid_groups": 443,
+  "point_projected_total_states": 261,
+  "conservative_projected_total_states": 760,
+  "recommendation": "Prefer targeted safety-critical state collection over uniform expansion; all confident engage cases currently occur in medium."
+}

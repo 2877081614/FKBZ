@@ -1,0 +1,251 @@
+{"kind":"deck","id":"pr/pndpmb","name":"Deck"}
+{"kind":"layout","layoutId":"e19ae5b6-ab7b-426b-a64e-b8f92bf783f8","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"25f69b4f-2242-4887-98df-2eb351eb61c0","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/q7pwvs","slide":1,"title":"防空编组强化学习阶段汇报","textShapes":5}
+{"kind":"textbox","id":"sh/gzyh0nah","slide":1,"text":"防空编组强化学习阶段汇报","textPreview":"防空编组强化学习阶段汇报","textChars":12,"textLines":1,"bbox":[42,38,620,34]}
+{"kind":"textbox","id":"sh/fypgritw","slide":1,"text":"从联合动作约束到\n反事实分层信用","textPreview":"从联合动作约束到 | 反事实分层信用","textChars":16,"textLines":2,"bbox":[42,205,1040,230]}
+{"kind":"shape","id":"sh/exgzydsb","slide":1,"bbox":[42,488,380,8]}
+{"kind":"textbox","id":"sh/tcnyp8bq","slide":1,"text":"近期工作、创新证据与后续研究边界","textPreview":"近期工作、创新证据与后续研究边界","textChars":16,"textLines":1,"bbox":[42,524,650,40]}
+{"kind":"textbox","id":"sh/sbehwna5","slide":1,"text":"汇报日期  2026-07-22","textPreview":"汇报日期  2026-07-22","textChars":16,"textLines":1,"bbox":[828,40,410,28]}
+{"kind":"textbox","id":"sh/ra5gnit0","slide":1,"text":"核心判断：创新问题已收敛，局部机制已有成效，完整 MCH-PPO 尚未验证","textPreview":"核心判断：创新问题已收敛，局部机制已有成效，完整 MCH-PPO 尚未验证","textChars":37,"textLines":1,"bbox":[42,630,1130,42]}
+{"kind":"notes","id":"nt/q7pwvs","slide":1,"text":"本次不重复汇报环境搭建细节，重点汇报最近几天如何从实验失效中形成算法创新路线。\n开场先明确：目前有局部机制证据，但完整 MCH-PPO 还没有进入训练验证。"}
+{"kind":"slide","id":"sl/v1nlt3","slide":2,"title":"01 研究基础","textShapes":8}
+{"kind":"textbox","id":"sh/g7qh4fix","slide":2,"text":"01 研究基础","textPreview":"01 研究基础","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/f6h0bahc","slide":2,"text":"研究基座已经稳定，工作重心转向算法机理","textPreview":"研究基座已经稳定，工作重心转向算法机理","textChars":19,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/u58z250r","slide":2,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/t4fy90z6","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"textbox","id":"sh/s36h0vil","slide":2,"text":"集中式动态资源分配","textPreview":"集中式动态资源分配","textChars":9,"textLines":1,"bbox":[42,180,420,42]}
+{"kind":"textbox","id":"sh/72xg7qh0","slide":2,"text":"• 3个异构防御单元\n• 5个动态来袭目标\n• 目标威胁、载荷、到达时间\n• 弹药、射程、命中概率与冷却\n• 联合分配动作与动态合法掩码","textPreview":"• 3个异构防御单元 | • 5个动态来袭目标 | • 目标威胁、载荷、到达时间 | • 弹药、射程、命中概率与冷却 | • 联合分配动作与动态合法掩码","textChars":68,"textLines":5,"bbox":[42,240,425,235]}
+{"kind":"shape","id":"sh/61ozel0v","slide":2,"bbox":[42,512,420,96]}
+{"kind":"textbox","id":"sh/d0jil4za","slide":2,"text":"当前研究边界","textPreview":"当前研究边界","textChars":6,"textLines":1,"bbox":[60,528,170,28]}
+{"kind":"textbox","id":"sh/czahczi5","slide":2,"text":"决策级资源分配，不替代高保真雷达、通信与弹道仿真","textPreview":"决策级资源分配，不替代高保真雷达、通信与弹道仿真","textChars":24,"textLines":1,"bbox":[60,560,370,40]}
+{"kind":"textbox","id":"sh/vq9gnel8","slide":2,"text":"数据来源：AirDefenseResourceAssignmentEnv v1.0，seed=0","textPreview":"数据来源：AirDefenseResourceAssignmentEnv v1.0，seed=0","textChars":48,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"image","id":"im/tcnqhonq","slide":2,"name":"","alt":"AirDefenseResourceAssignmentEnv v1.0场景图","bbox":[505,170,705,465]}
+{"kind":"notes","id":"nt/v1nlt3","slide":2,"text":"环境、基线、统一指标和多随机种子实验协议已经稳定。\n现在研究对象不是环境能不能运行，而是策略如何在资源约束下稳定决定是否交战以及选哪个目标。"}
+{"kind":"slide","id":"sl/g2wj6s","slide":3,"title":"02 工作阶段","textShapes":18}
+{"kind":"textbox","id":"sh/36pcb61w","slide":3,"text":"02 工作阶段","textPreview":"02 工作阶段","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/4rytkbi1","slide":3,"text":"这几天完成的不是一个模型，而是一条创新证据链","textPreview":"这几天完成的不是一个模型，而是一条创新证据链","textChars":22,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/ps7udwjm","slide":3,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/qt0vm107","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/ru9cf61s","slide":3,"bbox":[86,337,1005,0]}
+{"kind":"shape","id":"sh/cvidobid","slide":3,"bbox":[80,325,24,24]}
+{"kind":"textbox","id":"sh/dwruhgjy","slide":3,"text":"联合动作","textPreview":"联合动作","textChars":4,"textLines":1,"bbox":[60,265,150,34]}
+{"kind":"textbox","id":"sh/6xwbahk3","slide":3,"text":"冲突严格归零","textPreview":"冲突严格归零","textChars":6,"textLines":1,"bbox":[60,375,165,72]}
+{"kind":"shape","id":"sh/7y5c3m1o","slide":3,"bbox":[270,325,24,24]}
+{"kind":"textbox","id":"sh/3uponudo","slide":3,"text":"顺序/关系","textPreview":"顺序/关系","textChars":5,"textLines":1,"bbox":[250,265,150,34]}
+{"kind":"textbox","id":"sh/2tg7epw3","slide":3,"text":"定位单元塌缩","textPreview":"定位单元塌缩","textChars":6,"textLines":1,"bbox":[250,375,165,72]}
+{"kind":"shape","id":"sh/pwr6p4vu","slide":3,"bbox":[460,325,24,24]}
+{"kind":"textbox","id":"sh/4vypgze9","slide":3,"text":"no-op机理","textPreview":"no-op机理","textChars":7,"textLines":1,"bbox":[440,265,150,34]}
+{"kind":"textbox","id":"sh/fqpojuds","slide":3,"text":"argmax + PPO分叉","textPreview":"argmax + PPO分叉","textChars":14,"textLines":1,"bbox":[440,375,165,72]}
+{"kind":"shape","id":"sh/upg7apw7","slide":3,"bbox":[650,325,24,24]}
+{"kind":"textbox","id":"sh/hs76l4vy","slide":3,"text":"反事实信用","textPreview":"反事实信用","textChars":5,"textLines":1,"bbox":[630,265,150,34]}
+{"kind":"textbox","id":"sh/grypczed","slide":3,"text":"排除统一阈值","textPreview":"排除统一阈值","textChars":6,"textLines":1,"bbox":[630,375,165,72]}
+{"kind":"shape","id":"sh/7m5ofadg","slide":3,"bbox":[840,325,24,24]}
+{"kind":"textbox","id":"sh/6lwn65wb","slide":3,"text":"双价值","textPreview":"双价值","textChars":3,"textLines":1,"bbox":[820,265,150,34]}
+{"kind":"textbox","id":"sh/axc7i5g3","slide":3,"text":"总体门控3/3","textPreview":"总体门控3/3","textChars":7,"textLines":1,"bbox":[820,375,165,72]}
+{"kind":"shape","id":"sh/by58raho","slide":3,"bbox":[1030,325,24,24]}
+{"kind":"textbox","id":"sh/wjepkfyt","slide":3,"text":"多批次","textPreview":"多批次","textChars":3,"textLines":1,"bbox":[1010,265,150,34]}
+{"kind":"textbox","id":"sh/xknqtkze","slide":3,"text":"暴露过度交战","textPreview":"暴露过度交战","textChars":6,"textLines":1,"bbox":[1010,375,165,72]}
+{"kind":"textbox","id":"sh/ylw7mpgz","slide":3,"text":"每一步都冻结环境、奖励或模型主体，只改变一个机制并用门控决定是否继续。","textPreview":"每一步都冻结环境、奖励或模型主体，只改变一个机制并用门控决定是否继续。","textChars":35,"textLines":1,"bbox":[80,520,1050,48]}
+{"kind":"textbox","id":"sh/jm58vuhk","slide":3,"text":"这使正结果和负结果都能转化为下一步研究依据。","textPreview":"这使正结果和负结果都能转化为下一步研究依据。","textChars":22,"textLines":1,"bbox":[80,582,850,34]}
+{"kind":"textbox","id":"sh/knepozy5","slide":3,"text":"数据来源：任务八至任务十四实验记录","textPreview":"数据来源：任务八至任务十四实验记录","textChars":17,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"notes","id":"nt/g2wj6s","slide":3,"text":"强调研究推进是逐层排除解释，而不是不断更换模型。\n联合动作、顺序、no-op、反事实价值、多批次泛化构成连续因果链。"}
+{"kind":"slide","id":"sl/9qljac","slide":4,"title":"03 基准证据","textShapes":10}
+{"kind":"textbox","id":"sh/yd0nqhkj","slide":4,"text":"03 基准证据","textPreview":"03 基准证据","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/lgbmlwja","slide":4,"text":"动作掩码显著改善 PPO，但尚未稳定超越强规则","textPreview":"动作掩码显著改善 PPO，但尚未稳定超越强规则","textChars":23,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/kf25sr2p","slide":4,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/bq94fm18","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/xsrmhcjy","slide":4,"bbox":[748,185,440,126]}
+{"kind":"textbox","id":"sh/crilor2t","slide":4,"text":"+50.60","textPreview":"+50.60","textChars":6,"textLines":1,"bbox":[766,201,404,54]}
+{"kind":"textbox","id":"sh/nmp4b21w","slide":4,"text":"Maskable PPO 相对普通 PPO 的奖励差\n95% CI [8.24, 92.95]","textPreview":"Maskable PPO 相对普通 PPO 的奖励差 | 95% CI [8.24, 92.95]","textChars":47,"textLines":2,"bbox":[766,261,404,38]}
+{"kind":"shape","id":"sh/2lg3ixkb","slide":4,"bbox":[748,335,440,126]}
+{"kind":"textbox","id":"sh/4fepwfq1","slide":4,"text":"0","textPreview":"0","textChars":1,"textLines":1,"bbox":[766,351,404,54]}
+{"kind":"textbox","id":"sh/5gn6pkr6","slide":4,"text":"Maskable PPO 最终非法动作\n普通 PPO 平均 6.84","textPreview":"Maskable PPO 最终非法动作 | 普通 PPO 平均 6.84","textChars":34,"textLines":2,"bbox":[766,411,404,38]}
+{"kind":"shape","id":"sh/idw7up8v","slide":4,"bbox":[748,492,440,112]}
+{"kind":"textbox","id":"sh/je5ona9g","slide":4,"text":"研究结论","textPreview":"研究结论","textChars":4,"textLines":1,"bbox":[766,510,120,26]}
+{"kind":"textbox","id":"sh/wru5sfqp","slide":4,"text":"达到强规则基线区间，但对 greedy-damage 的优势区间仍跨0。","textPreview":"达到强规则基线区间，但对 greedy-damage 的优势区间仍跨0。","textChars":36,"textLines":1,"bbox":[766,544,390,48]}
+{"kind":"textbox","id":"sh/hs36lkra","slide":4,"text":"数据来源：formal_benchmark_100k，100k×5 seeds","textPreview":"数据来源：formal_benchmark_100k，100k×5 seeds","textChars":39,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"chart","id":"ch/2dcru1kz","slide":4,"name":"","chartType":"bar","bbox":[42,178,650,425]}
+{"kind":"notes","id":"nt/9qljac","slide":4,"text":"动作掩码相对普通 PPO 的提升方向稳定，因此合法性约束是明确成果。\n但相对强规则基线不能宣称稳定优势，这推动研究进入结构机制而非继续堆训练步数。"}
+{"kind":"slide","id":"sl/kl0n0k","slide":5,"title":"04 联合动作机制","textShapes":6}
+{"kind":"textbox","id":"sh/y1wr2dsb","slide":5,"text":"04 联合动作机制","textPreview":"04 联合动作机制","textChars":9,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/l47ad8bm","slide":5,"text":"联合冲突已解决，资源效率决定动作机制优劣","textPreview":"联合冲突已解决，资源效率决定动作机制优劣","textChars":20,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/k3e94nah","slide":5,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/76psfits","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/987ahsby","slide":5,"bbox":[42,505,1196,104]}
+{"kind":"textbox","id":"sh/87y98nad","slide":5,"text":"稳定成果","textPreview":"稳定成果","textChars":4,"textLines":1,"bbox":[64,526,120,28]}
+{"kind":"textbox","id":"sh/vupsj2t4","slide":5,"text":"自回归动作机制同时实现动态合法、一对一分配和资源节制；剩余高威胁突防不再能归因于动作冲突。","textPreview":"自回归动作机制同时实现动态合法、一对一分配和资源节制；剩余高威胁突防不再能归因于动作冲突。","textChars":45,"textLines":1,"bbox":[190,519,1000,60]}
+{"kind":"textbox","id":"sh/u9graxsj","slide":5,"text":"数据来源：任务七、任务八、任务九正式实验","textPreview":"数据来源：任务七、任务八、任务九正式实验","textChars":20,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"table","id":"tb/jylc7ahg","slide":5,"name":"","rows":4,"cols":4,"preview":"动作机制 | 冲突/过度分配 | time-pressure资源 | 结论","bbox":[42,190,1196,270]}
+{"kind":"notes","id":"nt/kl0n0k","slide":5,"text":"这是第一项可以稳定保留的机制成果。\n扁平联合动作虽然消除冲突，却带来资源成本；自回归分解解决了这个问题。"}
+{"kind":"slide","id":"sl/snjwop","slide":6,"title":"05 失稳机理","textShapes":10}
+{"kind":"textbox","id":"sh/54j614vi","slide":6,"text":"05 失稳机理","textPreview":"05 失稳机理","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/i1snqpwr","slide":6,"text":"no-op 不是单一类别，而是 argmax 与 PPO 分叉叠加","textPreview":"no-op 不是单一类别，而是 argmax 与 PPO 分叉叠加","textChars":33,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/j214zudc","slide":6,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/wfa5ofe1","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/ud8nmpwv","slide":6,"bbox":[790,190,398,132]}
+{"kind":"textbox","id":"sh/veh4vudg","slide":6,"text":"0.4726","textPreview":"0.4726","textChars":6,"textLines":1,"bbox":[808,206,362,54]}
+{"kind":"textbox","id":"sh/gbu50ju5","slide":6,"text":"看似全 no-op 模型的平均交战概率","textPreview":"看似全 no-op 模型的平均交战概率","textChars":19,"textLines":1,"bbox":[808,266,362,44]}
+{"kind":"shape","id":"sh/1w369ovq","slide":6,"bbox":[790,346,398,132]}
+{"kind":"textbox","id":"sh/5cbm90v2","slide":6,"text":"3 / 5","textPreview":"3 / 5","textChars":5,"textLines":1,"bbox":[808,362,362,54]}
+{"kind":"textbox","id":"sh/kb2l0veh","slide":6,"text":"10k训练后进入 all-noop 的种子","textPreview":"10k训练后进入 all-noop 的种子","textChars":21,"textLines":1,"bbox":[808,422,362,44]}
+{"kind":"textbox","id":"sh/jat47qdw","slide":6,"text":"结论","textPreview":"结论","textChars":2,"textLines":1,"bbox":[790,515,100,28]}
+{"kind":"textbox","id":"sh/i9k3y5wb","slide":6,"text":"目标概率碎片化使 deterministic argmax 偏向 no-op；训练又把不同种子推向相反的 margin。","textPreview":"目标概率碎片化使 deterministic argmax 偏向 no-op；训练又把不同种子推向相反的 margin。","textChars":60,"textLines":1,"bbox":[790,552,398,66]}
+{"kind":"textbox","id":"sh/xobm50v6","slide":6,"text":"数据来源：任务十二固定探针与10k×5 seeds动态诊断","textPreview":"数据来源：任务十二固定探针与10k×5 seeds动态诊断","textChars":29,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"chart","id":"ch/1g3elwbi","slide":6,"name":"","chartType":"bar","bbox":[42,190,690,400]}
+{"kind":"notes","id":"nt/snjwop","slide":6,"text":"固定探针证明概率没有完全退化，但确定性决策会放大 no-op。\n不同种子训练后产生正常交战与完全不开火两极，说明优化稳定性是第二个真实因素。"}
+{"kind":"slide","id":"sl/1vaa1y","slide":7,"title":"06 候选创新","textShapes":11}
+{"kind":"textbox","id":"sh/vad4jipw","slide":7,"text":"06 候选创新","textPreview":"06 候选创新","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/wbmlsn6h","slide":7,"text":"MCH-PPO 假设由失效证据推出，而不是模块拼接","textPreview":"MCH-PPO 假设由失效证据推出，而不是模块拼接","textChars":25,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/hcvmls72","slide":7,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/mlk3mdof","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/7md4fip0","slide":7,"bbox":[220,330,130,0]}
+{"kind":"shape","id":"sh/8nmlo36l","slide":7,"bbox":[525,220,110,110]}
+{"kind":"shape","id":"sh/9ovmh876","slide":7,"bbox":[525,330,110,110]}
+{"kind":"shape","id":"sh/yhk3itoj","slide":7,"bbox":[820,220,110,0]}
+{"kind":"shape","id":"sh/zit4bypo","slide":7,"bbox":[820,440,110,0]}
+{"kind":"shape","id":"sh/3mh0z21w","slide":7,"bbox":[64,270,156,120]}
+{"kind":"textbox","id":"sh/il8zqxkb","slide":7,"text":"状态 s\n动态合法集","textPreview":"状态 s | 动态合法集","textChars":10,"textLines":2,"bbox":[82,295,120,66]}
+{"kind":"shape","id":"sh/58zi1cj2","slide":7,"bbox":[350,255,175,150]}
+{"kind":"textbox","id":"sh/4nqhs72h","slide":7,"text":"资源 i\n局部反事实\nQ(s,hᵢ,aᵢ)","textPreview":"资源 i | 局部反事实 | Q(s,hᵢ,aᵢ)","textChars":21,"textLines":3,"bbox":[372,280,132,95]}
+{"kind":"shape","id":"sh/ra103218","slide":7,"bbox":[635,158,185,124]}
+{"kind":"textbox","id":"sh/q98zuxkn","slide":7,"text":"交战层\nengage / no-op","textPreview":"交战层 | engage / no-op","textChars":18,"textLines":2,"bbox":[655,189,145,70]}
+{"kind":"shape","id":"sh/dcji5cjy","slide":7,"bbox":[635,378,185,124]}
+{"kind":"textbox","id":"sh/sbahw72d","slide":7,"text":"目标层\nconditional target","textPreview":"目标层 | conditional target","textChars":22,"textLines":2,"bbox":[655,409,145,70]}
+{"kind":"shape","id":"sh/7exgri1o","slide":7,"bbox":[930,158,260,124]}
+{"kind":"textbox","id":"sh/6dozidk3","slide":7,"text":"安全收益\n资源预算约束","textPreview":"安全收益 | 资源预算约束","textChars":11,"textLines":2,"bbox":[954,190,212,66]}
+{"kind":"shape","id":"sh/a9w3ql4r","slide":7,"bbox":[930,378,260,124]}
+{"kind":"textbox","id":"sh/ba5kzqlc","slide":7,"text":"合法目标内重归一化\n保持联合无冲突","textPreview":"合法目标内重归一化 | 保持联合无冲突","textChars":17,"textLines":2,"bbox":[950,405,220,70]}
+{"kind":"shape","id":"sh/cbelsvmx","slide":7,"bbox":[64,555,1126,70]}
+{"kind":"textbox","id":"sh/xcn2103i","slide":7,"text":"创新焦点：让每个资源获得“是否交战”和“选哪个目标”的可分辨局部信用，并让该信用服从动态掩码与资源约束。","textPreview":"创新焦点：让每个资源获得“是否交战”和“选哪个目标”的可分辨局部信用，并让该信用服从动态掩码与资源约束。","textChars":52,"textLines":1,"bbox":[84,571,1086,42]}
+{"kind":"textbox","id":"sh/25c3m14v","slide":7,"text":"数据来源：masked_counterfactual_hierarchical_ppo.md","textPreview":"数据来源：masked_counterfactual_hierarchical_ppo.md","textChars":46,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"notes","id":"nt/1vaa1y","slide":7,"text":"MCH-PPO 的核心不是三个名词相加，而是动态合法集合内的局部反事实信用语义。\n交战层处理是否值得消耗资源，目标层处理合法目标排序；两层均保持联合动作约束。"}
+{"kind":"slide","id":"sl/9shsgl","slide":8,"title":"07 机制证据","textShapes":12}
+{"kind":"textbox","id":"sh/wnehgn6d","slide":8,"text":"07 机制证据","textPreview":"07 机制证据","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/bm5g7i58","slide":8,"text":"统一阈值与 V(s) 都无法提供所需的局部信用","textPreview":"统一阈值与 V(s) 都无法提供所需的局部信用","textChars":23,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/alwzedon","slide":8,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/9kny58n2","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/ojehc36h","slide":8,"bbox":[42,194,354,180]}
+{"kind":"textbox","id":"sh/nilg3y5w","slide":8,"text":"0 / 17","textPreview":"0 / 17","textChars":6,"textLines":1,"bbox":[60,210,318,54]}
+{"kind":"textbox","id":"sh/2xcfatob","slide":8,"text":"统一阈值通过全部18个\n种子×场景组合","textPreview":"统一阈值通过全部18个 | 种子×场景组合","textChars":19,"textLines":2,"bbox":[60,270,318,92]}
+{"kind":"shape","id":"sh/1w3y1onq","slide":8,"bbox":[430,194,354,180]}
+{"kind":"textbox","id":"sh/0vux836l","slide":8,"text":"8 / 18","textPreview":"8 / 18","textChars":6,"textLines":1,"bbox":[448,210,318,54]}
+{"kind":"textbox","id":"sh/ep032pg3","slide":8,"text":"最佳阈值0.6仍只通过\n部分组合","textPreview":"最佳阈值0.6仍只通过 | 部分组合","textChars":16,"textLines":2,"bbox":[448,270,318,92]}
+{"kind":"shape","id":"sh/fq94buho","slide":8,"bbox":[818,194,370,180]}
+{"kind":"textbox","id":"sh/0r2l4zy9","slide":8,"text":"10～34.6","textPreview":"10～34.6","textChars":7,"textLines":1,"bbox":[836,210,334,54]}
+{"kind":"textbox","id":"sh/1sbmd4ze","slide":8,"text":"联合 advantage 组内标准差\n均值差仅0.31～2.67","textPreview":"联合 advantage 组内标准差 | 均值差仅0.31～2.67","textChars":32,"textLines":2,"bbox":[836,270,334,92]}
+{"kind":"shape","id":"sh/q103y5gr","slide":8,"bbox":[42,432,1146,0]}
+{"kind":"textbox","id":"sh/r2947ahc","slide":8,"text":"结构缺口","textPreview":"结构缺口","textChars":4,"textLines":1,"bbox":[42,468,180,34]}
+{"kind":"textbox","id":"sh/snil0fyx","slide":8,"text":"现有 PPO Critic 只输出 V(s)。同一状态下所有候选动作共享同一个 baseline，无法直接回答本资源是否应交战，也无法比较合法目标。","textPreview":"现有 PPO Critic 只输出 V(s)。同一状态下所有候选动作共享同一个 baseline，无法直接回答本资源是否应交战，也无法比较合法目标。","textChars":74,"textLines":1,"bbox":[42,516,1120,84]}
+{"kind":"textbox","id":"sh/dorm9kzi","slide":8,"text":"数据来源：任务十三：17阈值扫描与3,648条逐单元信用样本","textPreview":"数据来源：任务十三：17阈值扫描与3,648条逐单元信用样本","textChars":30,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"notes","id":"nt/9shsgl","slide":8,"text":"阈值扫描排除了简单后处理修复。\n联合 advantage 的局部判别差异远小于轨迹噪声，且 V(s) 在结构上没有动作条件输入。"}
+{"kind":"slide","id":"sl/fi14c1","slide":9,"title":"08 任务十四","textShapes":5}
+{"kind":"textbox","id":"sh/ip8jqlsb","slide":9,"text":"08 任务十四","textPreview":"08 任务十四","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/5cj2lgb2","slide":9,"text":"离线价值研究逐步收敛到安全收益与资源成本双价值","textPreview":"离线价值研究逐步收敛到安全收益与资源成本双价值","textChars":23,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/kba1sbah","slide":9,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/bmh0f6tk","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/xozihgbq","slide":9,"bbox":[42,575,1196,60]}
+{"kind":"textbox","id":"sh/wnq1oba5","slide":9,"text":"关键收敛：目标排序不是当前最难部分，跨状态稳定决定“是否值得交战”才是核心。","textPreview":"关键收敛：目标排序不是当前最难部分，跨状态稳定决定“是否值得交战”才是核心。","textChars":38,"textLines":1,"bbox":[62,588,1156,34]}
+{"kind":"textbox","id":"sh/filkrqt4","slide":9,"text":"数据来源：任务十四系列离线反事实价值实验","textPreview":"数据来源：任务十四系列离线反事实价值实验","textChars":20,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"table","id":"tb/n2pwfedc","slide":9,"name":"","rows":6,"cols":4,"preview":"原型 | 验证重点 | 门控 | 得到的结论","bbox":[42,182,1196,365]}
+{"kind":"notes","id":"nt/fi14c1","slide":9,"text":"这一页展示失败并非重复试错，而是逐步区分价值预测、目标排序、交战符号和资源停止。\n最终最有信号的是安全收益与资源预算分开建模。"}
+{"kind":"slide","id":"sl/ubi1t8","slide":10,"title":"09 局部正结果","textShapes":10}
+{"kind":"textbox","id":"sh/poze50zu","slide":10,"text":"09 局部正结果","textPreview":"09 局部正结果","textChars":8,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/2l8vul0j","slide":10,"text":"状态条件双价值首次实现总体门控 3/3","textPreview":"状态条件双价值首次实现总体门控 3/3","textChars":19,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/3mhw3qho","slide":10,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/crad0fil","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/qp8vy50f","slide":10,"bbox":[825,188,363,122]}
+{"kind":"textbox","id":"sh/rqhw7ah0","slide":10,"text":"0.768～0.834","textPreview":"0.768～0.834","textChars":11,"textLines":1,"bbox":[843,204,327,54]}
+{"kind":"textbox","id":"sh/0fax4fih","slide":10,"text":"三种子 balanced accuracy","textPreview":"三种子 balanced accuracy","textChars":21,"textLines":1,"bbox":[843,264,327,34]}
+{"kind":"shape","id":"sh/lgjedkz2","slide":10,"bbox":[825,334,363,122]}
+{"kind":"textbox","id":"sh/h8jyx8fm","slide":10,"text":"0.263～0.298","textPreview":"0.263～0.298","textChars":11,"textLines":1,"bbox":[843,350,327,54]}
+{"kind":"textbox","id":"sh/gnqxo3e1","slide":10,"text":"wasteful-engage\n此前为0.62～0.68","textPreview":"wasteful-engage | 此前为0.62～0.68","textChars":28,"textLines":2,"bbox":[843,410,327,34]}
+{"kind":"shape","id":"sh/fmhgvyxg","slide":10,"bbox":[825,486,363,114]}
+{"kind":"textbox","id":"sh/ul8fmtwv","slide":10,"text":"边界","textPreview":"边界","textChars":2,"textLines":1,"bbox":[843,504,90,26]}
+{"kind":"textbox","id":"sh/pcjy18fi","slide":10,"text":"逐场景完整门控仍为0/3；成本差相关性仅 -0.04～0.13。","textPreview":"逐场景完整门控仍为0/3；成本差相关性仅 -0.04～0.13。","textChars":32,"textLines":1,"bbox":[843,536,323,52]}
+{"kind":"textbox","id":"sh/4bahsnex","slide":10,"text":"数据来源：72个独立状态，state-conditioned value正式实验","textPreview":"数据来源：72个独立状态，state-conditioned value正式实验","textChars":40,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"chart","id":"ch/14filsf6","slide":10,"name":"","chartType":"bar","bbox":[42,180,735,420]}
+{"kind":"notes","id":"nt/ubi1t8","slide":10,"text":"这是目前最明确的局部正结果：三种子总体双类召回和资源停止同时通过。\n但逐场景仍失败，且成本差相关性弱，因此只能作为 MCH-PPO 的机制证据。"}
+{"kind":"slide","id":"sl/t90sid","slide":11,"title":"10 泛化压力","textShapes":8}
+{"kind":"textbox","id":"sh/rm98n29k","slide":11,"text":"10 泛化压力","textPreview":"10 泛化压力","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/cn29w7q5","slide":11,"text":"新批次使异质场景的错误方向发生翻转","textPreview":"新批次使异质场景的错误方向发生翻转","textChars":17,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/dobqpsrq","slide":11,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/ypkrix8b","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"textbox","id":"sh/0r29k7q1","slide":11,"text":"同一场景标签并不代表同一临界状态分布","textPreview":"同一场景标签并不代表同一临界状态分布","textChars":18,"textLines":1,"bbox":[785,205,400,70]}
+{"kind":"textbox","id":"sh/lsbqtcrm","slide":11,"text":"普通随机 state folds 共享同一批次生成机制，无法模拟新的边界状态子分布。","textPreview":"普通随机 state folds 共享同一批次生成机制，无法模拟新的边界状态子分布。","textChars":42,"textLines":1,"bbox":[785,302,400,90]}
+{"kind":"shape","id":"sh/utg7mdsr","slide":11,"bbox":[785,430,400,120]}
+{"kind":"textbox","id":"sh/fup8fi9c","slide":11,"text":"方法学升级","textPreview":"方法学升级","textChars":5,"textLines":1,"bbox":[805,449,150,26]}
+{"kind":"textbox","id":"sh/je1gne14","slide":11,"text":"从随机状态折转为独立批次、LOBO 与最终隔离测试。","textPreview":"从随机状态折转为独立批次、LOBO 与最终隔离测试。","textChars":26,"textLines":1,"bbox":[805,486,360,54]}
+{"kind":"textbox","id":"sh/id8ze9kj","slide":11,"text":"数据来源：cross-scenario robust value正式实验","textPreview":"数据来源：cross-scenario robust value正式实验","textChars":36,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"chart","id":"ch/v294fipc","slide":11,"name":"","chartType":"bar","bbox":[42,190,680,405]}
+{"kind":"notes","id":"nt/t90sid","slide":11,"text":"同一模型在不同批次的异质场景中从全识别变为明显漏交战。\n这不是简单场景权重问题，而是临界状态子分布漂移，因此实验协议必须升级。"}
+{"kind":"slide","id":"sl/kcrgpa","slide":12,"title":"11 当前门控","textShapes":10}
+{"kind":"textbox","id":"sh/0j2psfmt","slide":12,"text":"11 当前门控","textPreview":"11 当前门控","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/fy98zal8","slide":12,"text":"多批次修复漏交战，却把模型推向系统性过度交战","textPreview":"多批次修复漏交战，却把模型推向系统性过度交战","textChars":22,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/ex07q54n","slide":12,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/pobq5k3a","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/nmt83alk","slide":12,"bbox":[825,188,363,122]}
+{"kind":"textbox","id":"sh/2lk7u54z","slide":12,"text":"1 / 3","textPreview":"1 / 3","textChars":5,"textLines":1,"bbox":[843,204,327,54]}
+{"kind":"textbox","id":"sh/xsvq943m","slide":12,"text":"leave-one-batch-out 可行种子","textPreview":"leave-one-batch-out 可行种子","textChars":24,"textLines":1,"bbox":[843,264,327,34]}
+{"kind":"shape","id":"sh/crmp0zm1","slide":12,"bbox":[825,334,363,122]}
+{"kind":"textbox","id":"sh/m9wbq58r","slide":12,"text":"0 / 3","textPreview":"0 / 3","textChars":5,"textLines":1,"bbox":[843,350,327,54]}
+{"kind":"textbox","id":"sh/na5cjapc","slide":12,"text":"最终独立批次完整通过","textPreview":"最终独立批次完整通过","textChars":10,"textLines":1,"bbox":[843,410,327,34]}
+{"kind":"shape","id":"sh/8bedsfqx","slide":12,"bbox":[825,486,363,114]}
+{"kind":"textbox","id":"sh/9wnulk72","slide":12,"text":"关键解释","textPreview":"关键解释","textChars":4,"textLines":1,"bbox":[843,504,120,26]}
+{"kind":"textbox","id":"sh/axwvup8n","slide":12,"text":"数据功效全部通过；当前瓶颈是安全交战与资源停止缺少共同边界。","textPreview":"数据功效全部通过；当前瓶颈是安全交战与资源停止缺少共同边界。","textChars":30,"textLines":1,"bbox":[843,536,323,52]}
+{"kind":"textbox","id":"sh/vypcnup8","slide":12,"text":"数据来源：3×48训练状态 + 72最终状态，多批次LOBO实验","textPreview":"数据来源：3×48训练状态 + 72最终状态，多批次LOBO实验","textChars":32,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"chart","id":"ch/gzu9gb2d","slide":12,"name":"","chartType":"bar","bbox":[42,180,735,420]}
+{"kind":"notes","id":"nt/kcrgpa","slide":12,"text":"多批次候选把必要交战召回拉高，但三个种子的 no-op recall 都降到约0.5。\n所有九个种子×场景 no-op recall 都低于0.65，因此不是单一场景偶然失效。"}
+{"kind":"slide","id":"sl/1cyeh6","slide":13,"title":"12 当前定位","textShapes":9}
+{"kind":"textbox","id":"sh/y90n6xcv","slide":13,"text":"12 当前定位","textPreview":"12 当前定位","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/lcb61cv6","slide":13,"text":"创新机制已有阶段性成效，但完整算法结论仍需克制","textPreview":"创新机制已有阶段性成效，但完整算法结论仍需克制","textChars":23,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/kb2587ul","slide":13,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/7yto3mdc","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"textbox","id":"sh/6dknahcr","slide":13,"text":"已经形成","textPreview":"已经形成","textChars":4,"textLines":1,"bbox":[42,185,520,38]}
+{"kind":"textbox","id":"sh/t0b65cvi","slide":13,"text":"• 无冲突自回归联合动作机制\n• no-op放大与PPO分叉的实验证据\n• 动态掩码下的分层反事实信用定义\n• 状态条件安全/资源双价值原型\n• 独立批次与LOBO门控协议","textPreview":"• 无冲突自回归联合动作机制 | • no-op放大与PPO分叉的实验证据 | • 动态掩码下的分层反事实信用定义 | • 状态条件安全/资源双价值原型 | • 独立批次与LOBO门控协议","textChars":86,"textLines":5,"bbox":[42,246,520,285]}
+{"kind":"shape","id":"sh/8z25c7ux","slide":13,"bbox":[625,180,0,410]}
+{"kind":"textbox","id":"sh/n29orid8","slide":13,"text":"仍不能宣称","textPreview":"仍不能宣称","textChars":5,"textLines":1,"bbox":[682,185,520,38]}
+{"kind":"textbox","id":"sh/mhgnydcn","slide":13,"text":"• 完整 MCH-PPO 已经有效\n• 已稳定解决 no-op\n• 创新点已被证明绝对新颖\n• 现阶段应立即进入 GNN\n• 已具备完整论文录用证据","textPreview":"• 完整 MCH-PPO 已经有效 | • 已稳定解决 no-op | • 创新点已被证明绝对新颖 | • 现阶段应立即进入 GNN | • 已具备完整论文录用证据","textChars":74,"textLines":5,"bbox":[682,246,520,285]}
+{"kind":"shape","id":"sh/83mlovip","slide":13,"bbox":[42,575,1160,60]}
+{"kind":"textbox","id":"sh/94vmx0ja","slide":13,"text":"当前阶段：创新机制原型与离线证据积累，尚未进入完整 Actor-Critic 闭环验证。","textPreview":"当前阶段：创新机制原型与离线证据积累，尚未进入完整 Actor-Critic 闭环验证。","textChars":44,"textLines":1,"bbox":[62,588,1120,34]}
+{"kind":"textbox","id":"sh/mh43ml0j","slide":13,"text":"数据来源：项目创新路线与任务十三、十四门控结论","textPreview":"数据来源：项目创新路线与任务十三、十四门控结论","textChars":23,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"notes","id":"nt/1cyeh6","slide":13,"text":"这页主动控制学术表述，避免把候选假设说成已经成立的算法创新。\n目前最值得强调的是问题定位、机制原型和严格负结果。"}
+{"kind":"slide","id":"sl/p2t19w","slide":14,"title":"13 后续开展","textShapes":11}
+{"kind":"textbox","id":"sh/tc765kf6","slide":14,"text":"13 后续开展","textPreview":"13 后续开展","textChars":7,"textLines":1,"bbox":[42,28,280,24]}
+{"kind":"textbox","id":"sh/69g7upgf","slide":14,"text":"下一步先回答：现有输出是否存在共同可行边界？","textPreview":"下一步先回答：现有输出是否存在共同可行边界？","textChars":22,"textLines":1,"bbox":[42,58,1160,74]}
+{"kind":"shape","id":"sh/7apo3ux0","slide":14,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/k7ypsfyp","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1182,677,56,18]}
+{"kind":"shape","id":"sh/l8761kfu","slide":14,"bbox":[270,325,150,0]}
+{"kind":"shape","id":"sh/y5g7q5gj","slide":14,"bbox":[650,205,135,120]}
+{"kind":"shape","id":"sh/z6pozax4","slide":14,"bbox":[650,325,135,120]}
+{"kind":"shape","id":"sh/c3e5ovyd","slide":14,"bbox":[54,258,216,134]}
+{"kind":"textbox","id":"sh/x4n6x0fy","slide":14,"text":"复用现有 rollout\nOOB Pareto 审计","textPreview":"复用现有 rollout | OOB Pareto 审计","textChars":26,"textLines":2,"bbox":[76,291,172,76]}
+{"kind":"shape","id":"sh/dk3m50f2","slide":14,"bbox":[420,248,230,154]}
+{"kind":"textbox","id":"sh/cju5cvyh","slide":14,"text":"跨批次 × 跨场景\n安全召回 × 停止召回","textPreview":"跨批次 × 跨场景 | 安全召回 × 停止召回","textChars":21,"textLines":2,"bbox":[444,284,182,84]}
+{"kind":"shape","id":"sh/bil43qxw","slide":14,"bbox":[785,137,405,142]}
+{"kind":"textbox","id":"sh/qhcna5gb","slide":14,"text":"存在共同边界","textPreview":"存在共同边界","textChars":6,"textLines":1,"bbox":[807,161,180,30]}
+{"kind":"textbox","id":"sh/pwjm10fq","slide":14,"text":"冻结规则 → 独立确认 → 最小MCH-PPO 30k×3","textPreview":"冻结规则 → 独立确认 → 最小MCH-PPO 30k×3","textChars":29,"textLines":1,"bbox":[807,205,355,50]}
+{"kind":"shape","id":"sh/ova58vy5","slide":14,"bbox":[785,387,405,142]}
+{"kind":"textbox","id":"sh/3u14zqxk","slide":14,"text":"不存在共同边界","textPreview":"不存在共同边界","textChars":7,"textLines":1,"bbox":[807,411,200,30]}
+{"kind":"textbox","id":"sh/2ts36lgf","slide":14,"text":"修改价值语义或显式约束，不继续扩大标量阈值","textPreview":"修改价值语义或显式约束，不继续扩大标量阈值","textChars":21,"textLines":1,"bbox":[807,455,355,50]}
+{"kind":"shape","id":"sh/1sjmxgfu","slide":14,"bbox":[54,566,1136,64]}
+{"kind":"textbox","id":"sh/gral4by9","slide":14,"text":"主线保持不变：MCH-PPO离线门控通过后再训练；GNN等待关系估值或跨规模泛化成为主要瓶颈。","textPreview":"主线保持不变：MCH-PPO离线门控通过后再训练；GNN等待关系估值或跨规模泛化成为主要瓶颈。","textChars":47,"textLines":1,"bbox":[74,580,1096,36]}
+{"kind":"textbox","id":"sh/sbe5kv65","slide":14,"text":"数据来源：现有研究创新路线，不新增或改动主线任务","textPreview":"数据来源：现有研究创新路线，不新增或改动主线任务","textChars":24,"textLines":1,"bbox":[42,675,1000,18]}
+{"kind":"notes","id":"nt/p2t19w","slide":14,"text":"下一步不立即生成新数据，先判断现有模型输出是否存在可校准的共同边界。\n若边界存在，进入一次独立确认；若不存在，说明必须改价值或约束语义。"}
+{"kind":"slide","id":"sl/2r0tzt","slide":15,"title":"请导师帮助判断三件事","textShapes":11}
+{"kind":"textbox","id":"sh/snqlsv25","slide":15,"text":"请导师帮助判断三件事","textPreview":"请导师帮助判断三件事","textChars":10,"textLines":1,"bbox":[42,42,850,72]}
+{"kind":"shape","id":"sh/rmh4zqlk","slide":15,"bbox":[42,142,1196,0]}
+{"kind":"textbox","id":"sh/ql83qlkz","slide":15,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[42,186,70,42]}
+{"kind":"textbox","id":"sh/1sjm50jm","slide":15,"text":"创新叙事","textPreview":"创新叙事","textChars":4,"textLines":1,"bbox":[130,186,180,38]}
+{"kind":"textbox","id":"sh/0ra5wv21","slide":15,"text":"第一篇论文更应强调动态掩码下的分层反事实信用，还是安全收益与资源预算约束？","textPreview":"第一篇论文更应强调动态掩码下的分层反事实信用，还是安全收益与资源预算约束？","textChars":37,"textLines":1,"bbox":[340,186,850,72]}
+{"kind":"shape","id":"sh/fq143alg","slide":15,"bbox":[42,290,1196,0]}
+{"kind":"textbox","id":"sh/epsnu5kv","slide":15,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[42,326,70,42]}
+{"kind":"textbox","id":"sh/9g3m9kji","slide":15,"text":"验证顺序","textPreview":"验证顺序","textChars":4,"textLines":1,"bbox":[130,326,180,38]}
+{"kind":"textbox","id":"sh/ofu50f2d","slide":15,"text":"是否认可先离线验证局部 advantage，再进入完整 PPO 训练？","textPreview":"是否认可先离线验证局部 advantage，再进入完整 PPO 训练？","textChars":35,"textLines":1,"bbox":[340,326,850,72]}
+{"kind":"shape","id":"sh/2xkzy1w3","slide":15,"bbox":[42,430,1196,0]}
+{"kind":"textbox","id":"sh/3yt0r6xo","slide":15,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[42,466,70,42]}
+{"kind":"textbox","id":"sh/4z2h0be9","slide":15,"text":"论文边界","textPreview":"论文边界","textChars":4,"textLines":1,"bbox":[130,466,180,38]}
+{"kind":"textbox","id":"sh/p0vitgfu","slide":15,"text":"三场景、四批次是否足够，是否需要增加第二类任务作为外部验证？","textPreview":"三场景、四批次是否足够，是否需要增加第二类任务作为外部验证？","textChars":30,"textLines":1,"bbox":[340,466,850,72]}
+{"kind":"shape","id":"sh/q14z2lwf","slide":15,"bbox":[42,612,1196,54]}
+{"kind":"textbox","id":"sh/b2d0vqxk","slide":15,"text":"当前最关键的不是增加复杂度，而是证明局部交战信用能跨掩码、资源约束和批次漂移保持稳定。","textPreview":"当前最关键的不是增加复杂度，而是证明局部交战信用能跨掩码、资源约束和批次漂移保持稳定。","textChars":43,"textLines":1,"bbox":[62,622,1156,34]}
+{"kind":"notes","id":"nt/2r0tzt","slide":15,"text":"用三个问题结束汇报，把需要导师决策的内容说清楚。\n最后重申：当前主线不是立即上 GNN，而是先完成局部信用的可行性证明。"}

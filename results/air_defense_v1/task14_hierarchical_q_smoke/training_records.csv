@@ -1,0 +1,2 @@
+best_epoch,best_validation_score,engagement_mean,engagement_std,parameter_count,target_mean,target_std,target_training_pairs,test_inference_seconds,train_seed
+33,1.8808842179307346,-21.248037338256836,16.22861671447754,160643,-25.12254524230957,16.54408836364746,177,0.0010255999950459227,14

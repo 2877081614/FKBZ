@@ -1,0 +1,898 @@
+{
+  "schema_version": 1,
+  "data_audit": {
+    "checks": {
+      "state_count": true,
+      "rollout_count": true,
+      "previous_observation_overlap_zero": true,
+      "return_reconstruction": true
+    },
+    "passed": true,
+    "previous_observation_overlaps": {
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic\\dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic_ranking_refinement\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_hierarchical_q\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_engagement_utility\\dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\targeted_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\analysis_dataset.npz": 0
+    },
+    "return_reconstruction_max_error": 7.62939453125e-06
+  },
+  "dataset": {
+    "states": 72,
+    "groups": 84,
+    "rollouts": 32,
+    "generation_seconds": 341.9917684999996
+  },
+  "power": {
+    "checks": {
+      "valid_count": true,
+      "engage_count": true,
+      "noop_count": true,
+      "scenario_counts": true,
+      "engage_scenarios": true
+    },
+    "passed": true,
+    "valid_count": 81,
+    "engage_count": 31,
+    "noop_count": 50,
+    "scenario_counts": {
+      "heterogeneity_pressure": 28,
+      "medium": 24,
+      "time_pressure": 29
+    },
+    "engage_scenario_count": 3
+  },
+  "calibration": {
+    "dataset": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\analysis_dataset.npz",
+    "split": "validation",
+    "validation_groups": 39,
+    "constraints": {
+      "balanced_accuracy": 0.7,
+      "engage_recall": 0.6,
+      "noop_recall": 0.65,
+      "scenario_engage_recall": 0.6,
+      "scenario_noop_recall": 0.65
+    },
+    "families": {
+      "20": {
+        "global_threshold": {
+          "metrics": {
+            "count": 37,
+            "engage_count": 14,
+            "noop_count": 23,
+            "accuracy": 0.7297297297297297,
+            "balanced_accuracy": 0.7406832298136645,
+            "engage_recall": 0.7857142857142857,
+            "noop_recall": 0.6956521739130435,
+            "false_noop_rate": 0.21428571428571427,
+            "wasteful_engage_rate": 0.30434782608695654
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7142857142857143,
+              "balanced_accuracy": 0.65,
+              "engage_recall": 0.5,
+              "noop_recall": 0.8,
+              "false_noop_rate": 0.5,
+              "wasteful_engage_rate": 0.2
+            },
+            "medium": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7857142857142857,
+              "balanced_accuracy": 0.85,
+              "engage_recall": 1.0,
+              "noop_recall": 0.7,
+              "false_noop_rate": 0.0,
+              "wasteful_engage_rate": 0.3
+            },
+            "time_pressure": {
+              "count": 9,
+              "engage_count": 6,
+              "noop_count": 3,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.5833333333333334,
+              "engage_recall": 0.8333333333333334,
+              "noop_recall": 0.3333333333333333,
+              "false_noop_rate": 0.16666666666666666,
+              "wasteful_engage_rate": 0.6666666666666666
+            }
+          },
+          "config": {
+            "family": "global_threshold",
+            "threshold": 0.023281335830688477,
+            "dual_weight": 0.0,
+            "logit_scale": 0.09489185785899348,
+            "feasible": false
+          }
+        },
+        "resource_dual": {
+          "metrics": {
+            "count": 37,
+            "engage_count": 14,
+            "noop_count": 23,
+            "accuracy": 0.7297297297297297,
+            "balanced_accuracy": 0.7546583850931676,
+            "engage_recall": 0.8571428571428571,
+            "noop_recall": 0.6521739130434783,
+            "false_noop_rate": 0.14285714285714285,
+            "wasteful_engage_rate": 0.34782608695652173
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7142857142857143,
+              "balanced_accuracy": 0.725,
+              "engage_recall": 0.75,
+              "noop_recall": 0.7,
+              "false_noop_rate": 0.25,
+              "wasteful_engage_rate": 0.3
+            },
+            "medium": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7857142857142857,
+              "balanced_accuracy": 0.85,
+              "engage_recall": 1.0,
+              "noop_recall": 0.7,
+              "false_noop_rate": 0.0,
+              "wasteful_engage_rate": 0.3
+            },
+            "time_pressure": {
+              "count": 9,
+              "engage_count": 6,
+              "noop_count": 3,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.5833333333333334,
+              "engage_recall": 0.8333333333333334,
+              "noop_recall": 0.3333333333333333,
+              "false_noop_rate": 0.16666666666666666,
+              "wasteful_engage_rate": 0.6666666666666666
+            }
+          },
+          "config": {
+            "family": "resource_dual",
+            "threshold": -0.023584523834632862,
+            "dual_weight": 1.0,
+            "logit_scale": 0.09489185785899348,
+            "feasible": false
+          }
+        }
+      },
+      "21": {
+        "global_threshold": {
+          "metrics": {
+            "count": 37,
+            "engage_count": 14,
+            "noop_count": 23,
+            "accuracy": 0.7297297297297297,
+            "balanced_accuracy": 0.7546583850931676,
+            "engage_recall": 0.8571428571428571,
+            "noop_recall": 0.6521739130434783,
+            "false_noop_rate": 0.14285714285714285,
+            "wasteful_engage_rate": 0.34782608695652173
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7857142857142857,
+              "balanced_accuracy": 0.775,
+              "engage_recall": 0.75,
+              "noop_recall": 0.8,
+              "false_noop_rate": 0.25,
+              "wasteful_engage_rate": 0.2
+            },
+            "medium": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7142857142857143,
+              "balanced_accuracy": 0.725,
+              "engage_recall": 0.75,
+              "noop_recall": 0.7,
+              "false_noop_rate": 0.25,
+              "wasteful_engage_rate": 0.3
+            },
+            "time_pressure": {
+              "count": 9,
+              "engage_count": 6,
+              "noop_count": 3,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.5,
+              "engage_recall": 1.0,
+              "noop_recall": 0.0,
+              "false_noop_rate": 0.0,
+              "wasteful_engage_rate": 1.0
+            }
+          },
+          "config": {
+            "family": "global_threshold",
+            "threshold": -0.007443908601999283,
+            "dual_weight": 0.0,
+            "logit_scale": 0.6876670946117326,
+            "feasible": false
+          }
+        },
+        "resource_dual": {
+          "metrics": {
+            "count": 37,
+            "engage_count": 14,
+            "noop_count": 23,
+            "accuracy": 0.7297297297297297,
+            "balanced_accuracy": 0.7686335403726708,
+            "engage_recall": 0.9285714285714286,
+            "noop_recall": 0.6086956521739131,
+            "false_noop_rate": 0.07142857142857142,
+            "wasteful_engage_rate": 0.391304347826087
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7142857142857143,
+              "balanced_accuracy": 0.725,
+              "engage_recall": 0.75,
+              "noop_recall": 0.7,
+              "false_noop_rate": 0.25,
+              "wasteful_engage_rate": 0.3
+            },
+            "medium": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7857142857142857,
+              "balanced_accuracy": 0.85,
+              "engage_recall": 1.0,
+              "noop_recall": 0.7,
+              "false_noop_rate": 0.0,
+              "wasteful_engage_rate": 0.3
+            },
+            "time_pressure": {
+              "count": 9,
+              "engage_count": 6,
+              "noop_count": 3,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.5,
+              "engage_recall": 1.0,
+              "noop_recall": 0.0,
+              "false_noop_rate": 0.0,
+              "wasteful_engage_rate": 1.0
+            }
+          },
+          "config": {
+            "family": "resource_dual",
+            "threshold": -0.25937248930818596,
+            "dual_weight": 0.25,
+            "logit_scale": 0.6876670946117326,
+            "feasible": false
+          }
+        }
+      },
+      "22": {
+        "global_threshold": {
+          "metrics": {
+            "count": 37,
+            "engage_count": 14,
+            "noop_count": 23,
+            "accuracy": 0.7297297297297297,
+            "balanced_accuracy": 0.7546583850931676,
+            "engage_recall": 0.8571428571428571,
+            "noop_recall": 0.6521739130434783,
+            "false_noop_rate": 0.14285714285714285,
+            "wasteful_engage_rate": 0.34782608695652173
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7857142857142857,
+              "balanced_accuracy": 0.775,
+              "engage_recall": 0.75,
+              "noop_recall": 0.8,
+              "false_noop_rate": 0.25,
+              "wasteful_engage_rate": 0.2
+            },
+            "medium": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7142857142857143,
+              "balanced_accuracy": 0.725,
+              "engage_recall": 0.75,
+              "noop_recall": 0.7,
+              "false_noop_rate": 0.25,
+              "wasteful_engage_rate": 0.3
+            },
+            "time_pressure": {
+              "count": 9,
+              "engage_count": 6,
+              "noop_count": 3,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.5,
+              "engage_recall": 1.0,
+              "noop_recall": 0.0,
+              "false_noop_rate": 0.0,
+              "wasteful_engage_rate": 1.0
+            }
+          },
+          "config": {
+            "family": "global_threshold",
+            "threshold": -0.15265212953090668,
+            "dual_weight": 0.0,
+            "logit_scale": 0.6261410490828668,
+            "feasible": false
+          }
+        },
+        "resource_dual": {
+          "metrics": {
+            "count": 37,
+            "engage_count": 14,
+            "noop_count": 23,
+            "accuracy": 0.7297297297297297,
+            "balanced_accuracy": 0.7546583850931676,
+            "engage_recall": 0.8571428571428571,
+            "noop_recall": 0.6521739130434783,
+            "false_noop_rate": 0.14285714285714285,
+            "wasteful_engage_rate": 0.34782608695652173
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7857142857142857,
+              "balanced_accuracy": 0.775,
+              "engage_recall": 0.75,
+              "noop_recall": 0.8,
+              "false_noop_rate": 0.25,
+              "wasteful_engage_rate": 0.2
+            },
+            "medium": {
+              "count": 14,
+              "engage_count": 4,
+              "noop_count": 10,
+              "accuracy": 0.7142857142857143,
+              "balanced_accuracy": 0.725,
+              "engage_recall": 0.75,
+              "noop_recall": 0.7,
+              "false_noop_rate": 0.25,
+              "wasteful_engage_rate": 0.3
+            },
+            "time_pressure": {
+              "count": 9,
+              "engage_count": 6,
+              "noop_count": 3,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.5,
+              "engage_recall": 1.0,
+              "noop_recall": 0.0,
+              "false_noop_rate": 0.0,
+              "wasteful_engage_rate": 1.0
+            }
+          },
+          "config": {
+            "family": "resource_dual",
+            "threshold": -0.19234500015651262,
+            "dual_weight": 0.25,
+            "logit_scale": 0.6261410490828668,
+            "feasible": false
+          }
+        }
+      }
+    },
+    "selected_family": "resource_dual"
+  },
+  "model_results": {
+    "20": {
+      "zero_margin": {
+        "metrics": {
+          "count": 81,
+          "engage_count": 31,
+          "noop_count": 50,
+          "accuracy": 0.5308641975308642,
+          "balanced_accuracy": 0.5893548387096774,
+          "engage_recall": 0.8387096774193549,
+          "noop_recall": 0.34,
+          "false_noop_rate": 0.16129032258064516,
+          "wasteful_engage_rate": 0.66
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 28,
+            "engage_count": 9,
+            "noop_count": 19,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5730994152046783,
+            "engage_recall": 0.7777777777777778,
+            "noop_recall": 0.3684210526315789,
+            "false_noop_rate": 0.2222222222222222,
+            "wasteful_engage_rate": 0.631578947368421
+          },
+          "medium": {
+            "count": 24,
+            "engage_count": 9,
+            "noop_count": 15,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5777777777777777,
+            "engage_recall": 0.8888888888888888,
+            "noop_recall": 0.26666666666666666,
+            "false_noop_rate": 0.1111111111111111,
+            "wasteful_engage_rate": 0.7333333333333333
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 13,
+            "noop_count": 16,
+            "accuracy": 0.5862068965517241,
+            "balanced_accuracy": 0.6105769230769231,
+            "engage_recall": 0.8461538461538461,
+            "noop_recall": 0.375,
+            "false_noop_rate": 0.15384615384615385,
+            "wasteful_engage_rate": 0.625
+          }
+        }
+      },
+      "risk_regression": {
+        "metrics": {
+          "count": 81,
+          "engage_count": 31,
+          "noop_count": 50,
+          "accuracy": 0.5679012345679012,
+          "balanced_accuracy": 0.5948387096774194,
+          "engage_recall": 0.7096774193548387,
+          "noop_recall": 0.48,
+          "false_noop_rate": 0.2903225806451613,
+          "wasteful_engage_rate": 0.52
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 28,
+            "engage_count": 9,
+            "noop_count": 19,
+            "accuracy": 0.6428571428571429,
+            "balanced_accuracy": 0.7076023391812865,
+            "engage_recall": 0.8888888888888888,
+            "noop_recall": 0.5263157894736842,
+            "false_noop_rate": 0.1111111111111111,
+            "wasteful_engage_rate": 0.47368421052631576
+          },
+          "medium": {
+            "count": 24,
+            "engage_count": 9,
+            "noop_count": 15,
+            "accuracy": 0.5833333333333334,
+            "balanced_accuracy": 0.6,
+            "engage_recall": 0.6666666666666666,
+            "noop_recall": 0.5333333333333333,
+            "false_noop_rate": 0.3333333333333333,
+            "wasteful_engage_rate": 0.4666666666666667
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 13,
+            "noop_count": 16,
+            "accuracy": 0.4827586206896552,
+            "balanced_accuracy": 0.4951923076923077,
+            "engage_recall": 0.6153846153846154,
+            "noop_recall": 0.375,
+            "false_noop_rate": 0.38461538461538464,
+            "wasteful_engage_rate": 0.625
+          }
+        }
+      },
+      "calibrated": {
+        "metrics": {
+          "count": 81,
+          "engage_count": 31,
+          "noop_count": 50,
+          "accuracy": 0.5432098765432098,
+          "balanced_accuracy": 0.5932258064516129,
+          "engage_recall": 0.8064516129032258,
+          "noop_recall": 0.38,
+          "false_noop_rate": 0.1935483870967742,
+          "wasteful_engage_rate": 0.62
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 28,
+            "engage_count": 9,
+            "noop_count": 19,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5730994152046783,
+            "engage_recall": 0.7777777777777778,
+            "noop_recall": 0.3684210526315789,
+            "false_noop_rate": 0.2222222222222222,
+            "wasteful_engage_rate": 0.631578947368421
+          },
+          "medium": {
+            "count": 24,
+            "engage_count": 9,
+            "noop_count": 15,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5777777777777777,
+            "engage_recall": 0.8888888888888888,
+            "noop_recall": 0.26666666666666666,
+            "false_noop_rate": 0.1111111111111111,
+            "wasteful_engage_rate": 0.7333333333333333
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 13,
+            "noop_count": 16,
+            "accuracy": 0.6206896551724138,
+            "balanced_accuracy": 0.6346153846153846,
+            "engage_recall": 0.7692307692307693,
+            "noop_recall": 0.5,
+            "false_noop_rate": 0.23076923076923078,
+            "wasteful_engage_rate": 0.5
+          }
+        },
+        "config": {
+          "family": "resource_dual",
+          "threshold": -0.023584523834632862,
+          "dual_weight": 1.0,
+          "logit_scale": 0.09489185785899348,
+          "feasible": false
+        }
+      }
+    },
+    "21": {
+      "zero_margin": {
+        "metrics": {
+          "count": 81,
+          "engage_count": 31,
+          "noop_count": 50,
+          "accuracy": 0.5555555555555556,
+          "balanced_accuracy": 0.6216129032258064,
+          "engage_recall": 0.9032258064516129,
+          "noop_recall": 0.34,
+          "false_noop_rate": 0.0967741935483871,
+          "wasteful_engage_rate": 0.66
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 28,
+            "engage_count": 9,
+            "noop_count": 19,
+            "accuracy": 0.5357142857142857,
+            "balanced_accuracy": 0.6286549707602339,
+            "engage_recall": 0.8888888888888888,
+            "noop_recall": 0.3684210526315789,
+            "false_noop_rate": 0.1111111111111111,
+            "wasteful_engage_rate": 0.631578947368421
+          },
+          "medium": {
+            "count": 24,
+            "engage_count": 9,
+            "noop_count": 15,
+            "accuracy": 0.5416666666666666,
+            "balanced_accuracy": 0.6333333333333333,
+            "engage_recall": 1.0,
+            "noop_recall": 0.26666666666666666,
+            "false_noop_rate": 0.0,
+            "wasteful_engage_rate": 0.7333333333333333
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 13,
+            "noop_count": 16,
+            "accuracy": 0.5862068965517241,
+            "balanced_accuracy": 0.6105769230769231,
+            "engage_recall": 0.8461538461538461,
+            "noop_recall": 0.375,
+            "false_noop_rate": 0.15384615384615385,
+            "wasteful_engage_rate": 0.625
+          }
+        }
+      },
+      "risk_regression": {
+        "metrics": {
+          "count": 81,
+          "engage_count": 31,
+          "noop_count": 50,
+          "accuracy": 0.5679012345679012,
+          "balanced_accuracy": 0.5948387096774194,
+          "engage_recall": 0.7096774193548387,
+          "noop_recall": 0.48,
+          "false_noop_rate": 0.2903225806451613,
+          "wasteful_engage_rate": 0.52
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 28,
+            "engage_count": 9,
+            "noop_count": 19,
+            "accuracy": 0.5714285714285714,
+            "balanced_accuracy": 0.6257309941520468,
+            "engage_recall": 0.7777777777777778,
+            "noop_recall": 0.47368421052631576,
+            "false_noop_rate": 0.2222222222222222,
+            "wasteful_engage_rate": 0.5263157894736842
+          },
+          "medium": {
+            "count": 24,
+            "engage_count": 9,
+            "noop_count": 15,
+            "accuracy": 0.5416666666666666,
+            "balanced_accuracy": 0.5666666666666667,
+            "engage_recall": 0.6666666666666666,
+            "noop_recall": 0.4666666666666667,
+            "false_noop_rate": 0.3333333333333333,
+            "wasteful_engage_rate": 0.5333333333333333
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 13,
+            "noop_count": 16,
+            "accuracy": 0.5862068965517241,
+            "balanced_accuracy": 0.5961538461538461,
+            "engage_recall": 0.6923076923076923,
+            "noop_recall": 0.5,
+            "false_noop_rate": 0.3076923076923077,
+            "wasteful_engage_rate": 0.5
+          }
+        }
+      },
+      "calibrated": {
+        "metrics": {
+          "count": 81,
+          "engage_count": 31,
+          "noop_count": 50,
+          "accuracy": 0.5432098765432098,
+          "balanced_accuracy": 0.6116129032258064,
+          "engage_recall": 0.9032258064516129,
+          "noop_recall": 0.32,
+          "false_noop_rate": 0.0967741935483871,
+          "wasteful_engage_rate": 0.68
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 28,
+            "engage_count": 9,
+            "noop_count": 19,
+            "accuracy": 0.5357142857142857,
+            "balanced_accuracy": 0.6286549707602339,
+            "engage_recall": 0.8888888888888888,
+            "noop_recall": 0.3684210526315789,
+            "false_noop_rate": 0.1111111111111111,
+            "wasteful_engage_rate": 0.631578947368421
+          },
+          "medium": {
+            "count": 24,
+            "engage_count": 9,
+            "noop_count": 15,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.6,
+            "engage_recall": 1.0,
+            "noop_recall": 0.2,
+            "false_noop_rate": 0.0,
+            "wasteful_engage_rate": 0.8
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 13,
+            "noop_count": 16,
+            "accuracy": 0.5862068965517241,
+            "balanced_accuracy": 0.6105769230769231,
+            "engage_recall": 0.8461538461538461,
+            "noop_recall": 0.375,
+            "false_noop_rate": 0.15384615384615385,
+            "wasteful_engage_rate": 0.625
+          }
+        },
+        "config": {
+          "family": "resource_dual",
+          "threshold": -0.25937248930818596,
+          "dual_weight": 0.25,
+          "logit_scale": 0.6876670946117326,
+          "feasible": false
+        }
+      }
+    },
+    "22": {
+      "zero_margin": {
+        "metrics": {
+          "count": 81,
+          "engage_count": 31,
+          "noop_count": 50,
+          "accuracy": 0.5555555555555556,
+          "balanced_accuracy": 0.6093548387096774,
+          "engage_recall": 0.8387096774193549,
+          "noop_recall": 0.38,
+          "false_noop_rate": 0.16129032258064516,
+          "wasteful_engage_rate": 0.62
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 28,
+            "engage_count": 9,
+            "noop_count": 19,
+            "accuracy": 0.5357142857142857,
+            "balanced_accuracy": 0.6286549707602339,
+            "engage_recall": 0.8888888888888888,
+            "noop_recall": 0.3684210526315789,
+            "false_noop_rate": 0.1111111111111111,
+            "wasteful_engage_rate": 0.631578947368421
+          },
+          "medium": {
+            "count": 24,
+            "engage_count": 9,
+            "noop_count": 15,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.5555555555555556,
+            "engage_recall": 0.7777777777777778,
+            "noop_recall": 0.3333333333333333,
+            "false_noop_rate": 0.2222222222222222,
+            "wasteful_engage_rate": 0.6666666666666666
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 13,
+            "noop_count": 16,
+            "accuracy": 0.6206896551724138,
+            "balanced_accuracy": 0.6418269230769231,
+            "engage_recall": 0.8461538461538461,
+            "noop_recall": 0.4375,
+            "false_noop_rate": 0.15384615384615385,
+            "wasteful_engage_rate": 0.5625
+          }
+        }
+      },
+      "risk_regression": {
+        "metrics": {
+          "count": 81,
+          "engage_count": 31,
+          "noop_count": 50,
+          "accuracy": 0.5555555555555556,
+          "balanced_accuracy": 0.5787096774193548,
+          "engage_recall": 0.6774193548387096,
+          "noop_recall": 0.48,
+          "false_noop_rate": 0.3225806451612903,
+          "wasteful_engage_rate": 0.52
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 28,
+            "engage_count": 9,
+            "noop_count": 19,
+            "accuracy": 0.6071428571428571,
+            "balanced_accuracy": 0.6812865497076023,
+            "engage_recall": 0.8888888888888888,
+            "noop_recall": 0.47368421052631576,
+            "false_noop_rate": 0.1111111111111111,
+            "wasteful_engage_rate": 0.5263157894736842
+          },
+          "medium": {
+            "count": 24,
+            "engage_count": 9,
+            "noop_count": 15,
+            "accuracy": 0.625,
+            "balanced_accuracy": 0.6555555555555556,
+            "engage_recall": 0.7777777777777778,
+            "noop_recall": 0.5333333333333333,
+            "false_noop_rate": 0.2222222222222222,
+            "wasteful_engage_rate": 0.4666666666666667
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 13,
+            "noop_count": 16,
+            "accuracy": 0.4482758620689655,
+            "balanced_accuracy": 0.4495192307692308,
+            "engage_recall": 0.46153846153846156,
+            "noop_recall": 0.4375,
+            "false_noop_rate": 0.5384615384615384,
+            "wasteful_engage_rate": 0.5625
+          }
+        }
+      },
+      "calibrated": {
+        "metrics": {
+          "count": 81,
+          "engage_count": 31,
+          "noop_count": 50,
+          "accuracy": 0.5432098765432098,
+          "balanced_accuracy": 0.6054838709677419,
+          "engage_recall": 0.8709677419354839,
+          "noop_recall": 0.34,
+          "false_noop_rate": 0.12903225806451613,
+          "wasteful_engage_rate": 0.66
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 28,
+            "engage_count": 9,
+            "noop_count": 19,
+            "accuracy": 0.5357142857142857,
+            "balanced_accuracy": 0.6286549707602339,
+            "engage_recall": 0.8888888888888888,
+            "noop_recall": 0.3684210526315789,
+            "false_noop_rate": 0.1111111111111111,
+            "wasteful_engage_rate": 0.631578947368421
+          },
+          "medium": {
+            "count": 24,
+            "engage_count": 9,
+            "noop_count": 15,
+            "accuracy": 0.4583333333333333,
+            "balanced_accuracy": 0.5444444444444444,
+            "engage_recall": 0.8888888888888888,
+            "noop_recall": 0.2,
+            "false_noop_rate": 0.1111111111111111,
+            "wasteful_engage_rate": 0.8
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 13,
+            "noop_count": 16,
+            "accuracy": 0.6206896551724138,
+            "balanced_accuracy": 0.6418269230769231,
+            "engage_recall": 0.8461538461538461,
+            "noop_recall": 0.4375,
+            "false_noop_rate": 0.15384615384615385,
+            "wasteful_engage_rate": 0.5625
+          }
+        },
+        "config": {
+          "family": "resource_dual",
+          "threshold": -0.19234500015651262,
+          "dual_weight": 0.25,
+          "logit_scale": 0.6261410490828668,
+          "feasible": false
+        }
+      }
+    }
+  },
+  "model_gate": {
+    "per_seed": {
+      "20": {
+        "balanced_accuracy": false,
+        "false_noop_vs_regression": true,
+        "wasteful_engage_vs_regression": false,
+        "wasteful_engage_improvement": false,
+        "false_noop_tolerance": true,
+        "scenario_noop_recall": false,
+        "scenario_engage_recall": true,
+        "passed": false
+      },
+      "21": {
+        "balanced_accuracy": false,
+        "false_noop_vs_regression": true,
+        "wasteful_engage_vs_regression": false,
+        "wasteful_engage_improvement": false,
+        "false_noop_tolerance": true,
+        "scenario_noop_recall": false,
+        "scenario_engage_recall": true,
+        "passed": false
+      },
+      "22": {
+        "balanced_accuracy": false,
+        "false_noop_vs_regression": true,
+        "wasteful_engage_vs_regression": false,
+        "wasteful_engage_improvement": false,
+        "false_noop_tolerance": true,
+        "scenario_noop_recall": false,
+        "scenario_engage_recall": true,
+        "passed": false
+      }
+    },
+    "passed_seed_count": 0,
+    "required_passed_seed_count": 2,
+    "passed": false
+  },
+  "task14_engagement_calibration_passed": false,
+  "resume_mch_ppo": false,
+  "enter_gnn": false
+}

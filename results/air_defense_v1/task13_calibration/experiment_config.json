@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "source_models": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds",
+  "task7_reference": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task7_formal_medium_100k_5seeds",
+  "methods": [
+    "role_conditioned_ar_ppo_order_012",
+    "factorized_engagement_ar_ppo_order_012"
+  ],
+  "train_seeds": [
+    8,
+    9,
+    10
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "thresholds": [
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9
+  ],
+  "episodes": 10,
+  "calibration_episodes": 20,
+  "eval_seed": 13000,
+  "calibration_scope": "Brier/ECE tests policy probability against stochastic action realization; mission utility is assessed by paired threshold-return curves."
+}

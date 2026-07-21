@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "model_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds",
+  "critic_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\models",
+  "calibration_dataset": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\analysis_dataset.npz",
+  "source_seeds": [
+    8,
+    10
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "episodes_per_stratum": 30,
+  "states_per_stratum": 12,
+  "rollouts": 32,
+  "gamma": 0.98,
+  "eval_seed": 487000,
+  "model_seeds": [
+    20,
+    21,
+    22
+  ],
+  "global_weights": [
+    0.0
+  ],
+  "resource_dual_weights": [
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "constraints": {
+    "balanced_accuracy": 0.7,
+    "engage_recall": 0.6,
+    "noop_recall": 0.65,
+    "scenario_engage_recall": 0.6,
+    "scenario_noop_recall": 0.65
+  },
+  "selected_family": "resource_dual"
+}

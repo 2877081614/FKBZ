@@ -1,0 +1,4 @@
+counterfactual_baseline,engage_probability,engagement_advantage,joint_value_advantage_proxy,method,observed_action,q_engage,q_noop,state_id,target_advantage,total_counterfactual_advantage,train_seed,unit_index
+-15.19414790269904,0.24675674736499786,1.4623280967437147,21.6317361022478,factorized_engagement_ar_ppo_order_012,5,-19.658012756540252,-13.731819805955325,factorized_engagement_ar_ppo_order_012/seed8/medium/episode0/step0,0.0,1.4623280967437147,8,0
+-14.964294737910077,0.2472764402627945,1.2324749319547514,21.6317361022478,factorized_engagement_ar_ppo_order_012,5,-18.716018586255345,-13.731819805955325,factorized_engagement_ar_ppo_order_012/seed8/medium/episode0/step0,0.0,1.2324749319547514,8,1
+-13.731819805955325,0.0,0.0,21.6317361022478,factorized_engagement_ar_ppo_order_012,5,-13.731819805955325,-13.731819805955325,factorized_engagement_ar_ppo_order_012/seed8/medium/episode0/step0,0.0,0.0,8,2

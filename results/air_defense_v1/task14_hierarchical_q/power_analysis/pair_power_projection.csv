@@ -1,0 +1,17 @@
+scenario,projected_rollouts,high_confidence_pairs,total_pairs
+all,32,160,723
+all,64,285,723
+all,128,426,723
+all,256,500,723
+medium,32,45,219
+medium,64,91,219
+medium,128,134,219
+medium,256,154,219
+time_pressure,32,70,318
+time_pressure,64,115,318
+time_pressure,128,171,318
+time_pressure,256,210,318
+heterogeneity_pressure,32,45,186
+heterogeneity_pressure,64,79,186
+heterogeneity_pressure,128,121,186
+heterogeneity_pressure,256,136,186

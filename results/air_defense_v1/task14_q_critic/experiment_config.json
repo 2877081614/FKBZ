@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "source_model_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds",
+  "source_seeds": [
+    8,
+    10
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "episodes_per_stratum": 18,
+  "states_per_stratum": 15,
+  "rollouts": 8,
+  "gamma": 0.98,
+  "eval_seed": 41000,
+  "split_seed": 14,
+  "train_seeds": [
+    14,
+    15,
+    16
+  ],
+  "epochs": 250,
+  "patience": 40,
+  "batch_size": 64,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "variants": {
+    "full": {
+      "type": "masked_action_q_critic_mlp",
+      "hidden_dims": [
+        256,
+        128
+      ],
+      "include_entity_features": true,
+      "include_prefix_occupancy": true,
+      "include_legal_mask": true
+    },
+    "no_prefix": {
+      "type": "masked_action_q_critic_mlp",
+      "hidden_dims": [
+        256,
+        128
+      ],
+      "include_entity_features": true,
+      "include_prefix_occupancy": false,
+      "include_legal_mask": true
+    },
+    "no_mask": {
+      "type": "masked_action_q_critic_mlp",
+      "hidden_dims": [
+        256,
+        128
+      ],
+      "include_entity_features": true,
+      "include_prefix_occupancy": true,
+      "include_legal_mask": false
+    },
+    "observation_action_only": {
+      "type": "masked_action_q_critic_mlp",
+      "hidden_dims": [
+        256,
+        128
+      ],
+      "include_entity_features": false,
+      "include_prefix_occupancy": false,
+      "include_legal_mask": false
+    }
+  }
+}

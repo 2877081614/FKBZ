@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "base_dataset": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic\\dataset.npz",
+  "model_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds",
+  "baseline_model_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic_ranking_refinement\\models",
+  "previous_test": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic_ranking_refinement\\test_dataset.npz",
+  "source_seeds": [
+    8,
+    10
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "test_episodes_per_stratum": 6,
+  "test_states_per_stratum": 3,
+  "test_rollouts": 2,
+  "test_eval_seed": 391000,
+  "gamma": 0.98,
+  "train_seeds": [
+    14
+  ],
+  "epochs": 500,
+  "patience": 60,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "model": {
+    "type": "hierarchical_masked_q_critic_mlp",
+    "engagement_hidden_dims": [
+      256,
+      128
+    ],
+    "target_hidden_dims": [
+      256,
+      128
+    ]
+  }
+}

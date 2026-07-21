@@ -1,0 +1,17 @@
+split,scenario,groups,valid,engage,noop,ambiguous
+train,heterogeneity_pressure,19,18,2,16,1
+train,medium,18,13,1,12,5
+train,time_pressure,21,16,1,15,5
+train,all,58,47,4,43,11
+validation,heterogeneity_pressure,8,8,0,8,0
+validation,medium,10,10,2,8,0
+validation,time_pressure,11,10,3,7,1
+validation,all,29,28,5,23,1
+test,heterogeneity_pressure,18,17,0,17,1
+test,medium,24,22,3,19,2
+test,time_pressure,21,18,0,18,3
+test,all,63,57,3,54,6
+all,heterogeneity_pressure,45,43,2,41,2
+all,medium,52,45,6,39,7
+all,time_pressure,53,44,4,40,9
+all,all,150,132,12,120,18

@@ -1,0 +1,1668 @@
+{
+  "schema_version": 1,
+  "training_batches": {
+    "batch_701000": {
+      "states": 48,
+      "groups": 68,
+      "rollouts": 32,
+      "power": {
+        "checks": {
+          "valid_count": true,
+          "engage_count": true,
+          "noop_count": true,
+          "scenario_counts": true
+        },
+        "passed": true,
+        "valid_count": 63,
+        "engage_count": 24,
+        "noop_count": 39,
+        "scenario_counts": {
+          "medium": 21,
+          "time_pressure": 18,
+          "heterogeneity_pressure": 24
+        }
+      },
+      "overlaps": {
+        "old_0": 0,
+        "old_1": 0,
+        "old_2": 0,
+        "old_3": 0,
+        "old_4": 0,
+        "old_5": 0
+      },
+      "checks": {
+        "state_count": true,
+        "rollouts": true,
+        "power": true,
+        "overlap_zero": true
+      },
+      "passed": true
+    },
+    "batch_719000": {
+      "states": 48,
+      "groups": 63,
+      "rollouts": 32,
+      "power": {
+        "checks": {
+          "valid_count": true,
+          "engage_count": true,
+          "noop_count": true,
+          "scenario_counts": true
+        },
+        "passed": true,
+        "valid_count": 61,
+        "engage_count": 21,
+        "noop_count": 40,
+        "scenario_counts": {
+          "medium": 19,
+          "time_pressure": 20,
+          "heterogeneity_pressure": 22
+        }
+      },
+      "overlaps": {
+        "old_0": 0,
+        "old_1": 0,
+        "old_2": 0,
+        "old_3": 0,
+        "old_4": 0,
+        "old_5": 0,
+        "training_0": 0
+      },
+      "checks": {
+        "state_count": true,
+        "rollouts": true,
+        "power": true,
+        "overlap_zero": true
+      },
+      "passed": true
+    },
+    "batch_737000": {
+      "states": 48,
+      "groups": 62,
+      "rollouts": 32,
+      "power": {
+        "checks": {
+          "valid_count": true,
+          "engage_count": true,
+          "noop_count": true,
+          "scenario_counts": true
+        },
+        "passed": true,
+        "valid_count": 59,
+        "engage_count": 23,
+        "noop_count": 36,
+        "scenario_counts": {
+          "medium": 18,
+          "time_pressure": 19,
+          "heterogeneity_pressure": 22
+        }
+      },
+      "overlaps": {
+        "old_0": 0,
+        "old_1": 0,
+        "old_2": 0,
+        "old_3": 0,
+        "old_4": 0,
+        "old_5": 0,
+        "training_0": 0,
+        "training_1": 0
+      },
+      "checks": {
+        "state_count": true,
+        "rollouts": true,
+        "power": true,
+        "overlap_zero": true
+      },
+      "passed": true
+    }
+  },
+  "data_audit": {
+    "checks": {
+      "training_batches": true,
+      "test_state_count": true,
+      "test_rollouts": true,
+      "test_overlap_zero": true,
+      "return_reconstruction": true
+    },
+    "passed": true,
+    "final_observation_overlaps": {
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic\\dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic_ranking_refinement\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_hierarchical_q\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_engagement_utility\\dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\targeted_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\analysis_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_state_conditioned_value\\test_dataset.npz": 0,
+      "training_dataset": 0
+    },
+    "return_reconstruction_max_error": 1.52587890625e-05
+  },
+  "dataset": {
+    "training_states": 144,
+    "training_groups": 193,
+    "training_batch_count": 3,
+    "test_states": 72,
+    "test_groups": 87,
+    "rollouts": 32,
+    "generation_seconds": 1436.52506
+  },
+  "power": {
+    "checks": {
+      "valid_count": true,
+      "engage_count": true,
+      "noop_count": true,
+      "scenario_counts": true,
+      "engage_scenarios": true
+    },
+    "passed": true,
+    "valid_count": 79,
+    "engage_count": 35,
+    "noop_count": 44,
+    "scenario_counts": {
+      "heterogeneity_pressure": 25,
+      "medium": 25,
+      "time_pressure": 29
+    },
+    "engage_scenario_count": 3
+  },
+  "leave_one_batch_out": {
+    "fold_count": 3,
+    "results": {
+      "20": {
+        "standard": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 68,
+            "noop_count": 115,
+            "accuracy": 0.7759562841530054,
+            "balanced_accuracy": 0.794693094629156,
+            "engage_recall": 0.8676470588235294,
+            "noop_recall": 0.7217391304347827,
+            "false_noop_rate": 0.1323529411764706,
+            "wasteful_engage_rate": 0.2782608695652174
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 68,
+              "engage_count": 14,
+              "noop_count": 54,
+              "accuracy": 0.8235294117647058,
+              "balanced_accuracy": 0.8359788359788359,
+              "engage_recall": 0.8571428571428571,
+              "noop_recall": 0.8148148148148148,
+              "false_noop_rate": 0.14285714285714285,
+              "wasteful_engage_rate": 0.18518518518518517
+            },
+            "medium": {
+              "count": 58,
+              "engage_count": 26,
+              "noop_count": 32,
+              "accuracy": 0.8275862068965517,
+              "balanced_accuracy": 0.8365384615384616,
+              "engage_recall": 0.9230769230769231,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.07692307692307693,
+              "wasteful_engage_rate": 0.25
+            },
+            "time_pressure": {
+              "count": 57,
+              "engage_count": 28,
+              "noop_count": 29,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.6693349753694582,
+              "engage_recall": 0.8214285714285714,
+              "noop_recall": 0.5172413793103449,
+              "false_noop_rate": 0.17857142857142858,
+              "wasteful_engage_rate": 0.4827586206896552
+            }
+          },
+          "batch_metrics": {
+            "batch_701000": {
+              "count": 63,
+              "engage_count": 24,
+              "noop_count": 39,
+              "accuracy": 0.8412698412698413,
+              "balanced_accuracy": 0.8477564102564102,
+              "engage_recall": 0.875,
+              "noop_recall": 0.8205128205128205,
+              "false_noop_rate": 0.125,
+              "wasteful_engage_rate": 0.1794871794871795
+            },
+            "batch_719000": {
+              "count": 61,
+              "engage_count": 21,
+              "noop_count": 40,
+              "accuracy": 0.6721311475409836,
+              "balanced_accuracy": 0.7047619047619047,
+              "engage_recall": 0.8095238095238095,
+              "noop_recall": 0.6,
+              "false_noop_rate": 0.19047619047619047,
+              "wasteful_engage_rate": 0.4
+            },
+            "batch_737000": {
+              "count": 59,
+              "engage_count": 23,
+              "noop_count": 36,
+              "accuracy": 0.8135593220338984,
+              "balanced_accuracy": 0.8315217391304348,
+              "engage_recall": 0.9130434782608695,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.08695652173913043,
+              "wasteful_engage_rate": 0.25
+            }
+          },
+          "worst_scenario_recall": 0.5172413793103449,
+          "worst_batch_recall": 0.6,
+          "value_metrics": {
+            "safety_mae": 4.670100503993002,
+            "cost_mae": 0.16278377538190678,
+            "safety_correlation": 0.515298304970026,
+            "cost_correlation": 0.10494192218845055,
+            "safety_sign_accuracy": 0.7071823204419889
+          },
+          "budget_mean": 0.8573164343833923,
+          "budget_std": 0.3278414309024811,
+          "feasible": false,
+          "best_epochs": [
+            18,
+            4,
+            3
+          ]
+        },
+        "scenario_robust": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 68,
+            "noop_count": 115,
+            "accuracy": 0.825136612021858,
+            "balanced_accuracy": 0.8248081841432224,
+            "engage_recall": 0.8235294117647058,
+            "noop_recall": 0.8260869565217391,
+            "false_noop_rate": 0.17647058823529413,
+            "wasteful_engage_rate": 0.17391304347826086
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 68,
+              "engage_count": 14,
+              "noop_count": 54,
+              "accuracy": 0.8676470588235294,
+              "balanced_accuracy": 0.8637566137566137,
+              "engage_recall": 0.8571428571428571,
+              "noop_recall": 0.8703703703703703,
+              "false_noop_rate": 0.14285714285714285,
+              "wasteful_engage_rate": 0.12962962962962962
+            },
+            "medium": {
+              "count": 58,
+              "engage_count": 26,
+              "noop_count": 32,
+              "accuracy": 0.8448275862068966,
+              "balanced_accuracy": 0.8449519230769231,
+              "engage_recall": 0.8461538461538461,
+              "noop_recall": 0.84375,
+              "false_noop_rate": 0.15384615384615385,
+              "wasteful_engage_rate": 0.15625
+            },
+            "time_pressure": {
+              "count": 57,
+              "engage_count": 28,
+              "noop_count": 29,
+              "accuracy": 0.7543859649122807,
+              "balanced_accuracy": 0.7549261083743842,
+              "engage_recall": 0.7857142857142857,
+              "noop_recall": 0.7241379310344828,
+              "false_noop_rate": 0.21428571428571427,
+              "wasteful_engage_rate": 0.27586206896551724
+            }
+          },
+          "batch_metrics": {
+            "batch_701000": {
+              "count": 63,
+              "engage_count": 24,
+              "noop_count": 39,
+              "accuracy": 0.9047619047619048,
+              "balanced_accuracy": 0.891025641025641,
+              "engage_recall": 0.8333333333333334,
+              "noop_recall": 0.9487179487179487,
+              "false_noop_rate": 0.16666666666666666,
+              "wasteful_engage_rate": 0.05128205128205128
+            },
+            "batch_719000": {
+              "count": 61,
+              "engage_count": 21,
+              "noop_count": 40,
+              "accuracy": 0.7540983606557377,
+              "balanced_accuracy": 0.7446428571428572,
+              "engage_recall": 0.7142857142857143,
+              "noop_recall": 0.775,
+              "false_noop_rate": 0.2857142857142857,
+              "wasteful_engage_rate": 0.225
+            },
+            "batch_737000": {
+              "count": 59,
+              "engage_count": 23,
+              "noop_count": 36,
+              "accuracy": 0.8135593220338984,
+              "balanced_accuracy": 0.8315217391304348,
+              "engage_recall": 0.9130434782608695,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.08695652173913043,
+              "wasteful_engage_rate": 0.25
+            }
+          },
+          "worst_scenario_recall": 0.7241379310344828,
+          "worst_batch_recall": 0.7142857142857143,
+          "value_metrics": {
+            "safety_mae": 4.9481775996992825,
+            "cost_mae": 0.15937103064924152,
+            "safety_correlation": 0.5907872393091601,
+            "cost_correlation": 0.11012508199394858,
+            "safety_sign_accuracy": 0.7237569060773481
+          },
+          "budget_mean": 1.0079131126403809,
+          "budget_std": 0.4998083710670471,
+          "feasible": true,
+          "best_epochs": [
+            39,
+            9,
+            19
+          ]
+        },
+        "scenario_robust_reliable_cost": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 68,
+            "noop_count": 115,
+            "accuracy": 0.8087431693989071,
+            "balanced_accuracy": 0.814769820971867,
+            "engage_recall": 0.8382352941176471,
+            "noop_recall": 0.7913043478260869,
+            "false_noop_rate": 0.16176470588235295,
+            "wasteful_engage_rate": 0.20869565217391303
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 68,
+              "engage_count": 14,
+              "noop_count": 54,
+              "accuracy": 0.8529411764705882,
+              "balanced_accuracy": 0.8544973544973544,
+              "engage_recall": 0.8571428571428571,
+              "noop_recall": 0.8518518518518519,
+              "false_noop_rate": 0.14285714285714285,
+              "wasteful_engage_rate": 0.14814814814814814
+            },
+            "medium": {
+              "count": 58,
+              "engage_count": 26,
+              "noop_count": 32,
+              "accuracy": 0.8620689655172413,
+              "balanced_accuracy": 0.8641826923076923,
+              "engage_recall": 0.8846153846153846,
+              "noop_recall": 0.84375,
+              "false_noop_rate": 0.11538461538461539,
+              "wasteful_engage_rate": 0.15625
+            },
+            "time_pressure": {
+              "count": 57,
+              "engage_count": 28,
+              "noop_count": 29,
+              "accuracy": 0.7017543859649122,
+              "balanced_accuracy": 0.7032019704433498,
+              "engage_recall": 0.7857142857142857,
+              "noop_recall": 0.6206896551724138,
+              "false_noop_rate": 0.21428571428571427,
+              "wasteful_engage_rate": 0.3793103448275862
+            }
+          },
+          "batch_metrics": {
+            "batch_701000": {
+              "count": 63,
+              "engage_count": 24,
+              "noop_count": 39,
+              "accuracy": 0.9047619047619048,
+              "balanced_accuracy": 0.891025641025641,
+              "engage_recall": 0.8333333333333334,
+              "noop_recall": 0.9487179487179487,
+              "false_noop_rate": 0.16666666666666666,
+              "wasteful_engage_rate": 0.05128205128205128
+            },
+            "batch_719000": {
+              "count": 61,
+              "engage_count": 21,
+              "noop_count": 40,
+              "accuracy": 0.6885245901639344,
+              "balanced_accuracy": 0.7059523809523809,
+              "engage_recall": 0.7619047619047619,
+              "noop_recall": 0.65,
+              "false_noop_rate": 0.23809523809523808,
+              "wasteful_engage_rate": 0.35
+            },
+            "batch_737000": {
+              "count": 59,
+              "engage_count": 23,
+              "noop_count": 36,
+              "accuracy": 0.8305084745762712,
+              "balanced_accuracy": 0.8454106280193237,
+              "engage_recall": 0.9130434782608695,
+              "noop_recall": 0.7777777777777778,
+              "false_noop_rate": 0.08695652173913043,
+              "wasteful_engage_rate": 0.2222222222222222
+            }
+          },
+          "worst_scenario_recall": 0.6206896551724138,
+          "worst_batch_recall": 0.65,
+          "value_metrics": {
+            "safety_mae": 4.910798942721118,
+            "cost_mae": 0.16435127445277783,
+            "safety_correlation": 0.5838229530482943,
+            "cost_correlation": 0.09229370048202082,
+            "safety_sign_accuracy": 0.7237569060773481
+          },
+          "budget_mean": 0.9574617147445679,
+          "budget_std": 0.38827112317085266,
+          "feasible": false,
+          "best_epochs": [
+            35,
+            15,
+            17
+          ]
+        }
+      },
+      "21": {
+        "standard": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 68,
+            "noop_count": 115,
+            "accuracy": 0.8306010928961749,
+            "balanced_accuracy": 0.8381713554987212,
+            "engage_recall": 0.8676470588235294,
+            "noop_recall": 0.808695652173913,
+            "false_noop_rate": 0.1323529411764706,
+            "wasteful_engage_rate": 0.19130434782608696
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 68,
+              "engage_count": 14,
+              "noop_count": 54,
+              "accuracy": 0.8823529411764706,
+              "balanced_accuracy": 0.8465608465608465,
+              "engage_recall": 0.7857142857142857,
+              "noop_recall": 0.9074074074074074,
+              "false_noop_rate": 0.21428571428571427,
+              "wasteful_engage_rate": 0.09259259259259259
+            },
+            "medium": {
+              "count": 58,
+              "engage_count": 26,
+              "noop_count": 32,
+              "accuracy": 0.8448275862068966,
+              "balanced_accuracy": 0.8521634615384616,
+              "engage_recall": 0.9230769230769231,
+              "noop_recall": 0.78125,
+              "false_noop_rate": 0.07692307692307693,
+              "wasteful_engage_rate": 0.21875
+            },
+            "time_pressure": {
+              "count": 57,
+              "engage_count": 28,
+              "noop_count": 29,
+              "accuracy": 0.7543859649122807,
+              "balanced_accuracy": 0.7561576354679802,
+              "engage_recall": 0.8571428571428571,
+              "noop_recall": 0.6551724137931034,
+              "false_noop_rate": 0.14285714285714285,
+              "wasteful_engage_rate": 0.3448275862068966
+            }
+          },
+          "batch_metrics": {
+            "batch_701000": {
+              "count": 63,
+              "engage_count": 24,
+              "noop_count": 39,
+              "accuracy": 0.873015873015873,
+              "balanced_accuracy": 0.8814102564102564,
+              "engage_recall": 0.9166666666666666,
+              "noop_recall": 0.8461538461538461,
+              "false_noop_rate": 0.08333333333333333,
+              "wasteful_engage_rate": 0.15384615384615385
+            },
+            "batch_719000": {
+              "count": 61,
+              "engage_count": 21,
+              "noop_count": 40,
+              "accuracy": 0.7704918032786885,
+              "balanced_accuracy": 0.7797619047619048,
+              "engage_recall": 0.8095238095238095,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.19047619047619047,
+              "wasteful_engage_rate": 0.25
+            },
+            "batch_737000": {
+              "count": 59,
+              "engage_count": 23,
+              "noop_count": 36,
+              "accuracy": 0.847457627118644,
+              "balanced_accuracy": 0.8514492753623188,
+              "engage_recall": 0.8695652173913043,
+              "noop_recall": 0.8333333333333334,
+              "false_noop_rate": 0.13043478260869565,
+              "wasteful_engage_rate": 0.16666666666666666
+            }
+          },
+          "worst_scenario_recall": 0.6551724137931034,
+          "worst_batch_recall": 0.75,
+          "value_metrics": {
+            "safety_mae": 4.810121473698505,
+            "cost_mae": 0.16006350567401514,
+            "safety_correlation": 0.4865608457543572,
+            "cost_correlation": 0.15738679342105472,
+            "safety_sign_accuracy": 0.6906077348066298
+          },
+          "budget_mean": 1.5278537273406982,
+          "budget_std": 1.6491833925247192,
+          "feasible": false,
+          "best_epochs": [
+            6,
+            140,
+            2
+          ]
+        },
+        "scenario_robust": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 68,
+            "noop_count": 115,
+            "accuracy": 0.7978142076502732,
+            "balanced_accuracy": 0.8210997442455243,
+            "engage_recall": 0.9117647058823529,
+            "noop_recall": 0.7304347826086957,
+            "false_noop_rate": 0.08823529411764706,
+            "wasteful_engage_rate": 0.26956521739130435
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 68,
+              "engage_count": 14,
+              "noop_count": 54,
+              "accuracy": 0.8529411764705882,
+              "balanced_accuracy": 0.8809523809523809,
+              "engage_recall": 0.9285714285714286,
+              "noop_recall": 0.8333333333333334,
+              "false_noop_rate": 0.07142857142857142,
+              "wasteful_engage_rate": 0.16666666666666666
+            },
+            "medium": {
+              "count": 58,
+              "engage_count": 26,
+              "noop_count": 32,
+              "accuracy": 0.8275862068965517,
+              "balanced_accuracy": 0.8365384615384616,
+              "engage_recall": 0.9230769230769231,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.07692307692307693,
+              "wasteful_engage_rate": 0.25
+            },
+            "time_pressure": {
+              "count": 57,
+              "engage_count": 28,
+              "noop_count": 29,
+              "accuracy": 0.7017543859649122,
+              "balanced_accuracy": 0.7050492610837439,
+              "engage_recall": 0.8928571428571429,
+              "noop_recall": 0.5172413793103449,
+              "false_noop_rate": 0.10714285714285714,
+              "wasteful_engage_rate": 0.4827586206896552
+            }
+          },
+          "batch_metrics": {
+            "batch_701000": {
+              "count": 63,
+              "engage_count": 24,
+              "noop_count": 39,
+              "accuracy": 0.9047619047619048,
+              "balanced_accuracy": 0.8990384615384616,
+              "engage_recall": 0.875,
+              "noop_recall": 0.9230769230769231,
+              "false_noop_rate": 0.125,
+              "wasteful_engage_rate": 0.07692307692307693
+            },
+            "batch_719000": {
+              "count": 61,
+              "engage_count": 21,
+              "noop_count": 40,
+              "accuracy": 0.6557377049180327,
+              "balanced_accuracy": 0.7148809523809524,
+              "engage_recall": 0.9047619047619048,
+              "noop_recall": 0.525,
+              "false_noop_rate": 0.09523809523809523,
+              "wasteful_engage_rate": 0.475
+            },
+            "batch_737000": {
+              "count": 59,
+              "engage_count": 23,
+              "noop_count": 36,
+              "accuracy": 0.8305084745762712,
+              "balanced_accuracy": 0.8532608695652174,
+              "engage_recall": 0.9565217391304348,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.043478260869565216,
+              "wasteful_engage_rate": 0.25
+            }
+          },
+          "worst_scenario_recall": 0.5172413793103449,
+          "worst_batch_recall": 0.525,
+          "value_metrics": {
+            "safety_mae": 4.876083851206661,
+            "cost_mae": 0.15876240703109346,
+            "safety_correlation": 0.46432145941555175,
+            "cost_correlation": 0.01182278384577974,
+            "safety_sign_accuracy": 0.7016574585635359
+          },
+          "budget_mean": 0.9986652135848999,
+          "budget_std": 0.6122130155563354,
+          "feasible": false,
+          "best_epochs": [
+            37,
+            5,
+            1
+          ]
+        },
+        "scenario_robust_reliable_cost": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 68,
+            "noop_count": 115,
+            "accuracy": 0.8142076502732241,
+            "balanced_accuracy": 0.8191176470588235,
+            "engage_recall": 0.8382352941176471,
+            "noop_recall": 0.8,
+            "false_noop_rate": 0.16176470588235295,
+            "wasteful_engage_rate": 0.2
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 68,
+              "engage_count": 14,
+              "noop_count": 54,
+              "accuracy": 0.8529411764705882,
+              "balanced_accuracy": 0.8809523809523809,
+              "engage_recall": 0.9285714285714286,
+              "noop_recall": 0.8333333333333334,
+              "false_noop_rate": 0.07142857142857142,
+              "wasteful_engage_rate": 0.16666666666666666
+            },
+            "medium": {
+              "count": 58,
+              "engage_count": 26,
+              "noop_count": 32,
+              "accuracy": 0.8275862068965517,
+              "balanced_accuracy": 0.8257211538461539,
+              "engage_recall": 0.8076923076923077,
+              "noop_recall": 0.84375,
+              "false_noop_rate": 0.19230769230769232,
+              "wasteful_engage_rate": 0.15625
+            },
+            "time_pressure": {
+              "count": 57,
+              "engage_count": 28,
+              "noop_count": 29,
+              "accuracy": 0.7543859649122807,
+              "balanced_accuracy": 0.7555418719211823,
+              "engage_recall": 0.8214285714285714,
+              "noop_recall": 0.6896551724137931,
+              "false_noop_rate": 0.17857142857142858,
+              "wasteful_engage_rate": 0.3103448275862069
+            }
+          },
+          "batch_metrics": {
+            "batch_701000": {
+              "count": 63,
+              "engage_count": 24,
+              "noop_count": 39,
+              "accuracy": 0.8888888888888888,
+              "balanced_accuracy": 0.8942307692307692,
+              "engage_recall": 0.9166666666666666,
+              "noop_recall": 0.8717948717948718,
+              "false_noop_rate": 0.08333333333333333,
+              "wasteful_engage_rate": 0.1282051282051282
+            },
+            "batch_719000": {
+              "count": 61,
+              "engage_count": 21,
+              "noop_count": 40,
+              "accuracy": 0.7213114754098361,
+              "balanced_accuracy": 0.7083333333333333,
+              "engage_recall": 0.6666666666666666,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.3333333333333333,
+              "wasteful_engage_rate": 0.25
+            },
+            "batch_737000": {
+              "count": 59,
+              "engage_count": 23,
+              "noop_count": 36,
+              "accuracy": 0.8305084745762712,
+              "balanced_accuracy": 0.8454106280193237,
+              "engage_recall": 0.9130434782608695,
+              "noop_recall": 0.7777777777777778,
+              "false_noop_rate": 0.08695652173913043,
+              "wasteful_engage_rate": 0.2222222222222222
+            }
+          },
+          "worst_scenario_recall": 0.6896551724137931,
+          "worst_batch_recall": 0.6666666666666666,
+          "value_metrics": {
+            "safety_mae": 4.909500491281188,
+            "cost_mae": 0.15981698557836274,
+            "safety_correlation": 0.48349713124828947,
+            "cost_correlation": 0.016350268282014847,
+            "safety_sign_accuracy": 0.7237569060773481
+          },
+          "budget_mean": 0.9907158613204956,
+          "budget_std": 0.43777963519096375,
+          "feasible": true,
+          "best_epochs": [
+            31,
+            16,
+            1
+          ]
+        }
+      },
+      "22": {
+        "standard": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 68,
+            "noop_count": 115,
+            "accuracy": 0.7868852459016393,
+            "balanced_accuracy": 0.8124040920716112,
+            "engage_recall": 0.9117647058823529,
+            "noop_recall": 0.7130434782608696,
+            "false_noop_rate": 0.08823529411764706,
+            "wasteful_engage_rate": 0.28695652173913044
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 68,
+              "engage_count": 14,
+              "noop_count": 54,
+              "accuracy": 0.8088235294117647,
+              "balanced_accuracy": 0.8267195767195767,
+              "engage_recall": 0.8571428571428571,
+              "noop_recall": 0.7962962962962963,
+              "false_noop_rate": 0.14285714285714285,
+              "wasteful_engage_rate": 0.2037037037037037
+            },
+            "medium": {
+              "count": 58,
+              "engage_count": 26,
+              "noop_count": 32,
+              "accuracy": 0.8275862068965517,
+              "balanced_accuracy": 0.8401442307692308,
+              "engage_recall": 0.9615384615384616,
+              "noop_recall": 0.71875,
+              "false_noop_rate": 0.038461538461538464,
+              "wasteful_engage_rate": 0.28125
+            },
+            "time_pressure": {
+              "count": 57,
+              "engage_count": 28,
+              "noop_count": 29,
+              "accuracy": 0.7192982456140351,
+              "balanced_accuracy": 0.7222906403940887,
+              "engage_recall": 0.8928571428571429,
+              "noop_recall": 0.5517241379310345,
+              "false_noop_rate": 0.10714285714285714,
+              "wasteful_engage_rate": 0.4482758620689655
+            }
+          },
+          "batch_metrics": {
+            "batch_701000": {
+              "count": 63,
+              "engage_count": 24,
+              "noop_count": 39,
+              "accuracy": 0.8888888888888888,
+              "balanced_accuracy": 0.8862179487179487,
+              "engage_recall": 0.875,
+              "noop_recall": 0.8974358974358975,
+              "false_noop_rate": 0.125,
+              "wasteful_engage_rate": 0.10256410256410256
+            },
+            "batch_719000": {
+              "count": 61,
+              "engage_count": 21,
+              "noop_count": 40,
+              "accuracy": 0.6557377049180327,
+              "balanced_accuracy": 0.7261904761904762,
+              "engage_recall": 0.9523809523809523,
+              "noop_recall": 0.5,
+              "false_noop_rate": 0.047619047619047616,
+              "wasteful_engage_rate": 0.5
+            },
+            "batch_737000": {
+              "count": 59,
+              "engage_count": 23,
+              "noop_count": 36,
+              "accuracy": 0.8135593220338984,
+              "balanced_accuracy": 0.8315217391304348,
+              "engage_recall": 0.9130434782608695,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.08695652173913043,
+              "wasteful_engage_rate": 0.25
+            }
+          },
+          "worst_scenario_recall": 0.5517241379310345,
+          "worst_batch_recall": 0.5,
+          "value_metrics": {
+            "safety_mae": 4.661049884456449,
+            "cost_mae": 0.1572865930950788,
+            "safety_correlation": 0.5523540688343311,
+            "cost_correlation": 0.015000515866941767,
+            "safety_sign_accuracy": 0.7237569060773481
+          },
+          "budget_mean": 1.1726200580596924,
+          "budget_std": 0.4646364450454712,
+          "feasible": false,
+          "best_epochs": [
+            19,
+            4,
+            22
+          ]
+        },
+        "scenario_robust": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 68,
+            "noop_count": 115,
+            "accuracy": 0.8032786885245902,
+            "balanced_accuracy": 0.8224424552429668,
+            "engage_recall": 0.8970588235294118,
+            "noop_recall": 0.7478260869565218,
+            "false_noop_rate": 0.10294117647058823,
+            "wasteful_engage_rate": 0.25217391304347825
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 68,
+              "engage_count": 14,
+              "noop_count": 54,
+              "accuracy": 0.8382352941176471,
+              "balanced_accuracy": 0.8452380952380952,
+              "engage_recall": 0.8571428571428571,
+              "noop_recall": 0.8333333333333334,
+              "false_noop_rate": 0.14285714285714285,
+              "wasteful_engage_rate": 0.16666666666666666
+            },
+            "medium": {
+              "count": 58,
+              "engage_count": 26,
+              "noop_count": 32,
+              "accuracy": 0.8448275862068966,
+              "balanced_accuracy": 0.8557692307692308,
+              "engage_recall": 0.9615384615384616,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.038461538461538464,
+              "wasteful_engage_rate": 0.25
+            },
+            "time_pressure": {
+              "count": 57,
+              "engage_count": 28,
+              "noop_count": 29,
+              "accuracy": 0.7192982456140351,
+              "balanced_accuracy": 0.7216748768472906,
+              "engage_recall": 0.8571428571428571,
+              "noop_recall": 0.5862068965517241,
+              "false_noop_rate": 0.14285714285714285,
+              "wasteful_engage_rate": 0.41379310344827586
+            }
+          },
+          "batch_metrics": {
+            "batch_701000": {
+              "count": 63,
+              "engage_count": 24,
+              "noop_count": 39,
+              "accuracy": 0.9365079365079365,
+              "balanced_accuracy": 0.9166666666666667,
+              "engage_recall": 0.8333333333333334,
+              "noop_recall": 1.0,
+              "false_noop_rate": 0.16666666666666666,
+              "wasteful_engage_rate": 0.0
+            },
+            "batch_719000": {
+              "count": 61,
+              "engage_count": 21,
+              "noop_count": 40,
+              "accuracy": 0.6557377049180327,
+              "balanced_accuracy": 0.7375,
+              "engage_recall": 1.0,
+              "noop_recall": 0.475,
+              "false_noop_rate": 0.0,
+              "wasteful_engage_rate": 0.525
+            },
+            "batch_737000": {
+              "count": 59,
+              "engage_count": 23,
+              "noop_count": 36,
+              "accuracy": 0.8135593220338984,
+              "balanced_accuracy": 0.8236714975845411,
+              "engage_recall": 0.8695652173913043,
+              "noop_recall": 0.7777777777777778,
+              "false_noop_rate": 0.13043478260869565,
+              "wasteful_engage_rate": 0.2222222222222222
+            }
+          },
+          "worst_scenario_recall": 0.5862068965517241,
+          "worst_batch_recall": 0.475,
+          "value_metrics": {
+            "safety_mae": 4.748458812880976,
+            "cost_mae": 0.15727655480162855,
+            "safety_correlation": 0.516676490424962,
+            "cost_correlation": 0.014617899427015559,
+            "safety_sign_accuracy": 0.712707182320442
+          },
+          "budget_mean": 0.9349738359451294,
+          "budget_std": 0.4860996603965759,
+          "feasible": false,
+          "best_epochs": [
+            34,
+            3,
+            7
+          ]
+        },
+        "scenario_robust_reliable_cost": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 68,
+            "noop_count": 115,
+            "accuracy": 0.7923497267759563,
+            "balanced_accuracy": 0.8167519181585678,
+            "engage_recall": 0.9117647058823529,
+            "noop_recall": 0.7217391304347827,
+            "false_noop_rate": 0.08823529411764706,
+            "wasteful_engage_rate": 0.2782608695652174
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 68,
+              "engage_count": 14,
+              "noop_count": 54,
+              "accuracy": 0.8088235294117647,
+              "balanced_accuracy": 0.8267195767195767,
+              "engage_recall": 0.8571428571428571,
+              "noop_recall": 0.7962962962962963,
+              "false_noop_rate": 0.14285714285714285,
+              "wasteful_engage_rate": 0.2037037037037037
+            },
+            "medium": {
+              "count": 58,
+              "engage_count": 26,
+              "noop_count": 32,
+              "accuracy": 0.8275862068965517,
+              "balanced_accuracy": 0.8401442307692308,
+              "engage_recall": 0.9615384615384616,
+              "noop_recall": 0.71875,
+              "false_noop_rate": 0.038461538461538464,
+              "wasteful_engage_rate": 0.28125
+            },
+            "time_pressure": {
+              "count": 57,
+              "engage_count": 28,
+              "noop_count": 29,
+              "accuracy": 0.7368421052631579,
+              "balanced_accuracy": 0.7395320197044335,
+              "engage_recall": 0.8928571428571429,
+              "noop_recall": 0.5862068965517241,
+              "false_noop_rate": 0.10714285714285714,
+              "wasteful_engage_rate": 0.41379310344827586
+            }
+          },
+          "batch_metrics": {
+            "batch_701000": {
+              "count": 63,
+              "engage_count": 24,
+              "noop_count": 39,
+              "accuracy": 0.9206349206349206,
+              "balanced_accuracy": 0.9038461538461539,
+              "engage_recall": 0.8333333333333334,
+              "noop_recall": 0.9743589743589743,
+              "false_noop_rate": 0.16666666666666666,
+              "wasteful_engage_rate": 0.02564102564102564
+            },
+            "batch_719000": {
+              "count": 61,
+              "engage_count": 21,
+              "noop_count": 40,
+              "accuracy": 0.6557377049180327,
+              "balanced_accuracy": 0.7375,
+              "engage_recall": 1.0,
+              "noop_recall": 0.475,
+              "false_noop_rate": 0.0,
+              "wasteful_engage_rate": 0.525
+            },
+            "batch_737000": {
+              "count": 59,
+              "engage_count": 23,
+              "noop_count": 36,
+              "accuracy": 0.7966101694915254,
+              "balanced_accuracy": 0.8176328502415459,
+              "engage_recall": 0.9130434782608695,
+              "noop_recall": 0.7222222222222222,
+              "false_noop_rate": 0.08695652173913043,
+              "wasteful_engage_rate": 0.2777777777777778
+            }
+          },
+          "worst_scenario_recall": 0.5862068965517241,
+          "worst_batch_recall": 0.475,
+          "value_metrics": {
+            "safety_mae": 4.835536205438806,
+            "cost_mae": 0.16728747196882313,
+            "safety_correlation": 0.5628496002459895,
+            "cost_correlation": 0.04239360070138482,
+            "safety_sign_accuracy": 0.7182320441988951
+          },
+          "budget_mean": 0.998155951499939,
+          "budget_std": 0.5775646567344666,
+          "feasible": false,
+          "best_epochs": [
+            39,
+            5,
+            15
+          ]
+        }
+      }
+    },
+    "selected_objective": "scenario_robust_reliable_cost",
+    "selected_passed_seed_count": 1
+  },
+  "model_results": {
+    "20": {
+      "frozen_state_budget": {
+        "metrics": {
+          "count": 79,
+          "engage_count": 35,
+          "noop_count": 44,
+          "accuracy": 0.6708860759493671,
+          "balanced_accuracy": 0.6870129870129871,
+          "engage_recall": 0.8285714285714286,
+          "noop_recall": 0.5454545454545454,
+          "false_noop_rate": 0.17142857142857143,
+          "wasteful_engage_rate": 0.45454545454545453
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 25,
+            "engage_count": 13,
+            "noop_count": 12,
+            "accuracy": 0.72,
+            "balanced_accuracy": 0.7243589743589745,
+            "engage_recall": 0.6153846153846154,
+            "noop_recall": 0.8333333333333334,
+            "false_noop_rate": 0.38461538461538464,
+            "wasteful_engage_rate": 0.16666666666666666
+          },
+          "medium": {
+            "count": 25,
+            "engage_count": 10,
+            "noop_count": 15,
+            "accuracy": 0.56,
+            "balanced_accuracy": 0.6166666666666667,
+            "engage_recall": 0.9,
+            "noop_recall": 0.3333333333333333,
+            "false_noop_rate": 0.1,
+            "wasteful_engage_rate": 0.6666666666666666
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 12,
+            "noop_count": 17,
+            "accuracy": 0.7241379310344828,
+            "balanced_accuracy": 0.7647058823529411,
+            "engage_recall": 1.0,
+            "noop_recall": 0.5294117647058824,
+            "false_noop_rate": 0.0,
+            "wasteful_engage_rate": 0.47058823529411764
+          }
+        },
+        "worst_scenario_recall": 0.3333333333333333,
+        "value_metrics": {
+          "safety_mae": 5.761039094928699,
+          "cost_mae": 0.1587497600047743,
+          "safety_correlation": 0.40297154603906954,
+          "cost_correlation": 0.10678071684124138,
+          "safety_sign_accuracy": 0.7916666666666666
+        },
+        "budget": {
+          "mean": 0.9285107254981995,
+          "std": 0.185495063662529,
+          "min": 0.5654293894767761,
+          "max": 1.3176615238189697
+        }
+      },
+      "risk_regression": {
+        "metrics": {
+          "count": 79,
+          "engage_count": 35,
+          "noop_count": 44,
+          "accuracy": 0.569620253164557,
+          "balanced_accuracy": 0.5814935064935065,
+          "engage_recall": 0.6857142857142857,
+          "noop_recall": 0.4772727272727273,
+          "false_noop_rate": 0.3142857142857143,
+          "wasteful_engage_rate": 0.5227272727272727
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 25,
+            "engage_count": 13,
+            "noop_count": 12,
+            "accuracy": 0.56,
+            "balanced_accuracy": 0.5608974358974359,
+            "engage_recall": 0.5384615384615384,
+            "noop_recall": 0.5833333333333334,
+            "false_noop_rate": 0.46153846153846156,
+            "wasteful_engage_rate": 0.4166666666666667
+          },
+          "medium": {
+            "count": 25,
+            "engage_count": 10,
+            "noop_count": 15,
+            "accuracy": 0.64,
+            "balanced_accuracy": 0.6666666666666667,
+            "engage_recall": 0.8,
+            "noop_recall": 0.5333333333333333,
+            "false_noop_rate": 0.2,
+            "wasteful_engage_rate": 0.4666666666666667
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 12,
+            "noop_count": 17,
+            "accuracy": 0.5172413793103449,
+            "balanced_accuracy": 0.5514705882352942,
+            "engage_recall": 0.75,
+            "noop_recall": 0.35294117647058826,
+            "false_noop_rate": 0.25,
+            "wasteful_engage_rate": 0.6470588235294118
+          }
+        }
+      },
+      "candidate": {
+        "metrics": {
+          "count": 79,
+          "engage_count": 35,
+          "noop_count": 44,
+          "accuracy": 0.6455696202531646,
+          "balanced_accuracy": 0.6642857142857144,
+          "engage_recall": 0.8285714285714286,
+          "noop_recall": 0.5,
+          "false_noop_rate": 0.17142857142857143,
+          "wasteful_engage_rate": 0.5
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 25,
+            "engage_count": 13,
+            "noop_count": 12,
+            "accuracy": 0.68,
+            "balanced_accuracy": 0.6762820512820513,
+            "engage_recall": 0.7692307692307693,
+            "noop_recall": 0.5833333333333334,
+            "false_noop_rate": 0.23076923076923078,
+            "wasteful_engage_rate": 0.4166666666666667
+          },
+          "medium": {
+            "count": 25,
+            "engage_count": 10,
+            "noop_count": 15,
+            "accuracy": 0.6,
+            "balanced_accuracy": 0.6666666666666666,
+            "engage_recall": 1.0,
+            "noop_recall": 0.3333333333333333,
+            "false_noop_rate": 0.0,
+            "wasteful_engage_rate": 0.6666666666666666
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 12,
+            "noop_count": 17,
+            "accuracy": 0.6551724137931034,
+            "balanced_accuracy": 0.6691176470588236,
+            "engage_recall": 0.75,
+            "noop_recall": 0.5882352941176471,
+            "false_noop_rate": 0.25,
+            "wasteful_engage_rate": 0.4117647058823529
+          }
+        },
+        "worst_scenario_recall": 0.3333333333333333,
+        "value_metrics": {
+          "safety_mae": 5.82670095487486,
+          "cost_mae": 0.17410959940568743,
+          "safety_correlation": 0.4286084153954934,
+          "cost_correlation": 0.06572172477282943,
+          "safety_sign_accuracy": 0.7638888888888888
+        },
+        "budget": {
+          "mean": 0.7965400815010071,
+          "std": 0.1226796805858612,
+          "min": 0.6083245277404785,
+          "max": 1.0847598314285278
+        },
+        "inference_seconds": 0.0008404000000155065,
+        "final_epochs": 18
+      }
+    },
+    "21": {
+      "frozen_state_budget": {
+        "metrics": {
+          "count": 79,
+          "engage_count": 35,
+          "noop_count": 44,
+          "accuracy": 0.6582278481012658,
+          "balanced_accuracy": 0.6522727272727273,
+          "engage_recall": 0.6,
+          "noop_recall": 0.7045454545454546,
+          "false_noop_rate": 0.4,
+          "wasteful_engage_rate": 0.29545454545454547
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 25,
+            "engage_count": 13,
+            "noop_count": 12,
+            "accuracy": 0.68,
+            "balanced_accuracy": 0.6891025641025641,
+            "engage_recall": 0.46153846153846156,
+            "noop_recall": 0.9166666666666666,
+            "false_noop_rate": 0.5384615384615384,
+            "wasteful_engage_rate": 0.08333333333333333
+          },
+          "medium": {
+            "count": 25,
+            "engage_count": 10,
+            "noop_count": 15,
+            "accuracy": 0.56,
+            "balanced_accuracy": 0.5666666666666667,
+            "engage_recall": 0.6,
+            "noop_recall": 0.5333333333333333,
+            "false_noop_rate": 0.4,
+            "wasteful_engage_rate": 0.4666666666666667
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 12,
+            "noop_count": 17,
+            "accuracy": 0.7241379310344828,
+            "balanced_accuracy": 0.7279411764705883,
+            "engage_recall": 0.75,
+            "noop_recall": 0.7058823529411765,
+            "false_noop_rate": 0.25,
+            "wasteful_engage_rate": 0.29411764705882354
+          }
+        },
+        "worst_scenario_recall": 0.46153846153846156,
+        "value_metrics": {
+          "safety_mae": 6.038950010627225,
+          "cost_mae": 0.14848123637582117,
+          "safety_correlation": 0.3180860857488613,
+          "cost_correlation": 0.3467904648535173,
+          "safety_sign_accuracy": 0.7222222222222222
+        },
+        "budget": {
+          "mean": 1.2303791046142578,
+          "std": 0.6409741640090942,
+          "min": 0.16535526514053345,
+          "max": 2.5932843685150146
+        }
+      },
+      "risk_regression": {
+        "metrics": {
+          "count": 79,
+          "engage_count": 35,
+          "noop_count": 44,
+          "accuracy": 0.6329113924050633,
+          "balanced_accuracy": 0.6383116883116884,
+          "engage_recall": 0.6857142857142857,
+          "noop_recall": 0.5909090909090909,
+          "false_noop_rate": 0.3142857142857143,
+          "wasteful_engage_rate": 0.4090909090909091
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 25,
+            "engage_count": 13,
+            "noop_count": 12,
+            "accuracy": 0.56,
+            "balanced_accuracy": 0.5608974358974359,
+            "engage_recall": 0.5384615384615384,
+            "noop_recall": 0.5833333333333334,
+            "false_noop_rate": 0.46153846153846156,
+            "wasteful_engage_rate": 0.4166666666666667
+          },
+          "medium": {
+            "count": 25,
+            "engage_count": 10,
+            "noop_count": 15,
+            "accuracy": 0.64,
+            "balanced_accuracy": 0.6833333333333333,
+            "engage_recall": 0.9,
+            "noop_recall": 0.4666666666666667,
+            "false_noop_rate": 0.1,
+            "wasteful_engage_rate": 0.5333333333333333
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 12,
+            "noop_count": 17,
+            "accuracy": 0.6896551724137931,
+            "balanced_accuracy": 0.6862745098039216,
+            "engage_recall": 0.6666666666666666,
+            "noop_recall": 0.7058823529411765,
+            "false_noop_rate": 0.3333333333333333,
+            "wasteful_engage_rate": 0.29411764705882354
+          }
+        }
+      },
+      "candidate": {
+        "metrics": {
+          "count": 79,
+          "engage_count": 35,
+          "noop_count": 44,
+          "accuracy": 0.6835443037974683,
+          "balanced_accuracy": 0.7100649350649351,
+          "engage_recall": 0.9428571428571428,
+          "noop_recall": 0.4772727272727273,
+          "false_noop_rate": 0.05714285714285714,
+          "wasteful_engage_rate": 0.5227272727272727
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 25,
+            "engage_count": 13,
+            "noop_count": 12,
+            "accuracy": 0.8,
+            "balanced_accuracy": 0.7916666666666667,
+            "engage_recall": 1.0,
+            "noop_recall": 0.5833333333333334,
+            "false_noop_rate": 0.0,
+            "wasteful_engage_rate": 0.4166666666666667
+          },
+          "medium": {
+            "count": 25,
+            "engage_count": 10,
+            "noop_count": 15,
+            "accuracy": 0.6,
+            "balanced_accuracy": 0.6666666666666666,
+            "engage_recall": 1.0,
+            "noop_recall": 0.3333333333333333,
+            "false_noop_rate": 0.0,
+            "wasteful_engage_rate": 0.6666666666666666
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 12,
+            "noop_count": 17,
+            "accuracy": 0.6551724137931034,
+            "balanced_accuracy": 0.6813725490196079,
+            "engage_recall": 0.8333333333333334,
+            "noop_recall": 0.5294117647058824,
+            "false_noop_rate": 0.16666666666666666,
+            "wasteful_engage_rate": 0.47058823529411764
+          }
+        },
+        "worst_scenario_recall": 0.3333333333333333,
+        "value_metrics": {
+          "safety_mae": 5.932680883739568,
+          "cost_mae": 0.17190325557831912,
+          "safety_correlation": 0.4268237431767946,
+          "cost_correlation": 0.027480633813794852,
+          "safety_sign_accuracy": 0.7777777777777778
+        },
+        "budget": {
+          "mean": 0.8490610122680664,
+          "std": 0.18324127793312073,
+          "min": 0.5547539591789246,
+          "max": 1.2626664638519287
+        },
+        "inference_seconds": 0.0008075999976426829,
+        "final_epochs": 17
+      }
+    },
+    "22": {
+      "frozen_state_budget": {
+        "metrics": {
+          "count": 79,
+          "engage_count": 35,
+          "noop_count": 44,
+          "accuracy": 0.6835443037974683,
+          "balanced_accuracy": 0.675,
+          "engage_recall": 0.6,
+          "noop_recall": 0.75,
+          "false_noop_rate": 0.4,
+          "wasteful_engage_rate": 0.25
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 25,
+            "engage_count": 13,
+            "noop_count": 12,
+            "accuracy": 0.68,
+            "balanced_accuracy": 0.6891025641025641,
+            "engage_recall": 0.46153846153846156,
+            "noop_recall": 0.9166666666666666,
+            "false_noop_rate": 0.5384615384615384,
+            "wasteful_engage_rate": 0.08333333333333333
+          },
+          "medium": {
+            "count": 25,
+            "engage_count": 10,
+            "noop_count": 15,
+            "accuracy": 0.56,
+            "balanced_accuracy": 0.55,
+            "engage_recall": 0.5,
+            "noop_recall": 0.6,
+            "false_noop_rate": 0.5,
+            "wasteful_engage_rate": 0.4
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 12,
+            "noop_count": 17,
+            "accuracy": 0.7931034482758621,
+            "balanced_accuracy": 0.7990196078431373,
+            "engage_recall": 0.8333333333333334,
+            "noop_recall": 0.7647058823529411,
+            "false_noop_rate": 0.16666666666666666,
+            "wasteful_engage_rate": 0.23529411764705882
+          }
+        },
+        "worst_scenario_recall": 0.46153846153846156,
+        "value_metrics": {
+          "safety_mae": 5.98849316535494,
+          "cost_mae": 0.13539780181820824,
+          "safety_correlation": 0.36598113714045044,
+          "cost_correlation": 0.5323475315851736,
+          "safety_sign_accuracy": 0.7361111111111112
+        },
+        "budget": {
+          "mean": 2.0355160236358643,
+          "std": 1.459099292755127,
+          "min": 0.044638097286224365,
+          "max": 5.0
+        }
+      },
+      "risk_regression": {
+        "metrics": {
+          "count": 79,
+          "engage_count": 35,
+          "noop_count": 44,
+          "accuracy": 0.5822784810126582,
+          "balanced_accuracy": 0.5928571428571429,
+          "engage_recall": 0.6857142857142857,
+          "noop_recall": 0.5,
+          "false_noop_rate": 0.3142857142857143,
+          "wasteful_engage_rate": 0.5
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 25,
+            "engage_count": 13,
+            "noop_count": 12,
+            "accuracy": 0.56,
+            "balanced_accuracy": 0.5608974358974359,
+            "engage_recall": 0.5384615384615384,
+            "noop_recall": 0.5833333333333334,
+            "false_noop_rate": 0.46153846153846156,
+            "wasteful_engage_rate": 0.4166666666666667
+          },
+          "medium": {
+            "count": 25,
+            "engage_count": 10,
+            "noop_count": 15,
+            "accuracy": 0.48,
+            "balanced_accuracy": 0.5333333333333333,
+            "engage_recall": 0.8,
+            "noop_recall": 0.26666666666666666,
+            "false_noop_rate": 0.2,
+            "wasteful_engage_rate": 0.7333333333333333
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 12,
+            "noop_count": 17,
+            "accuracy": 0.6896551724137931,
+            "balanced_accuracy": 0.6985294117647058,
+            "engage_recall": 0.75,
+            "noop_recall": 0.6470588235294118,
+            "false_noop_rate": 0.25,
+            "wasteful_engage_rate": 0.35294117647058826
+          }
+        }
+      },
+      "candidate": {
+        "metrics": {
+          "count": 79,
+          "engage_count": 35,
+          "noop_count": 44,
+          "accuracy": 0.6962025316455697,
+          "balanced_accuracy": 0.7155844155844155,
+          "engage_recall": 0.8857142857142857,
+          "noop_recall": 0.5454545454545454,
+          "false_noop_rate": 0.11428571428571428,
+          "wasteful_engage_rate": 0.45454545454545453
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 25,
+            "engage_count": 13,
+            "noop_count": 12,
+            "accuracy": 0.72,
+            "balanced_accuracy": 0.7147435897435898,
+            "engage_recall": 0.8461538461538461,
+            "noop_recall": 0.5833333333333334,
+            "false_noop_rate": 0.15384615384615385,
+            "wasteful_engage_rate": 0.4166666666666667
+          },
+          "medium": {
+            "count": 25,
+            "engage_count": 10,
+            "noop_count": 15,
+            "accuracy": 0.68,
+            "balanced_accuracy": 0.7333333333333334,
+            "engage_recall": 1.0,
+            "noop_recall": 0.4666666666666667,
+            "false_noop_rate": 0.0,
+            "wasteful_engage_rate": 0.5333333333333333
+          },
+          "time_pressure": {
+            "count": 29,
+            "engage_count": 12,
+            "noop_count": 17,
+            "accuracy": 0.6896551724137931,
+            "balanced_accuracy": 0.7107843137254902,
+            "engage_recall": 0.8333333333333334,
+            "noop_recall": 0.5882352941176471,
+            "false_noop_rate": 0.16666666666666666,
+            "wasteful_engage_rate": 0.4117647058823529
+          }
+        },
+        "worst_scenario_recall": 0.4666666666666667,
+        "value_metrics": {
+          "safety_mae": 5.797072147974108,
+          "cost_mae": 0.17702319855577772,
+          "safety_correlation": 0.4181651229666294,
+          "cost_correlation": 0.06249791714083932,
+          "safety_sign_accuracy": 0.7361111111111112
+        },
+        "budget": {
+          "mean": 0.8474026322364807,
+          "std": 0.2208656370639801,
+          "min": 0.5454298853874207,
+          "max": 1.3829421997070312
+        },
+        "inference_seconds": 0.0007396000000881031,
+        "final_epochs": 16
+      }
+    }
+  },
+  "model_gate": {
+    "per_seed": {
+      "20": {
+        "balanced_accuracy": false,
+        "engage_recall": true,
+        "noop_recall": false,
+        "false_noop_noninferior": true,
+        "wasteful_engage_noninferior": true,
+        "scenario_engage_recall": true,
+        "scenario_noop_recall": false,
+        "safety_sign_accuracy": true,
+        "inference_faster_than_rollouts": true,
+        "passed": false
+      },
+      "21": {
+        "balanced_accuracy": true,
+        "engage_recall": true,
+        "noop_recall": false,
+        "false_noop_noninferior": true,
+        "wasteful_engage_noninferior": false,
+        "scenario_engage_recall": true,
+        "scenario_noop_recall": false,
+        "safety_sign_accuracy": true,
+        "inference_faster_than_rollouts": true,
+        "passed": false
+      },
+      "22": {
+        "balanced_accuracy": true,
+        "engage_recall": true,
+        "noop_recall": false,
+        "false_noop_noninferior": true,
+        "wasteful_engage_noninferior": true,
+        "scenario_engage_recall": true,
+        "scenario_noop_recall": false,
+        "safety_sign_accuracy": true,
+        "inference_faster_than_rollouts": true,
+        "passed": false
+      }
+    },
+    "passed_seed_count": 0,
+    "required_passed_seed_count": 2
+  },
+  "stage_comparison": {
+    "candidate_mean_worst_scenario_recall": 0.37777777777777777,
+    "previous_mean_worst_scenario_recall": 0.4188034188034188,
+    "candidate_mean_balanced_accuracy": 0.6966450216450216,
+    "previous_mean_balanced_accuracy": 0.6714285714285714,
+    "checks": {
+      "oob_passed_seed_count": false,
+      "test_passed_seed_count": false,
+      "worst_scenario_noninferior": false,
+      "balanced_accuracy_noninferior": true
+    }
+  },
+  "task14_multibatch_leave_one_out_passed": false,
+  "resume_mch_ppo": false,
+  "enter_gnn": false
+}

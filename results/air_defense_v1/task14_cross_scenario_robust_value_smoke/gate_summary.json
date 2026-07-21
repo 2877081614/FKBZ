@@ -1,0 +1,462 @@
+{
+  "schema_version": 1,
+  "data_audit": {
+    "checks": {
+      "state_count": true,
+      "rollout_count": true,
+      "previous_observation_overlap_zero": true,
+      "return_reconstruction": true
+    },
+    "passed": true,
+    "previous_observation_overlaps": {
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic\\dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic_ranking_refinement\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_hierarchical_q\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_engagement_utility\\dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\targeted_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\analysis_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_state_conditioned_value\\test_dataset.npz": 0
+    },
+    "return_reconstruction_max_error": 7.62939453125e-06
+  },
+  "dataset": {
+    "training_non_test_groups": 202,
+    "test_states": 12,
+    "test_groups": 15,
+    "rollouts": 4,
+    "generation_seconds": 17.392174100001284
+  },
+  "power": {
+    "checks": {
+      "valid_count": false,
+      "engage_count": false,
+      "noop_count": true,
+      "scenario_counts": false,
+      "engage_scenarios": false
+    },
+    "passed": false,
+    "valid_count": 13,
+    "engage_count": 2,
+    "noop_count": 11,
+    "scenario_counts": {
+      "heterogeneity_pressure": 4,
+      "medium": 5,
+      "time_pressure": 4
+    },
+    "engage_scenario_count": 1
+  },
+  "crossfit": {
+    "fold_count": 3,
+    "fold_seed": 43,
+    "results": {
+      "20": {
+        "standard": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 46,
+            "noop_count": 137,
+            "accuracy": 0.6994535519125683,
+            "balanced_accuracy": 0.7415106315455411,
+            "engage_recall": 0.8260869565217391,
+            "noop_recall": 0.656934306569343,
+            "false_noop_rate": 0.17391304347826086,
+            "wasteful_engage_rate": 0.34306569343065696
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 67,
+              "engage_count": 11,
+              "noop_count": 56,
+              "accuracy": 0.7611940298507462,
+              "balanced_accuracy": 0.7840909090909092,
+              "engage_recall": 0.8181818181818182,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.18181818181818182,
+              "wasteful_engage_rate": 0.25
+            },
+            "medium": {
+              "count": 57,
+              "engage_count": 17,
+              "noop_count": 40,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.6948529411764706,
+              "engage_recall": 0.7647058823529411,
+              "noop_recall": 0.625,
+              "false_noop_rate": 0.23529411764705882,
+              "wasteful_engage_rate": 0.375
+            },
+            "time_pressure": {
+              "count": 59,
+              "engage_count": 18,
+              "noop_count": 41,
+              "accuracy": 0.6610169491525424,
+              "balanced_accuracy": 0.7249322493224932,
+              "engage_recall": 0.8888888888888888,
+              "noop_recall": 0.5609756097560976,
+              "false_noop_rate": 0.1111111111111111,
+              "wasteful_engage_rate": 0.43902439024390244
+            }
+          },
+          "worst_scenario_recall": 0.5609756097560976,
+          "value_metrics": {
+            "safety_mae": 3.9050182740768937,
+            "cost_mae": 0.16173339888066704,
+            "safety_correlation": 0.3684609905235303,
+            "cost_correlation": 0.0589512583514254,
+            "safety_sign_accuracy": 0.6726190476190477
+          },
+          "feasible": false,
+          "best_epochs": [
+            9,
+            3,
+            15
+          ],
+          "budget_mean": 0.6910234093666077,
+          "budget_std": 0.10254328697919846
+        },
+        "scenario_robust": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 46,
+            "noop_count": 137,
+            "accuracy": 0.7103825136612022,
+            "balanced_accuracy": 0.7488099016185338,
+            "engage_recall": 0.8260869565217391,
+            "noop_recall": 0.6715328467153284,
+            "false_noop_rate": 0.17391304347826086,
+            "wasteful_engage_rate": 0.3284671532846715
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 67,
+              "engage_count": 11,
+              "noop_count": 56,
+              "accuracy": 0.7611940298507462,
+              "balanced_accuracy": 0.7840909090909092,
+              "engage_recall": 0.8181818181818182,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.18181818181818182,
+              "wasteful_engage_rate": 0.25
+            },
+            "medium": {
+              "count": 57,
+              "engage_count": 17,
+              "noop_count": 40,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.6948529411764706,
+              "engage_recall": 0.7647058823529411,
+              "noop_recall": 0.625,
+              "false_noop_rate": 0.23529411764705882,
+              "wasteful_engage_rate": 0.375
+            },
+            "time_pressure": {
+              "count": 59,
+              "engage_count": 18,
+              "noop_count": 41,
+              "accuracy": 0.6949152542372882,
+              "balanced_accuracy": 0.7493224932249323,
+              "engage_recall": 0.8888888888888888,
+              "noop_recall": 0.6097560975609756,
+              "false_noop_rate": 0.1111111111111111,
+              "wasteful_engage_rate": 0.3902439024390244
+            }
+          },
+          "worst_scenario_recall": 0.6097560975609756,
+          "value_metrics": {
+            "safety_mae": 3.8682900642762417,
+            "cost_mae": 0.1482386058603561,
+            "safety_correlation": 0.37029799074381836,
+            "cost_correlation": 0.06436066596298468,
+            "safety_sign_accuracy": 0.6547619047619048
+          },
+          "feasible": false,
+          "best_epochs": [
+            9,
+            14,
+            7
+          ],
+          "budget_mean": 0.6310614347457886,
+          "budget_std": 0.0975259467959404
+        },
+        "scenario_robust_reliable_cost": {
+          "metrics": {
+            "count": 183,
+            "engage_count": 46,
+            "noop_count": 137,
+            "accuracy": 0.7103825136612022,
+            "balanced_accuracy": 0.7488099016185338,
+            "engage_recall": 0.8260869565217391,
+            "noop_recall": 0.6715328467153284,
+            "false_noop_rate": 0.17391304347826086,
+            "wasteful_engage_rate": 0.3284671532846715
+          },
+          "scenario_metrics": {
+            "heterogeneity_pressure": {
+              "count": 67,
+              "engage_count": 11,
+              "noop_count": 56,
+              "accuracy": 0.7611940298507462,
+              "balanced_accuracy": 0.7840909090909092,
+              "engage_recall": 0.8181818181818182,
+              "noop_recall": 0.75,
+              "false_noop_rate": 0.18181818181818182,
+              "wasteful_engage_rate": 0.25
+            },
+            "medium": {
+              "count": 57,
+              "engage_count": 17,
+              "noop_count": 40,
+              "accuracy": 0.6666666666666666,
+              "balanced_accuracy": 0.6948529411764706,
+              "engage_recall": 0.7647058823529411,
+              "noop_recall": 0.625,
+              "false_noop_rate": 0.23529411764705882,
+              "wasteful_engage_rate": 0.375
+            },
+            "time_pressure": {
+              "count": 59,
+              "engage_count": 18,
+              "noop_count": 41,
+              "accuracy": 0.6949152542372882,
+              "balanced_accuracy": 0.7493224932249323,
+              "engage_recall": 0.8888888888888888,
+              "noop_recall": 0.6097560975609756,
+              "false_noop_rate": 0.1111111111111111,
+              "wasteful_engage_rate": 0.3902439024390244
+            }
+          },
+          "worst_scenario_recall": 0.6097560975609756,
+          "value_metrics": {
+            "safety_mae": 3.9165108022458157,
+            "cost_mae": 0.15752338695904758,
+            "safety_correlation": 0.34037653206952323,
+            "cost_correlation": 0.0728047032646348,
+            "safety_sign_accuracy": 0.6309523809523809
+          },
+          "feasible": false,
+          "best_epochs": [
+            9,
+            14,
+            5
+          ],
+          "budget_mean": 0.6205888986587524,
+          "budget_std": 0.09654742479324341
+        }
+      }
+    },
+    "selected_objective": "scenario_robust_reliable_cost"
+  },
+  "model_results": {
+    "20": {
+      "frozen_state_budget": {
+        "metrics": {
+          "count": 13,
+          "engage_count": 2,
+          "noop_count": 11,
+          "accuracy": 0.23076923076923078,
+          "balanced_accuracy": 0.34090909090909094,
+          "engage_recall": 0.5,
+          "noop_recall": 0.18181818181818182,
+          "false_noop_rate": 0.5,
+          "wasteful_engage_rate": 0.8181818181818182
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 4,
+            "engage_count": 0,
+            "noop_count": 4,
+            "accuracy": 0.25,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 0.25,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.75
+          },
+          "medium": {
+            "count": 5,
+            "engage_count": 2,
+            "noop_count": 3,
+            "accuracy": 0.4,
+            "balanced_accuracy": 0.41666666666666663,
+            "engage_recall": 0.5,
+            "noop_recall": 0.3333333333333333,
+            "false_noop_rate": 0.5,
+            "wasteful_engage_rate": 0.6666666666666666
+          },
+          "time_pressure": {
+            "count": 4,
+            "engage_count": 0,
+            "noop_count": 4,
+            "accuracy": 0.0,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 0.0,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 1.0
+          }
+        },
+        "worst_scenario_recall": 0.0,
+        "value_metrics": {
+          "safety_mae": 8.26169806260329,
+          "cost_mae": 0.1214078630392368,
+          "safety_correlation": -0.12225069324489182,
+          "cost_correlation": 0.16224773558087607,
+          "safety_sign_accuracy": 0.8
+        },
+        "budget": {
+          "mean": 0.8698621392250061,
+          "std": 0.12350772321224213,
+          "min": 0.7359316945075989,
+          "max": 1.1693614721298218
+        }
+      },
+      "risk_regression": {
+        "metrics": {
+          "count": 13,
+          "engage_count": 2,
+          "noop_count": 11,
+          "accuracy": 0.3076923076923077,
+          "balanced_accuracy": 0.5909090909090909,
+          "engage_recall": 1.0,
+          "noop_recall": 0.18181818181818182,
+          "false_noop_rate": 0.0,
+          "wasteful_engage_rate": 0.8181818181818182
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 4,
+            "engage_count": 0,
+            "noop_count": 4,
+            "accuracy": 0.25,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 0.25,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.75
+          },
+          "medium": {
+            "count": 5,
+            "engage_count": 2,
+            "noop_count": 3,
+            "accuracy": 0.6,
+            "balanced_accuracy": 0.6666666666666666,
+            "engage_recall": 1.0,
+            "noop_recall": 0.3333333333333333,
+            "false_noop_rate": 0.0,
+            "wasteful_engage_rate": 0.6666666666666666
+          },
+          "time_pressure": {
+            "count": 4,
+            "engage_count": 0,
+            "noop_count": 4,
+            "accuracy": 0.0,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 0.0,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 1.0
+          }
+        }
+      },
+      "candidate": {
+        "metrics": {
+          "count": 13,
+          "engage_count": 2,
+          "noop_count": 11,
+          "accuracy": 0.8461538461538461,
+          "balanced_accuracy": 0.5,
+          "engage_recall": 0.0,
+          "noop_recall": 1.0,
+          "false_noop_rate": 1.0,
+          "wasteful_engage_rate": 0.0
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 4,
+            "engage_count": 0,
+            "noop_count": 4,
+            "accuracy": 1.0,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 1.0,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.0
+          },
+          "medium": {
+            "count": 5,
+            "engage_count": 2,
+            "noop_count": 3,
+            "accuracy": 0.6,
+            "balanced_accuracy": 0.5,
+            "engage_recall": 0.0,
+            "noop_recall": 1.0,
+            "false_noop_rate": 1.0,
+            "wasteful_engage_rate": 0.0
+          },
+          "time_pressure": {
+            "count": 4,
+            "engage_count": 0,
+            "noop_count": 4,
+            "accuracy": 1.0,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 1.0,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.0
+          }
+        },
+        "worst_scenario_recall": 0.0,
+        "value_metrics": {
+          "safety_mae": 7.523870234879164,
+          "cost_mae": 0.14072286796111327,
+          "safety_correlation": -0.030930150309309786,
+          "cost_correlation": -0.02284801484185258,
+          "safety_sign_accuracy": 0.6
+        },
+        "budget": {
+          "mean": 0.612280011177063,
+          "std": 0.0251438170671463,
+          "min": 0.5754976272583008,
+          "max": 0.6619694828987122
+        },
+        "inference_seconds": 0.0007128999968699645,
+        "final_epochs": 10
+      }
+    }
+  },
+  "model_gate": {
+    "per_seed": {
+      "20": {
+        "balanced_accuracy": false,
+        "engage_recall": false,
+        "noop_recall": true,
+        "false_noop_noninferior": false,
+        "wasteful_engage_noninferior": true,
+        "scenario_engage_recall": false,
+        "scenario_noop_recall": true,
+        "safety_sign_accuracy": false,
+        "inference_faster_than_rollouts": true,
+        "passed": false
+      }
+    },
+    "passed_seed_count": 0,
+    "required_passed_seed_count": 2
+  },
+  "stage_comparison": {
+    "candidate_mean_worst_scenario_recall": 0.0,
+    "previous_mean_worst_scenario_recall": 0.0,
+    "candidate_mean_balanced_accuracy": 0.5,
+    "previous_mean_balanced_accuracy": 0.34090909090909094,
+    "candidate_mean_cost_correlation": -0.02284801484185258,
+    "previous_mean_cost_correlation": 0.16224773558087607,
+    "checks": {
+      "passed_seed_count": false,
+      "worst_scenario_noninferior": true,
+      "balanced_accuracy_noninferior": true,
+      "cost_correlation_noninferior": false
+    }
+  },
+  "task14_cross_scenario_robust_value_passed": false,
+  "resume_mch_ppo": false,
+  "enter_gnn": false
+}

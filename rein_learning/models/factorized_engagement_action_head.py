@@ -244,6 +244,8 @@ class FactorizedEngagementAutoregressiveDistribution:
         return self.sample(deterministic=deterministic).actions
 
     def sample(self, deterministic: bool = False) -> AutoregressiveActionEvaluation:
+        if deterministic:
+            return self.sample_with_engagement_threshold(0.5)
         batch_size = self.target_logits.shape[0]
         actions = torch.empty(
             (batch_size, self.num_units),
@@ -259,17 +261,7 @@ class FactorizedEngagementAutoregressiveDistribution:
         entropies: list[torch.Tensor] = []
         for unit_index in self.unit_order:
             probabilities, _ = self._unit_probabilities(unit_index, used_targets)
-            if deterministic:
-                engage_probability = probabilities[:, : self.num_targets].sum(dim=1)
-                target_action = probabilities[:, : self.num_targets].argmax(dim=1)
-                actionable = probabilities[:, : self.num_targets].sum(dim=1) > 0.0
-                action = torch.where(
-                    actionable & (engage_probability >= 0.5),
-                    target_action,
-                    torch.full_like(target_action, self.noop_action),
-                )
-            else:
-                action = torch.distributions.Categorical(probabilities).sample()
+            action = torch.distributions.Categorical(probabilities).sample()
             actions[:, unit_index] = action
             log_probs.append(self._selected_log_prob(probabilities, action))
             entropies.append(self._entropy(probabilities))
@@ -279,6 +271,224 @@ class FactorizedEngagementAutoregressiveDistribution:
             log_prob=torch.stack(log_probs, dim=1).sum(dim=1),
             entropy=torch.stack(entropies, dim=1).sum(dim=1),
         )
+
+    def sample_with_engagement_threshold(
+        self, threshold: float
+    ) -> AutoregressiveActionEvaluation:
+        """Select engagement by threshold, then the best legal target."""
+
+        if not 0.0 <= threshold <= 1.0:
+            raise ValueError("Engagement threshold must be in [0, 1]")
+        batch_size = self.target_logits.shape[0]
+        actions = torch.empty(
+            (batch_size, self.num_units),
+            device=self.target_logits.device,
+            dtype=torch.long,
+        )
+        used_targets = torch.zeros(
+            (batch_size, self.num_targets),
+            device=self.target_logits.device,
+            dtype=torch.bool,
+        )
+        log_probs: list[torch.Tensor] = []
+        entropies: list[torch.Tensor] = []
+        for unit_index in self.unit_order:
+            probabilities, _ = self._unit_probabilities(unit_index, used_targets)
+            engage_probability = probabilities[:, : self.num_targets].sum(dim=1)
+            target_action = probabilities[:, : self.num_targets].argmax(dim=1)
+            actionable = engage_probability > 0.0
+            action = torch.where(
+                actionable & (engage_probability >= threshold),
+                target_action,
+                torch.full_like(target_action, self.noop_action),
+            )
+            actions[:, unit_index] = action
+            log_probs.append(self._selected_log_prob(probabilities, action))
+            entropies.append(self._entropy(probabilities))
+            used_targets = self._add_selected_target(used_targets, action)
+        return AutoregressiveActionEvaluation(
+            actions=actions,
+            log_prob=torch.stack(log_probs, dim=1).sum(dim=1),
+            entropy=torch.stack(entropies, dim=1).sum(dim=1),
+        )
+
+    def sample_with_fixed_actions(
+        self,
+        fixed_actions: torch.Tensor,
+        *,
+        deterministic: bool = False,
+    ) -> AutoregressiveActionEvaluation:
+        """Complete a partially fixed action prefix under dynamic masks.
+
+        Fixed actions use their regular action index; -1 marks units that should
+        be sampled from the current conditional policy.
+        """
+
+        fixed = fixed_actions.long().reshape(-1, self.num_units)
+        if fixed.shape[0] == 1 and self.target_logits.shape[0] > 1:
+            fixed = fixed.expand(self.target_logits.shape[0], -1)
+        if fixed.shape[0] != self.target_logits.shape[0]:
+            raise ValueError("Fixed-action and distribution batches must match")
+        if bool(torch.any((fixed < -1) | (fixed >= self.num_actions))):
+            raise ValueError("Fixed actions must be -1 or a valid action index")
+
+        actions = torch.empty_like(fixed)
+        used_targets = torch.zeros(
+            (fixed.shape[0], self.num_targets),
+            device=fixed.device,
+            dtype=torch.bool,
+        )
+        log_probs: list[torch.Tensor] = []
+        entropies: list[torch.Tensor] = []
+        batch_indices = torch.arange(fixed.shape[0], device=fixed.device)
+        for unit_index in self.unit_order:
+            probabilities, mask = self._unit_probabilities(unit_index, used_targets)
+            requested = fixed[:, unit_index]
+            sampled = (
+                probabilities.argmax(dim=1)
+                if deterministic
+                else torch.distributions.Categorical(probabilities).sample()
+            )
+            action = torch.where(requested >= 0, requested, sampled)
+            if not bool(torch.all(mask[batch_indices, action])):
+                raise ValueError("A fixed action is illegal under its prefix mask")
+            actions[:, unit_index] = action
+            log_probs.append(self._selected_log_prob(probabilities, action))
+            entropies.append(self._entropy(probabilities))
+            used_targets = self._add_selected_target(used_targets, action)
+        return AutoregressiveActionEvaluation(
+            actions=actions,
+            log_prob=torch.stack(log_probs, dim=1).sum(dim=1),
+            entropy=torch.stack(entropies, dim=1).sum(dim=1),
+        )
+
+    def hierarchical_diagnostics(
+        self,
+        actions: torch.Tensor | None = None,
+        *,
+        engagement_threshold: float = 0.5,
+    ) -> dict[str, torch.Tensor]:
+        """Return factor-level probabilities and log-probs for chosen actions."""
+
+        if actions is None:
+            actions = self.sample_with_engagement_threshold(
+                engagement_threshold
+            ).actions
+        actions = actions.long().reshape(-1, self.num_units)
+        if actions.shape[0] != self.target_logits.shape[0]:
+            raise ValueError("Action and logit batches must match")
+
+        shape = (actions.shape[0], self.num_units)
+        probability_dtype = torch.promote_types(
+            self.target_logits.dtype, self.engage_logits.dtype
+        )
+        engage_probabilities = torch.zeros(
+            shape, device=actions.device, dtype=probability_dtype
+        )
+        selected_engage = torch.zeros(
+            shape, device=actions.device, dtype=probability_dtype
+        )
+        target_probabilities = torch.full(
+            shape, torch.nan, device=actions.device, dtype=probability_dtype
+        )
+        engagement_log_probs = torch.zeros(
+            shape, device=actions.device, dtype=probability_dtype
+        )
+        target_log_probs = torch.zeros(
+            shape, device=actions.device, dtype=probability_dtype
+        )
+        actionable_fields = torch.zeros(
+            shape, device=actions.device, dtype=probability_dtype
+        )
+        used_targets = torch.zeros(
+            (actions.shape[0], self.num_targets),
+            device=actions.device,
+            dtype=torch.bool,
+        )
+        batch_indices = torch.arange(actions.shape[0], device=actions.device)
+        tiny = torch.finfo(probability_dtype).tiny
+
+        for unit_index in self.unit_order:
+            probabilities, mask = self._unit_probabilities(unit_index, used_targets)
+            action = actions[:, unit_index]
+            if not bool(torch.all(mask[batch_indices, action])):
+                raise ValueError("Action is illegal under the autoregressive mask")
+            engage_probability = probabilities[:, : self.num_targets].sum(dim=1)
+            engaged = action != self.noop_action
+            chosen_probability = probabilities[batch_indices, action]
+            conditional_target_probability = chosen_probability / engage_probability.clamp_min(
+                tiny
+            )
+
+            engage_probabilities[:, unit_index] = engage_probability
+            selected_engage[:, unit_index] = engaged.to(probability_dtype)
+            target_probabilities[:, unit_index] = torch.where(
+                engaged,
+                conditional_target_probability,
+                torch.full_like(conditional_target_probability, torch.nan),
+            )
+            engagement_log_probs[:, unit_index] = torch.where(
+                engaged,
+                torch.log(engage_probability.clamp_min(tiny)),
+                torch.log((1.0 - engage_probability).clamp_min(tiny)),
+            )
+            target_log_probs[:, unit_index] = torch.where(
+                engaged,
+                torch.log(conditional_target_probability.clamp_min(tiny)),
+                torch.zeros_like(conditional_target_probability),
+            )
+            actionable_fields[:, unit_index] = mask[
+                :, : self.num_targets
+            ].any(dim=1).to(probability_dtype)
+            used_targets = self._add_selected_target(used_targets, action)
+
+        return {
+            "actions": actions,
+            "engage_probability": engage_probabilities,
+            "selected_engage": selected_engage,
+            "target_probability": target_probabilities,
+            "engagement_log_prob": engagement_log_probs,
+            "target_log_prob": target_log_probs,
+            "actionable": actionable_fields,
+        }
+
+    def conditional_probabilities(
+        self, actions: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        """Return per-unit action probabilities and masks along an action prefix."""
+
+        actions = actions.long().reshape(-1, self.num_units)
+        if actions.shape[0] != self.target_logits.shape[0]:
+            raise ValueError("Action and logit batches must match")
+        probabilities = torch.zeros(
+            (actions.shape[0], self.num_units, self.num_actions),
+            device=actions.device,
+            dtype=torch.promote_types(
+                self.target_logits.dtype, self.engage_logits.dtype
+            ),
+        )
+        masks = torch.zeros(
+            (actions.shape[0], self.num_units, self.num_actions),
+            device=actions.device,
+            dtype=torch.bool,
+        )
+        used_targets = torch.zeros(
+            (actions.shape[0], self.num_targets),
+            device=actions.device,
+            dtype=torch.bool,
+        )
+        batch_indices = torch.arange(actions.shape[0], device=actions.device)
+        for unit_index in self.unit_order:
+            unit_probabilities, unit_mask = self._unit_probabilities(
+                unit_index, used_targets
+            )
+            action = actions[:, unit_index]
+            if not bool(torch.all(unit_mask[batch_indices, action])):
+                raise ValueError("Action is illegal under the autoregressive mask")
+            probabilities[:, unit_index, :] = unit_probabilities
+            masks[:, unit_index, :] = unit_mask
+            used_targets = self._add_selected_target(used_targets, action)
+        return probabilities, masks
 
     def evaluate(self, actions: torch.Tensor) -> AutoregressiveActionEvaluation:
         actions = actions.long().reshape(-1, self.num_units)

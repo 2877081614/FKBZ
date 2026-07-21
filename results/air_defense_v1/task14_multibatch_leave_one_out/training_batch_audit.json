@@ -1,0 +1,116 @@
+{
+  "batch_701000": {
+    "states": 48,
+    "groups": 68,
+    "rollouts": 32,
+    "power": {
+      "checks": {
+        "valid_count": true,
+        "engage_count": true,
+        "noop_count": true,
+        "scenario_counts": true
+      },
+      "passed": true,
+      "valid_count": 63,
+      "engage_count": 24,
+      "noop_count": 39,
+      "scenario_counts": {
+        "medium": 21,
+        "time_pressure": 18,
+        "heterogeneity_pressure": 24
+      }
+    },
+    "overlaps": {
+      "old_0": 0,
+      "old_1": 0,
+      "old_2": 0,
+      "old_3": 0,
+      "old_4": 0,
+      "old_5": 0
+    },
+    "checks": {
+      "state_count": true,
+      "rollouts": true,
+      "power": true,
+      "overlap_zero": true
+    },
+    "passed": true
+  },
+  "batch_719000": {
+    "states": 48,
+    "groups": 63,
+    "rollouts": 32,
+    "power": {
+      "checks": {
+        "valid_count": true,
+        "engage_count": true,
+        "noop_count": true,
+        "scenario_counts": true
+      },
+      "passed": true,
+      "valid_count": 61,
+      "engage_count": 21,
+      "noop_count": 40,
+      "scenario_counts": {
+        "medium": 19,
+        "time_pressure": 20,
+        "heterogeneity_pressure": 22
+      }
+    },
+    "overlaps": {
+      "old_0": 0,
+      "old_1": 0,
+      "old_2": 0,
+      "old_3": 0,
+      "old_4": 0,
+      "old_5": 0,
+      "training_0": 0
+    },
+    "checks": {
+      "state_count": true,
+      "rollouts": true,
+      "power": true,
+      "overlap_zero": true
+    },
+    "passed": true
+  },
+  "batch_737000": {
+    "states": 48,
+    "groups": 62,
+    "rollouts": 32,
+    "power": {
+      "checks": {
+        "valid_count": true,
+        "engage_count": true,
+        "noop_count": true,
+        "scenario_counts": true
+      },
+      "passed": true,
+      "valid_count": 59,
+      "engage_count": 23,
+      "noop_count": 36,
+      "scenario_counts": {
+        "medium": 18,
+        "time_pressure": 19,
+        "heterogeneity_pressure": 22
+      }
+    },
+    "overlaps": {
+      "old_0": 0,
+      "old_1": 0,
+      "old_2": 0,
+      "old_3": 0,
+      "old_4": 0,
+      "old_5": 0,
+      "training_0": 0,
+      "training_1": 0
+    },
+    "checks": {
+      "state_count": true,
+      "rollouts": true,
+      "power": true,
+      "overlap_zero": true
+    },
+    "passed": true
+  }
+}

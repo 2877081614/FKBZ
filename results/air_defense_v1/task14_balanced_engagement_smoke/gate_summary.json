@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "data_audit": {
+    "checks": {
+      "states": true,
+      "rollouts": true,
+      "overlap_zero": true,
+      "split_leakage_zero": true,
+      "return_reconstruction": true
+    },
+    "passed": true,
+    "previous_test_overlaps": {
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic\\dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic_ranking_refinement\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_hierarchical_q\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_engagement_utility\\dataset.npz": 0
+    },
+    "state_split_leakage": false,
+    "return_reconstruction_max_error": 7.62939453125e-06
+  },
+  "dataset": {
+    "targeted_states": 24,
+    "targeted_groups": 32,
+    "combined_groups": 119,
+    "historical_train_groups": 87,
+    "train_groups": 93,
+    "validation_groups": 11,
+    "test_groups": 15,
+    "rollouts": 4,
+    "generation_seconds": 34.87804749999998
+  },
+  "frozen_utility": {
+    "cost_weight": 2.0,
+    "damage_weight": 30.0,
+    "high_threat_leak_weight": 0.0,
+    "cvar_weight": 0.5,
+    "cvar_alpha": 0.25
+  },
+  "power": {
+    "checks": {
+      "valid_count": false,
+      "engage_count": false,
+      "noop_count": true,
+      "scenario_counts": false,
+      "engage_scenarios": false,
+      "engage_rate_enrichment": false
+    },
+    "passed": false,
+    "valid_count": 14,
+    "engage_count": 1,
+    "noop_count": 13,
+    "engage_rate": 0.07142857142857142,
+    "previous_engage_rate": 0.05263157894736842,
+    "scenario_counts": {
+      "heterogeneity_pressure": 5,
+      "medium": 5,
+      "time_pressure": 4
+    },
+    "engage_scenario_count": 1
+  },
+  "candidate_selection": {
+    "validation_scores": {
+      "balanced_bce": [
+        0.5
+      ],
+      "balanced_bce_margin": [
+        0.42857142857142855
+      ]
+    },
+    "mean_validation_scores": {
+      "balanced_bce": 0.5,
+      "balanced_bce_margin": 0.42857142857142855
+    },
+    "selected_method": "balanced_bce"
+  },
+  "model_results": {
+    "20": {
+      "risk_regression": {
+        "metrics": {
+          "count": 14,
+          "engage_count": 1,
+          "noop_count": 13,
+          "accuracy": 0.7857142857142857,
+          "balanced_accuracy": 0.4230769230769231,
+          "engage_recall": 0.0,
+          "noop_recall": 0.8461538461538461,
+          "false_noop_rate": 1.0,
+          "wasteful_engage_rate": 0.15384615384615385
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 5,
+            "engage_count": 0,
+            "noop_count": 5,
+            "accuracy": 0.6,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 0.6,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.4
+          },
+          "medium": {
+            "count": 5,
+            "engage_count": 0,
+            "noop_count": 5,
+            "accuracy": 1.0,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 1.0,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.0
+          },
+          "time_pressure": {
+            "count": 4,
+            "engage_count": 1,
+            "noop_count": 3,
+            "accuracy": 0.75,
+            "balanced_accuracy": 0.5,
+            "engage_recall": 0.0,
+            "noop_recall": 1.0,
+            "false_noop_rate": 1.0,
+            "wasteful_engage_rate": 0.0
+          }
+        },
+        "record": {
+          "method": "risk_regression",
+          "train_seed": 20,
+          "best_epoch": 1,
+          "best_validation_score": 0.999730651641056,
+          "label_mean": -32.2421760559082,
+          "label_scale": 22.51143455505371,
+          "test_inference_seconds": 0.00041060000000925356,
+          "parameter_count": 77186
+        }
+      },
+      "balanced_bce": {
+        "metrics": {
+          "count": 14,
+          "engage_count": 1,
+          "noop_count": 13,
+          "accuracy": 0.8571428571428571,
+          "balanced_accuracy": 0.46153846153846156,
+          "engage_recall": 0.0,
+          "noop_recall": 0.9230769230769231,
+          "false_noop_rate": 1.0,
+          "wasteful_engage_rate": 0.07692307692307693
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 5,
+            "engage_count": 0,
+            "noop_count": 5,
+            "accuracy": 0.8,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 0.8,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.2
+          },
+          "medium": {
+            "count": 5,
+            "engage_count": 0,
+            "noop_count": 5,
+            "accuracy": 1.0,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 1.0,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.0
+          },
+          "time_pressure": {
+            "count": 4,
+            "engage_count": 1,
+            "noop_count": 3,
+            "accuracy": 0.75,
+            "balanced_accuracy": 0.5,
+            "engage_recall": 0.0,
+            "noop_recall": 1.0,
+            "false_noop_rate": 1.0,
+            "wasteful_engage_rate": 0.0
+          }
+        },
+        "record": {
+          "method": "balanced_bce",
+          "train_seed": 20,
+          "best_epoch": 1,
+          "best_validation_balanced_accuracy": 0.5,
+          "best_validation_loss": 0.6683024764060974,
+          "train_engage_count": 6,
+          "train_noop_count": 62,
+          "test_inference_seconds": 0.0004179000000021915,
+          "parameter_count": 77186
+        }
+      },
+      "balanced_bce_margin": {
+        "metrics": {
+          "count": 14,
+          "engage_count": 1,
+          "noop_count": 13,
+          "accuracy": 0.6428571428571429,
+          "balanced_accuracy": 0.34615384615384615,
+          "engage_recall": 0.0,
+          "noop_recall": 0.6923076923076923,
+          "false_noop_rate": 1.0,
+          "wasteful_engage_rate": 0.3076923076923077
+        },
+        "scenario_metrics": {
+          "heterogeneity_pressure": {
+            "count": 5,
+            "engage_count": 0,
+            "noop_count": 5,
+            "accuracy": 0.4,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 0.4,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.6
+          },
+          "medium": {
+            "count": 5,
+            "engage_count": 0,
+            "noop_count": 5,
+            "accuracy": 1.0,
+            "balanced_accuracy": NaN,
+            "engage_recall": NaN,
+            "noop_recall": 1.0,
+            "false_noop_rate": NaN,
+            "wasteful_engage_rate": 0.0
+          },
+          "time_pressure": {
+            "count": 4,
+            "engage_count": 1,
+            "noop_count": 3,
+            "accuracy": 0.5,
+            "balanced_accuracy": 0.3333333333333333,
+            "engage_recall": 0.0,
+            "noop_recall": 0.6666666666666666,
+            "false_noop_rate": 1.0,
+            "wasteful_engage_rate": 0.3333333333333333
+          }
+        },
+        "record": {
+          "method": "balanced_bce_margin",
+          "train_seed": 20,
+          "best_epoch": 2,
+          "best_validation_balanced_accuracy": 0.42857142857142855,
+          "best_validation_loss": 1.0821149349212646,
+          "train_engage_count": 6,
+          "train_noop_count": 62,
+          "test_inference_seconds": 0.00041699999997035775,
+          "parameter_count": 77186
+        }
+      }
+    }
+  },
+  "model_gate": {
+    "per_seed": {
+      "20": {
+        "balanced_accuracy": false,
+        "improvement": false,
+        "false_noop_noninferior": true,
+        "wasteful_engage_noninferior": true,
+        "scenario_noop_recall": true,
+        "scenario_engage_recall": false,
+        "passed": false
+      }
+    },
+    "passed_seed_count": 0,
+    "required_passed_seed_count": 2,
+    "passed": false
+  },
+  "task14_balanced_engagement_passed": false,
+  "resume_mch_ppo": false,
+  "enter_gnn": false
+}

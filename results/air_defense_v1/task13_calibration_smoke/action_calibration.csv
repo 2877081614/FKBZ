@@ -1,0 +1,4 @@
+brier_score,calibration_target,count,ece,episodes,eval_scenario,mean_probability,method,observed_rate,train_seed
+0.2073788971302469,sampled_engagement_action,93,0.06974890187222471,2,medium,0.26850857112997323,factorized_engagement_ar_ppo_order_012,0.3010752688172043,8
+0.23459806983287584,sampled_engagement_action,83,0.08144284030759188,2,time_pressure,0.2701712198645236,factorized_engagement_ar_ppo_order_012,0.3493975903614458,8
+0.1692043086817584,sampled_engagement_action,98,0.0500432979695651,2,heterogeneity_pressure,0.2643290122552794,factorized_engagement_ar_ppo_order_012,0.21428571428571427,8

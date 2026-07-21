@@ -1,0 +1,4 @@
+accuracy,balanced_accuracy,count,engage_count,engage_recall,false_noop_rate,method,model_seed,noop_count,noop_recall,wasteful_engage_rate
+0.36363636363636365,0.6111111111111112,11,2,1.0,0.0,frozen_state_budget,20,9,0.2222222222222222,0.7777777777777778
+0.45454545454545453,0.4722222222222222,11,2,0.5,0.5,risk_regression,20,9,0.4444444444444444,0.5555555555555556
+0.9090909090909091,0.75,11,2,0.5,0.5,standard,20,9,1.0,0.0

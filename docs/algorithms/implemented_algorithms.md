@@ -207,6 +207,197 @@ high-threat leaks, and 73.51% higher decision latency. The 100k confirmation
 was not run; the next research target is no-op probability and PPO optimization
 stability rather than GNN capacity.
 
+## Task 14: Masked Action Q-Critic
+
+Task fourteen adds a non-graph action-conditioned value model for the frozen
+autoregressive policy. It estimates `Q(s, h_i, a_i)` from the observation,
+selected unit and candidate action, entity-relation features, prefix target
+occupancy, and the conditional legal mask. Counterfactual labels fix earlier
+unit actions, replace the current action, resample later actions under the
+modified prefix, and reuse common environment and policy random seeds.
+
+The implementation also adds grouped state splits, paired-uncertainty ranking,
+top-action and engage/no-op sign diagnostics. The formal gate showed a
+36.4%-40.1% MAE improvement over `V(s)`, but only 8 high-confidence action
+pairs and 0/3 passing training seeds. The model is therefore retained as an
+offline diagnostic prototype and is not connected to PPO training.
+
+The Task 14 refinement keeps the same network and adds group-centered and
+reliability-weighted pairwise difference losses. On a fresh 36-state,
+32-rollout test set, mean ranking accuracy improved by 0.167 over absolute MSE
+without MAE degradation. Engagement/no-op sign accuracy remained 0.545 and
+hierarchical effective counts stayed below the frozen gates, so PPO integration
+remains disabled.
+
+```text
+rein_learning/models/masked_action_q_critic.py
+rein_learning/common/q_critic_diagnostics.py
+scripts/run_air_defense_v1_task14_q_critic.py
+```
+
+## Task 14: Hierarchical Masked Q-Critic
+
+The hierarchical diagnostic separates the binary engagement value from the
+conditional target value. Its engagement head predicts `[Q_noop, Q_engage]`
+from the state, unit, prefix occupancy, unit features, and legal mask. Its
+target head reuses the masked action critic but is trained only on legal target
+actions. Training combines absolute, group-centered, and reliability-weighted
+pairwise losses while keeping the environment and policies frozen.
+
+On a fresh 108-state, 32-rollout formal test, conditional-target ranking
+reached 0.830-0.870 and improved by 0.057 on average over the monolithic
+baseline. Engagement sign accuracy fell to 0.588-0.706, 0.255 below the
+baseline on average, and target MAE worsened by roughly 17%-21%. All three
+seeds failed the complete gate. The model therefore establishes target-layer
+learnability but is retained only as an offline diagnostic; PPO and GNN
+integration remain disabled.
+
+```text
+rein_learning/models/hierarchical_masked_q_critic.py
+rein_learning/common/hierarchical_q_diagnostics.py
+scripts/run_air_defense_v1_task14_hierarchical_q.py
+docs/algorithms/hierarchical_masked_q_critic.md
+docs/experiments/air_defense_v1_task14_hierarchical_q.md
+```
+
+## Task 14: Risk-Aware Engagement Utility Critic
+
+This diagnostic decomposes paired no-op/engage rollouts into operational
+return, discounted resource cost, discounted damage, high-threat leaks, and
+shots. A validation-frozen utility combines explicit cost and damage weights
+with lower-tail CVaR, while an independent safety-resource oracle labels
+necessary engagement and wasteful engagement without using the candidate
+utility as its own target.
+
+On a fresh 108-state, 32-rollout dataset, the selected utility improved test
+balanced accuracy from 0.713 to 0.926, reduced false-noop from 0.333 to zero,
+and reduced wasteful-engage from 0.241 to 0.148. Only 3 of 57 reliable test
+groups were oracle-engage, however, and three regression critics reached only
+0.398/0.435/0.435 balanced accuracy. The utility direction is retained, but
+PPO integration remains disabled pending targeted critical-state collection
+and class-balanced sign estimation.
+
+```text
+rein_learning/models/risk_aware_engagement_critic.py
+rein_learning/common/engagement_utility_diagnostics.py
+scripts/run_air_defense_v1_task14_engagement_utility.py
+scripts/analyze_air_defense_v1_task14_engagement_power.py
+docs/algorithms/risk_aware_engagement_critic.md
+docs/experiments/air_defense_v1_task14_engagement_utility.md
+```
+
+## Task 14: Critical-State Balanced Engagement Sign Critic
+
+This stage replaces uniform state sampling with a pre-decision criticality
+score based on damage potential, hit probability, threat, and time to impact.
+It also replaces absolute utility regression with class-balanced BCE and an
+optional pairwise margin on the engage-minus-noop logit. Historical test rows
+remain excluded; only historical train/validation rows augment training.
+
+Targeted test engagement prevalence increased from 5.3% to 37.8%, with 28
+reliable engage and 46 reliable no-op groups across all three core scenarios.
+Validation selected BCE+margin. Its three test balanced accuracies were
+0.758/0.711/0.708 and false-noop fell to 0.071-0.214. Wasteful engagement
+worsened for two seeds, and time-pressure no-op recall was only
+0.455/0.182/0.273. The estimator therefore remains offline pending explicit
+resource-constrained decision-boundary calibration.
+
+```text
+rein_learning/common/critical_engagement_sampling.py
+rein_learning/common/balanced_engagement_training.py
+scripts/run_air_defense_v1_task14_balanced_engagement.py
+docs/algorithms/balanced_engagement_sign_critic.md
+docs/experiments/air_defense_v1_task14_balanced_engagement.md
+```
+
+## Task 14: Resource-Constrained Engagement Boundary
+
+This stage freezes the balanced BCE+margin critics and calibrates their
+engage-minus-noop logits with either a global threshold or a resource-aware
+dual boundary. Resource pressure combines normalized unit cost and remaining
+ammunition; all parameters are selected on the previous validation split and
+tested once on 72 fresh critical states.
+
+The independent dataset passed all integrity and power gates with 31 engage
+and 50 no-op labels. Neither boundary family had a feasible validation
+solution. The selected resource-dual family reached only
+0.593/0.612/0.605 balanced accuracy and 0.38/0.32/0.34 no-op recall on test,
+for 0/3 passing seeds. Scalar cost-ammo calibration is retained as a negative
+baseline; PPO and GNN integration remain disabled pending a state-conditioned
+budget or explicit constrained-value mechanism.
+
+```text
+rein_learning/common/engagement_boundary_calibration.py
+scripts/run_air_defense_v1_task14_engagement_calibration.py
+docs/algorithms/resource_constrained_engagement_boundary.md
+docs/experiments/air_defense_v1_task14_engagement_calibration.md
+```
+
+## Task 14: State-Conditioned Constrained Engagement Value
+
+This stage replaces scalar cost-ammunition calibration with explicit paired
+safety-gain and incremental-cost heads plus a non-negative state-conditioned
+resource multiplier. Three-fold grouped cross-fitting compares safety-only,
+global-budget, and state-budget variants without reusing a fixed test split.
+
+Cross-fitting selected state-budget with 2/3 feasible seeds. On 72 fresh
+states, all three seeds passed overall balanced accuracy, class recalls,
+error non-inferiority, safety-sign, and inference gates. Balanced accuracy was
+0.834/0.776/0.768 and wasteful engagement fell to 0.298/0.281/0.263. Local
+scenario recalls still failed for every seed, so PPO integration remains
+disabled for one final cross-scenario robustness refinement.
+
+```text
+rein_learning/models/state_conditioned_engagement_value.py
+rein_learning/common/state_conditioned_value_training.py
+scripts/run_air_defense_v1_task14_state_conditioned_value.py
+docs/algorithms/state_conditioned_engagement_value.md
+docs/experiments/air_defense_v1_task14_state_conditioned_value.md
+```
+
+## Task 14: Cross-Scenario Robust Engagement Value
+
+This stage keeps the state-budget architecture fixed and compares standard
+training with equal scenario-class blocks, a worst-block penalty, and paired
+cost-delta reliability weights. Model selection remains three-fold grouped
+cross-fitting and the formal evaluation uses 72 fresh states.
+
+The robust variants did not dominate standard training out of fold. Feasible
+seed counts were 2/3 for standard, 2/3 for scenario-robust, and 1/3 for the
+reliable-cost variant, so standard remained selected. On the new test batch,
+seeds 21/22 fell to 0.273/0.182 heterogeneous engage recall. This reverses the
+previous batch's error direction and identifies within-scenario critical-state
+batch shift, rather than average scenario weighting, as the remaining blocker.
+
+```text
+rein_learning/common/state_conditioned_value_training.py
+scripts/run_air_defense_v1_task14_cross_scenario_robust_value.py
+docs/algorithms/cross_scenario_robust_engagement_value.md
+docs/experiments/air_defense_v1_task14_cross_scenario_robust_value.md
+```
+
+## Task 14: Multi-Batch Leave-One-Out Generalization
+
+This stage generates three independent critical-state training batches and
+uses each `batch_id` as a held-out fold. The same state-budget architecture is
+trained with standard, scenario-robust, and reliable-cost robust objectives.
+A fourth unseen batch is reserved for final evaluation.
+
+All batch independence and oracle power gates passed. The selected objective
+was feasible in only 1/3 leave-one-batch-out seeds and 0/3 final-test seeds.
+Final engage recall recovered to 0.829/0.943/0.886, while no-op recall fell to
+0.500/0.477/0.545. This identifies systematic over-engagement, rather than
+insufficient data or heterogeneous-scenario under-engagement, as the current
+blocker. MCH-PPO and GNN integration remain disabled pending a no-new-rollout
+Pareto feasibility audit.
+
+```text
+rein_learning/common/multibatch_diagnostics.py
+scripts/run_air_defense_v1_task14_multibatch_leave_one_out.py
+docs/algorithms/multibatch_engagement_value_generalization.md
+docs/experiments/air_defense_v1_task14_multibatch_leave_one_out.md
+```
+
 ## Verification
 
 ```powershell
@@ -216,7 +407,7 @@ conda run -n rein-learning python -m pytest tests
 Latest verification:
 
 ```text
-140 passed
+207 passed
 Q-learning greedy evaluation: total_reward=3.0, steps=8
 DQN greedy evaluation: total_reward=3.0, steps=8, device=cuda
 REINFORCE smoke train: episode=001, avg_reward=-33.00, loss=0.0051, device=cuda

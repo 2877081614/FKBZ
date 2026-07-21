@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "training_dataset": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\analysis_dataset.npz",
+  "model_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds",
+  "critic_dir": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_balanced_engagement\\models",
+  "source_seeds": [
+    8,
+    10
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "episodes_per_stratum": 8,
+  "states_per_stratum": 2,
+  "rollouts": 4,
+  "gamma": 0.98,
+  "eval_seed": 562000,
+  "model_seeds": [
+    20
+  ],
+  "methods": [
+    "safety_only",
+    "global_budget",
+    "state_budget"
+  ],
+  "fold_count": 3,
+  "fold_seed": 43,
+  "epochs": 50,
+  "patience": 8,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "selected_mode": "state_budget"
+}

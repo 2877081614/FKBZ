@@ -1,0 +1,4 @@
+accuracy,balanced_accuracy,count,engage_count,engage_recall,false_noop_rate,method,model_seed,noop_count,noop_recall,selected_family,wasteful_engage_rate
+0.42857142857142855,0.6,14,4,1.0,0.0,zero_margin,20,10,0.2,resource_dual,0.8
+0.5,0.575,14,4,0.75,0.25,risk_regression,20,10,0.4,resource_dual,0.6
+0.35714285714285715,0.475,14,4,0.75,0.25,calibrated,20,10,0.2,resource_dual,0.8

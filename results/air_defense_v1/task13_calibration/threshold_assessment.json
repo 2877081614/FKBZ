@@ -1,0 +1,136 @@
+{
+  "criteria": {
+    "all_noop_episode_rate": "<= 0.02",
+    "reference": "Task 7 frozen 100k Maskable PPO scenario mean",
+    "reward_delta_vs_reference": ">= -5.0",
+    "damage_delta_vs_reference": "<= 0.10",
+    "high_threat_leak_delta_vs_reference": "<= 0.02",
+    "resource_cost_delta_vs_reference": "<= 0.50"
+  },
+  "reference_means": {
+    "medium": {
+      "avg_reward": -34.34912070496516,
+      "avg_total_damage": 1.0197560910943333,
+      "high_threat_leak_rate": 0.3019802332741894,
+      "avg_resource_cost": 15.784
+    },
+    "time_pressure": {
+      "avg_reward": -45.3025767636826,
+      "avg_total_damage": 1.3932031478485376,
+      "high_threat_leak_rate": 0.4019786170186975,
+      "avg_resource_cost": 15.385
+    },
+    "heterogeneity_pressure": {
+      "avg_reward": -51.327211275241986,
+      "avg_total_damage": 1.388729151304764,
+      "high_threat_leak_rate": 0.40798474876749913,
+      "avg_resource_cost": 14.667900000000008
+    }
+  },
+  "thresholds": [
+    {
+      "threshold": 0.1,
+      "passed_runs": 3,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.15,
+      "passed_runs": 5,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.2,
+      "passed_runs": 6,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.25,
+      "passed_runs": 7,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.3,
+      "passed_runs": 7,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.35,
+      "passed_runs": 7,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.4,
+      "passed_runs": 7,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.45,
+      "passed_runs": 7,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.5,
+      "passed_runs": 5,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.55,
+      "passed_runs": 5,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.6,
+      "passed_runs": 8,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.65,
+      "passed_runs": 3,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.7,
+      "passed_runs": 1,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.75,
+      "passed_runs": 0,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.8,
+      "passed_runs": 0,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.85,
+      "passed_runs": 0,
+      "total_runs": 18,
+      "uniformly_valid": false
+    },
+    {
+      "threshold": 0.9,
+      "passed_runs": 0,
+      "total_runs": 18,
+      "uniformly_valid": false
+    }
+  ],
+  "uniform_valid_thresholds": [],
+  "uniform_threshold_exists": false
+}

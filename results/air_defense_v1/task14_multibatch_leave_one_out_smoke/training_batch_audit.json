@@ -1,0 +1,116 @@
+{
+  "batch_650000": {
+    "states": 12,
+    "groups": 15,
+    "rollouts": 4,
+    "power": {
+      "checks": {
+        "valid_count": false,
+        "engage_count": false,
+        "noop_count": true,
+        "scenario_counts": false
+      },
+      "passed": false,
+      "valid_count": 11,
+      "engage_count": 1,
+      "noop_count": 10,
+      "scenario_counts": {
+        "medium": 3,
+        "time_pressure": 4,
+        "heterogeneity_pressure": 4
+      }
+    },
+    "overlaps": {
+      "old_0": 0,
+      "old_1": 0,
+      "old_2": 0,
+      "old_3": 0,
+      "old_4": 0,
+      "old_5": 0
+    },
+    "checks": {
+      "state_count": true,
+      "rollouts": true,
+      "power": false,
+      "overlap_zero": true
+    },
+    "passed": false
+  },
+  "batch_651000": {
+    "states": 12,
+    "groups": 15,
+    "rollouts": 4,
+    "power": {
+      "checks": {
+        "valid_count": false,
+        "engage_count": false,
+        "noop_count": true,
+        "scenario_counts": false
+      },
+      "passed": false,
+      "valid_count": 10,
+      "engage_count": 4,
+      "noop_count": 6,
+      "scenario_counts": {
+        "medium": 4,
+        "time_pressure": 3,
+        "heterogeneity_pressure": 3
+      }
+    },
+    "overlaps": {
+      "old_0": 0,
+      "old_1": 0,
+      "old_2": 0,
+      "old_3": 0,
+      "old_4": 0,
+      "old_5": 0,
+      "training_0": 0
+    },
+    "checks": {
+      "state_count": true,
+      "rollouts": true,
+      "power": false,
+      "overlap_zero": true
+    },
+    "passed": false
+  },
+  "batch_652000": {
+    "states": 12,
+    "groups": 14,
+    "rollouts": 4,
+    "power": {
+      "checks": {
+        "valid_count": false,
+        "engage_count": false,
+        "noop_count": true,
+        "scenario_counts": false
+      },
+      "passed": false,
+      "valid_count": 9,
+      "engage_count": 3,
+      "noop_count": 6,
+      "scenario_counts": {
+        "medium": 2,
+        "time_pressure": 3,
+        "heterogeneity_pressure": 4
+      }
+    },
+    "overlaps": {
+      "old_0": 0,
+      "old_1": 0,
+      "old_2": 0,
+      "old_3": 0,
+      "old_4": 0,
+      "old_5": 0,
+      "training_0": 0,
+      "training_1": 0
+    },
+    "checks": {
+      "state_count": true,
+      "rollouts": true,
+      "power": false,
+      "overlap_zero": true
+    },
+    "passed": false
+  }
+}

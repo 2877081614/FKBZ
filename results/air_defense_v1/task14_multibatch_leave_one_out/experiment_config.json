@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "training_batch_seeds": [
+    701000,
+    719000,
+    737000
+  ],
+  "training_states_per_stratum": 8,
+  "training_episodes_per_stratum": 24,
+  "eval_seed": 809000,
+  "states_per_stratum": 12,
+  "episodes_per_stratum": 30,
+  "source_seeds": [
+    8,
+    10
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "rollouts": 32,
+  "model_seeds": [
+    20,
+    21,
+    22
+  ],
+  "objectives": [
+    "standard",
+    "scenario_robust",
+    "scenario_robust_reliable_cost"
+  ],
+  "epochs": 250,
+  "patience": 35,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "selected_objective": "scenario_robust_reliable_cost"
+}

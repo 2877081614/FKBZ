@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "rows": 16,
+    "states": 3,
+    "split_counts": {
+      "train": 7,
+      "validation": 5,
+      "test": 4
+    },
+    "state_split_leakage": false,
+    "generation_seconds": 3.979894399999921
+  },
+  "full_model_seeds": [
+    {
+      "train_seed": 14,
+      "metrics": {
+        "q_mae": 4.882779121398926,
+        "q_rmse": 5.432821715360403,
+        "v_mae": 5.836949825286865,
+        "one_step_mae": 26.4174374807626,
+        "mae_improvement_vs_v": 0.16347077368290475,
+        "ranking_accuracy": 1.0,
+        "ranking_count": 1,
+        "target_ranking_accuracy": NaN,
+        "target_ranking_count": 0,
+        "top_action_accuracy": 1.0,
+        "top_action_count": 1,
+        "engagement_sign_accuracy": 1.0,
+        "engagement_sign_count": 1,
+        "scenario_medium_ranking_accuracy": 1.0,
+        "scenario_medium_ranking_count": 1
+      },
+      "gates": {
+        "mae_improvement": true,
+        "ranking": false,
+        "engagement_sign": false,
+        "target_ranking": false,
+        "top_action": false,
+        "scenario_ranking": false,
+        "efficiency": true
+      },
+      "passed_gate_count": 2,
+      "total_gate_count": 7,
+      "passed": false,
+      "q_seconds_per_test_state": 0.000585800000180825,
+      "mc_generation_seconds_per_state": 1.3266314666666403
+    }
+  ],
+  "passed_seed_count": 0,
+  "required_passed_seed_count": 2,
+  "task14_passed": false,
+  "resume_mch_ppo": false,
+  "enter_gnn": false
+}

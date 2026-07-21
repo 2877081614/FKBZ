@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "rows": 571,
+    "states": 90,
+    "split_counts": {
+      "train": 338,
+      "validation": 117,
+      "test": 116
+    },
+    "state_split_leakage": false,
+    "generation_seconds": 334.77889359999995
+  },
+  "full_model_seeds": [
+    {
+      "train_seed": 14,
+      "metrics": {
+        "q_mae": 10.625979106230982,
+        "q_rmse": 14.30124297569336,
+        "v_mae": 17.746656290159144,
+        "one_step_mae": 24.616599489436968,
+        "mae_improvement_vs_v": 0.4012404966605857,
+        "ranking_accuracy": 0.25,
+        "ranking_count": 8,
+        "target_ranking_accuracy": 0.2,
+        "target_ranking_count": 5,
+        "top_action_accuracy": 0.0,
+        "top_action_count": 1,
+        "engagement_sign_accuracy": 0.5,
+        "engagement_sign_count": 2,
+        "scenario_heterogeneity_pressure_ranking_accuracy": 0.25,
+        "scenario_heterogeneity_pressure_ranking_count": 4,
+        "scenario_medium_ranking_accuracy": 0.3333333333333333,
+        "scenario_medium_ranking_count": 3,
+        "scenario_time_pressure_ranking_accuracy": 0.0,
+        "scenario_time_pressure_ranking_count": 1
+      },
+      "gates": {
+        "mae_improvement": true,
+        "ranking": false,
+        "engagement_sign": false,
+        "target_ranking": false,
+        "top_action": false,
+        "scenario_ranking": false,
+        "efficiency": true
+      },
+      "passed_gate_count": 2,
+      "total_gate_count": 7,
+      "passed": false,
+      "q_seconds_per_test_state": 7.839444444673265e-05,
+      "mc_generation_seconds_per_state": 3.719765484444444
+    },
+    {
+      "train_seed": 15,
+      "metrics": {
+        "q_mae": 10.887430186158625,
+        "q_rmse": 14.891844953855271,
+        "v_mae": 17.746656290159144,
+        "one_step_mae": 24.616599489436968,
+        "mae_improvement_vs_v": 0.38650808309191687,
+        "ranking_accuracy": 0.25,
+        "ranking_count": 8,
+        "target_ranking_accuracy": 0.2,
+        "target_ranking_count": 5,
+        "top_action_accuracy": 0.0,
+        "top_action_count": 1,
+        "engagement_sign_accuracy": 0.5,
+        "engagement_sign_count": 2,
+        "scenario_heterogeneity_pressure_ranking_accuracy": 0.25,
+        "scenario_heterogeneity_pressure_ranking_count": 4,
+        "scenario_medium_ranking_accuracy": 0.3333333333333333,
+        "scenario_medium_ranking_count": 3,
+        "scenario_time_pressure_ranking_accuracy": 0.0,
+        "scenario_time_pressure_ranking_count": 1
+      },
+      "gates": {
+        "mae_improvement": true,
+        "ranking": false,
+        "engagement_sign": false,
+        "target_ranking": false,
+        "top_action": false,
+        "scenario_ranking": false,
+        "efficiency": true
+      },
+      "passed_gate_count": 2,
+      "total_gate_count": 7,
+      "passed": false,
+      "q_seconds_per_test_state": 9.975555556391353e-05,
+      "mc_generation_seconds_per_state": 3.719765484444444
+    },
+    {
+      "train_seed": 16,
+      "metrics": {
+        "q_mae": 11.294546414295148,
+        "q_rmse": 15.462401629578949,
+        "v_mae": 17.746656290159144,
+        "one_step_mae": 24.616599489436968,
+        "mae_improvement_vs_v": 0.3635676360871323,
+        "ranking_accuracy": 0.375,
+        "ranking_count": 8,
+        "target_ranking_accuracy": 0.4,
+        "target_ranking_count": 5,
+        "top_action_accuracy": 0.0,
+        "top_action_count": 1,
+        "engagement_sign_accuracy": 0.5,
+        "engagement_sign_count": 2,
+        "scenario_heterogeneity_pressure_ranking_accuracy": 0.25,
+        "scenario_heterogeneity_pressure_ranking_count": 4,
+        "scenario_medium_ranking_accuracy": 0.6666666666666666,
+        "scenario_medium_ranking_count": 3,
+        "scenario_time_pressure_ranking_accuracy": 0.0,
+        "scenario_time_pressure_ranking_count": 1
+      },
+      "gates": {
+        "mae_improvement": true,
+        "ranking": false,
+        "engagement_sign": false,
+        "target_ranking": false,
+        "top_action": false,
+        "scenario_ranking": false,
+        "efficiency": true
+      },
+      "passed_gate_count": 2,
+      "total_gate_count": 7,
+      "passed": false,
+      "q_seconds_per_test_state": 4.7155555572923426e-05,
+      "mc_generation_seconds_per_state": 3.719765484444444
+    }
+  ],
+  "passed_seed_count": 0,
+  "required_passed_seed_count": 2,
+  "task14_passed": false,
+  "resume_mch_ppo": false,
+  "enter_gnn": false
+}

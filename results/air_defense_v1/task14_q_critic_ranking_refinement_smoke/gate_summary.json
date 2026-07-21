@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "isolation_audit": {
+    "old_test_rows_excluded": 116,
+    "old_test_rows_in_combined": 0,
+    "fresh_state_id_overlap": 0,
+    "fresh_test_states": 18,
+    "fresh_test_rows": 100,
+    "fresh_test_rollouts": 2
+  },
+  "dataset": {
+    "rows": 555,
+    "train_rows": 338,
+    "validation_rows": 117,
+    "test_rows": 100,
+    "fresh_test_states": 18,
+    "fresh_test_rollouts": 2,
+    "scenario_high_confidence_pair_counts": {
+      "medium": 23,
+      "time_pressure": 45,
+      "heterogeneity_pressure": 20
+    },
+    "test_power_sufficient": false
+  },
+  "objectives": {
+    "absolute_mse": [
+      {
+        "train_seed": 14,
+        "metrics": {
+          "q_mae": 12.785787650924176,
+          "q_rmse": 16.006593522622634,
+          "v_mae": 15.822840573173016,
+          "one_step_mae": 25.157685256730765,
+          "mae_improvement_vs_v": 0.19194106824270474,
+          "ranking_accuracy": 0.38636363636363635,
+          "ranking_count": 88,
+          "target_ranking_accuracy": 0.2619047619047619,
+          "target_ranking_count": 42,
+          "top_action_accuracy": 0.36363636363636365,
+          "top_action_count": 22,
+          "engagement_sign_accuracy": 0.5,
+          "engagement_sign_count": 22,
+          "scenario_heterogeneity_pressure_ranking_accuracy": 0.3,
+          "scenario_heterogeneity_pressure_ranking_count": 20,
+          "scenario_medium_ranking_accuracy": 0.4782608695652174,
+          "scenario_medium_ranking_count": 23,
+          "scenario_time_pressure_ranking_accuracy": 0.37777777777777777,
+          "scenario_time_pressure_ranking_count": 45
+        },
+        "gates": {
+          "mae_improvement": true,
+          "ranking": false,
+          "engagement_sign": false,
+          "target_ranking": false,
+          "top_action": false,
+          "scenario_ranking": false,
+          "efficiency": true
+        },
+        "passed_gate_count": 2,
+        "total_gate_count": 7,
+        "passed": false,
+        "q_seconds_per_test_state": 3.266111121370664e-05,
+        "mc_generation_seconds_per_test_state": 1.0611901222222917
+      },
+      {
+        "train_seed": 15,
+        "metrics": {
+          "q_mae": 13.19540617166087,
+          "q_rmse": 16.31487537344692,
+          "v_mae": 15.822840573173016,
+          "one_step_mae": 25.157685256730765,
+          "mae_improvement_vs_v": 0.16605326896656303,
+          "ranking_accuracy": 0.375,
+          "ranking_count": 88,
+          "target_ranking_accuracy": 0.2619047619047619,
+          "target_ranking_count": 42,
+          "top_action_accuracy": 0.45454545454545453,
+          "top_action_count": 22,
+          "engagement_sign_accuracy": 0.5,
+          "engagement_sign_count": 22,
+          "scenario_heterogeneity_pressure_ranking_accuracy": 0.45,
+          "scenario_heterogeneity_pressure_ranking_count": 20,
+          "scenario_medium_ranking_accuracy": 0.4782608695652174,
+          "scenario_medium_ranking_count": 23,
+          "scenario_time_pressure_ranking_accuracy": 0.28888888888888886,
+          "scenario_time_pressure_ranking_count": 45
+        },
+        "gates": {
+          "mae_improvement": true,
+          "ranking": false,
+          "engagement_sign": false,
+          "target_ranking": false,
+          "top_action": false,
+          "scenario_ranking": false,
+          "efficiency": true
+        },
+        "passed_gate_count": 2,
+        "total_gate_count": 7,
+        "passed": false,
+        "q_seconds_per_test_state": 3.324999973604766e-05,
+        "mc_generation_seconds_per_test_state": 1.0611901222222917
+      },
+      {
+        "train_seed": 16,
+        "metrics": {
+          "q_mae": 12.558453449588269,
+          "q_rmse": 16.08845135280867,
+          "v_mae": 15.822840573173016,
+          "one_step_mae": 25.157685256730765,
+          "mae_improvement_vs_v": 0.20630853913294067,
+          "ranking_accuracy": 0.3522727272727273,
+          "ranking_count": 88,
+          "target_ranking_accuracy": 0.21428571428571427,
+          "target_ranking_count": 42,
+          "top_action_accuracy": 0.36363636363636365,
+          "top_action_count": 22,
+          "engagement_sign_accuracy": 0.45454545454545453,
+          "engagement_sign_count": 22,
+          "scenario_heterogeneity_pressure_ranking_accuracy": 0.3,
+          "scenario_heterogeneity_pressure_ranking_count": 20,
+          "scenario_medium_ranking_accuracy": 0.4782608695652174,
+          "scenario_medium_ranking_count": 23,
+          "scenario_time_pressure_ranking_accuracy": 0.3111111111111111,
+          "scenario_time_pressure_ranking_count": 45
+        },
+        "gates": {
+          "mae_improvement": true,
+          "ranking": false,
+          "engagement_sign": false,
+          "target_ranking": false,
+          "top_action": false,
+          "scenario_ranking": false,
+          "efficiency": true
+        },
+        "passed_gate_count": 2,
+        "total_gate_count": 7,
+        "passed": false,
+        "q_seconds_per_test_state": 3.070000012586307e-05,
+        "mc_generation_seconds_per_test_state": 1.0611901222222917
+      }
+    ],
+    "difference_aware": [
+      {
+        "train_seed": 14,
+        "metrics": {
+          "q_mae": 13.234558803420514,
+          "q_rmse": 16.098591464442237,
+          "v_mae": 15.822840573173016,
+          "one_step_mae": 25.157685256730765,
+          "mae_improvement_vs_v": 0.16357883135982731,
+          "ranking_accuracy": 0.3409090909090909,
+          "ranking_count": 88,
+          "target_ranking_accuracy": 0.2857142857142857,
+          "target_ranking_count": 42,
+          "top_action_accuracy": 0.2727272727272727,
+          "top_action_count": 22,
+          "engagement_sign_accuracy": 0.36363636363636365,
+          "engagement_sign_count": 22,
+          "scenario_heterogeneity_pressure_ranking_accuracy": 0.4,
+          "scenario_heterogeneity_pressure_ranking_count": 20,
+          "scenario_medium_ranking_accuracy": 0.30434782608695654,
+          "scenario_medium_ranking_count": 23,
+          "scenario_time_pressure_ranking_accuracy": 0.3333333333333333,
+          "scenario_time_pressure_ranking_count": 45
+        },
+        "gates": {
+          "mae_improvement": true,
+          "ranking": false,
+          "engagement_sign": false,
+          "target_ranking": false,
+          "top_action": false,
+          "scenario_ranking": false,
+          "efficiency": true
+        },
+        "passed_gate_count": 2,
+        "total_gate_count": 7,
+        "passed": false,
+        "q_seconds_per_test_state": 5.3577777887565186e-05,
+        "mc_generation_seconds_per_test_state": 1.0611901222222917
+      },
+      {
+        "train_seed": 15,
+        "metrics": {
+          "q_mae": 13.479448949676007,
+          "q_rmse": 16.49301802266907,
+          "v_mae": 15.822840573173016,
+          "one_step_mae": 25.157685256730765,
+          "mae_improvement_vs_v": 0.14810182866091282,
+          "ranking_accuracy": 0.3409090909090909,
+          "ranking_count": 88,
+          "target_ranking_accuracy": 0.2857142857142857,
+          "target_ranking_count": 42,
+          "top_action_accuracy": 0.3181818181818182,
+          "top_action_count": 22,
+          "engagement_sign_accuracy": 0.4090909090909091,
+          "engagement_sign_count": 22,
+          "scenario_heterogeneity_pressure_ranking_accuracy": 0.45,
+          "scenario_heterogeneity_pressure_ranking_count": 20,
+          "scenario_medium_ranking_accuracy": 0.2608695652173913,
+          "scenario_medium_ranking_count": 23,
+          "scenario_time_pressure_ranking_accuracy": 0.3333333333333333,
+          "scenario_time_pressure_ranking_count": 45
+        },
+        "gates": {
+          "mae_improvement": true,
+          "ranking": false,
+          "engagement_sign": false,
+          "target_ranking": false,
+          "top_action": false,
+          "scenario_ranking": false,
+          "efficiency": true
+        },
+        "passed_gate_count": 2,
+        "total_gate_count": 7,
+        "passed": false,
+        "q_seconds_per_test_state": 3.5038888907163506e-05,
+        "mc_generation_seconds_per_test_state": 1.0611901222222917
+      },
+      {
+        "train_seed": 16,
+        "metrics": {
+          "q_mae": 12.710056709628553,
+          "q_rmse": 16.176138966268585,
+          "v_mae": 15.822840573173016,
+          "one_step_mae": 25.157685256730765,
+          "mae_improvement_vs_v": 0.19672724686502008,
+          "ranking_accuracy": 0.3181818181818182,
+          "ranking_count": 88,
+          "target_ranking_accuracy": 0.2619047619047619,
+          "target_ranking_count": 42,
+          "top_action_accuracy": 0.3181818181818182,
+          "top_action_count": 22,
+          "engagement_sign_accuracy": 0.45454545454545453,
+          "engagement_sign_count": 22,
+          "scenario_heterogeneity_pressure_ranking_accuracy": 0.4,
+          "scenario_heterogeneity_pressure_ranking_count": 20,
+          "scenario_medium_ranking_accuracy": 0.2608695652173913,
+          "scenario_medium_ranking_count": 23,
+          "scenario_time_pressure_ranking_accuracy": 0.3111111111111111,
+          "scenario_time_pressure_ranking_count": 45
+        },
+        "gates": {
+          "mae_improvement": true,
+          "ranking": false,
+          "engagement_sign": false,
+          "target_ranking": false,
+          "top_action": false,
+          "scenario_ranking": false,
+          "efficiency": true
+        },
+        "passed_gate_count": 2,
+        "total_gate_count": 7,
+        "passed": false,
+        "q_seconds_per_test_state": 3.0488889024127275e-05,
+        "mc_generation_seconds_per_test_state": 1.0611901222222917
+      }
+    ]
+  },
+  "comparison": {
+    "per_seed_ranking_improvement": {
+      "14": -0.04545454545454547,
+      "15": -0.034090909090909116,
+      "16": -0.034090909090909116
+    },
+    "mean_ranking_improvement": -0.0378787878787879,
+    "per_seed_mae_ratio": {
+      "14": 1.0350992183468573,
+      "15": 1.0215258836537493,
+      "16": 1.012071809689692
+    },
+    "mean_mae_ratio": 1.0228989705634328,
+    "additional_gates": {
+      "mean_ranking_improvement": false,
+      "mean_mae_noninferiority": true
+    }
+  },
+  "candidate_passed_seed_count": 0,
+  "required_passed_seed_count": 2,
+  "task14_refinement_passed": false,
+  "resume_mch_ppo": false,
+  "enter_gnn": false
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "isolation_audit": {
+    "old_test_rows_excluded": 116,
+    "old_test_rows_in_combined": 0,
+    "fresh_state_id_overlap": 0,
+    "fresh_test_states": 18,
+    "fresh_test_rows": 117,
+    "fresh_test_rollouts": 2,
+    "previous_test_observation_overlap": 0
+  },
+  "dataset": {
+    "rows": 572,
+    "train_rows": 338,
+    "validation_rows": 117,
+    "test_rows": 117,
+    "fresh_test_states": 18,
+    "fresh_test_rollouts": 2,
+    "engagement_groups": 26,
+    "target_rows": 63,
+    "power_sufficient": false
+  },
+  "baseline": [
+    {
+      "train_seed": 14,
+      "metrics": {
+        "engagement_mae": 15.589756209116716,
+        "engagement_rmse": 21.22951971509106,
+        "engagement_sign_accuracy": 0.8,
+        "engagement_sign_count": 5,
+        "target_mae": 18.04115679528978,
+        "target_rmse": 25.657593822480237,
+        "target_ranking_accuracy": 0.23809523809523808,
+        "target_ranking_count": 63,
+        "target_top_accuracy": 0.5263157894736842,
+        "target_top_count": 19,
+        "scenario_heterogeneity_pressure_engagement_accuracy": NaN,
+        "scenario_heterogeneity_pressure_engagement_count": 0,
+        "scenario_heterogeneity_pressure_target_accuracy": 0.17647058823529413,
+        "scenario_heterogeneity_pressure_target_count": 17,
+        "scenario_medium_engagement_accuracy": 0.75,
+        "scenario_medium_engagement_count": 4,
+        "scenario_medium_target_accuracy": 0.55,
+        "scenario_medium_target_count": 20,
+        "scenario_time_pressure_engagement_accuracy": 1.0,
+        "scenario_time_pressure_engagement_count": 1,
+        "scenario_time_pressure_target_accuracy": 0.038461538461538464,
+        "scenario_time_pressure_target_count": 26
+      },
+      "test_inference_seconds": 0.0025889999960782006
+    }
+  ],
+  "hierarchical": [
+    {
+      "train_seed": 14,
+      "metrics": {
+        "engagement_mae": 15.01235678104254,
+        "engagement_rmse": 20.810628938993148,
+        "engagement_sign_accuracy": 0.8,
+        "engagement_sign_count": 5,
+        "target_mae": 18.17324978586227,
+        "target_rmse": 25.180775694630324,
+        "target_ranking_accuracy": 0.30158730158730157,
+        "target_ranking_count": 63,
+        "target_top_accuracy": 0.42105263157894735,
+        "target_top_count": 19,
+        "scenario_heterogeneity_pressure_engagement_accuracy": NaN,
+        "scenario_heterogeneity_pressure_engagement_count": 0,
+        "scenario_heterogeneity_pressure_target_accuracy": 0.29411764705882354,
+        "scenario_heterogeneity_pressure_target_count": 17,
+        "scenario_medium_engagement_accuracy": 0.75,
+        "scenario_medium_engagement_count": 4,
+        "scenario_medium_target_accuracy": 0.55,
+        "scenario_medium_target_count": 20,
+        "scenario_time_pressure_engagement_accuracy": 1.0,
+        "scenario_time_pressure_engagement_count": 1,
+        "scenario_time_pressure_target_accuracy": 0.11538461538461539,
+        "scenario_time_pressure_target_count": 26
+      },
+      "gates": {
+        "engagement_overall": false,
+        "engagement_scenarios": false,
+        "target_overall": false,
+        "target_top": false,
+        "target_scenarios": false,
+        "engagement_mae_noninferiority": true,
+        "target_mae_noninferiority": true,
+        "efficiency": true
+      },
+      "passed_gate_count": 3,
+      "total_gate_count": 8,
+      "passed": false,
+      "inference_seconds_per_test_state": 5.697777750255126e-05,
+      "mc_seconds_per_test_state": 1.254260466666488
+    }
+  ],
+  "comparison": {
+    "engagement_improvement_by_seed": {
+      "14": 0.0
+    },
+    "mean_engagement_improvement": 0.0,
+    "target_change_by_seed": {
+      "14": 0.06349206349206349
+    },
+    "mean_target_change": 0.06349206349206349,
+    "additional_gates": {
+      "mean_engagement_improvement": false,
+      "mean_target_noninferiority": true
+    }
+  },
+  "passed_seed_count": 0,
+  "required_passed_seed_count": 2,
+  "task14_hierarchical_passed": false,
+  "resume_mch_ppo": false,
+  "enter_gnn": false
+}

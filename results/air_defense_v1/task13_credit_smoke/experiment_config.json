@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source_models": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task12_factorized_screening_30k_3seeds",
+  "methods": [
+    "factorized_engagement_ar_ppo_order_012"
+  ],
+  "train_seeds": [
+    8
+  ],
+  "scenarios": [
+    "medium"
+  ],
+  "episodes": 1,
+  "eval_seed": 31000,
+  "gamma": 0.98,
+  "gradient_samples_per_model": 3,
+  "counterfactual_states_per_model": 1,
+  "counterfactual_rollouts": 2,
+  "critic_scope": "The frozen PPO critic estimates V(s), not Q(s,a). Branch error is reported diagnostically and is not interpreted as a learned Q error."
+}
