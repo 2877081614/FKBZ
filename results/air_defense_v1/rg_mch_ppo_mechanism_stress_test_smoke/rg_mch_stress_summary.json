@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "methods": [
+    "factorized_engagement_ar_ppo_order_012",
+    "mch_ppo_order_012",
+    "rg_mch_ppo_order_012"
+  ],
+  "scenarios": {
+    "time_pressure": {
+      "paired_runs": [
+        {
+          "train_seed": 8,
+          "candidate_collapsed": true,
+          "all_noop_delta_vs_baseline": 1.0,
+          "high_threat_leak_delta_vs_baseline": 0.1333333333333333,
+          "reward_delta_vs_baseline": -35.16801895708505,
+          "damage_delta_vs_baseline": 0.7941903589626129,
+          "cost_delta_vs_baseline": -17.0,
+          "reward_delta_vs_mch_v0": 6.472077698104755,
+          "damage_delta_vs_mch_v0": -0.24673592327015825
+        }
+      ],
+      "all_noop_noninferior_seed_count": 0,
+      "all_noop_gate_passed": false,
+      "mean_reward_delta_vs_baseline": -35.16801895708505,
+      "mean_damage_delta_vs_baseline": 0.7941903589626129,
+      "mean_high_threat_leak_delta_vs_baseline": 0.1333333333333333,
+      "resource_cost_ratio_vs_baseline": 0.0,
+      "safety_gate_passed": false,
+      "cost_gate_passed": true,
+      "mean_reward_delta_vs_mch_v0": 6.472077698104755,
+      "mean_damage_delta_vs_mch_v0": -0.24673592327015825,
+      "mch_v0_improvement_gate_passed": true
+    }
+  },
+  "collapsed_candidate_run_count": 1,
+  "training_diagnostics": {
+    "mch_engagement_reliability": 0.9338970556855202,
+    "mch_target_reliability": 0.6389135122299194,
+    "mch_engagement_residual_abs": 0.34669656679034233,
+    "mch_target_residual_abs": 0.21128185279667377,
+    "mch_engagement_gate_active_rate": 0.9283568784594536,
+    "mch_target_gate_active_rate": 0.6460003554821014,
+    "training_time_ratio_vs_baseline": 0.0638237982386329
+  },
+  "gates": {
+    "structural_zero": true,
+    "no_collapsed_candidate_runs": false,
+    "all_noop_noninferiority": false,
+    "high_threat_improvement": false,
+    "reward_damage_safety": false,
+    "resource_cost": true,
+    "improves_mch_v0_both_scenarios": true
+  },
+  "mechanism_gate_passed": false
+}

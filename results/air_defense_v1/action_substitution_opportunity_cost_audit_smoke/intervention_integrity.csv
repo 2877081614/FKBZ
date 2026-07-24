@@ -1,0 +1,11 @@
+﻿context_id,scenario,policy_seed,slot,repeat,target_index,target_probability,current_step_identity,intervention_unique,opportunity_not_observable,restored_ammo,expected_ammo_gain
+time_pressure_seed8_safety00_e06_t29_u2,time_pressure,8,safety,0,4,1.0,True,True,True,0,0
+time_pressure_seed8_safety00_e06_t29_u2,time_pressure,8,safety,1,4,1.0,True,True,True,0,0
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,0,0,0.2426239550113678,True,True,False,1,1
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,0,1,0.24366234242916107,True,True,False,1,1
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,0,2,0.25711819529533386,True,True,False,1,1
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,0,4,0.25659552216529846,True,True,False,1,1
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,1,0,0.2426239550113678,True,True,False,1,1
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,1,1,0.24366234242916107,True,True,False,1,1
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,1,2,0.25711819529533386,True,True,False,1,1
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,1,4,0.25659552216529846,True,True,False,1,1

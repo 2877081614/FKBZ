@@ -1,0 +1,103 @@
+{
+  "models": [
+    {
+      "scenario": "medium",
+      "policy_seed": 17,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 10000,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation\\source_models\\medium\\factorized_engagement_ar_ppo_order_012_seed17.zip",
+      "sha256": "ddbaf8b88adcfc517206aff5e2f82c346c346cf971c50aacdea324b188011b67",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    },
+    {
+      "scenario": "medium",
+      "policy_seed": 18,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 10000,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation\\source_models\\medium\\factorized_engagement_ar_ppo_order_012_seed18.zip",
+      "sha256": "80dd8713686c659f2cf5d652682c1c9577a3379ab268c861ca08ed4e40cfb45a",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    },
+    {
+      "scenario": "medium",
+      "policy_seed": 19,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 10000,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation\\source_models\\medium\\factorized_engagement_ar_ppo_order_012_seed19.zip",
+      "sha256": "c0fd7639869c06fbbb7a7c067d6fbeac8afcafd6e2fb2a01d99d878edfa1576f",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    },
+    {
+      "scenario": "time_pressure",
+      "policy_seed": 17,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 10000,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation\\source_models\\time_pressure\\factorized_engagement_ar_ppo_order_012_seed17.zip",
+      "sha256": "3ba8e217021f3cac4e55eddf84fab1512b9f111b2d6a05ec2ebfd46205875564",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    },
+    {
+      "scenario": "time_pressure",
+      "policy_seed": 18,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 10000,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation\\source_models\\time_pressure\\factorized_engagement_ar_ppo_order_012_seed18.zip",
+      "sha256": "2de9b90a4b428877c38d98812e6bc9a6e2848f232b15bbdc21df1ef6d950f444",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    },
+    {
+      "scenario": "time_pressure",
+      "policy_seed": 19,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 10000,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation\\source_models\\time_pressure\\factorized_engagement_ar_ppo_order_012_seed19.zip",
+      "sha256": "8967a05ca06122effc236c8ed9575fb391ea658e77eb3edcfadd12606eba8494",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    },
+    {
+      "scenario": "heterogeneity_pressure",
+      "policy_seed": 17,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 10000,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation\\source_models\\heterogeneity_pressure\\factorized_engagement_ar_ppo_order_012_seed17.zip",
+      "sha256": "60b7a63cfc7f54de2d14b5186622e96b5094cf4391050ab34a3d321d89d5c7f5",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    },
+    {
+      "scenario": "heterogeneity_pressure",
+      "policy_seed": 18,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 10000,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation\\source_models\\heterogeneity_pressure\\factorized_engagement_ar_ppo_order_012_seed18.zip",
+      "sha256": "38f1f9c7cec1ed5df6a98731944e94ea965fc234b14e0e9ede80e8e1d9ccb15a",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    },
+    {
+      "scenario": "heterogeneity_pressure",
+      "policy_seed": 19,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 10000,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation\\source_models\\heterogeneity_pressure\\factorized_engagement_ar_ppo_order_012_seed19.zip",
+      "sha256": "093f573bdb41dc8772c143984c2f98ed3384067f6f46c5974a6357acea2ff6f5",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    }
+  ]
+}

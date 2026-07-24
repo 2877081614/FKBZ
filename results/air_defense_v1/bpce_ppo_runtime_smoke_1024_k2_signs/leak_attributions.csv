@@ -1,0 +1,7 @@
+method,method_type,train_scenario,eval_scenario,run_index,train_seed,evaluation_seed,episode_index,episode_seed,target_index,target_threat,target_payload,target_class,attribution
+factorized_engagement_ar_ppo_order_012,learning,time_pressure,time_pressure,0,8,200,0,200,3,0.9248442583499341,1.427710962541492,loitering_munition,unassigned
+factorized_engagement_ar_ppo_order_012,learning,time_pressure,time_pressure,0,8,200,1,201,0,0.8420367132471509,1.0677337632844333,decoy,attempted_miss
+bpce_ppo_order_012,learning,time_pressure,time_pressure,0,8,200,0,200,3,0.9248442583499341,1.427710962541492,loitering_munition,unassigned
+bpce_ppo_order_012,learning,time_pressure,time_pressure,0,8,200,1,201,0,0.8420367132471509,1.0677337632844333,decoy,attempted_miss
+bpce_random_probe_ppo_order_012,learning,time_pressure,time_pressure,0,8,200,0,200,3,0.9248442583499341,1.427710962541492,loitering_munition,unassigned
+bpce_random_probe_ppo_order_012,learning,time_pressure,time_pressure,0,8,200,1,201,0,0.8420367132471509,1.0677337632844333,decoy,attempted_miss

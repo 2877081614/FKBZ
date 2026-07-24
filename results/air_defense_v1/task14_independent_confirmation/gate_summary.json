@@ -1,0 +1,403 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "objective": "scenario_robust_reliable_cost",
+    "eval_seed": 887000,
+    "source_seeds": [
+      8,
+      10
+    ],
+    "scenarios": [
+      "medium",
+      "time_pressure",
+      "heterogeneity_pressure"
+    ],
+    "states_per_stratum": 12,
+    "episodes_per_stratum": 30,
+    "rollouts": 32,
+    "gamma": 0.98,
+    "model_seeds": [
+      20,
+      21,
+      22
+    ],
+    "frozen_thresholds": {
+      "20": 0.10520520806312561,
+      "21": 0.02875661849975586,
+      "22": 0.3540239632129669
+    },
+    "constraints": {
+      "balanced_accuracy": 0.7,
+      "engage_recall": 0.6,
+      "noop_recall": 0.65,
+      "batch_engage_recall": 0.6,
+      "batch_noop_recall": 0.65,
+      "scenario_engage_recall": 0.6,
+      "scenario_noop_recall": 0.65,
+      "safety_sign_accuracy": 0.7
+    },
+    "threshold_rule": "score > frozen_threshold",
+    "thresholds_refit_on_confirmation": false,
+    "models_retrained": false,
+    "confirmation_batch_count": 1
+  },
+  "source": {
+    "threshold_file": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_oob_pareto_audit\\seed_summary.csv",
+    "threshold_file_sha256": "9c070e4f3dd9a94baa6089cb455a9853568d8f2cc2b4d7d37a24268b3a3d6388",
+    "calibration_gate_sha256": "9a091e925025e8348b1459756dcd653a2149de9f5e7480051abb8e68de4332f3",
+    "source_config_sha256": "4b7994277156a2b04b460a45f084655438dcb489470b8c61284d7fcbd90af2eb",
+    "confirmation_dataset_sha256": "954e0de46a6e08d20884e527ce2aa21cea2b4ef03a0834b32a4a406d3c40f377",
+    "checkpoint_sha256": {
+      "20": "7a5d30ca5318626fb49528e7fadb1681cbff4fc4e79a3b596c0e630d9ab0a9dc",
+      "21": "bb74eea1abd1d03c10adc17eea940e4c06992bf8c95139f047b49584984bd4f9",
+      "22": "7317a8a91cbb021baf0c42b8c4b879fbbab7c13c5c4b6731cb84fd637279d51e"
+    },
+    "checks": {
+      "oob_gate_passed": true,
+      "objective_frozen": true,
+      "checkpoint_objectives": true,
+      "model_seeds_frozen": true
+    },
+    "passed": true
+  },
+  "data_audit": {
+    "checks": {
+      "state_count": true,
+      "rollout_count": true,
+      "historical_overlap_zero": true,
+      "return_reconstruction": true,
+      "single_confirmation_batch": true,
+      "thresholds_not_refit": true,
+      "models_not_retrained": true
+    },
+    "passed": true,
+    "historical_dataset_count": 19,
+    "historical_observation_overlaps": {
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_cross_scenario_robust_value\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_cross_scenario_robust_value_smoke\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_engagement_calibration\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_engagement_calibration_smoke\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_hierarchical_q\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_hierarchical_q_smoke\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_multibatch_leave_one_out\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_multibatch_leave_one_out\\training_batches\\batch_701000\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_multibatch_leave_one_out\\training_batches\\batch_719000\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_multibatch_leave_one_out\\training_batches\\batch_737000\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_multibatch_leave_one_out\\training_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_multibatch_leave_one_out_smoke\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_multibatch_leave_one_out_smoke\\training_batches\\batch_650000\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_multibatch_leave_one_out_smoke\\training_batches\\batch_651000\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_multibatch_leave_one_out_smoke\\training_batches\\batch_652000\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic_ranking_refinement\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_q_critic_ranking_refinement_smoke\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_state_conditioned_value\\test_dataset.npz": 0,
+      "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task14_state_conditioned_value_smoke\\test_dataset.npz": 0
+    },
+    "return_reconstruction_max_error": 7.62939453125e-06
+  },
+  "dataset": {
+    "states": 72,
+    "groups": 87,
+    "rollouts": 32,
+    "generation_seconds": 292.8487976000001
+  },
+  "power": {
+    "checks": {
+      "valid_count": true,
+      "engage_count": true,
+      "noop_count": true,
+      "scenario_counts": true,
+      "scenario_classes_complete": true
+    },
+    "passed": true,
+    "valid_count": 81,
+    "engage_count": 35,
+    "noop_count": 46,
+    "scenario_counts": {
+      "heterogeneity_pressure": {
+        "valid": 26,
+        "engage": 11,
+        "noop": 15
+      },
+      "medium": {
+        "valid": 29,
+        "engage": 10,
+        "noop": 19
+      },
+      "time_pressure": {
+        "valid": 26,
+        "engage": 14,
+        "noop": 12
+      }
+    }
+  },
+  "model_gate": {
+    "per_seed": {
+      "20": {
+        "frozen_threshold": 0.10520520806312561,
+        "calibrated": {
+          "threshold": 0.10520520806312561,
+          "count": 81,
+          "engage_count": 35,
+          "noop_count": 46,
+          "accuracy": 0.6049382716049383,
+          "balanced_accuracy": 0.6248447204968944,
+          "engage_recall": 0.7714285714285715,
+          "noop_recall": 0.4782608695652174,
+          "false_noop_rate": 0.22857142857142856,
+          "wasteful_engage_rate": 0.5217391304347826,
+          "worst_batch_engage_recall": 0.7714285714285715,
+          "worst_batch_noop_recall": 0.4782608695652174,
+          "worst_scenario_engage_recall": 0.6363636363636364,
+          "worst_scenario_noop_recall": 0.3333333333333333,
+          "safety_sign_accuracy": 0.7402597402597403,
+          "engage_margin": 0.036363636363636376,
+          "noop_margin": -0.3166666666666667,
+          "balanced_accuracy_margin": -0.07515527950310552,
+          "safety_sign_margin": 0.04025974025974033,
+          "minimum_constraint_margin": -0.3166666666666667,
+          "predicted_engage_count": 51,
+          "checks": {
+            "balanced_accuracy": false,
+            "engage_recall": true,
+            "noop_recall": false,
+            "batch_engage_recall": true,
+            "batch_noop_recall": false,
+            "scenario_engage_recall": true,
+            "scenario_noop_recall": false,
+            "safety_sign_accuracy": true
+          },
+          "passed_check_count": 4,
+          "feasible": false
+        },
+        "zero_threshold": {
+          "threshold": 0.0,
+          "count": 81,
+          "engage_count": 35,
+          "noop_count": 46,
+          "accuracy": 0.6172839506172839,
+          "balanced_accuracy": 0.6425465838509317,
+          "engage_recall": 0.8285714285714286,
+          "noop_recall": 0.45652173913043476,
+          "false_noop_rate": 0.17142857142857143,
+          "wasteful_engage_rate": 0.5434782608695652,
+          "worst_batch_engage_recall": 0.8285714285714286,
+          "worst_batch_noop_recall": 0.45652173913043476,
+          "worst_scenario_engage_recall": 0.7272727272727273,
+          "worst_scenario_noop_recall": 0.3333333333333333,
+          "safety_sign_accuracy": 0.7402597402597403,
+          "engage_margin": 0.12727272727272732,
+          "noop_margin": -0.3166666666666667,
+          "balanced_accuracy_margin": -0.05745341614906829,
+          "safety_sign_margin": 0.04025974025974033,
+          "minimum_constraint_margin": -0.3166666666666667,
+          "predicted_engage_count": 54,
+          "checks": {
+            "balanced_accuracy": false,
+            "engage_recall": true,
+            "noop_recall": false,
+            "batch_engage_recall": true,
+            "batch_noop_recall": false,
+            "scenario_engage_recall": true,
+            "scenario_noop_recall": false,
+            "safety_sign_accuracy": true
+          },
+          "passed_check_count": 4,
+          "feasible": false
+        },
+        "value_metrics": {
+          "safety_mae": 6.0348860701017175,
+          "cost_mae": 0.18278542814063437,
+          "safety_correlation": 0.37351867743477546,
+          "cost_correlation": 0.23482887523449195,
+          "safety_sign_accuracy": 0.7402597402597403
+        },
+        "inference_seconds": 0.0006194999998569983,
+        "inference_faster_than_rollouts": true,
+        "passed": false
+      },
+      "21": {
+        "frozen_threshold": 0.02875661849975586,
+        "calibrated": {
+          "threshold": 0.02875661849975586,
+          "count": 81,
+          "engage_count": 35,
+          "noop_count": 46,
+          "accuracy": 0.6172839506172839,
+          "balanced_accuracy": 0.6459627329192547,
+          "engage_recall": 0.8571428571428571,
+          "noop_recall": 0.43478260869565216,
+          "false_noop_rate": 0.14285714285714285,
+          "wasteful_engage_rate": 0.5652173913043478,
+          "worst_batch_engage_recall": 0.8571428571428571,
+          "worst_batch_noop_recall": 0.43478260869565216,
+          "worst_scenario_engage_recall": 0.7272727272727273,
+          "worst_scenario_noop_recall": 0.3333333333333333,
+          "safety_sign_accuracy": 0.7402597402597403,
+          "engage_margin": 0.12727272727272732,
+          "noop_margin": -0.3166666666666667,
+          "balanced_accuracy_margin": -0.0540372670807453,
+          "safety_sign_margin": 0.04025974025974033,
+          "minimum_constraint_margin": -0.3166666666666667,
+          "predicted_engage_count": 56,
+          "checks": {
+            "balanced_accuracy": false,
+            "engage_recall": true,
+            "noop_recall": false,
+            "batch_engage_recall": true,
+            "batch_noop_recall": false,
+            "scenario_engage_recall": true,
+            "scenario_noop_recall": false,
+            "safety_sign_accuracy": true
+          },
+          "passed_check_count": 4,
+          "feasible": false
+        },
+        "zero_threshold": {
+          "threshold": 0.0,
+          "count": 81,
+          "engage_count": 35,
+          "noop_count": 46,
+          "accuracy": 0.6172839506172839,
+          "balanced_accuracy": 0.6459627329192547,
+          "engage_recall": 0.8571428571428571,
+          "noop_recall": 0.43478260869565216,
+          "false_noop_rate": 0.14285714285714285,
+          "wasteful_engage_rate": 0.5652173913043478,
+          "worst_batch_engage_recall": 0.8571428571428571,
+          "worst_batch_noop_recall": 0.43478260869565216,
+          "worst_scenario_engage_recall": 0.7272727272727273,
+          "worst_scenario_noop_recall": 0.3333333333333333,
+          "safety_sign_accuracy": 0.7402597402597403,
+          "engage_margin": 0.12727272727272732,
+          "noop_margin": -0.3166666666666667,
+          "balanced_accuracy_margin": -0.0540372670807453,
+          "safety_sign_margin": 0.04025974025974033,
+          "minimum_constraint_margin": -0.3166666666666667,
+          "predicted_engage_count": 56,
+          "checks": {
+            "balanced_accuracy": false,
+            "engage_recall": true,
+            "noop_recall": false,
+            "batch_engage_recall": true,
+            "batch_noop_recall": false,
+            "scenario_engage_recall": true,
+            "scenario_noop_recall": false,
+            "safety_sign_accuracy": true
+          },
+          "passed_check_count": 4,
+          "feasible": false
+        },
+        "value_metrics": {
+          "safety_mae": 6.320820576660795,
+          "cost_mae": 0.18135729790837676,
+          "safety_correlation": 0.38440975538887145,
+          "cost_correlation": 0.1962859564697116,
+          "safety_sign_accuracy": 0.7402597402597403
+        },
+        "inference_seconds": 0.0004453999999896041,
+        "inference_faster_than_rollouts": true,
+        "passed": false
+      },
+      "22": {
+        "frozen_threshold": 0.3540239632129669,
+        "calibrated": {
+          "threshold": 0.3540239632129669,
+          "count": 81,
+          "engage_count": 35,
+          "noop_count": 46,
+          "accuracy": 0.6172839506172839,
+          "balanced_accuracy": 0.6254658385093168,
+          "engage_recall": 0.6857142857142857,
+          "noop_recall": 0.5652173913043478,
+          "false_noop_rate": 0.3142857142857143,
+          "wasteful_engage_rate": 0.43478260869565216,
+          "worst_batch_engage_recall": 0.6857142857142857,
+          "worst_batch_noop_recall": 0.5652173913043478,
+          "worst_scenario_engage_recall": 0.36363636363636365,
+          "worst_scenario_noop_recall": 0.4666666666666667,
+          "safety_sign_accuracy": 0.7532467532467533,
+          "engage_margin": -0.23636363636363633,
+          "noop_margin": -0.18333333333333335,
+          "balanced_accuracy_margin": -0.07453416149068315,
+          "safety_sign_margin": 0.05324675324675332,
+          "minimum_constraint_margin": -0.23636363636363633,
+          "predicted_engage_count": 44,
+          "checks": {
+            "balanced_accuracy": false,
+            "engage_recall": true,
+            "noop_recall": false,
+            "batch_engage_recall": true,
+            "batch_noop_recall": false,
+            "scenario_engage_recall": false,
+            "scenario_noop_recall": false,
+            "safety_sign_accuracy": true
+          },
+          "passed_check_count": 3,
+          "feasible": false
+        },
+        "zero_threshold": {
+          "threshold": 0.0,
+          "count": 81,
+          "engage_count": 35,
+          "noop_count": 46,
+          "accuracy": 0.6172839506172839,
+          "balanced_accuracy": 0.6459627329192547,
+          "engage_recall": 0.8571428571428571,
+          "noop_recall": 0.43478260869565216,
+          "false_noop_rate": 0.14285714285714285,
+          "wasteful_engage_rate": 0.5652173913043478,
+          "worst_batch_engage_recall": 0.8571428571428571,
+          "worst_batch_noop_recall": 0.43478260869565216,
+          "worst_scenario_engage_recall": 0.7272727272727273,
+          "worst_scenario_noop_recall": 0.3333333333333333,
+          "safety_sign_accuracy": 0.7532467532467533,
+          "engage_margin": 0.12727272727272732,
+          "noop_margin": -0.3166666666666667,
+          "balanced_accuracy_margin": -0.0540372670807453,
+          "safety_sign_margin": 0.05324675324675332,
+          "minimum_constraint_margin": -0.3166666666666667,
+          "predicted_engage_count": 56,
+          "checks": {
+            "balanced_accuracy": false,
+            "engage_recall": true,
+            "noop_recall": false,
+            "batch_engage_recall": true,
+            "batch_noop_recall": false,
+            "scenario_engage_recall": true,
+            "scenario_noop_recall": false,
+            "safety_sign_accuracy": true
+          },
+          "passed_check_count": 4,
+          "feasible": false
+        },
+        "value_metrics": {
+          "safety_mae": 6.027946194242916,
+          "cost_mae": 0.1877143711403564,
+          "safety_correlation": 0.3486526826363812,
+          "cost_correlation": 0.19500802398350106,
+          "safety_sign_accuracy": 0.7532467532467533
+        },
+        "inference_seconds": 0.0006837999999333988,
+        "inference_faster_than_rollouts": true,
+        "passed": false
+      }
+    },
+    "passed_seed_count": 0,
+    "required_passed_seed_count": 2
+  },
+  "stage_gate": {
+    "checks": {
+      "source_integrity": true,
+      "data_integrity": true,
+      "power_sufficient": true,
+      "two_of_three_seeds_passed": false
+    },
+    "passed": false
+  },
+  "task14_independent_confirmation_passed": false,
+  "allow_mch_ppo_screening": false,
+  "resume_mch_ppo": false,
+  "enter_gnn": false,
+  "next_action": "keep_mch_ppo_frozen_and_revise_calibration_semantics"
+}

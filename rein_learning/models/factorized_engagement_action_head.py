@@ -362,6 +362,57 @@ class FactorizedEngagementAutoregressiveDistribution:
             entropy=torch.stack(entropies, dim=1).sum(dim=1),
         )
 
+    def complete_fixed_actions_with_engagement_threshold(
+        self,
+        fixed_actions: torch.Tensor,
+        *,
+        threshold: float = 0.5,
+    ) -> AutoregressiveActionEvaluation:
+        """Complete unfixed units using factorized deterministic semantics."""
+
+        if not 0.0 <= threshold <= 1.0:
+            raise ValueError("Engagement threshold must be in [0, 1]")
+        fixed = fixed_actions.long().reshape(-1, self.num_units)
+        if fixed.shape[0] == 1 and self.target_logits.shape[0] > 1:
+            fixed = fixed.expand(self.target_logits.shape[0], -1)
+        if fixed.shape[0] != self.target_logits.shape[0]:
+            raise ValueError("Fixed-action and distribution batches must match")
+        if bool(torch.any((fixed < -1) | (fixed >= self.num_actions))):
+            raise ValueError("Fixed actions must be -1 or a valid action index")
+
+        actions = torch.empty_like(fixed)
+        used_targets = torch.zeros(
+            (fixed.shape[0], self.num_targets),
+            device=fixed.device,
+            dtype=torch.bool,
+        )
+        log_probs: list[torch.Tensor] = []
+        entropies: list[torch.Tensor] = []
+        batch_indices = torch.arange(fixed.shape[0], device=fixed.device)
+        for unit_index in self.unit_order:
+            probabilities, mask = self._unit_probabilities(unit_index, used_targets)
+            requested = fixed[:, unit_index]
+            engage_probability = probabilities[:, : self.num_targets].sum(dim=1)
+            target_action = probabilities[:, : self.num_targets].argmax(dim=1)
+            actionable = mask[:, : self.num_targets].any(dim=1)
+            deterministic_action = torch.where(
+                actionable & (engage_probability >= threshold),
+                target_action,
+                torch.full_like(target_action, self.noop_action),
+            )
+            action = torch.where(requested >= 0, requested, deterministic_action)
+            if not bool(torch.all(mask[batch_indices, action])):
+                raise ValueError("A fixed action is illegal under its prefix mask")
+            actions[:, unit_index] = action
+            log_probs.append(self._selected_log_prob(probabilities, action))
+            entropies.append(self._entropy(probabilities))
+            used_targets = self._add_selected_target(used_targets, action)
+        return AutoregressiveActionEvaluation(
+            actions=actions,
+            log_prob=torch.stack(log_probs, dim=1).sum(dim=1),
+            entropy=torch.stack(entropies, dim=1).sum(dim=1),
+        )
+
     def hierarchical_diagnostics(
         self,
         actions: torch.Tensor | None = None,

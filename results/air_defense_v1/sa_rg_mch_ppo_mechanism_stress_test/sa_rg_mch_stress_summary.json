@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "methods": [
+    "factorized_engagement_ar_ppo_order_012",
+    "mch_ppo_order_012",
+    "rg_mch_ppo_order_012",
+    "sa_rg_mch_ppo_order_012"
+  ],
+  "scenarios": {
+    "heterogeneity_pressure": {
+      "paired_runs": [
+        {
+          "train_seed": 8,
+          "candidate_collapsed": true,
+          "all_noop_delta_vs_baseline": 0.0,
+          "high_threat_leak_delta_vs_baseline": 0.0,
+          "reward_delta_vs_baseline": 0.0,
+          "damage_delta_vs_baseline": 0.0,
+          "cost_delta_vs_baseline": 0.0,
+          "reward_delta_vs_rg_mch": 0.0,
+          "damage_delta_vs_rg_mch": 0.0
+        },
+        {
+          "train_seed": 9,
+          "candidate_collapsed": true,
+          "all_noop_delta_vs_baseline": 1.0,
+          "high_threat_leak_delta_vs_baseline": 0.3125,
+          "reward_delta_vs_baseline": -36.9639879967924,
+          "damage_delta_vs_baseline": 1.0230371385450139,
+          "cost_delta_vs_baseline": -15.399999999999995,
+          "reward_delta_vs_rg_mch": -41.80507000945293,
+          "damage_delta_vs_rg_mch": 1.1953345373522877
+        },
+        {
+          "train_seed": 10,
+          "candidate_collapsed": true,
+          "all_noop_delta_vs_baseline": 0.0,
+          "high_threat_leak_delta_vs_baseline": 0.0,
+          "reward_delta_vs_baseline": 0.0,
+          "damage_delta_vs_baseline": 0.0,
+          "cost_delta_vs_baseline": 0.0,
+          "reward_delta_vs_rg_mch": -38.62730884468978,
+          "damage_delta_vs_rg_mch": 0.7878572280352589
+        }
+      ],
+      "all_noop_noninferior_seed_count": 2,
+      "all_noop_gate_passed": true,
+      "mean_reward_delta_vs_baseline": -12.321329332264128,
+      "mean_damage_delta_vs_baseline": 0.3410123795150044,
+      "mean_high_threat_leak_delta_vs_baseline": 0.10416666666666674,
+      "resource_cost_ratio_vs_baseline": 0.0,
+      "safety_gate_passed": false,
+      "cost_gate_passed": true,
+      "mean_reward_delta_vs_mch_v0": -3.782537383954093,
+      "mean_damage_delta_vs_mch_v0": 0.05548848326898481,
+      "mch_v0_gate_passed": false,
+      "mean_reward_delta_vs_rg_mch": -26.81079295138089,
+      "mean_damage_delta_vs_rg_mch": 0.6610639217958487,
+      "rg_noncatastrophic_gate_passed": false
+    },
+    "time_pressure": {
+      "paired_runs": [
+        {
+          "train_seed": 8,
+          "candidate_collapsed": true,
+          "all_noop_delta_vs_baseline": 1.0,
+          "high_threat_leak_delta_vs_baseline": 0.2833333333333333,
+          "reward_delta_vs_baseline": -41.64009665518981,
+          "damage_delta_vs_baseline": 1.0409262822327712,
+          "cost_delta_vs_baseline": -17.0,
+          "reward_delta_vs_rg_mch": -78.74510403930984,
+          "damage_delta_vs_rg_mch": 1.7430072388759519
+        },
+        {
+          "train_seed": 9,
+          "candidate_collapsed": false,
+          "all_noop_delta_vs_baseline": 0.0,
+          "high_threat_leak_delta_vs_baseline": 0.019230769230769218,
+          "reward_delta_vs_baseline": 3.3789840427209157,
+          "damage_delta_vs_baseline": -0.07936969214977196,
+          "cost_delta_vs_baseline": 0.0,
+          "reward_delta_vs_rg_mch": 3.2496975911061625,
+          "damage_delta_vs_rg_mch": -0.08578004408917295
+        },
+        {
+          "train_seed": 10,
+          "candidate_collapsed": true,
+          "all_noop_delta_vs_baseline": 1.0,
+          "high_threat_leak_delta_vs_baseline": 0.3484848484848485,
+          "reward_delta_vs_baseline": -54.5267531455192,
+          "damage_delta_vs_baseline": 1.273614813027239,
+          "cost_delta_vs_baseline": -16.95,
+          "reward_delta_vs_rg_mch": -11.911422359084824,
+          "damage_delta_vs_rg_mch": 0.2081365413957208
+        }
+      ],
+      "all_noop_noninferior_seed_count": 1,
+      "all_noop_gate_passed": false,
+      "mean_reward_delta_vs_baseline": -30.929288585996048,
+      "mean_damage_delta_vs_baseline": 0.7450571343700791,
+      "mean_high_threat_leak_delta_vs_baseline": 0.21701631701631707,
+      "resource_cost_ratio_vs_baseline": 0.3332242225859246,
+      "safety_gate_passed": false,
+      "cost_gate_passed": true,
+      "mean_reward_delta_vs_mch_v0": -20.838030966454127,
+      "mean_damage_delta_vs_mch_v0": 0.4506644734421168,
+      "mch_v0_gate_passed": false,
+      "mean_reward_delta_vs_rg_mch": -29.13560960242951,
+      "mean_damage_delta_vs_rg_mch": 0.6217879120608332,
+      "rg_noncatastrophic_gate_passed": false
+    }
+  },
+  "collapsed_candidate_run_count": 5,
+  "rg_mch_collapsed_run_count": 2,
+  "training_diagnostics": {
+    "mch_engagement_reliability": 0.11386525724083185,
+    "mch_target_reliability": 0.014005307583526397,
+    "mch_engagement_support": 0.1244294058221082,
+    "mch_target_support": 0.02175714580031733,
+    "mch_engagement_residual_abs": 0.04944755850980679,
+    "mch_target_residual_abs": 0.007614606617911098,
+    "mch_anchor_kl": 0.017133854225297302,
+    "mch_anchor_penalty": 0.0,
+    "mch_anchor_excess_rate": 0.0,
+    "training_time_ratio_vs_baseline": 1.3711484105722707
+  },
+  "gates": {
+    "structural_zero": true,
+    "no_collapsed_candidate_runs": false,
+    "all_noop_noninferiority": false,
+    "reward_damage_safety": false,
+    "high_threat_improvement": false,
+    "resource_cost": true,
+    "improves_mch_v0_both_scenarios": false,
+    "reduces_rg_mch_collapse_count": false,
+    "noncatastrophic_vs_rg_mch": false
+  },
+  "mechanism_gate_passed": false
+}

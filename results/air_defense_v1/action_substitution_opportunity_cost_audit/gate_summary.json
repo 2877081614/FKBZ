@@ -1,0 +1,64 @@
+{
+  "context_count": 72,
+  "integrity_rows": 5408,
+  "actual_extra_transitions": 219142,
+  "maximum_actor_parameter_difference": 0.0,
+  "integrity_gates": {
+    "context_count": true,
+    "context_identity": true,
+    "repeat_count": true,
+    "intervention_integrity": true,
+    "actor_frozen": true,
+    "transition_budget": true,
+    "software_regression": true
+  },
+  "P-R1": {
+    "time_resource_contexts": 18,
+    "positive_mean_sub_shot": 18,
+    "positive_lower_sub_shot": 18,
+    "nonpositive_total_cost_contexts": 11,
+    "explained_nonpositive_cost_contexts": 11,
+    "explained_fraction": 1.0,
+    "maximum_decomposition_error": 3.9968028886505635e-15
+  },
+  "reliable_resource_contexts": {
+    "time_pressure": 5,
+    "heterogeneity_pressure": 2
+  },
+  "reliable_safety_contexts": {
+    "time_pressure": 1,
+    "heterogeneity_pressure": 1
+  },
+  "resource_block_counts": {
+    "time_pressure/seed8": 1,
+    "time_pressure/seed9": 2,
+    "time_pressure/seed10": 2,
+    "heterogeneity_pressure/seed8": 0,
+    "heterogeneity_pressure/seed9": 2,
+    "heterogeneity_pressure/seed10": 0
+  },
+  "resource_attribution_fractions": {
+    "time_pressure": 1.0,
+    "heterogeneity_pressure": 1.0
+  },
+  "transition_efficiency": {
+    "time_pressure": {
+      "safety": 5.4872695346795435e-05,
+      "resource": 4.784505856235168e-05
+    },
+    "heterogeneity_pressure": {
+      "safety": 2.4499595756670014e-05,
+      "resource": 3.597316401964135e-05
+    }
+  },
+  "reliable_resource_unit_types": [
+    "missile"
+  ],
+  "mechanism_gates": {
+    "P-R1_action_substitution": true,
+    "P-R2_opportunity_value": false,
+    "P-R3_resource_criticality": false
+  },
+  "stage_passed": false,
+  "decision": "retain_substitution_stop_general_opportunity_route"
+}

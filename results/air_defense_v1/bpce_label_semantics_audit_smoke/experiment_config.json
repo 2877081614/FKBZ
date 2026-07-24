@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "started_at_utc": "2026-07-23T10:36:17.366252+00:00",
+  "task": "bpce_label_semantics_audit_stage_a",
+  "actor_updates": false,
+  "smoke": true,
+  "scenarios": [
+    "time_pressure"
+  ],
+  "policy_seeds": [
+    8
+  ],
+  "model_paths": {
+    "time_pressure/seed8": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\mch_ppo_mechanism_stress_test\\models\\time_pressure\\factorized_engagement_ar_ppo_order_012_seed8.zip"
+  },
+  "device": "cuda",
+  "audit_config": {
+    "contexts_per_slot": 1,
+    "pool_episodes": 2,
+    "repeats": 2,
+    "engagement_threshold": 0.5,
+    "minimum_return_effect": 1.0,
+    "confidence_z": 1.96,
+    "high_threat_threshold": 0.8,
+    "component_damage_tolerance": 0.05,
+    "component_high_threat_tolerance": 0.1,
+    "minimum_component_consistency": 0.8,
+    "context_base_seed": 973000,
+    "branch_base_seed": 983000
+  },
+  "frozen_gates": {
+    "total_contexts": 72,
+    "minimum_reliable_contexts": 48,
+    "minimum_reliable_per_block": 6,
+    "minimum_overall_a_b_sign_agreement": 0.8,
+    "minimum_worst_scenario_a_b_sign_agreement": 0.7,
+    "minimum_overall_b_c_sign_agreement": 0.8,
+    "minimum_worst_scenario_b_c_sign_agreement": 0.7,
+    "maximum_target_selection_sign_reversal": 0.2,
+    "minimum_positive_and_negative_per_scenario": 6,
+    "minimum_component_consistency": 0.8
+  },
+  "completed_at_utc": "2026-07-23T10:36:20.339639+00:00",
+  "result_counts": {
+    "contexts": 2,
+    "repeat_rows": 4,
+    "target_rows": 4,
+    "extra_transitions": 359
+  },
+  "stage_a_passed": false,
+  "label_decision": "deterministic_continuation_rejected",
+  "maximum_actor_parameter_difference": 0.0
+}

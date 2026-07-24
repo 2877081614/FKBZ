@@ -1,0 +1,5 @@
+﻿context_id,scenario,policy_seed,slot,repeat,short_zone_damage_delta,short_high_threat_leaks_delta,short_resource_cost_delta,full_zone_damage_delta,full_high_threat_leaks_delta,full_resource_cost_delta
+time_pressure_seed8_safety00_e06_t29_u2,time_pressure,8,safety,0,0.0,0.0,0.5,0.0,0.0,0.5
+time_pressure_seed8_safety00_e06_t29_u2,time_pressure,8,safety,1,0.0,0.0,0.5,0.0,0.0,0.5
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,0,-0.4651037256491999,-0.24366234242916107,-0.12183117121458054,-0.4651037256491999,-0.24366234242916107,-0.12183117121458054
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,1,-0.32662499074142315,0.0,0.0,-0.49450086856669295,0.0,0.0

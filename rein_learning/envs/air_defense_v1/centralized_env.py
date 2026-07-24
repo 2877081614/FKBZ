@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any
 
@@ -35,6 +36,16 @@ class UnitActionResult:
     hit: bool
     hit_probability: float
     action_type: str
+
+
+@dataclass(frozen=True)
+class AirDefenseV1StateSnapshot:
+    current_step: int
+    protected_zones: tuple[ProtectedZoneState, ...]
+    defense_units: tuple[DefenseUnitV1State, ...]
+    targets: tuple[TargetV1State, ...]
+    np_random_state: dict[str, Any]
+    hit_random_tape: np.ndarray | None
 
 
 class AirDefenseResourceAssignmentEnvV1(gym.Env):
@@ -89,6 +100,9 @@ class AirDefenseResourceAssignmentEnvV1(gym.Env):
         self.protected_zones: list[ProtectedZoneState] = []
         self.defense_units: list[DefenseUnitV1State] = []
         self.targets: list[TargetV1State] = []
+        self._hit_random_tape: np.ndarray | None = None
+        self._record_state_snapshots = False
+        self._recorded_state_snapshots: list[AirDefenseV1StateSnapshot] = []
 
     def reset(
         self,
@@ -113,6 +127,8 @@ class AirDefenseResourceAssignmentEnvV1(gym.Env):
         self,
         action: np.ndarray | list[int] | tuple[int, ...],
     ) -> tuple[np.ndarray, float, bool, bool, dict[str, Any]]:
+        if self._record_state_snapshots:
+            self._recorded_state_snapshots.append(self.snapshot_state())
         joint_action = np.asarray(action, dtype=np.int64)
         if not self.action_space.contains(joint_action):
             raise ValueError(f"Invalid joint action {action}")
@@ -240,6 +256,62 @@ class AirDefenseResourceAssignmentEnvV1(gym.Env):
     def action_masks(self) -> np.ndarray:
         return self.action_mask().reshape(-1)
 
+    def snapshot_state(self) -> AirDefenseV1StateSnapshot:
+        """Return a complete state copy suitable for counterfactual replay."""
+
+        return AirDefenseV1StateSnapshot(
+            current_step=self.current_step,
+            protected_zones=tuple(deepcopy(self.protected_zones)),
+            defense_units=tuple(deepcopy(self.defense_units)),
+            targets=tuple(deepcopy(self.targets)),
+            np_random_state=deepcopy(self.np_random.bit_generator.state),
+            hit_random_tape=(
+                None
+                if self._hit_random_tape is None
+                else self._hit_random_tape.copy()
+            ),
+        )
+
+    def restore_state(self, snapshot: AirDefenseV1StateSnapshot) -> None:
+        """Restore a state produced by :meth:`snapshot_state`."""
+
+        self.current_step = int(snapshot.current_step)
+        self.protected_zones = list(deepcopy(snapshot.protected_zones))
+        self.defense_units = list(deepcopy(snapshot.defense_units))
+        self.targets = list(deepcopy(snapshot.targets))
+        self.np_random.bit_generator.state = deepcopy(snapshot.np_random_state)
+        self._hit_random_tape = (
+            None
+            if snapshot.hit_random_tape is None
+            else snapshot.hit_random_tape.copy()
+        )
+
+    def set_hit_random_tape(self, tape: np.ndarray | None) -> None:
+        """Use target-indexed uniforms for paired counterfactual hit outcomes."""
+
+        if tape is None:
+            self._hit_random_tape = None
+            return
+        values = np.asarray(tape, dtype=np.float64)
+        expected_shape = (self.config.max_steps, self.num_targets)
+        if values.shape != expected_shape:
+            raise ValueError(
+                f"Hit random tape must have shape {expected_shape}, got {values.shape}"
+            )
+        if bool(np.any((values < 0.0) | (values >= 1.0))):
+            raise ValueError("Hit random tape values must be in [0, 1)")
+        self._hit_random_tape = values.copy()
+
+    def start_state_snapshot_recording(self) -> None:
+        self._recorded_state_snapshots = []
+        self._record_state_snapshots = True
+
+    def stop_state_snapshot_recording(self) -> tuple[AirDefenseV1StateSnapshot, ...]:
+        self._record_state_snapshots = False
+        snapshots = tuple(self._recorded_state_snapshots)
+        self._recorded_state_snapshots = []
+        return snapshots
+
     def is_unit_target_action_legal(self, unit_index: int, target_index: int) -> bool:
         if not (0 <= unit_index < self.num_defense_units):
             return False
@@ -332,7 +404,13 @@ class AirDefenseResourceAssignmentEnvV1(gym.Env):
             ]
             combined_miss_probability = float(np.prod([1.0 - p for p in probabilities]))
             combined_hit_probability = 1.0 - combined_miss_probability
-            hit = bool(self.np_random.random() < combined_hit_probability)
+            if self._hit_random_tape is None:
+                hit_uniform = float(self.np_random.random())
+            else:
+                hit_uniform = float(
+                    self._hit_random_tape[self.current_step, target_index]
+                )
+            hit = bool(hit_uniform < combined_hit_probability)
 
             if hit:
                 target.status = "intercepted"

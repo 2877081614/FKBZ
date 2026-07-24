@@ -1,0 +1,2 @@
+﻿scenario,policy_seed,status,elapsed_seconds,model_path
+time_pressure,17,loaded,6.859999848529696e-05,D:\huang\Programs\防空编组\results\air_defense_v1\action_substitution_confirmation_smoke\source_models\time_pressure\factorized_engagement_ar_ppo_order_012_seed17.zip

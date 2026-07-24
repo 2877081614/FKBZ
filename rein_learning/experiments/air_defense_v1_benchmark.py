@@ -51,9 +51,13 @@ from ..trainers.air_defense_v1_ppo import (
     AirDefenseV1PPOConfig,
     evaluate_air_defense_v1_model,
     train_autoregressive_maskable_ppo,
+    train_bpce_ppo,
     train_conflict_free_maskable_ppo,
     train_factorized_engagement_autoregressive_ppo,
     train_maskable_ppo,
+    train_mch_ppo,
+    train_rg_mch_ppo,
+    train_sa_rg_mch_ppo,
     train_ppo,
     train_role_conditioned_autoregressive_ppo,
 )
@@ -145,11 +149,31 @@ ROLE_CONDITIONED_ORDER_METHODS: dict[str, tuple[int, ...]] = {
 FACTORIZED_ENGAGEMENT_METHODS: dict[str, tuple[int, ...]] = {
     "factorized_engagement_ar_ppo_order_012": (0, 1, 2),
 }
+MCH_PPO_METHODS: dict[str, tuple[int, ...]] = {
+    "mch_ppo_order_012": (0, 1, 2),
+}
+RG_MCH_PPO_METHODS: dict[str, tuple[int, ...]] = {
+    "rg_mch_ppo_order_012": (0, 1, 2),
+}
+SA_RG_MCH_PPO_METHODS: dict[str, tuple[int, ...]] = {
+    "sa_rg_mch_ppo_order_012": (0, 1, 2),
+}
+BPCE_PPO_METHODS: dict[str, tuple[int, ...]] = {
+    "bpce_ppo_order_012": (0, 1, 2),
+}
+BPCE_RANDOM_PROBE_PPO_METHODS: dict[str, tuple[int, ...]] = {
+    "bpce_random_probe_ppo_order_012": (0, 1, 2),
+}
 LEARNING_METHODS = (
     DEFAULT_LEARNING_METHODS
     + tuple(AUTOREGRESSIVE_ORDER_METHODS)
     + tuple(ROLE_CONDITIONED_ORDER_METHODS)
     + tuple(FACTORIZED_ENGAGEMENT_METHODS)
+    + tuple(MCH_PPO_METHODS)
+    + tuple(RG_MCH_PPO_METHODS)
+    + tuple(SA_RG_MCH_PPO_METHODS)
+    + tuple(BPCE_PPO_METHODS)
+    + tuple(BPCE_RANDOM_PROBE_PPO_METHODS)
 )
 ALL_BENCHMARK_METHODS = tuple(RULE_POLICY_FACTORIES) + LEARNING_METHODS
 DEFAULT_BENCHMARK_METHODS = tuple(RULE_POLICY_FACTORIES) + DEFAULT_LEARNING_METHODS
@@ -494,14 +518,24 @@ def _method_action_generator_signature(
     num_targets: int,
     num_zones: int,
 ) -> dict[str, object]:
-    if method in FACTORIZED_ENGAGEMENT_METHODS:
-        unit_order = FACTORIZED_ENGAGEMENT_METHODS[method]
+    if (
+        method in FACTORIZED_ENGAGEMENT_METHODS
+        or method in MCH_PPO_METHODS
+        or method in RG_MCH_PPO_METHODS
+        or method in SA_RG_MCH_PPO_METHODS
+    ):
+        unit_order = (
+            FACTORIZED_ENGAGEMENT_METHODS.get(method)
+            or MCH_PPO_METHODS.get(method)
+            or RG_MCH_PPO_METHODS.get(method)
+            or SA_RG_MCH_PPO_METHODS[method]
+        )
         if len(unit_order) != num_units:
             raise ValueError(
                 f"Method {method!r} requires {len(unit_order)} units, "
                 f"but the environment has {num_units}"
             )
-        return {
+        signature = {
             "type": "factorized_engagement_autoregressive_conflict_free",
             "unit_order": list(unit_order),
             "conditional_target_mask": True,
@@ -520,6 +554,28 @@ def _method_action_generator_signature(
                 num_units=num_units,
             ).signature(),
         }
+        if method in MCH_PPO_METHODS:
+            signature["optimizer"] = {
+                "type": "masked_counterfactual_hierarchical_ppo",
+                "critic_source": "training.mch_q_critic_paths",
+            }
+        if method in RG_MCH_PPO_METHODS:
+            signature["optimizer"] = {
+                "type": "reliability_gated_mch_ppo",
+                "critic_source": "training.mch_q_critic_paths",
+                "base_advantage": "normalized_on_policy_gae",
+            }
+        if method in SA_RG_MCH_PPO_METHODS:
+            signature["optimizer"] = {
+                "type": "support_anchored_reliability_gated_mch_ppo",
+                "critic_source": "training.mch_q_critic_paths",
+                "support_source": "training.sa_rg_mch_support_dataset_path",
+                "base_advantage": "normalized_on_policy_gae",
+                "combined_reliability": (
+                    "ensemble_agreement_times_context_support"
+                ),
+            }
+        return signature
     if method in ROLE_CONDITIONED_ORDER_METHODS:
         unit_order = ROLE_CONDITIONED_ORDER_METHODS[method]
         if len(unit_order) != num_units:
@@ -1521,6 +1577,32 @@ def _train_learning_methods(
     )
     available_method_specs.update(
         {
+            method: (train_bpce_ppo, True, unit_order)
+            for method, unit_order in (
+                BPCE_PPO_METHODS | BPCE_RANDOM_PROBE_PPO_METHODS
+            ).items()
+        }
+    )
+    available_method_specs.update(
+        {
+            method: (train_rg_mch_ppo, True, unit_order)
+            for method, unit_order in RG_MCH_PPO_METHODS.items()
+        }
+    )
+    available_method_specs.update(
+        {
+            method: (train_sa_rg_mch_ppo, True, unit_order)
+            for method, unit_order in SA_RG_MCH_PPO_METHODS.items()
+        }
+    )
+    available_method_specs.update(
+        {
+            method: (train_mch_ppo, True, unit_order)
+            for method, unit_order in MCH_PPO_METHODS.items()
+        }
+    )
+    available_method_specs.update(
+        {
             method: (
                 train_factorized_engagement_autoregressive_ppo,
                 True,
@@ -1599,9 +1681,15 @@ def _train_learning_methods(
                 / f"{method}_seed{train_seed}.zip"
             )
         started = perf_counter()
+        method_training = training
+        if method in BPCE_RANDOM_PROBE_PPO_METHODS:
+            method_training = replace(
+                training,
+                bpce_probe_selection_mode="random",
+            )
         train_kwargs: dict[str, Any] = {
             "env_config": train_environment,
-            "train_config": training,
+            "train_config": method_training,
             "save_path": save_path,
             "callback": callback,
             "tb_log_name": f"{train_scenario}_{method}_seed{train_seed}",
@@ -1613,6 +1701,23 @@ def _train_learning_methods(
         )
         training_seconds = perf_counter() - started
         parameter_counts = policy_parameter_counts(model.policy)
+        mch_training_diagnostics = getattr(
+            model, "last_mch_training_diagnostics", {}
+        )
+        bpce_diagnostics = {
+            **{
+                f"bpce_probe_{key}": value
+                for key, value in getattr(
+                    model, "last_bpce_probe_diagnostics", {}
+                ).items()
+            },
+            **{
+                f"bpce_train_{key}": value
+                for key, value in getattr(
+                    model, "last_bpce_training_diagnostics", {}
+                ).items()
+            },
+        }
         for eval_scenario, environment, evaluation_seed in evaluation_blocks:
             method_episode_rows: list[MetricRow] = []
 
@@ -1698,11 +1803,13 @@ def _train_learning_methods(
                     "run_index": run_index,
                     "train_seed": train_seed,
                     "evaluation_seed": evaluation_seed,
-                    "requested_timesteps": training.total_timesteps,
+                    "requested_timesteps": method_training.total_timesteps,
                     "training_timesteps": int(model.num_timesteps),
                     "training_seconds": training_seconds,
                     "model_path": str(save_path) if save_path is not None else "",
                     **parameter_counts,
+                    **mch_training_diagnostics,
+                    **bpce_diagnostics,
                     **metrics,
                 }
             )
@@ -1933,6 +2040,49 @@ RUN_FIELDNAMES = (
     "critic_parameters",
     "shared_parameters",
     "total_parameters",
+    "mch_engagement_reliability",
+    "mch_target_reliability",
+    "mch_engagement_residual_abs",
+    "mch_target_residual_abs",
+    "mch_engagement_gate_active_rate",
+    "mch_target_gate_active_rate",
+    "mch_engagement_support",
+    "mch_target_support",
+    "mch_anchor_kl",
+    "mch_anchor_penalty",
+    "mch_anchor_excess_rate",
+    "bpce_probe_selected_count",
+    "bpce_probe_accepted_count",
+    "bpce_probe_acceptance_rate",
+    "bpce_probe_positive_count",
+    "bpce_probe_negative_count",
+    "bpce_probe_extra_transitions",
+    "bpce_probe_selected_mean_abs_delta",
+    "bpce_probe_selected_mean_sign_agreement",
+    "bpce_probe_effect_pass_rate",
+    "bpce_probe_agreement_pass_rate",
+    "bpce_probe_selected_mean_informative_repeats",
+    "bpce_probe_selected_mean_opposite_repeats",
+    "bpce_probe_cumulative_extra_transitions",
+    "bpce_probe_cumulative_probe_rollouts",
+    "bpce_probe_cumulative_selected_count",
+    "bpce_probe_cumulative_accepted_count",
+    "bpce_probe_cumulative_acceptance_rate",
+    "bpce_probe_cumulative_positive_count",
+    "bpce_probe_cumulative_negative_count",
+    "bpce_probe_cumulative_mean_abs_delta",
+    "bpce_probe_cumulative_mean_sign_agreement",
+    "bpce_probe_cumulative_effect_pass_rate",
+    "bpce_probe_cumulative_agreement_pass_rate",
+    "bpce_probe_cumulative_mean_informative_repeats",
+    "bpce_probe_cumulative_mean_opposite_repeats",
+    "bpce_train_auxiliary_loss",
+    "bpce_train_active_label_rate",
+    "bpce_train_joint_gradient_norm",
+    "bpce_train_auxiliary_gradient_norm",
+    "bpce_train_gradient_cosine",
+    "bpce_train_cumulative_auxiliary_train_calls",
+    "bpce_train_cumulative_mean_auxiliary_loss",
     "episodes",
     "avg_reward",
     "std_reward",

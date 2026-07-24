@@ -1,0 +1,5 @@
+﻿context_id,scenario,policy_seed,slot,repeat,unit_index,resource_type,direct_cost,current_other_delta,sub_cost_probe,sub_cost_other,sub_cost,sub_shot_probe,sub_shot_other,sub_shot,episode_cost_delta,rho_sub,cost_sign_masked,engage_transitions,first_substitution_step_expected
+confirm_time_pressure_seed17_resource00_e00_t04_u0,time_pressure,17,resource,0,0,missile,2.0,0.0,2.0,0.0,2.0,1.0,0.0,1.0,0.0,1.0,1.0,31.0,1.0
+confirm_time_pressure_seed17_resource00_e00_t04_u0,time_pressure,17,resource,1,0,missile,2.0,0.0,2.0,-0.5,1.5,1.0,-1.0,0.0,0.5,0.75,0.0,30.0,2.0
+confirm_time_pressure_seed17_resource03_e21_t04_u2,time_pressure,17,resource,0,2,laser,0.5,0.0,0.5,0.0,0.5,1.0,0.0,1.0,0.0,1.0,1.0,31.0,8.0
+confirm_time_pressure_seed17_resource03_e21_t04_u2,time_pressure,17,resource,1,2,laser,0.5,0.0,0.5,0.0,0.5,1.0,0.0,1.0,0.0,1.0,1.0,31.0,10.0

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "started_at_utc": "2026-07-23T15:47:05.727829+00:00",
+  "task": "action_substitution_independent_confirmation_r2",
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "policy_seeds": [
+    17,
+    18,
+    19
+  ],
+  "method": "factorized_engagement_ar_ppo_order_012",
+  "source_training": {
+    "requested_timesteps": 10000,
+    "n_steps": 256,
+    "batch_size": 64,
+    "n_epochs": 2,
+    "device": "cuda",
+    "behavior_selection": false
+  },
+  "confirmation_config": {
+    "contexts_per_slot": 6,
+    "resource_contexts_per_type": 3,
+    "pool_episodes": 24,
+    "repeats": 32,
+    "engagement_threshold": 0.5,
+    "confidence_z": 1.96,
+    "context_base_seed": 1283000,
+    "branch_base_seed": 1293000,
+    "probability_tolerance": 1e-12,
+    "decomposition_tolerance": 1e-06,
+    "maximum_extra_transitions": 266198
+  },
+  "old_hash_sources": [
+    {
+      "path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\bpce_label_semantics_audit\\context_labels.csv",
+      "rows": 72,
+      "hashes_available": 60
+    },
+    {
+      "path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\bpce_short_horizon_label_audit\\context_component_labels.csv",
+      "rows": 72,
+      "hashes_available": 60
+    },
+    {
+      "path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_opportunity_cost_audit\\context_opportunity_estimates.csv",
+      "rows": 72,
+      "hashes_available": 0
+    }
+  ],
+  "old_hash_count": 60,
+  "seed_usage_decision": "retain_17_18_19_no_prior_action_substitution_design_use",
+  "E-R_enabled": false,
+  "actor_updates_during_confirmation": false,
+  "completed_at_utc": "2026-07-23T16:08:23.470002+00:00",
+  "source_model_count": 9,
+  "software_tests_passed": true,
+  "result_counts": {
+    "identity_rows": 108,
+    "selected_contexts": 108,
+    "repeat_rows": 3456,
+    "target_ledger_rows": 7776,
+    "actual_extra_transitions": 157485
+  },
+  "maximum_actor_parameter_difference": 0.0,
+  "stage_passed": false,
+  "decision": "invalid_cost_ledger_fix_only"
+}

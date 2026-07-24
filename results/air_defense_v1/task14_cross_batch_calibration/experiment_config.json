@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "objective": "scenario_robust_reliable_cost",
+  "candidate_configs": [
+    {
+      "name": "score_platt",
+      "feature_set": "score_only",
+      "confidence_z": 0.0,
+      "l2": 0.01
+    },
+    {
+      "name": "value_platt",
+      "feature_set": "value_context",
+      "confidence_z": 0.0,
+      "l2": 0.01
+    },
+    {
+      "name": "value_lcb_050",
+      "feature_set": "value_context",
+      "confidence_z": 0.5,
+      "l2": 0.01
+    },
+    {
+      "name": "value_lcb_100",
+      "feature_set": "value_context",
+      "confidence_z": 1.0,
+      "l2": 0.01
+    }
+  ],
+  "scenario_levels": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "outer_validation": "leave_one_batch_out",
+  "selection_order": [
+    "feasible_seed_count",
+    "minimum_constraint_margin",
+    "mean_balanced_accuracy",
+    "mean_brier_score",
+    "simplicity"
+  ],
+  "minimum_oob_seed_count": 2,
+  "eval_seed": 941000,
+  "source_seeds": [
+    8,
+    10
+  ],
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "states_per_stratum": 12,
+  "episodes_per_stratum": 30,
+  "rollouts": 32,
+  "gamma": 0.98,
+  "model_seeds": [
+    20,
+    21,
+    22
+  ],
+  "confirmation_batches_used_for_fitting": 0,
+  "test_threshold_refit": false
+}

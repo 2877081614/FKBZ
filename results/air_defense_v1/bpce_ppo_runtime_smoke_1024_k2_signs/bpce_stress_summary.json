@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "methods": [
+    "factorized_engagement_ar_ppo_order_012",
+    "bpce_random_probe_ppo_order_012",
+    "bpce_ppo_order_012"
+  ],
+  "scenarios": {
+    "time_pressure": {
+      "paired_runs": [
+        {
+          "train_seed": 8,
+          "collapsed": false,
+          "all_noop_delta_vs_baseline": 0.0,
+          "reward_delta_vs_baseline": 0.0,
+          "damage_delta_vs_baseline": 0.0,
+          "high_threat_delta_vs_baseline": 0.0,
+          "reward_delta_vs_random": 0.0,
+          "damage_delta_vs_random": 0.0
+        }
+      ],
+      "all_noop_noninferior_seed_count": 1,
+      "mean_reward_delta_vs_baseline": 0.0,
+      "mean_damage_delta_vs_baseline": 0.0,
+      "mean_high_threat_leak_delta_vs_baseline": 0.0,
+      "resource_cost_ratio_vs_baseline": 1.0,
+      "mean_reward_delta_vs_random_probe": 0.0,
+      "mean_damage_delta_vs_random_probe": 0.0,
+      "boundary_probe_gate_passed": false
+    }
+  },
+  "collapsed_candidate_run_count": 0,
+  "training_diagnostics": {
+    "bpce_probe_cumulative_probe_rollouts": 2.0,
+    "bpce_probe_cumulative_selected_count": 4.0,
+    "bpce_probe_cumulative_accepted_count": 0.0,
+    "bpce_probe_cumulative_acceptance_rate": 0.0,
+    "bpce_probe_cumulative_positive_count": 0.0,
+    "bpce_probe_cumulative_negative_count": 0.0,
+    "bpce_probe_cumulative_mean_abs_delta": 5.978120923042297,
+    "bpce_probe_cumulative_mean_sign_agreement": 1.5,
+    "bpce_probe_cumulative_effect_pass_rate": 0.75,
+    "bpce_probe_cumulative_agreement_pass_rate": 0.0,
+    "bpce_probe_cumulative_mean_informative_repeats": 2.5,
+    "bpce_probe_cumulative_mean_opposite_repeats": 1.0,
+    "bpce_probe_cumulative_extra_transitions": 2341.0,
+    "training_time_ratio_vs_baseline": 1.783999433253368
+  },
+  "gates": {
+    "structural_zero": true,
+    "no_collapsed_candidate_runs": true,
+    "all_noop_noninferiority": true,
+    "high_threat_improvement": false,
+    "reward_damage_safety": true,
+    "resource_cost": true,
+    "boundary_beats_equal_budget_random": false,
+    "training_time_within_2x": true
+  },
+  "mechanism_gate_passed": false
+}

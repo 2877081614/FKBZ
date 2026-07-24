@@ -1,0 +1,3 @@
+﻿context_id,scenario,policy_seed,slot,minimum_horizon,maximum_horizon,mean_horizon,short_label,full_label,label_changed,short_zone_damage_mean,full_zone_damage_mean,short_high_threat_leaks_mean,full_high_threat_leaks_mean,short_resource_cost_mean,full_resource_cost_mean,extra_transitions,projected_window_transitions,projected_saved_transitions
+time_pressure_seed8_safety00_e06_t29_u2,time_pressure,8,safety,2,2,2.0,STOP,STOP,False,0.0,0.0,0.0,0.0,0.5,0.5,4,4,0
+time_pressure_seed8_resource00_e08_t04_u0,time_pressure,8,resource,21,30,26.75,AMBIGUOUS,AMBIGUOUS,False,-0.3958643581953115,-0.4798022971079464,-0.12183117121458054,-0.12183117121458054,-0.06091558560729027,-0.06091558560729027,258,246,12

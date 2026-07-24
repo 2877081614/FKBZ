@@ -1,0 +1,78 @@
+{
+  "context_count": 72,
+  "reliable_counts": {
+    "a": 29,
+    "b": 32,
+    "c": 25
+  },
+  "block_reliable_c": {
+    "heterogeneity_pressure/seed8": 6,
+    "heterogeneity_pressure/seed9": 2,
+    "heterogeneity_pressure/seed10": 7,
+    "time_pressure/seed8": 6,
+    "time_pressure/seed9": 0,
+    "time_pressure/seed10": 4
+  },
+  "a_b_agreement": {
+    "rate": 0.9014084507042254,
+    "count": 71
+  },
+  "b_c_agreement": {
+    "rate": 0.7777777777777778,
+    "count": 72
+  },
+  "reliable_overlap_agreement": {
+    "a_b": {
+      "rate": 1.0,
+      "count": 24
+    },
+    "b_c": {
+      "rate": 1.0,
+      "count": 20
+    }
+  },
+  "scenario_agreements": {
+    "heterogeneity_pressure": {
+      "a_b_rate": 0.9722222222222222,
+      "a_b_count": 36,
+      "b_c_rate": 0.8333333333333334,
+      "b_c_count": 36
+    },
+    "time_pressure": {
+      "a_b_rate": 0.8285714285714286,
+      "a_b_count": 35,
+      "b_c_rate": 0.7222222222222222,
+      "b_c_count": 36
+    }
+  },
+  "target_selection_reversal_rate": 0.0,
+  "target_selection_eligible_count": 24,
+  "bidirectional_coverage": {
+    "heterogeneity_pressure": {
+      "positive": 14,
+      "negative": 1,
+      "passed": false
+    },
+    "time_pressure": {
+      "positive": 10,
+      "negative": 0,
+      "passed": false
+    }
+  },
+  "component_consistency_rate": 1.0,
+  "component_positive_count": 24,
+  "gates": {
+    "exact_context_count": true,
+    "overall_label_power": false,
+    "block_label_power": false,
+    "a_b_sign_agreement": true,
+    "b_c_sign_agreement": false,
+    "target_selection_confounding": true,
+    "bidirectional_coverage": false,
+    "component_consistency": true
+  },
+  "stage_a_passed": false,
+  "label_decision": "deterministic_continuation_rejected",
+  "maximum_actor_parameter_difference": 0.0,
+  "actor_unchanged": true
+}

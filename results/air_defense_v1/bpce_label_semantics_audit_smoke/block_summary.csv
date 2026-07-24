@@ -1,0 +1,2 @@
+﻿scenario,policy_seed,contexts,a_reliable,a_positive,a_negative,b_reliable,b_positive,b_negative,c_reliable,c_positive,c_negative,a_b_agreement,a_b_eligible,b_c_agreement,b_c_eligible,target_sign_reversal_count,mean_argmax_target_regret,extra_transitions
+time_pressure,8,2,0,0,0,0,0,0,0,0,0,0.0,0,0.0,0,0,0.0,359

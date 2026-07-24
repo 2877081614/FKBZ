@@ -1,0 +1,26 @@
+{
+  "created_at_utc": "2026-07-23T15:47:05.722846+00:00",
+  "requested_seeds": [
+    17,
+    18,
+    19
+  ],
+  "replacement_required": false,
+  "factorized_source_models_found_before_task": [
+    "results\\air_defense_v1\\action_substitution_confirmation_smoke\\source_models\\time_pressure\\factorized_engagement_ar_ppo_order_012_seed17.zip"
+  ],
+  "action_substitution_or_cost_label_design_use": [],
+  "incidental_non_policy_uses": {
+    "unit_tests": [
+      17,
+      19
+    ],
+    "task14_predictor_training": [
+      17,
+      18,
+      19
+    ]
+  },
+  "decision": "retain_17_18_19_no_prior_action_substitution_design_use",
+  "audit_scope": "Existing result/model names and project text were checked before source-model training; incidental test or predictor seeds do not constitute action-substitution policy selection."
+}

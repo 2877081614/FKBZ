@@ -1,0 +1,7 @@
+﻿scenario,policy_seed,contexts,a_reliable,a_positive,a_negative,b_reliable,b_positive,b_negative,c_reliable,c_positive,c_negative,a_b_agreement,a_b_eligible,b_c_agreement,b_c_eligible,target_sign_reversal_count,mean_argmax_target_regret,extra_transitions
+heterogeneity_pressure,8,12,8,8,0,9,9,0,6,6,0,1.0,6,1.0,6,0,6.768934880287779,24683
+heterogeneity_pressure,9,12,3,1,2,1,1,0,2,1,1,0.0,0,0.0,0,0,3.881622121200595,75915
+heterogeneity_pressure,10,12,11,11,0,12,12,0,7,7,0,1.0,11,1.0,7,0,4.988241410283224,19690
+time_pressure,8,12,6,6,0,6,6,0,6,6,0,1.0,6,1.0,6,0,2.533231620677902,40116
+time_pressure,9,12,0,0,0,3,3,0,0,0,0,0.0,0,0.0,0,0,1.9522739123684563,56949
+time_pressure,10,12,1,1,0,1,1,0,4,4,0,1.0,1,1.0,1,0,0.7834883025476493,48845

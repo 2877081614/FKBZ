@@ -1,0 +1,52 @@
+{
+  "context_count": 2,
+  "reliable_counts": {
+    "a": 0,
+    "b": 0,
+    "c": 0
+  },
+  "block_reliable_c": {
+    "time_pressure/seed8": 0
+  },
+  "a_b_agreement": {
+    "rate": 0.0,
+    "count": 0
+  },
+  "b_c_agreement": {
+    "rate": 0.0,
+    "count": 0
+  },
+  "scenario_agreements": {
+    "time_pressure": {
+      "a_b_rate": 0.0,
+      "a_b_count": 0,
+      "b_c_rate": 0.0,
+      "b_c_count": 0
+    }
+  },
+  "target_selection_reversal_rate": 1.0,
+  "target_selection_eligible_count": 0,
+  "bidirectional_coverage": {
+    "time_pressure": {
+      "positive": 0,
+      "negative": 0,
+      "passed": false
+    }
+  },
+  "component_consistency_rate": 0.0,
+  "component_positive_count": 0,
+  "gates": {
+    "exact_context_count": false,
+    "overall_label_power": false,
+    "block_label_power": false,
+    "a_b_sign_agreement": false,
+    "b_c_sign_agreement": false,
+    "target_selection_confounding": false,
+    "bidirectional_coverage": false,
+    "component_consistency": false
+  },
+  "stage_a_passed": false,
+  "label_decision": "deterministic_continuation_rejected",
+  "maximum_actor_parameter_difference": 0.0,
+  "actor_unchanged": true
+}

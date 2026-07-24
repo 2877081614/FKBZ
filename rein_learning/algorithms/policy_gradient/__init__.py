@@ -22,6 +22,15 @@ from .factorized_engagement_ppo import (
     FactorizedEngagementMaskablePPO,
     factorized_engagement_action_generator_signature,
 )
+from .mch_ppo import (
+    MaskedCounterfactualHierarchicalPPO,
+    ReliabilityGatedMCHPPO,
+    SupportAnchoredRGMCHPPO,
+)
+from .bpce_ppo import (
+    BPCEMaskableRolloutBuffer,
+    BoundaryProbedCounterfactualEngagementPPO,
+)
 
 __all__ = [
     "AUTOREGRESSIVE_ACTION_GENERATOR_SIGNATURE",
@@ -31,6 +40,11 @@ __all__ = [
     "RoleConditionedAutoregressiveMaskablePPO",
     "FactorizedEngagementActorCriticPolicy",
     "FactorizedEngagementMaskablePPO",
+    "MaskedCounterfactualHierarchicalPPO",
+    "ReliabilityGatedMCHPPO",
+    "SupportAnchoredRGMCHPPO",
+    "BPCEMaskableRolloutBuffer",
+    "BoundaryProbedCounterfactualEngagementPPO",
     "factorized_engagement_action_generator_signature",
     "policy_parameter_counts",
     "role_conditioned_action_generator_signature",

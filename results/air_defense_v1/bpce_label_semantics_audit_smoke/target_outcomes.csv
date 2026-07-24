@@ -1,0 +1,5 @@
+﻿context_id,scenario,policy_seed,slot,unit_index,target_index,conditional_probability,is_argmax_target,det_total_return_mean,stochastic_total_return_mean,det_delta_mean,stochastic_delta_mean
+time_pressure_seed8_safety00_e01_t23_u2,time_pressure,8,safety,2,3,1.0,True,-19.73476485394499,-19.73476485394499,-0.5,-0.5
+time_pressure_seed8_resource00_e00_t04_u0,time_pressure,8,resource,0,1,0.3153226971626282,False,-54.00075496202601,-42.231262729411135,0.0,-12.886726778834554
+time_pressure_seed8_resource00_e00_t04_u0,time_pressure,8,resource,0,2,0.34695062041282654,True,-54.00075496202601,-42.231262729411135,0.0,-12.886726778834554
+time_pressure_seed8_resource00_e00_t04_u0,time_pressure,8,resource,0,4,0.3377266824245453,False,-54.00075496202601,-42.231262729411135,0.0,-12.886726778834554

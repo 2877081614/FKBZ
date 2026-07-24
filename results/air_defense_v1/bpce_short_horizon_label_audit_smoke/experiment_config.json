@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "started_at_utc": "2026-07-23T11:59:40.952377+00:00",
+  "task": "bpce_short_horizon_component_label_audit_stage_a2",
+  "actor_updates": false,
+  "smoke": true,
+  "scenarios": [
+    "time_pressure"
+  ],
+  "policy_seeds": [
+    8
+  ],
+  "model_paths": {
+    "time_pressure/seed8": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\mch_ppo_mechanism_stress_test\\models\\time_pressure\\factorized_engagement_ar_ppo_order_012_seed8.zip"
+  },
+  "reference_contexts": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\bpce_label_semantics_audit\\context_labels.csv",
+  "device": "cuda",
+  "audit_config": {
+    "repeats": 2,
+    "confidence_z": 1.96,
+    "damage_equivalence": 0.05,
+    "high_threat_equivalence": 0.1,
+    "high_threat_threshold": 0.8,
+    "branch_base_seed": 983000,
+    "identity_probability_tolerance": 1e-09,
+    "maximum_extra_transitions": 266198
+  },
+  "event_horizon": "min(remaining_episode_steps, ceil(time_to_impact) + 1)",
+  "frozen_gates": {
+    "contexts": 72,
+    "repeats_per_context": 32,
+    "actionable_labels": 48,
+    "actionable_labels_per_block": 6,
+    "engage_and_stop_per_scenario": 6,
+    "engage_and_stop_per_block": 2,
+    "maximum_extra_transitions": 266198
+  },
+  "completed_at_utc": "2026-07-23T11:59:45.066431+00:00",
+  "software_tests_passed": true,
+  "result_counts": {
+    "identity_rows": 12,
+    "contexts": 2,
+    "repeat_rows": 4,
+    "target_horizon_rows": 5,
+    "extra_transitions": 262
+  },
+  "stage_a2_passed": false,
+  "decision": "pause_bpce_online_auxiliary",
+  "maximum_actor_parameter_difference": 0.0
+}

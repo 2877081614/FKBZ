@@ -398,6 +398,161 @@ docs/algorithms/multibatch_engagement_value_generalization.md
 docs/experiments/air_defense_v1_task14_multibatch_leave_one_out.md
 ```
 
+## Task 14: OOB Safety-Stop Pareto Calibration
+
+This stage reuses frozen leave-one-batch-out predictions and enumerates every
+distinct binary decision boundary induced by each continuous score. It audits
+pooled, per-batch, and per-scenario engage/no-op recall without new rollouts or
+final-test access.
+
+At zero threshold, the selected reliable-cost objective was feasible for only
+1/3 seeds. Seed-specific robust calibration found 23/20/2 feasible thresholds
+for seeds 20/21/22, so the preregistered gate passed at 3/3. Seed 22 retained
+zero minimum margin and a narrow feasible interval; a shared raw threshold
+passed at most 2/3 seeds. The result identifies usable ranking with seed-scale
+drift, not yet stable independent generalization.
+
+```text
+rein_learning/common/pareto_feasibility.py
+scripts/run_air_defense_v1_task14_oob_pareto_audit.py
+docs/algorithms/oob_safety_stop_pareto_calibration.md
+docs/experiments/air_defense_v1_task14_oob_pareto_audit.md
+```
+
+## Task 14: Frozen OOB Calibration Independent Confirmation
+
+This stage freezes the selected objective, three final checkpoints, and the
+seed-specific OOB thresholds before generating one new 72-state batch. It
+performs no retraining or threshold search and audits overlap against all
+historical task-14 datasets.
+
+Data integrity and power passed, with 81 reliable groups and zero overlap
+against 19 historical datasets. Frozen thresholds passed 0/3 seeds. Seeds
+20/21 retained engage recall but fell to 0.478/0.435 no-op recall; seed 22
+reached 0.565 no-op recall but fell to 0.364 worst-scenario engage recall.
+Safety-sign accuracy remained above 0.74, so the remaining failure is unstable
+cross-batch score calibration and constrained decision semantics. MCH-PPO
+remains frozen.
+
+```text
+rein_learning/common/independent_confirmation.py
+scripts/run_air_defense_v1_task14_independent_confirmation.py
+docs/experiments/air_defense_v1_task14_independent_confirmation.md
+```
+
+## Task 14: Cross-Batch Probability and Uncertainty Calibration
+
+This stage fits per-seed weighted logistic calibrators with equal
+batch-scenario-class mass and derives conservative decisions from the inverse
+Hessian prediction error. Four score/value and confidence-bound candidates are
+evaluated with outer leave-one-batch-out validation before any new rollout.
+
+All candidates were feasible for 0/3 seeds. Score-only Platt retained 0.781
+mean balanced accuracy, but worst-batch no-op recall was 0.550/0.333/0.475.
+Value-context standard errors rose to 1.235-1.797, and confidence bounds traded
+over-engagement for complete engage failure in one held batch. The independent
+batch gate was therefore not opened. Linear calibration is retained only as a
+diagnostic; MCH-PPO remains frozen pending an explicit multi-constraint value
+representation.
+
+```text
+rein_learning/common/cross_batch_calibration.py
+scripts/run_air_defense_v1_task14_cross_batch_calibration.py
+docs/algorithms/cross_batch_uncertainty_calibration.md
+docs/experiments/air_defense_v1_task14_cross_batch_calibration.md
+```
+
+## MCH-PPO Mechanism Stress Prototype
+
+`MaskedCounterfactualHierarchicalPPO` is now implemented as an exploratory
+online optimizer. It uses a frozen hierarchical Q-Critic ensemble to construct
+masked per-unit engagement and conditional-target advantages, then applies
+separate PPO ratios and clipping to both factors. Joint GAE remains the value
+function target.
+
+The preregistered 10k, three-seed, two-scenario stress test failed its mechanism
+gate. Three of six matched candidate runs collapsed to no-op, and mean
+high-threat leak and damage both increased in both core scenarios. The code is
+therefore an implemented research prototype, not a validated algorithm. A
+single successful `time_pressure/seed9` run must not be selected as proof of
+general superiority.
+
+```text
+rein_learning/algorithms/policy_gradient/mch_ppo.py
+scripts/run_air_defense_v1_mch_ppo_stress_test.py
+docs/experiments/air_defense_v1_mch_ppo_mechanism_stress_test.md
+```
+
+## Reliability-Gated MCH-PPO
+
+`ReliabilityGatedMCHPPO` keeps normalized on-policy GAE as the actor's global
+credit and adds bounded counterfactual residuals weighted by critic-ensemble
+directional agreement. It records factor-level reliability, residual magnitude,
+and gate activation in the unified benchmark rows.
+
+The frozen 10k, three-seed, two-scenario test improved reward and damage over
+MCH-PPO v0 in both scenarios. Heterogeneity pressure also improved reward by
+14.49 and damage by 0.320 versus factorized PPO. The overall gate still failed:
+two of six matched runs collapsed, and heterogeneity resource cost reached
+125.9% of baseline. Mean engagement reliability/gate activation was
+0.884/0.888, showing that ensemble agreement is overconfident under shared
+distribution shift. RG-MCH is a positive mechanism result but not yet a
+validated final algorithm.
+
+```text
+rein_learning/algorithms/policy_gradient/mch_ppo.py
+scripts/run_air_defense_v1_rg_mch_ppo_stress_test.py
+docs/experiments/air_defense_v1_rg_mch_ppo_stress_test.md
+```
+
+## Support-Anchored RG-MCH-PPO
+
+`SupportAnchoredRGMCHPPO` adds nearest-neighbor support from the Q-Critic train
+split and a cumulative engagement KL constraint relative to the initial actor.
+The support context includes observation, unit identity, prefix occupancy, legal
+mask, and the selected target for conditional target support.
+
+The frozen 10k stress test failed with five of six matched runs collapsing to
+no-op. Mean engagement/target support was 0.124/0.022, reducing counterfactual
+residuals to 0.049/0.008. Initial-anchor KL averaged only 0.017, so the 0.10
+budget never activated. This exposes a deeper optimizer issue: with the
+counterfactual term disabled, separate hierarchical ratios/clips do not recover
+the validated joint-ratio factorized PPO objective. SA-RG-MCH is retained as a
+falsified ablation and diagnostic implementation, not an active candidate.
+
+```text
+rein_learning/common/masked_context_support.py
+rein_learning/algorithms/policy_gradient/mch_ppo.py
+scripts/run_air_defense_v1_sa_rg_mch_ppo_stress_test.py
+docs/experiments/air_defense_v1_sa_rg_mch_ppo_stress_test.md
+```
+
+## Boundary-Probed Counterfactual Engagement PPO
+
+`BoundaryProbedCounterfactualEngagementPPO` retains the complete factorized
+joint PPO ratio and clipped surrogate. It records on-policy environment
+snapshots, selects engagement contexts near the deterministic decision
+boundary, and performs paired no-op/engage continuations using target-indexed
+common random tapes. Accepted return directions add a small engagement-logit
+ranking loss; zero budget or rejected labels call the original joint PPO train
+path exactly.
+
+The frozen 10k, three-seed, two-scenario test failed its mechanism gate. Two of
+six matched runs collapsed to all-noop. Heterogeneity pressure improved mean
+reward by 21.686 and damage by 0.509 versus factorized PPO, but resource cost
+reached 192.8% of baseline. Boundary selection beat equal-budget random probing
+only in time pressure. Seed9 received only negative accepted labels in both
+scenarios and collapsed, identifying bidirectional label coverage and auxiliary
+update dosage as the next mechanism bottleneck. BPCE v0 is an implemented,
+partially positive research prototype, not a validated final algorithm.
+
+```text
+rein_learning/common/boundary_counterfactual_probe.py
+rein_learning/algorithms/policy_gradient/bpce_ppo.py
+scripts/run_air_defense_v1_bpce_ppo_stress_test.py
+docs/experiments/air_defense_v1_bpce_ppo_stress_test.md
+```
+
 ## Verification
 
 ```powershell
@@ -407,7 +562,9 @@ conda run -n rein-learning python -m pytest tests
 Latest verification:
 
 ```text
-207 passed
+242 passed
+BPCE focused regression after final additions: 14 passed
+SA-RG-MCH focused regression: 24 passed
 Q-learning greedy evaluation: total_reward=3.0, steps=8
 DQN greedy evaluation: total_reward=3.0, steps=8, device=cuda
 REINFORCE smoke train: episode=001, avg_reward=-33.00, loss=0.0051, device=cuda

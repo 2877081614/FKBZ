@@ -1,0 +1,87 @@
+{
+  "context_count": 108,
+  "repeat_rows": 3456,
+  "target_ledger_rows": 7776,
+  "actual_extra_transitions": 157485,
+  "maximum_actor_parameter_difference": 0.0,
+  "maximum_protocol_decomposition_error": 8.881784197001252e-16,
+  "maximum_extended_decomposition_error": 8.881784197001252e-16,
+  "maximum_future_only_decomposition_error": 2.0,
+  "maximum_sub_cost_decomposition_error": 8.881784197001252e-16,
+  "integrity_gates": {
+    "source_models": true,
+    "context_count": true,
+    "old_hash_overlap_zero": true,
+    "context_identity": true,
+    "resource_type_quotas": true,
+    "repeat_count": true,
+    "actor_frozen": true,
+    "transition_budget": true,
+    "software_regression": true
+  },
+  "P-C2": {
+    "positive_mean_sub_shot": 13,
+    "positive_lower_sub_shot": 13,
+    "positive_block_lower_seeds": 3,
+    "masked_rate_at_least_half_seeds": 2,
+    "nonpositive_contexts": 7,
+    "nonpositive_with_positive_sub_cost": 7,
+    "nonpositive_explained_fraction": 1.0,
+    "seed_block_intervals": {
+      "17": {
+        "mean": 0.8777779773809016,
+        "standard_error": 0.06184893649588178,
+        "lower": 0.7565540618489733,
+        "upper": 0.9990018929128298
+      },
+      "18": {
+        "mean": 0.2604166666666667,
+        "standard_error": 0.1182188413259259,
+        "lower": 0.028707737667851924,
+        "upper": 0.4921255956654814
+      },
+      "19": {
+        "mean": 0.5109768958451847,
+        "standard_error": 0.17596140632508647,
+        "lower": 0.16609253944801522,
+        "upper": 0.8558612522423541
+      }
+    },
+    "seed_masked_rates": {
+      "17": 0.96875,
+      "18": 0.2708333333333333,
+      "19": 0.5260416666666666
+    }
+  },
+  "P-C3": {
+    "missile": {
+      "contexts": 9,
+      "sub_shot_interval": {
+        "mean": 0.3733797626983788,
+        "standard_error": 0.1224569911225813,
+        "lower": 0.13336406009811946,
+        "upper": 0.6133954652986382
+      },
+      "positive_seed_blocks": 3,
+      "masked_contexts": 2
+    },
+    "laser": {
+      "contexts": 9,
+      "sub_shot_interval": {
+        "mean": 0.7260679305634565,
+        "standard_error": 0.11668912006363602,
+        "lower": 0.4973572552387299,
+        "upper": 0.9547786058881831
+      },
+      "positive_seed_blocks": 3,
+      "masked_contexts": 5
+    }
+  },
+  "mechanism_gates": {
+    "P-C1_cost_decomposition": true,
+    "P-C2_independent_substitution": true,
+    "P-C3_cross_resource_type": false
+  },
+  "stage_passed": false,
+  "decision": "freeze_resource_type_conditional_claim"
+}

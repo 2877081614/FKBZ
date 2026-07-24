@@ -1,0 +1,62 @@
+{
+  "context_count": 2,
+  "integrity_rows": 10,
+  "actual_extra_transitions": 468,
+  "maximum_actor_parameter_difference": 0.0,
+  "integrity_gates": {
+    "context_count": false,
+    "context_identity": false,
+    "repeat_count": true,
+    "intervention_integrity": true,
+    "actor_frozen": true,
+    "transition_budget": true,
+    "software_regression": false
+  },
+  "P-R1": {
+    "time_resource_contexts": 1,
+    "positive_mean_sub_shot": 1,
+    "positive_lower_sub_shot": 1,
+    "nonpositive_total_cost_contexts": 1,
+    "explained_nonpositive_cost_contexts": 1,
+    "explained_fraction": 1.0,
+    "maximum_decomposition_error": 0.0
+  },
+  "reliable_resource_contexts": {
+    "time_pressure": 0,
+    "heterogeneity_pressure": 0
+  },
+  "reliable_safety_contexts": {
+    "time_pressure": 0,
+    "heterogeneity_pressure": 0
+  },
+  "resource_block_counts": {
+    "time_pressure/seed8": 0,
+    "time_pressure/seed9": 0,
+    "time_pressure/seed10": 0,
+    "heterogeneity_pressure/seed8": 0,
+    "heterogeneity_pressure/seed9": 0,
+    "heterogeneity_pressure/seed10": 0
+  },
+  "resource_attribution_fractions": {
+    "time_pressure": 0.0,
+    "heterogeneity_pressure": 0.0
+  },
+  "transition_efficiency": {
+    "time_pressure": {
+      "safety": 0.0,
+      "resource": 0.0
+    },
+    "heterogeneity_pressure": {
+      "safety": 0.0,
+      "resource": 0.0
+    }
+  },
+  "reliable_resource_unit_types": [],
+  "mechanism_gates": {
+    "P-R1_action_substitution": false,
+    "P-R2_opportunity_value": false,
+    "P-R3_resource_criticality": false
+  },
+  "stage_passed": false,
+  "decision": "invalidate_results_intervention_or_integrity_failure"
+}

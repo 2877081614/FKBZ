@@ -1,0 +1,86 @@
+{
+  "context_count": 2,
+  "repeat_rows": 4,
+  "target_ledger_rows": 6,
+  "actual_extra_transitions": 308,
+  "maximum_actor_parameter_difference": 0.0,
+  "maximum_protocol_decomposition_error": 0.0,
+  "maximum_extended_decomposition_error": 0.0,
+  "maximum_sub_cost_decomposition_error": 0.0,
+  "integrity_gates": {
+    "source_models": false,
+    "context_count": false,
+    "old_hash_overlap_zero": true,
+    "context_identity": false,
+    "resource_type_quotas": false,
+    "repeat_count": true,
+    "actor_frozen": true,
+    "transition_budget": true,
+    "software_regression": false
+  },
+  "P-C2": {
+    "positive_mean_sub_shot": 2,
+    "positive_lower_sub_shot": 1,
+    "positive_block_lower_seeds": 1,
+    "masked_rate_at_least_half_seeds": 1,
+    "nonpositive_contexts": 1,
+    "nonpositive_with_positive_sub_cost": 1,
+    "nonpositive_explained_fraction": 1.0,
+    "seed_block_intervals": {
+      "17": {
+        "mean": 0.75,
+        "standard_error": 0.25,
+        "lower": 0.26,
+        "upper": 1.24
+      },
+      "18": {
+        "mean": NaN,
+        "standard_error": NaN,
+        "lower": NaN,
+        "upper": NaN
+      },
+      "19": {
+        "mean": NaN,
+        "standard_error": NaN,
+        "lower": NaN,
+        "upper": NaN
+      }
+    },
+    "seed_masked_rates": {
+      "17": 0.75,
+      "18": NaN,
+      "19": NaN
+    }
+  },
+  "P-C3": {
+    "missile": {
+      "contexts": 1,
+      "sub_shot_interval": {
+        "mean": 0.5,
+        "standard_error": 0.0,
+        "lower": 0.5,
+        "upper": 0.5
+      },
+      "positive_seed_blocks": 1,
+      "masked_contexts": 0
+    },
+    "laser": {
+      "contexts": 1,
+      "sub_shot_interval": {
+        "mean": 1.0,
+        "standard_error": 0.0,
+        "lower": 1.0,
+        "upper": 1.0
+      },
+      "positive_seed_blocks": 1,
+      "masked_contexts": 1
+    }
+  },
+  "mechanism_gates": {
+    "P-C1_cost_decomposition": true,
+    "P-C2_independent_substitution": false,
+    "P-C3_cross_resource_type": false
+  },
+  "stage_passed": false,
+  "decision": "independent_confirmation_invalid_data_integrity"
+}

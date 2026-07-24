@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "methods": [
+    "factorized_engagement_ar_ppo_order_012",
+    "mch_ppo_order_012"
+  ],
+  "scenarios": {
+    "time_pressure": {
+      "paired_runs": [
+        {
+          "train_seed": 8,
+          "all_noop_delta": 1.0,
+          "high_threat_leak_delta": 0.0,
+          "resource_cost_delta": -17.0,
+          "reward_delta": -20.596518180757215,
+          "damage_delta": 0.583181108986091
+        }
+      ],
+      "all_noop_noninferior_seed_count": 0,
+      "all_noop_gate_passed": false,
+      "mean_high_threat_leak_delta": 0.0,
+      "resource_cost_ratio": 0.0,
+      "cost_gate_passed": true,
+      "mean_reward_delta": -20.596518180757215,
+      "mean_damage_delta": 0.583181108986091,
+      "safety_gate_passed": false
+    }
+  },
+  "gates": {
+    "structural_zero": true,
+    "all_noop_noninferiority": false,
+    "high_threat_improvement": false,
+    "resource_cost": true,
+    "reward_damage_safety": false
+  },
+  "mechanism_gate_passed": false
+}

@@ -1,0 +1,118 @@
+{
+  "context_count": 72,
+  "short_label_counts": {
+    "ENGAGE": 15,
+    "STOP": 16,
+    "AMBIGUOUS": 41
+  },
+  "full_label_counts": {
+    "ENGAGE": 14,
+    "STOP": 13,
+    "AMBIGUOUS": 45
+  },
+  "block_counts": {
+    "heterogeneity_pressure/seed8": {
+      "ENGAGE": 5,
+      "STOP": 4,
+      "AMBIGUOUS": 3
+    },
+    "heterogeneity_pressure/seed9": {
+      "ENGAGE": 0,
+      "STOP": 4,
+      "AMBIGUOUS": 8
+    },
+    "heterogeneity_pressure/seed10": {
+      "ENGAGE": 5,
+      "STOP": 6,
+      "AMBIGUOUS": 1
+    },
+    "time_pressure/seed8": {
+      "ENGAGE": 4,
+      "STOP": 0,
+      "AMBIGUOUS": 8
+    },
+    "time_pressure/seed9": {
+      "ENGAGE": 0,
+      "STOP": 2,
+      "AMBIGUOUS": 10
+    },
+    "time_pressure/seed10": {
+      "ENGAGE": 1,
+      "STOP": 0,
+      "AMBIGUOUS": 11
+    }
+  },
+  "scenario_counts": {
+    "heterogeneity_pressure": {
+      "ENGAGE": 10,
+      "STOP": 14,
+      "AMBIGUOUS": 12
+    },
+    "time_pressure": {
+      "ENGAGE": 5,
+      "STOP": 2,
+      "AMBIGUOUS": 29
+    }
+  },
+  "slot_counts": {
+    "heterogeneity_pressure/safety": {
+      "ENGAGE": 9,
+      "STOP": 4,
+      "AMBIGUOUS": 5
+    },
+    "heterogeneity_pressure/resource": {
+      "ENGAGE": 1,
+      "STOP": 10,
+      "AMBIGUOUS": 7
+    },
+    "time_pressure/safety": {
+      "ENGAGE": 5,
+      "STOP": 2,
+      "AMBIGUOUS": 11
+    },
+    "time_pressure/resource": {
+      "ENGAGE": 0,
+      "STOP": 0,
+      "AMBIGUOUS": 18
+    }
+  },
+  "short_full_confusion": {
+    "ENGAGE": {
+      "ENGAGE": 14,
+      "STOP": 0,
+      "AMBIGUOUS": 1
+    },
+    "STOP": {
+      "ENGAGE": 0,
+      "STOP": 13,
+      "AMBIGUOUS": 3
+    },
+    "AMBIGUOUS": {
+      "ENGAGE": 0,
+      "STOP": 0,
+      "AMBIGUOUS": 41
+    }
+  },
+  "label_changed_count": 4,
+  "extra_transitions": 127700,
+  "projected_window_transitions": 98684,
+  "projected_saved_transitions": 29016,
+  "actionable_labels_per_1000_transitions": 0.2427564604541895,
+  "safety_slot_engage_rate": 0.3888888888888889,
+  "resource_slot_stop_rate": 0.2777777777777778,
+  "maximum_actor_parameter_difference": 0.0,
+  "gates": {
+    "data_integrity": true,
+    "context_identity": true,
+    "overall_actionable_labels": false,
+    "block_power": false,
+    "scenario_bidirectional_coverage": false,
+    "cross_seed_bidirectional_coverage": false,
+    "engage_safety_consistency": true,
+    "actor_frozen": true,
+    "transition_budget": true,
+    "software_regression": true
+  },
+  "stage_a2_passed": false,
+  "decision": "pause_bpce_online_auxiliary"
+}

@@ -1,6 +1,6 @@
 # Academic Project Progress
 
-Updated: 2026-07-17
+Updated: 2026-07-22
 
 ## 1. Current Project Position
 
@@ -1063,3 +1063,375 @@ rein_learning/common/multibatch_diagnostics.py
 scripts/run_air_defense_v1_task14_multibatch_leave_one_out.py
 results/air_defense_v1/task14_multibatch_leave_one_out/
 ```
+
+## 32. OOB 安全-停止 Pareto 可行性审计结论
+
+更新时间：2026-07-22。
+
+本阶段复用三训练批次的1737行 OOB 预测，对每个连续 score 枚举所有能产生不同二分类结果的阈值。主目标继续冻结为 `scenario_robust_reliable_cost`，没有新增 rollout，也没有读取最终 test 标签。门控同时约束总体、最差批次、最差场景的 engage/no-op recall、总体 BA 和 safety sign accuracy。
+
+零阈值仅 seed21 完整通过，可行数为 `1/3`。种子级鲁棒阈值扫描后，seed20/21/22 分别存在23、20、2个可行阈值，选定阈值为 `0.1052 / 0.0288 / 0.3540`，BA 为 `0.798 / 0.832 / 0.757`，主门控达到 `3/3`。因此当前连续 score 并未失去安全-停止排序能力，上一阶段的主要失败来自默认零阈值和随机种子间 score 尺度漂移。
+
+该结果仍然脆弱。seed22 的可行区间仅为 `0.3540-0.3629`，选定点最小约束余量为0；共享原始阈值最多只能使2/3种子通过，不能证明模型间 score 已具有统一尺度。本阶段只证明历史 OOB 上存在可行边界，不证明新批次泛化。
+
+按照预注册规则，下一阶段只运行一次全新独立确认批次，并冻结目标函数、种子级鲁棒阈值选择协议和全部门槛。确认至少2/3种子完整通过后，才允许恢复最小 MCH-PPO；30k/100k 和 GNN 继续冻结。
+
+```text
+docs/task_guides/next_research_phase_oob_pareto_feasibility.md
+docs/algorithms/oob_safety_stop_pareto_calibration.md
+docs/experiments/air_defense_v1_task14_oob_pareto_audit.md
+rein_learning/common/pareto_feasibility.py
+scripts/run_air_defense_v1_task14_oob_pareto_audit.py
+results/air_defense_v1/task14_oob_pareto_audit/
+```
+
+## 33. 冻结 OOB 校准协议的独立确认结论
+
+更新时间：2026-07-22。
+
+本阶段在生成数据前冻结 reliable-cost 目标、三个最终模型和 OOB 种子级阈值 `0.1052 / 0.0288 / 0.3540`，然后只生成一次 `eval_seed=887000` 的独立确认批次。模型没有重训，阈值没有重新扫描。
+
+确认批次包含72个状态、87个上下文组和每分支32次 rollout。81个可靠组包含35个 engage 与46个 no-op，三个场景均有双类别；与19个历史数据集重叠全部为0，总回报重构最大误差为 `7.63e-06`。数据完整性和功效门控全部通过。
+
+冻结阈值下三种子 BA 为 `0.625 / 0.646 / 0.625`，engage recall 为 `0.771 / 0.857 / 0.686`，no-op recall 为 `0.478 / 0.435 / 0.565`，完整通过数为 `0/3`。seed20/21 的最差场景 no-op recall 均为 `0.333`；seed22 的异质场景 engage recall 仅为 `0.364`。零阈值同样为 `0/3`。
+
+三个种子的 safety sign accuracy 仍达到 `0.740 / 0.740 / 0.753`，说明安全价值方向没有完全失效；但固定 OOB 边界不能泛化到新批次。当前结论从“阈值可能可校准”收紧为“历史批次内可校准，但跨批次 score 尺度与约束语义不稳定”。
+
+因此不恢复 MCH-PPO，不运行30k/100k，也不进入 GNN。确认标签不得回灌阈值，不追加第二确认批次。下一阶段应修改机制，研究跨批次尺度对齐、预测不确定性和显式安全-资源约束，而不是继续扩大阈值网格或随机批次数。
+
+```text
+docs/task_guides/next_research_phase_independent_calibration_confirmation.md
+docs/experiments/air_defense_v1_task14_independent_confirmation.md
+rein_learning/common/independent_confirmation.py
+scripts/run_air_defense_v1_task14_independent_confirmation.py
+results/air_defense_v1/task14_independent_confirmation/
+```
+
+## 34. 跨批次统一概率校准与不确定性约束结论
+
+更新时间：2026-07-22。
+
+本阶段只使用三训练批次的 OOB 预测，预注册 score Platt、value-context Platt 以及 `z=0.5/1.0` 的保守置信下界四个候选。每个模型种子独立拟合 L2 逻辑回归，样本按批次-场景-类别等权，采用外层 leave-one-batch-out；失败的809000和887000独立标签均未用于拟合或选择。
+
+四个候选完整通过数均为 `0/3`。最佳 score Platt 平均 BA 为0.781、Brier为0.159，但 seed20/21/22 的最差批次 no-op recall 仅为 `0.550 / 0.333 / 0.475`，最差场景 no-op recall 为 `0.517 / 0.552 / 0.586`。混合总体指标继续掩盖局部过度交战。
+
+value-context 的平均预测标准误为 `1.235 / 1.797 / 1.368`。LCB虽然改善部分 no-op，却使 seed21 的最差批次 engage recall 降为0；不同批次的错误方向不能由统一保守惩罚解决。因此当前失败不只是原始 score 的温度或截距漂移，而是安全与资源信息压缩成单一标量后的约束语义不稳定。
+
+由于 OOB 未达到2/3，脚本没有生成预留的941000独立批次，没有新增 rollout。MCH-PPO就绪状态为 false，30k/100k和GNN继续冻结。下一阶段应实现显式安全收益下界、资源成本上界与停止可行域，不再扩展线性校准、LCB系数、标量阈值或随机批次。
+
+```text
+docs/task_guides/next_research_phase_cross_batch_uncertainty_calibration.md
+docs/algorithms/cross_batch_uncertainty_calibration.md
+docs/experiments/air_defense_v1_task14_cross_batch_calibration.md
+rein_learning/common/cross_batch_calibration.py
+scripts/run_air_defense_v1_task14_cross_batch_calibration.py
+results/air_defense_v1/task14_cross_batch_calibration/
+```
+
+## 35. MCH-PPO 最小在线机制压力实验结论
+
+更新时间：2026-07-22。
+
+根据“停止继续卡在外围前置任务、直接进入 MCH-PPO”的研究决策，本阶段实现了可训练的 `MaskedCounterfactualHierarchicalPPO`。候选复用因子化 engagement-target 策略，使用冻结的 hierarchical Q-Critic seeds 14/15/16 集成构造逐单元反事实 advantage，并对 engagement 与 conditional target 的 PPO ratio 独立裁剪；联合 GAE 只训练状态价值头。
+
+实验在读取结果前冻结 `time_pressure/heterogeneity_pressure`、训练种子8/9/10、每模型10k steps和每场景30回合评估。共训练12个模型、执行24个场景评估块。候选保持 invalid action、assignment conflict 和 overkill 为0，但出现3/6个同场景绝对 no-op 塌缩。time_pressure 中高威胁突防率均值增加0.1028、损伤增加0.2944、奖励下降10.09；heterogeneity_pressure 中对应增加0.0903、0.2855和下降8.54。总机制门控失败。
+
+time_pressure/seed9 是唯一同时改善奖励、突防和损伤的配对，但其他种子不复现；该结果只证明机制存在条件性潜力，不能通过选择该种子宣称 MCH-PPO 优势。当前状态从“未实现”推进到“训练原型已实现但机制未成立”，因此不进入30k/100k。下一版必须修改信用接入机制，而不是继续挑种子或单纯扩大预算。
+
+MCH 平均训练时间为113.86秒/模型，对照为73.84秒/模型，当前实现约慢54.2%。后续若恢复扩大实验，需要先缓存 rollout 级反事实优势并向量化候选 Critic 评估。
+
+```text
+docs/task_guides/next_research_phase_mch_ppo_mechanism_stress_test.md
+docs/algorithms/masked_counterfactual_hierarchical_ppo.md
+docs/experiments/air_defense_v1_mch_ppo_mechanism_stress_test.md
+rein_learning/algorithms/policy_gradient/mch_ppo.py
+scripts/run_air_defense_v1_mch_ppo_stress_test.py
+tests/test_mch_ppo.py
+results/air_defense_v1/mch_ppo_mechanism_stress_test/
+```
+
+## 36. RG-MCH-PPO 核心信用机制验证结论
+
+更新时间：2026-07-22。
+
+本阶段不再追加外围前置诊断，直接实现 Reliability-Gated MCH-PPO。算法保留标准化 on-policy GAE 作为 engagement/target 两层主信用，只将冻结 Critic 集成一致的反事实 advantage 作为系数0.5、绝对幅度不超过0.5的残差。零可靠度时自动退化为层级 GAE，Critic 全程冻结。
+
+实验冻结 time_pressure/heterogeneity_pressure、种子8/9/10、10k steps和每场景30回合评估，只新增训练6个候选模型；baseline 和 MCH v0 复用完全相同协议的上一阶段结果。候选在两个场景的平均奖励和损伤均优于 MCH v0，其中 time_pressure 奖励提高8.30、损伤下降0.171，heterogeneity_pressure 奖励提高23.03、损伤下降0.606。异质场景相对 factorized PPO 也实现奖励提高14.49、损伤下降0.320和高威胁突防率下降0.081。
+
+总机制门控仍为 false。RG-MCH 有2/6个同场景运行绝对塌缩；异质场景成本比为1.259，超过1.10门槛。最后训练更新的 engagement reliability 和门控激活率分别高达0.884与0.888，target 为0.575与0.579。这说明“Critic 集成方向一致”在分布外状态上可能共同错误，当前可靠度过于乐观。
+
+项目因此取得第一项算法核心机制的部分正结果：GAE 锚定已被在线实验证明有效，反事实残差在异质场景有明确收益；但种子稳定性和可靠度语义尚未解决，不能进入30k/100k或论文主结果。下一算法工作应引入状态分布支持/行为锚定可靠度与 engagement 累计漂移约束，而不是继续调整单一融合系数或挑选优势种子。
+
+```text
+docs/task_guides/next_research_phase_reliability_gated_mch_ppo.md
+docs/experiments/air_defense_v1_rg_mch_ppo_stress_test.md
+rein_learning/algorithms/policy_gradient/mch_ppo.py
+scripts/run_air_defense_v1_rg_mch_ppo_stress_test.py
+tests/test_rg_mch_ppo.py
+results/air_defense_v1/rg_mch_ppo_mechanism_stress_test/
+```
+
+## 37. SA-RG-MCH-PPO 支持感知与累计漂移实验结论
+
+更新时间：2026-07-23。
+
+本阶段实现了 Critic train split 上的状态-单元-前缀-合法掩码最近邻支持度，并将其与 ensemble agreement 相乘；同时冻结初始 factorized actor，对超出0.10预算的累计 engagement Bernoulli KL施加平方 hinge 惩罚。支持数据严格限制为原 Q-Critic dataset 的338条 train 行。
+
+正式10k三种子双场景实验中，SA-RG-MCH 有5/6个同场景运行绝对 no-op 塌缩。time_pressure 相对factorized PPO的平均奖励下降30.93、损伤增加0.745、高威胁突防增加0.217；heterogeneity_pressure对应下降12.32、增加0.341和增加0.104。所有核心任务门控均失败。
+
+训练诊断提供了新的关键证据。engagement/target context support只有0.124/0.022，组合可靠度0.114/0.014，反事实残差0.049/0.008，表明在线actor访问的上下文大部分位于原始Critic支持域之外。初始anchor KL仅0.017，未产生任何惩罚，说明deterministic 0.5阈值跨越可以在很小的分布KL下造成all-noop。
+
+反事实残差关闭后，算法仍采用joint GAE但对engagement和target分别计算ratio与clip；它并不严格退化为factorized PPO的joint ratio与joint clip。5/6塌缩由此把核心瓶颈进一步定位到独立层级近端更新本身。下一算法版本必须以标准joint PPO surrogate为安全主干，只把支持感知反事实信用作为辅助项，并直接诊断或约束deterministic engagement margin。不得继续调整最近邻尺度或KL预算，也不进入GNN。
+
+```text
+docs/task_guides/next_research_phase_support_anchored_rg_mch_ppo.md
+docs/experiments/air_defense_v1_sa_rg_mch_ppo_stress_test.md
+rein_learning/common/masked_context_support.py
+rein_learning/algorithms/policy_gradient/mch_ppo.py
+scripts/run_air_defense_v1_sa_rg_mch_ppo_stress_test.py
+tests/test_sa_rg_mch_ppo.py
+results/air_defense_v1/sa_rg_mch_ppo_mechanism_stress_test/
+```
+
+## 38. BPCE-PPO v0 核心算法阶段启动
+
+更新时间：2026-07-23。
+
+任务状态：已完成；软件验收通过，10k机制门控失败。
+
+SA-RG-MCH 的5/6塌缩已经否决“joint GAE + engagement/target 独立
+ratio/clipping”作为安全 fallback。项目不再修补离线 Critic 支持距离、KL
+预算或标量校准器，正式转入 **Boundary-Probed Counterfactual Engagement
+Auxiliary PPO（BPCE-PPO）**。
+
+BPCE-PPO 保留 factorized PPO 的完整 joint ratio、joint clipping、GAE、
+value loss 和动态掩码语义，只在当前 rollout 的 engagement 决策边界附近
+生成稀疏成对反事实标签。标签只形成 engagement logit 排序辅助损失，不再
+替换联合信用，也不为 engagement/target 建立独立 PPO 主干。
+
+v0 冻结以下关键语义：
+
+- rollout 中当前单元之前的动作前缀保持不变；
+- engage 分支使用冻结旧策略在动态合法目标上的 masked argmax；
+- 当前单元之后的同一步后缀及后续时刻由冻结旧策略确定性补全；
+- 命中随机性使用按“环境时间步×目标”索引的共同随机带，而不是仅复用 seed；
+- 候选按绝对 engagement margin 排序，并受冻结边界半径约束；
+- 可靠性门控使用成对差值方向一致性和最小任务效应，不把小样本 SNR 当作正式置信区间；
+- `probe_budget=0`、`lambda_cf=0` 或全部标签被拒绝时，训练路径必须数值退化为现有 factorized joint PPO。
+
+当前先完成环境快照/恢复、共同随机带、探测器、BPCE rollout buffer、joint
+PPO 辅助训练和严格退化测试；随后运行256步 smoke，再按冻结协议执行
+10k、三种子、双核心场景机制证伪。GNN、target 反事实辅助、30k/100k
+扩大实验继续冻结。
+
+```text
+docs/task_guides/next_research_phase_bpce_ppo_v0.md
+docs/algorithms/boundary_probed_counterfactual_engagement_ppo.md
+rein_learning/common/boundary_counterfactual_probe.py
+rein_learning/algorithms/policy_gradient/bpce_ppo.py
+scripts/run_air_defense_v1_bpce_ppo_stress_test.py
+tests/test_bpce_ppo.py
+```
+
+正式实验最终使用 `K=2、B=8、interval=2`。每个候选模型平均执行20轮
+探测、选择40个边界上下文、接受10.5个标签，训练时间为factorized PPO的
+1.940倍。项目完整回归达到242项通过，BPCE定向测试为14项通过。
+
+10k三种子双场景中，BPCE v0有2/6个同场景运行绝对all-noop，均为seed9。
+time-pressure相对baseline的平均奖励下降24.953、损伤增加0.587、高威胁
+突防增加0.153。heterogeneity-pressure的奖励提高21.686、损伤下降0.509、
+高威胁突防下降0.129，但资源成本达到baseline的1.928倍。
+
+边界探测在time-pressure相对等预算随机探测奖励提高13.620、损伤下降
+0.314；在heterogeneity-pressure反而奖励下降13.563、损伤增加0.340。
+seed9在两个场景分别只接受1/5个边界标签，且全部为负；异质场景seeds
+8/10分别获得8/7个正标签并改善安全，但seed8交战率升至0.959。当前瓶颈
+由“错误fallback”进一步收窄为“正负证据覆盖和辅助更新剂量随种子分叉”。
+
+总机制门控失败，不进入30k/100k、target辅助或GNN。下一修订保持joint
+PPO与paired rollout冻结，只允许增加双向证据覆盖门控、正负类别平衡和
+辅助梯度预算。
+
+```text
+docs/experiments/air_defense_v1_bpce_ppo_stress_test.md
+results/air_defense_v1/bpce_ppo_mechanism_stress_test/
+```
+
+## 39. BPCE 标签语义审计结论
+
+更新时间：2026-07-23。
+
+任务状态：阶段 A 已完成但未通过；阶段 B/C 未启动。
+
+BPCE-PPO v0 已证明 joint PPO fallback 和成对反事实探测的工程可行性，但
+2/6 all-noop、seed9 单边负标签、异质场景1.928倍资源成本以及边界选点
+跨场景反转，说明不能直接把 coverage-balanced loss 作为下一算法版本。
+当前先审计反事实标签是否真正表示 engagement 条件价值。
+
+本阶段复用 `mch_ppo_mechanism_stress_test` 中两个核心场景、seeds 8/9/10
+的六个10k factorized PPO 冻结模型。每个“场景×种子”固定选择6个安全
+临界和6个资源临界上下文，共72个；每个分支执行32次共同随机数 rollout。
+同一上下文同时计算当前 argmax-target/deterministic 标签、目标精确边缘化
+deterministic 标签和目标边缘化/stochastic-continuation 标签。
+
+正式审计生成72个上下文、2304条重复记录、169条目标记录和266,198个
+额外transition，Actor参数最大差为0，项目完整回归247项通过。A/B总体符号一致率为0.901，可靠
+反转为0/24，说明masked-argmax target不是当前主要混叠来源；B/C总体一致
+率只有0.778，低于0.80门槛，deterministic continuation不能继续作为默认
+标签语义。
+
+标签 C 只有25/72可靠；六个块中`time_pressure/seed9`为0，
+`heterogeneity_pressure/seed9`为2。两个场景可靠正/负标签分别为10/0和
+14/1，资源槽没有可靠负标签。阶段 A 同时未通过总体功效、块级功效、
+B/C一致和双向覆盖门控。
+
+因此辅助剂量阶段 B、选点阶段 C、下一版10k均未启动。当前不得直接实现
+类别平衡或coverage-balanced loss；下一机制必须先验证随机后续或短视窗
+安全/资源分量能否形成跨种子双向可靠标签。30k/100k、target辅助和GNN
+继续冻结。
+
+```text
+docs/task_guides/next_research_phase_bpce_label_semantics_and_dose_audit.md
+rein_learning/common/bpce_label_semantics.py
+scripts/run_air_defense_v1_bpce_label_semantics_audit.py
+tests/test_bpce_label_semantics.py
+results/air_defense_v1/bpce_label_semantics_audit/
+```
+
+## 40. BPCE 短视窗安全—资源双分量审计结论
+
+更新时间：2026-07-23。
+
+任务状态：阶段 A2 已完成但未通过；BPCE在线辅助主线暂停。
+
+阶段 A 已确认target argmax不是主要可靠方向错误来源，但deterministic
+continuation、总体标签功效和可靠STOP覆盖失败。当前新增阶段 A2，保持
+原72个上下文、合法目标精确边缘化、随机策略延续和32次共同随机数重复，
+只改变标签读出。
+
+主标签使用由快照目标time-to-impact决定的事件窗，分别估计zone damage、
+high-threat leak和resource cost的engage-noop差值，并输出
+`ENGAGE / STOP / AMBIGUOUS`。STOP必须同时排除最小安全收益并确认正资源
+代价，不能由“回报不显著”直接推断。
+
+正式运行重建72/72个原上下文，目标概率最大误差`4.98e-13`；完成2304条
+重复和127,700个额外transition，Actor参数差为0，完整回归255项通过。
+
+短视窗得到15 ENGAGE、16 STOP和41 AMBIGUOUS，可操作标签31/72，完整
+回合对照为27/72。异质场景形成10/14双向标签，但time-pressure只有5/2；
+四个场景-种子块低于6个可操作标签，所有块均未同时达到2个ENGAGE和2个
+STOP。
+
+time-pressure资源槽18个上下文全部AMBIGUOUS，成本差均值平均为-0.034，
+成本下界为正为0/18；强制当前交战主要替代后续射击。异质资源槽成本差
+均值为+1.036，得到10个STOP。短视窗标签具有资源异质性条件下的局部
+可辨识性，但不是跨场景机制。
+
+阶段 A2 门控失败。阶段B/C、coverage-balanced loss和修订版10k均不启动，
+BPCE在线辅助主线暂停。保留joint PPO fallback、成对反事实基础设施和
+局部标签可辨识性失败机制，后续不得通过增加重复、视窗或训练预算绕过。
+
+```text
+docs/task_guides/next_research_phase_bpce_short_horizon_component_label_audit.md
+rein_learning/common/bpce_short_horizon_labels.py
+scripts/run_air_defense_v1_bpce_short_horizon_label_audit.py
+tests/test_bpce_short_horizon_labels.py
+results/air_defense_v1/bpce_short_horizon_label_audit/
+```
+
+## 41. 动作替代与弹药机会成本可辨识性审计结论
+
+更新时间：2026-07-23。
+
+任务状态：已完成；完整性和P-R1通过，P-R2/P-R3未通过。
+
+BPCE阶段A2未能在`time_pressure/resource`中识别稳定的累计资源成本差，
+但观察到当前强制交战可能替代冻结策略后续本会执行的射击。为区分“累计
+成本差”与“失去的未来行动选择权”，项目启动独立的只读机制审计，不将其
+命名为BPCE-A3，也不恢复任何在线辅助训练。
+
+审计沿用原72个上下文和32次共同随机数重复。除当前no-op分支`N`和正常
+交战分支`E`外，新增嵌套反事实`E-R`：保持当前动作、命中、即时成本、
+冷却和目标状态完全不变，只在下一次策略观察前为被测单元恢复1枚弹药。
+核心估计量为未来射击替代`Sub_shot/Sub_cost`、弹药实际复用
+`Reuse_probe`、合法动作集合增量`OptionEdge/OptionThreat`以及分离的
+安全收益`AmmoGain_D/AmmoGain_L`。
+
+本任务先检验P-R1动作替代解释，再检验P-R2跨场景机会价值和P-R3资源槽
+临界性。只有完整性、干预唯一性和三项机制门控全部通过，才允许另立独立
+的机会成本oracle可预测性审计；即使通过，也不得直接接入PPO或恢复BPCE。
+
+```text
+docs/task_guides/next_research_phase_action_substitution_resource_opportunity_cost_audit.md
+rein_learning/common/action_substitution_opportunity_cost.py
+scripts/run_air_defense_v1_action_substitution_opportunity_cost_audit.py
+tests/test_action_substitution_opportunity_cost.py
+results/air_defense_v1/action_substitution_opportunity_cost_audit/
+```
+
+正式运行重建72/72个上下文，目标概率最大误差`4.98e-13`；完成2304条
+上下文—重复记录、5408条目标—重复干预和219,142个额外transition。
+E/E-R当前步身份与单发干预唯一性均为100%，Actor参数差为0，完整回归
+259项通过，最大成本分解误差为`4.00e-15`。
+
+P-R1获得强支持：`time_pressure/resource`的18个上下文全部满足
+`mean(Sub_shot)>0`且95%下界大于0；11个`cost(E)-cost(N)<=0`上下文全部
+由正`Sub_cost`或未来成本构成解释。平均而言，该槽当前交战替代0.990次
+未来射击和1.995单位未来资源成本。
+
+P-R2/P-R3未通过。可靠资源机会价值在time和heterogeneity场景分别只有
+5/18和2/18；异质场景seed8/seed10均为0，所有可靠资源上下文均为
+`missile`。虽然恢复弹药普遍增加未来射击和合法动作边，但其最终安全收益
+没有形成跨场景、跨种子和跨资源类型的稳定置信下界。
+
+路线按预注册收敛为：保留“累计成本差受未来动作替代混叠”的机制结论，
+停止“通用弹药机会成本在线辅助”路线。不训练机会成本oracle，不恢复
+BPCE/MCH-PPO，不用增加重复或选择优势种子绕过失败门控。
+
+## 42. 动作替代测量失真独立确认启动
+
+更新时间：2026-07-23。
+
+任务状态：已完成；P-C1/P-C2通过，P-C3未通过。
+
+R1已确认旧种子8/9/10的`time_pressure/resource`累计成本差受到未来射击
+替代混叠，但该结论尚未经过来源策略和状态均独立的确认。R2使用全新
+factorized PPO策略种子17/18/19，在`medium`、`time_pressure`和
+`heterogeneity_pressure`分别训练9个10k来源模型，并采集与旧正式数据
+observation hash零重叠的108个上下文。
+
+resource槽预注册为每块3个missile和3个laser；只运行N/E分支，不运行E-R，
+不训练Actor/Critic或机会成本网络。主要门控依次为成本账本完整性P-C1、
+`time_pressure/resource`跨新种子复现P-C2以及missile/laser边界P-C3。
+无论结果如何，本任务结束后停止扩展机制实验，转入论文贡献冻结或重新
+定义第一算法问题。
+
+```text
+docs/task_guides/next_research_phase_action_substitution_independent_confirmation.md
+rein_learning/common/action_substitution_confirmation.py
+scripts/run_air_defense_v1_action_substitution_confirmation.py
+tests/test_action_substitution_confirmation.py
+results/air_defense_v1/action_substitution_confirmation/
+```
+
+正式任务训练并保留9/9个新10k factorized PPO来源模型，选择108个与旧
+正式数据hash零重叠的新上下文；resource槽在每块严格保持3个missile和
+3个laser。完成3456条重复、7776条目标成本账本和157,485个额外
+transition，Actor参数差为0，完整回归264项通过。
+
+首轮审计发现原P-C1公式漏记无冲突自回归后缀在当前步发生的其他单元动作
+替代。287/7776条账本受影响，future-only残差最大为2.0；包含当前其他
+单元差的扩展恒等式误差为`8.88e-16`。按预注册只修复账本，将总替代成本
+拆成同一步其他单元替代、未来被测单元替代和未来其他单元替代，并保存
+首轮无效结果后按原配置完整重跑一次。
+
+修正后P-C1通过。P-C2也通过：全新`time_pressure/resource`中13/18个
+上下文的`Sub_shot`均值和95%下界为正，三个新种子块下界全部大于0，
+7个非正累计成本差上下文全部具有正替代成本。动作替代导致累计成本测量
+失真的机制获得独立确认。
+
+P-C3未通过。time场景laser的`rho_sub=1.175`、符号掩盖上下文5个；
+missile的`rho_sub=0.571`、掩盖上下文仅2个，未达到3个门槛。当前贡献
+冻结为资源类型与场景条件的测量/可辨识性结论，不是跨资源通用规律，也
+不是PPO性能改进算法。项目停止追加机制实验，进入claim–evidence冻结和
+论文准备。

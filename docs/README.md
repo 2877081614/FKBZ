@@ -10,6 +10,7 @@
 - [project_structure.md](project/project_structure.md)：代码和文档目录结构规划。
 - [rl_environment_setup.md](project/rl_environment_setup.md)：`rein-learning` 环境与依赖说明。
 - [research_innovation_roadmap.md](project/research_innovation_roadmap.md)：最终研究目标、两级创新假设、创新边界、GNN 定位和论文产出条件。
+- [first_innovation_claim_evidence_matrix.md](project/first_innovation_claim_evidence_matrix.md)：R2独立确认后的第一创新主张、支持/否决证据和论文表述边界。
 
 ## Environments
 
@@ -42,6 +43,9 @@
 - [state_conditioned_engagement_value.md](algorithms/state_conditioned_engagement_value.md)：安全收益/增量成本双价值、状态条件资源乘子与跨场景鲁棒性边界。
 - [cross_scenario_robust_engagement_value.md](algorithms/cross_scenario_robust_engagement_value.md)：场景-类别最差块损失、可靠成本监督及批次外失败边界。
 - [multibatch_engagement_value_generalization.md](algorithms/multibatch_engagement_value_generalization.md)：多独立批次语料、留一批次验证与过度交战失效边界。
+- [oob_safety_stop_pareto_calibration.md](algorithms/oob_safety_stop_pareto_calibration.md)：完整 OOB 阈值集合、分组鲁棒约束、Pareto 前沿与种子尺度诊断。
+- [cross_batch_uncertainty_calibration.md](algorithms/cross_batch_uncertainty_calibration.md)：批次-场景-类别平衡 Platt、预测标准误、LCB及其失效边界。
+- [boundary_probed_counterfactual_engagement_ppo.md](algorithms/boundary_probed_counterfactual_engagement_ppo.md)：joint PPO安全主干、边界成对探测、严格退化语义与v0机制结论。
 - [两篇HARL论文创新点与研究借鉴报告.md](algorithms/两篇HARL论文创新点与研究借鉴报告.md)：HARL/HATRPO/HAPPO 论文创新点和研究借鉴。
 
 ## Literature
@@ -68,6 +72,14 @@
 - [air_defense_v1_task12_noop_stability.md](experiments/air_defense_v1_task12_noop_stability.md)：no-op argmax 放大、10k 训练分叉、因子化候选和 30k 门槛判定。
 - [air_defense_v1_task13_credit_diagnostics.md](experiments/air_defense_v1_task13_credit_diagnostics.md)：冻结模型阈值扫描、联合信用诊断、反事实分支和动作条件 Q-Critic 转向结论。
 - [air_defense_v1_task14_q_critic.md](experiments/air_defense_v1_task14_q_critic.md)：动作条件 Q-Critic 正式门控、消融、有效比较不足和 MCH-PPO/GNN 暂缓结论。
+- [air_defense_v1_mch_ppo_mechanism_stress_test.md](experiments/air_defense_v1_mch_ppo_mechanism_stress_test.md)：MCH-PPO 最小在线训练实现、冻结三种子压力实验及门控失败结论。
+- [air_defense_v1_rg_mch_ppo_stress_test.md](experiments/air_defense_v1_rg_mch_ppo_stress_test.md)：可靠度门控 MCH-PPO、GAE 锚定的在线正向证据与剩余种子塌缩边界。
+- [air_defense_v1_sa_rg_mch_ppo_stress_test.md](experiments/air_defense_v1_sa_rg_mch_ppo_stress_test.md)：支持感知、累计KL锚点的失败实验及独立层级clipping安全退化缺陷。
+- [air_defense_v1_bpce_ppo_stress_test.md](experiments/air_defense_v1_bpce_ppo_stress_test.md)：BPCE-PPO v0软件验收、等预算随机探测、10k三种子双场景结果与覆盖瓶颈。
+- [air_defense_v1_bpce_label_semantics_audit.md](experiments/air_defense_v1_bpce_label_semantics_audit.md)：72上下文三标签语义对照、deterministic continuation失败与双向覆盖结论。
+- [air_defense_v1_bpce_short_horizon_label_audit.md](experiments/air_defense_v1_bpce_short_horizon_label_audit.md)：TTI事件窗三态标签、异质资源STOP有效性与跨场景失败结论。
+- [air_defense_v1_action_substitution_opportunity_cost_audit.md](experiments/air_defense_v1_action_substitution_opportunity_cost_audit.md)：N/E/E-R嵌套反事实、未来射击替代、单发弹药机会价值及其跨场景可辨识性边界。
+- [air_defense_v1_action_substitution_confirmation.md](experiments/air_defense_v1_action_substitution_confirmation.md)：新策略种子、新状态和三场景下的动作替代独立确认、成本账本修正与资源类型边界。
 - [air_defense_v1_task14_ranking_refinement.md](experiments/air_defense_v1_task14_ranking_refinement.md)：独立高功效测试、组内动作差异监督、排序改善和 engage/no-op 剩余瓶颈。
 - [air_defense_v1_task14_hierarchical_q.md](experiments/air_defense_v1_task14_hierarchical_q.md)：108 状态显式分层 Q 正式对照、目标层收益与交战层负结果。
 - [air_defense_v1_task14_engagement_utility.md](experiments/air_defense_v1_task14_engagement_utility.md)：风险/约束交战效用正式对照、类别功效与估值失败分析。
@@ -76,6 +88,9 @@
 - [air_defense_v1_task14_state_conditioned_value.md](experiments/air_defense_v1_task14_state_conditioned_value.md)：三折交叉拟合、72状态双价值正式实验与逐场景剩余边界。
 - [air_defense_v1_task14_cross_scenario_robust_value.md](experiments/air_defense_v1_task14_cross_scenario_robust_value.md)：鲁棒损失消融、新72状态批次与异质场景漏交战诊断。
 - [air_defense_v1_task14_multibatch_leave_one_out.md](experiments/air_defense_v1_task14_multibatch_leave_one_out.md)：三训练批次留一验证、最终独立批次和安全-停止边界诊断。
+- [air_defense_v1_task14_oob_pareto_audit.md](experiments/air_defense_v1_task14_oob_pareto_audit.md)：零新增 rollout 的 OOB 安全-停止可行性、阈值区间和独立确认判定。
+- [air_defense_v1_task14_independent_confirmation.md](experiments/air_defense_v1_task14_independent_confirmation.md)：冻结 OOB 阈值的唯一独立批次、数据隔离与 `0/3` 门控结论。
+- [air_defense_v1_task14_cross_batch_calibration.md](experiments/air_defense_v1_task14_cross_batch_calibration.md)：四种统一概率/LCB候选的外层留一批次验证与零新增rollout结论。
 
 ## Presentations
 
@@ -105,6 +120,12 @@
 - [next_research_phase_state_conditioned_constrained_value.md](task_guides/next_research_phase_state_conditioned_constrained_value.md)：显式安全/成本价值、状态条件预算、交叉拟合和最终独立门控。
 - [next_research_phase_cross_scenario_robust_budget.md](task_guides/next_research_phase_cross_scenario_robust_budget.md)：场景-类别鲁棒预算、可靠成本差监督与 MCH-PPO 前最终门控。
 - [next_research_phase_multibatch_leave_one_out.md](task_guides/next_research_phase_multibatch_leave_one_out.md)：多批次临界状态语料、留一批次泛化和最终独立门控。
+- [next_research_phase_oob_pareto_feasibility.md](task_guides/next_research_phase_oob_pareto_feasibility.md)：完整阈值审计、跨批次/场景约束和独立确认放行条件。
+- [next_research_phase_independent_calibration_confirmation.md](task_guides/next_research_phase_independent_calibration_confirmation.md)：冻结目标、模型与阈值后的一次独立确认及 MCH-PPO 恢复条件。
+- [next_research_phase_cross_batch_uncertainty_calibration.md](task_guides/next_research_phase_cross_batch_uncertainty_calibration.md)：统一概率、显式不确定性、外层验证和MCH-PPO就绪门控。
+- [next_research_phase_bpce_ppo_v0.md](task_guides/next_research_phase_bpce_ppo_v0.md)：BPCE-PPO v0冻结语义、探测预算、严格退化验收和10k机制证伪。
+- [next_research_phase_bpce_label_semantics_and_dose_audit.md](task_guides/next_research_phase_bpce_label_semantics_and_dose_audit.md)：标签A/B/C、辅助剂量和选点覆盖的顺序门控；阶段A失败后停止B/C。
+- [next_research_phase_bpce_short_horizon_component_label_audit.md](task_guides/next_research_phase_bpce_short_horizon_component_label_audit.md)：短视窗安全—资源三态标签、上下文强校验和阶段A2停止条件。
 
 ## Suggested Reading Order
 

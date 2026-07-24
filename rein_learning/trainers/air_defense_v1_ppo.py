@@ -27,6 +27,10 @@ AlgorithmName = Literal[
     "autoregressive_maskable_ppo",
     "role_conditioned_autoregressive_ppo",
     "factorized_engagement_autoregressive_ppo",
+    "mch_ppo",
+    "rg_mch_ppo",
+    "sa_rg_mch_ppo",
+    "bpce_ppo",
 ]
 
 
@@ -51,6 +55,27 @@ class AirDefenseV1PPOConfig:
     verbose: int = 1
     tensorboard_log: str | None = None
     progress_bar: bool = False
+    mch_q_critic_paths: tuple[str, ...] = ()
+    mch_engagement_loss_coef: float = 1.0
+    mch_target_loss_coef: float = 1.0
+    rg_mch_engagement_residual_coef: float = 0.5
+    rg_mch_target_residual_coef: float = 0.5
+    rg_mch_residual_clip: float = 0.5
+    rg_mch_reliability_threshold: float = 0.5
+    sa_rg_mch_support_dataset_path: str | None = None
+    sa_rg_mch_anchor_kl_budget: float = 0.10
+    sa_rg_mch_anchor_kl_coef: float = 1.0
+    bpce_counterfactual_loss_coef: float = 0.05
+    bpce_probe_interval: int = 2
+    bpce_probe_max_contexts: int = 2
+    bpce_probe_repeats: int = 8
+    bpce_probe_margin_radius: float = 0.62
+    bpce_probe_minimum_sign_agreement: int = 1
+    bpce_probe_minimum_informative_repeats: int = 2
+    bpce_probe_maximum_opposite_repeats: int = 1
+    bpce_probe_minimum_return_effect: float = 1.0
+    bpce_probe_base_seed: int = 73_000
+    bpce_probe_selection_mode: Literal["boundary", "random"] = "boundary"
 
 
 def default_air_defense_v1_ppo_config() -> AirDefenseV1PPOConfig:
@@ -183,6 +208,94 @@ def train_factorized_engagement_autoregressive_ppo(
     )
 
 
+def train_mch_ppo(
+    *,
+    env_config: AirDefenseV1EnvConfig | None = None,
+    train_config: AirDefenseV1PPOConfig | None = None,
+    save_path: str | Path | None = None,
+    callback: Any | None = None,
+    tb_log_name: str | None = None,
+    unit_order: tuple[int, ...] | None = None,
+) -> Any:
+    """Train MCH-PPO with frozen hierarchical counterfactual critics."""
+
+    return _train_sb3_model(
+        algorithm="mch_ppo",
+        env_config=env_config,
+        train_config=train_config,
+        save_path=save_path,
+        callback=callback,
+        tb_log_name=tb_log_name,
+        unit_order=unit_order,
+    )
+
+
+def train_rg_mch_ppo(
+    *,
+    env_config: AirDefenseV1EnvConfig | None = None,
+    train_config: AirDefenseV1PPOConfig | None = None,
+    save_path: str | Path | None = None,
+    callback: Any | None = None,
+    tb_log_name: str | None = None,
+    unit_order: tuple[int, ...] | None = None,
+) -> Any:
+    """Train reliability-gated MCH-PPO with GAE-preserving credit."""
+
+    return _train_sb3_model(
+        algorithm="rg_mch_ppo",
+        env_config=env_config,
+        train_config=train_config,
+        save_path=save_path,
+        callback=callback,
+        tb_log_name=tb_log_name,
+        unit_order=unit_order,
+    )
+
+
+def train_sa_rg_mch_ppo(
+    *,
+    env_config: AirDefenseV1EnvConfig | None = None,
+    train_config: AirDefenseV1PPOConfig | None = None,
+    save_path: str | Path | None = None,
+    callback: Any | None = None,
+    tb_log_name: str | None = None,
+    unit_order: tuple[int, ...] | None = None,
+) -> Any:
+    """Train support-aware, engagement-anchored RG-MCH-PPO."""
+
+    return _train_sb3_model(
+        algorithm="sa_rg_mch_ppo",
+        env_config=env_config,
+        train_config=train_config,
+        save_path=save_path,
+        callback=callback,
+        tb_log_name=tb_log_name,
+        unit_order=unit_order,
+    )
+
+
+def train_bpce_ppo(
+    *,
+    env_config: AirDefenseV1EnvConfig | None = None,
+    train_config: AirDefenseV1PPOConfig | None = None,
+    save_path: str | Path | None = None,
+    callback: Any | None = None,
+    tb_log_name: str | None = None,
+    unit_order: tuple[int, ...] | None = None,
+) -> Any:
+    """Train joint PPO with boundary-probed engagement supervision."""
+
+    return _train_sb3_model(
+        algorithm="bpce_ppo",
+        env_config=env_config,
+        train_config=train_config,
+        save_path=save_path,
+        callback=callback,
+        tb_log_name=tb_log_name,
+        unit_order=unit_order,
+    )
+
+
 def train(
     algorithm: AlgorithmName = "maskable_ppo",
     *,
@@ -234,6 +347,38 @@ def train(
         )
     if algorithm == "factorized_engagement_autoregressive_ppo":
         return train_factorized_engagement_autoregressive_ppo(
+            env_config=env_config,
+            train_config=train_config,
+            save_path=save_path,
+            callback=callback,
+            tb_log_name=tb_log_name,
+        )
+    if algorithm == "mch_ppo":
+        return train_mch_ppo(
+            env_config=env_config,
+            train_config=train_config,
+            save_path=save_path,
+            callback=callback,
+            tb_log_name=tb_log_name,
+        )
+    if algorithm == "rg_mch_ppo":
+        return train_rg_mch_ppo(
+            env_config=env_config,
+            train_config=train_config,
+            save_path=save_path,
+            callback=callback,
+            tb_log_name=tb_log_name,
+        )
+    if algorithm == "sa_rg_mch_ppo":
+        return train_sa_rg_mch_ppo(
+            env_config=env_config,
+            train_config=train_config,
+            save_path=save_path,
+            callback=callback,
+            tb_log_name=tb_log_name,
+        )
+    if algorithm == "bpce_ppo":
+        return train_bpce_ppo(
             env_config=env_config,
             train_config=train_config,
             save_path=save_path,
@@ -402,6 +547,10 @@ def _train_sb3_model(
         "autoregressive_maskable_ppo",
         "role_conditioned_autoregressive_ppo",
         "factorized_engagement_autoregressive_ppo",
+        "mch_ppo",
+        "rg_mch_ppo",
+        "sa_rg_mch_ppo",
+        "bpce_ppo",
     }:
         from ..algorithms.policy_gradient.autoregressive_ppo import (
             AutoregressiveMaskableActorCriticPolicy,
@@ -414,7 +563,13 @@ def _train_sb3_model(
         )
 
         policy = RoleConditionedAutoregressiveActorCriticPolicy
-    if algorithm == "factorized_engagement_autoregressive_ppo":
+    if algorithm in {
+        "factorized_engagement_autoregressive_ppo",
+        "mch_ppo",
+        "rg_mch_ppo",
+        "sa_rg_mch_ppo",
+        "bpce_ppo",
+    }:
         from ..algorithms.policy_gradient.factorized_engagement_ppo import (
             FactorizedEngagementActorCriticPolicy,
         )
@@ -425,8 +580,58 @@ def _train_sb3_model(
         "autoregressive_maskable_ppo",
         "role_conditioned_autoregressive_ppo",
         "factorized_engagement_autoregressive_ppo",
+        "mch_ppo",
+        "rg_mch_ppo",
+        "sa_rg_mch_ppo",
+        "bpce_ppo",
     }:
         policy_kwargs["unit_order"] = unit_order
+    model_kwargs: dict[str, Any] = {}
+    if algorithm in {"mch_ppo", "rg_mch_ppo", "sa_rg_mch_ppo"}:
+        if not config.mch_q_critic_paths:
+            raise ValueError("mch_q_critic_paths must contain frozen checkpoints")
+        model_kwargs.update(
+            q_critic_paths=config.mch_q_critic_paths,
+            engagement_loss_coef=config.mch_engagement_loss_coef,
+            target_loss_coef=config.mch_target_loss_coef,
+        )
+    if algorithm in {"rg_mch_ppo", "sa_rg_mch_ppo"}:
+        model_kwargs.update(
+            engagement_residual_coef=config.rg_mch_engagement_residual_coef,
+            target_residual_coef=config.rg_mch_target_residual_coef,
+            residual_clip=config.rg_mch_residual_clip,
+            reliability_threshold=config.rg_mch_reliability_threshold,
+        )
+    if algorithm == "sa_rg_mch_ppo":
+        if config.sa_rg_mch_support_dataset_path is None:
+            raise ValueError("sa_rg_mch_support_dataset_path must be configured")
+        model_kwargs.update(
+            support_dataset_path=config.sa_rg_mch_support_dataset_path,
+            anchor_kl_budget=config.sa_rg_mch_anchor_kl_budget,
+            anchor_kl_coef=config.sa_rg_mch_anchor_kl_coef,
+        )
+    if algorithm == "bpce_ppo":
+        model_kwargs.update(
+            counterfactual_loss_coef=config.bpce_counterfactual_loss_coef,
+            probe_interval=config.bpce_probe_interval,
+            probe_max_contexts=config.bpce_probe_max_contexts,
+            probe_repeats=config.bpce_probe_repeats,
+            probe_margin_radius=config.bpce_probe_margin_radius,
+            probe_minimum_sign_agreement=(
+                config.bpce_probe_minimum_sign_agreement
+            ),
+            probe_minimum_informative_repeats=(
+                config.bpce_probe_minimum_informative_repeats
+            ),
+            probe_maximum_opposite_repeats=(
+                config.bpce_probe_maximum_opposite_repeats
+            ),
+            probe_minimum_return_effect=(
+                config.bpce_probe_minimum_return_effect
+            ),
+            probe_base_seed=config.bpce_probe_base_seed,
+            probe_selection_mode=config.bpce_probe_selection_mode,
+        )
     model = model_class(
         policy,
         env,
@@ -445,6 +650,7 @@ def _train_sb3_model(
         device=config.device,
         verbose=config.verbose,
         tensorboard_log=config.tensorboard_log,
+        **model_kwargs,
     )
     learn_kwargs: dict[str, Any] = {
         "total_timesteps": config.total_timesteps,
@@ -504,6 +710,26 @@ def _load_algorithm_class(algorithm: AlgorithmName) -> Any:
         )
 
         return FactorizedEngagementMaskablePPO
+    if algorithm == "mch_ppo":
+        from ..algorithms.policy_gradient.mch_ppo import (
+            MaskedCounterfactualHierarchicalPPO,
+        )
+
+        return MaskedCounterfactualHierarchicalPPO
+    if algorithm == "rg_mch_ppo":
+        from ..algorithms.policy_gradient.mch_ppo import ReliabilityGatedMCHPPO
+
+        return ReliabilityGatedMCHPPO
+    if algorithm == "sa_rg_mch_ppo":
+        from ..algorithms.policy_gradient.mch_ppo import SupportAnchoredRGMCHPPO
+
+        return SupportAnchoredRGMCHPPO
+    if algorithm == "bpce_ppo":
+        from ..algorithms.policy_gradient.bpce_ppo import (
+            BoundaryProbedCounterfactualEngagementPPO,
+        )
+
+        return BoundaryProbedCounterfactualEngagementPPO
     raise ValueError(f"Unsupported algorithm: {algorithm}")
 
 
@@ -523,6 +749,10 @@ def _looks_like_maskable_model(model: Any) -> bool:
         "AutoregressiveMaskablePPO",
         "RoleConditionedAutoregressiveMaskablePPO",
         "FactorizedEngagementMaskablePPO",
+        "MaskedCounterfactualHierarchicalPPO",
+        "ReliabilityGatedMCHPPO",
+        "SupportAnchoredRGMCHPPO",
+        "BoundaryProbedCounterfactualEngagementPPO",
     }
 
 

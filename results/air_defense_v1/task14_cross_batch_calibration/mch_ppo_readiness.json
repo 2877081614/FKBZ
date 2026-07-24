@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "oob_gate_passed": false,
+  "independent_gate_passed": false,
+  "selected_candidate": "score_platt",
+  "critic_interfaces": [],
+  "mch_ppo_prerequisites_complete": false,
+  "next_action": "upgrade_explicit_constraint_representation"
+}

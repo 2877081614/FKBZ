@@ -20,6 +20,16 @@
 - [下一研究阶段：交战概率校准与反事实分层信用分配](next_research_phase_counterfactual_credit_assignment.md)
 - [下一研究阶段：非图结构掩码条件动作价值 Critic](next_research_phase_action_conditioned_q_critic.md)
 - [下一研究阶段：动作差异数据与组内排序监督](next_research_phase_q_critic_ranking_refinement.md)
+- [下一研究阶段：MCH-PPO 机制压力实验](next_research_phase_mch_ppo_mechanism_stress_test.md)
+- [下一研究阶段：可靠度门控 MCH-PPO 核心机制验证](next_research_phase_reliability_gated_mch_ppo.md)
+- [下一研究阶段：支持感知与累计漂移约束 RG-MCH-PPO](next_research_phase_support_anchored_rg_mch_ppo.md)
+- [下一研究阶段：BPCE-PPO v0 语义实现与机制证伪](next_research_phase_bpce_ppo_v0.md)
+- [下一研究阶段：BPCE 标签语义、辅助剂量与选点覆盖审计](next_research_phase_bpce_label_semantics_and_dose_audit.md)
+- [下一研究阶段：BPCE 短视窗安全—资源双分量标签审计](next_research_phase_bpce_short_horizon_component_label_audit.md)
+- [下一研究阶段：动作替代与弹药机会成本可辨识性审计](next_research_phase_action_substitution_resource_opportunity_cost_audit.md)
+- [下一研究阶段：动作替代测量失真独立确认与适用边界](next_research_phase_action_substitution_independent_confirmation.md)
+- [下一研究阶段：W1 主张—证据冻结与论文正文写作](next_research_phase_claim_evidence_freeze_and_manuscript_drafting.md)
+- [W1 拆分执行包：10 项协调写作任务](w1_claim_evidence_manuscript/README.md)
 - [下一研究阶段：显式交战与目标分层 Q 诊断](next_research_phase_hierarchical_q_diagnostics.md)
 - [下一研究阶段：风险与约束感知的交战效用诊断](next_research_phase_risk_aware_engagement_utility.md)
 - [下一研究阶段：安全临界状态与类别平衡交战估值](next_research_phase_critical_state_balanced_engagement.md)
@@ -27,9 +37,25 @@
 - [下一研究阶段：状态条件资源预算与显式约束价值](next_research_phase_state_conditioned_constrained_value.md)
 - [下一研究阶段：跨场景鲁棒预算与可靠成本差监督](next_research_phase_cross_scenario_robust_budget.md)
 - [下一研究阶段：多批次临界状态语料与留一批次泛化](next_research_phase_multibatch_leave_one_out.md)
+- [下一研究阶段：OOB 安全-停止 Pareto 可行性审计](next_research_phase_oob_pareto_feasibility.md)
+- [下一研究阶段：冻结 OOB 校准协议的独立批次确认](next_research_phase_independent_calibration_confirmation.md)
+- [下一研究阶段：跨批次统一概率校准与不确定性约束](next_research_phase_cross_batch_uncertainty_calibration.md)
 
 其中，任务一至任务十四的当前门控阶段均已完成。任务十二证明 all-no-op 同时包含 deterministic argmax 概率碎片化和 PPO 种子分叉；任务十三进一步否决了“统一阈值即可修复”，并确认现有 `V(s)` Critic 不能提供动作条件反事实价值。
 
-多批次临界状态语料与留一批次泛化也已完成。三个训练批次共形成144个状态和193个上下文组，数据功效与批次独立性门槛全部通过；但选中目标的留一批次可行数仅为 `1/3`，最终72状态独立批次完整通过数为 `0/3`。三种子 engage recall 达到 `0.829 / 0.943 / 0.886`，no-op recall 却降至 `0.500 / 0.477 / 0.545`，且全部九个种子-场景组合的 no-op recall 低于0.65。问题已从异质场景漏交战转为系统性过度交战。MCH-PPO、30k/100k 和 GNN 继续冻结；下一入口是不新增 rollout 的留一批次安全-停止 Pareto 可行性审计。项目最终目标仍是稳定、可扩展的防空资源分配，不是 GNN 本身。
+BPCE-PPO v0 已完成。joint PPO 严格 fallback、环境快照和索引共同随机带通过软件验收；正式10k三种子双场景实验有2/6个运行all-noop，异质场景安全改善但资源成本达到baseline的1.928倍，边界探测也只在一个场景优于等预算随机探测。当前候选未通过30k门控。现阶段先执行标签语义审计，依次验证 argmax target、target 边缘化和 stochastic continuation；尚未允许直接实现 coverage-balanced loss。30k/100k、target辅助与GNN继续冻结。
 
 后续每个主要研究阶段应新增独立任务文档，不直接覆盖已经完成阶段的验收记录。
+
+BPCE阶段A2已完成但未通过。短视窗标签只将可操作上下文由27提高到31；
+异质场景形成10个ENGAGE和14个STOP，但time-pressure只有5/2，且其18个
+资源槽全部AMBIGUOUS。阶段B/C和修订版10k不启动，BPCE在线辅助主线暂停。
+
+动作替代与弹药机会成本审计已完成。P-R1通过：time/resource的18个上下文
+均确认当前交战替代后续射击，非正累计成本差可被未来成本替代解释。
+P-R2/P-R3失败：可靠资源机会价值仅为time 5/18、heterogeneity 2/18，
+且只覆盖missile。通用机会成本oracle和在线辅助路线停止。
+
+R2独立确认已完成。9个全新来源模型和108个零重叠上下文通过完整性门控；
+P-C1/P-C2通过，动作替代测量失真跨新种子复现。P-C3因time/missile仅
+2个符号掩盖上下文而失败，贡献冻结为资源类型与场景条件结论并转入写作。

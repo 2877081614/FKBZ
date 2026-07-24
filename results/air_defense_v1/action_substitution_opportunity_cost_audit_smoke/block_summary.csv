@@ -1,0 +1,3 @@
+﻿scenario,policy_seed,slot,contexts,reliable_opportunity,mean_sub_shot,mean_sub_cost,mean_reuse_probe,mean_option_edge,mean_ammo_gain_damage,mean_ammo_gain_leaks,actual_extra_transitions
+time_pressure,8,safety,1,0,0.0,0.0,0.0,0.0,0.0,0.0,6
+time_pressure,8,resource,1,0,0.9935332834720612,1.9967666417360306,1.0000000149011612,4.127778626978397,0.0,0.0,462

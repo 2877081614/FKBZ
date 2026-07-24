@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "started_at_utc": "2026-07-23T13:02:29.434128+00:00",
+  "task": "action_substitution_resource_opportunity_cost_audit",
+  "actor_updates": false,
+  "smoke": true,
+  "scenarios": [
+    "time_pressure"
+  ],
+  "policy_seeds": [
+    8
+  ],
+  "model_paths": {
+    "time_pressure/seed8": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\mch_ppo_mechanism_stress_test\\models\\time_pressure\\factorized_engagement_ar_ppo_order_012_seed8.zip"
+  },
+  "reference_contexts": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\bpce_label_semantics_audit\\context_labels.csv",
+  "device": "auto",
+  "audit_config": {
+    "repeats": 2,
+    "confidence_z": 1.96,
+    "high_threat_threshold": 0.8,
+    "damage_effect": 0.05,
+    "leak_effect": 0.1,
+    "identity_probability_tolerance": 1e-12,
+    "decomposition_tolerance": 1e-06,
+    "branch_base_seed": 983000,
+    "maximum_extra_transitions": 266198
+  },
+  "frozen_branch_semantics": {
+    "N": "current probed unit forced noop",
+    "E": "current probed unit forced legal engage",
+    "E-R": "same current E step, then restore exactly one probed-unit ammo before the next policy observation",
+    "future_metrics_exclude_current_step": true,
+    "target_handling": "exact conditional probability marginalization"
+  },
+  "frozen_gates": {
+    "contexts": 72,
+    "repeats_per_context": 32,
+    "P-R1_positive_mean_sub_shot": 12,
+    "P-R1_positive_lower_sub_shot": 6,
+    "P-R1_explained_fraction": 0.8,
+    "P-R2_resource_contexts_per_scenario": 6,
+    "P-R2_resource_contexts_per_block": 2,
+    "P-R3_multiple_unit_types": 2,
+    "maximum_extra_transitions": 266198
+  },
+  "completed_at_utc": "2026-07-23T13:02:35.025865+00:00",
+  "software_tests_passed": false,
+  "result_counts": {
+    "identity_rows": 12,
+    "contexts": 2,
+    "repeat_rows": 4,
+    "target_repeat_rows": 10,
+    "intervention_integrity_rows": 10,
+    "actual_extra_transitions": 468
+  },
+  "stage_passed": false,
+  "decision": "invalidate_results_intervention_or_integrity_failure",
+  "maximum_actor_parameter_difference": 0.0
+}

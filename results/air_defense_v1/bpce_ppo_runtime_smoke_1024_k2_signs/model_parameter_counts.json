@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "method": "bpce_ppo_order_012",
+      "train_scenario": "time_pressure",
+      "run_index": 0,
+      "train_seed": 8,
+      "model_path": "results\\air_defense_v1\\bpce_ppo_runtime_smoke_1024_k2_signs\\models\\time_pressure\\bpce_ppo_order_012_seed8.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "bpce_random_probe_ppo_order_012",
+      "train_scenario": "time_pressure",
+      "run_index": 0,
+      "train_seed": 8,
+      "model_path": "results\\air_defense_v1\\bpce_ppo_runtime_smoke_1024_k2_signs\\models\\time_pressure\\bpce_random_probe_ppo_order_012_seed8.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    },
+    {
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "train_scenario": "time_pressure",
+      "run_index": 0,
+      "train_seed": 8,
+      "model_path": "results\\air_defense_v1\\bpce_ppo_runtime_smoke_1024_k2_signs\\models\\time_pressure\\factorized_engagement_ar_ppo_order_012_seed8.zip",
+      "actor_parameters": 34946,
+      "critic_parameters": 34945,
+      "shared_parameters": 0,
+      "total_parameters": 69891
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+method,method_type,train_scenario,eval_scenario,run_index,train_seed,attribution,count,total_high_threat_leaks,rate
+rg_mch_ppo_order_012,learning,time_pressure,time_pressure,0,8,never_legal,0,2,0.0
+rg_mch_ppo_order_012,learning,time_pressure,time_pressure,0,8,unassigned,2,2,1.0
+rg_mch_ppo_order_012,learning,time_pressure,time_pressure,0,8,prefix_denied,0,2,0.0
+rg_mch_ppo_order_012,learning,time_pressure,time_pressure,0,8,mismatched_resource,0,2,0.0
+rg_mch_ppo_order_012,learning,time_pressure,time_pressure,0,8,attempted_miss,0,2,0.0
+rg_mch_ppo_order_012,learning,time_pressure,time_pressure,0,8,resource_exhausted,0,2,0.0

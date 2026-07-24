@@ -1,0 +1,15 @@
+{
+  "models": [
+    {
+      "scenario": "time_pressure",
+      "policy_seed": 17,
+      "method": "factorized_engagement_ar_ppo_order_012",
+      "requested_timesteps": 256,
+      "n_epochs": 2,
+      "model_path": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation_smoke\\source_models\\time_pressure\\factorized_engagement_ar_ppo_order_012_seed17.zip",
+      "sha256": "9c8a3c6111f462b994737f675c17f5c1baccb2b6af7aeb8f593138daf27487a0",
+      "loaded_existing": true,
+      "selected_by_behavior": false
+    }
+  ]
+}

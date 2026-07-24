@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "methods": [
+    "factorized_engagement_ar_ppo_order_012",
+    "mch_ppo_order_012",
+    "rg_mch_ppo_order_012",
+    "sa_rg_mch_ppo_order_012"
+  ],
+  "scenarios": {
+    "time_pressure": {
+      "paired_runs": [
+        {
+          "train_seed": 8,
+          "candidate_collapsed": false,
+          "all_noop_delta_vs_baseline": 0.0,
+          "high_threat_leak_delta_vs_baseline": 0.1333333333333333,
+          "reward_delta_vs_baseline": -14.571500776327838,
+          "damage_delta_vs_baseline": 0.21100924997652193,
+          "cost_delta_vs_baseline": 0.0,
+          "reward_delta_vs_rg_mch": -51.67650816044787,
+          "damage_delta_vs_rg_mch": 0.9130902066197026
+        }
+      ],
+      "all_noop_noninferior_seed_count": 1,
+      "all_noop_gate_passed": true,
+      "mean_reward_delta_vs_baseline": -14.571500776327838,
+      "mean_damage_delta_vs_baseline": 0.21100924997652193,
+      "mean_high_threat_leak_delta_vs_baseline": 0.1333333333333333,
+      "resource_cost_ratio_vs_baseline": 1.0,
+      "safety_gate_passed": false,
+      "cost_gate_passed": true,
+      "mean_reward_delta_vs_mch_v0": 27.06859587886197,
+      "mean_damage_delta_vs_mch_v0": -0.8299170322562492,
+      "mch_v0_gate_passed": true,
+      "mean_reward_delta_vs_rg_mch": -51.67650816044787,
+      "mean_damage_delta_vs_rg_mch": 0.9130902066197026,
+      "rg_noncatastrophic_gate_passed": false
+    }
+  },
+  "collapsed_candidate_run_count": 0,
+  "rg_mch_collapsed_run_count": 2,
+  "training_diagnostics": {
+    "mch_engagement_reliability": 0.11797093134373426,
+    "mch_target_reliability": 0.01604981324635446,
+    "mch_engagement_support": 0.12652091030031443,
+    "mch_target_support": 0.021615906385704875,
+    "mch_engagement_residual_abs": 0.05438790610060096,
+    "mch_target_residual_abs": 0.00657270586816594,
+    "mch_anchor_kl": 2.105025386652383e-06,
+    "mch_anchor_penalty": 0.0,
+    "mch_anchor_excess_rate": 0.0,
+    "training_time_ratio_vs_baseline": 0.07291164725490348
+  },
+  "gates": {
+    "structural_zero": true,
+    "no_collapsed_candidate_runs": true,
+    "all_noop_noninferiority": true,
+    "reward_damage_safety": false,
+    "high_threat_improvement": false,
+    "resource_cost": true,
+    "improves_mch_v0_both_scenarios": true,
+    "reduces_rg_mch_collapse_count": true,
+    "noncatastrophic_vs_rg_mch": false
+  },
+  "mechanism_gate_passed": false
+}

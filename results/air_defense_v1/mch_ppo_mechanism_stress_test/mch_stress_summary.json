@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "methods": [
+    "factorized_engagement_ar_ppo_order_012",
+    "mch_ppo_order_012"
+  ],
+  "scenarios": {
+    "heterogeneity_pressure": {
+      "paired_runs": [
+        {
+          "train_seed": 8,
+          "all_noop_delta": 0.0,
+          "high_threat_leak_delta": 0.0,
+          "resource_cost_delta": 0.0,
+          "reward_delta": 0.0,
+          "damage_delta": 0.0
+        },
+        {
+          "train_seed": 9,
+          "all_noop_delta": 0.36666666666666664,
+          "high_threat_leak_delta": 0.27083333333333337,
+          "resource_cost_delta": -12.753333333333329,
+          "reward_delta": -25.61637584493009,
+          "damage_delta": 0.8565716887380586
+        },
+        {
+          "train_seed": 10,
+          "all_noop_delta": 0.0,
+          "high_threat_leak_delta": 0.0,
+          "resource_cost_delta": 0.0,
+          "reward_delta": 0.0,
+          "damage_delta": 0.0
+        }
+      ],
+      "all_noop_noninferior_seed_count": 2,
+      "all_noop_gate_passed": true,
+      "mean_high_threat_leak_delta": 0.09027777777777779,
+      "resource_cost_ratio": 0.17186147186147188,
+      "cost_gate_passed": true,
+      "mean_reward_delta": -8.53879194831003,
+      "mean_damage_delta": 0.28552389624601954,
+      "safety_gate_passed": false
+    },
+    "time_pressure": {
+      "paired_runs": [
+        {
+          "train_seed": 8,
+          "all_noop_delta": 1.0,
+          "high_threat_leak_delta": 0.2833333333333333,
+          "resource_cost_delta": -17.0,
+          "reward_delta": -41.64009665518981,
+          "damage_delta": 1.0409262822327712
+        },
+        {
+          "train_seed": 9,
+          "all_noop_delta": 0.0,
+          "high_threat_leak_delta": -0.09615384615384615,
+          "resource_cost_delta": -0.4166666666666643,
+          "reward_delta": 26.72944456393368,
+          "damage_delta": -0.45879163974843173
+        },
+        {
+          "train_seed": 10,
+          "all_noop_delta": 0.0,
+          "high_threat_leak_delta": 0.12121212121212122,
+          "resource_cost_delta": 0.05000000000000071,
+          "reward_delta": -15.363120767369615,
+          "damage_delta": 0.3010433402995476
+        }
+      ],
+      "all_noop_noninferior_seed_count": 2,
+      "all_noop_gate_passed": true,
+      "mean_high_threat_leak_delta": 0.1027972027972028,
+      "resource_cost_ratio": 0.6589198036006545,
+      "cost_gate_passed": true,
+      "mean_reward_delta": -10.091257619541915,
+      "mean_damage_delta": 0.29439266092796235,
+      "safety_gate_passed": false
+    }
+  },
+  "collapsed_candidate_run_count": 3,
+  "gates": {
+    "structural_zero": true,
+    "all_noop_noninferiority": true,
+    "no_collapsed_candidate_runs": false,
+    "high_threat_improvement": false,
+    "resource_cost": true,
+    "reward_damage_safety": false
+  },
+  "mechanism_gate_passed": false
+}

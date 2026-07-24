@@ -229,6 +229,8 @@ class FactorizedEngagementMaskablePPO(MaskablePPO):
         model = super().load(path, env=env, **kwargs)
         if not isinstance(model.policy, FactorizedEngagementActorCriticPolicy):
             raise ValueError("Saved model does not contain the factorized policy")
-        if model.action_generator_signature != model.policy.action_generator_signature:
+        saved_signature = deepcopy(model.action_generator_signature)
+        saved_signature.pop("optimizer", None)
+        if saved_signature != model.policy.action_generator_signature:
             raise ValueError("Saved model has an incompatible action generator signature")
         return model

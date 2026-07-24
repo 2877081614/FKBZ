@@ -1,4 +1,7 @@
-from .centralized_env import AirDefenseResourceAssignmentEnvV1
+from .centralized_env import (
+    AirDefenseResourceAssignmentEnvV1,
+    AirDefenseV1StateSnapshot,
+)
 from .config import (
     AirDefenseV1EnvConfig,
     DefenseUnitV1Config,
@@ -23,6 +26,7 @@ from .wrappers import (
 
 __all__ = [
     "AirDefenseResourceAssignmentEnvV1",
+    "AirDefenseV1StateSnapshot",
     "AirDefenseV1EnvConfig",
     "AirDefenseV1ScenarioProfile",
     "AIR_DEFENSE_V1_DEFAULT_SCENARIO",
