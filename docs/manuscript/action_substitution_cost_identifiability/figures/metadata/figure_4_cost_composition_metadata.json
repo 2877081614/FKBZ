@@ -1,0 +1,51 @@
+{
+  "figure": "figure_4_cost_composition",
+  "backend": "python_matplotlib",
+  "final_width_mm": 183,
+  "conclusion": "Total substitution cost includes a necessary same-step component and a dominant future component that can mask direct-cost sign.",
+  "archetype": "asymmetric quantitative figure",
+  "panels": [
+    {
+      "id": "a",
+      "source": "results/air_defense_v1/action_substitution_confirmation/context_substitution_estimates.csv",
+      "filter": "scenario=time_pressure, slot=resource",
+      "aggregation": "equal-weight mean across 18 contexts",
+      "fields": [
+        "direct_cost_mean",
+        "same_step_other_sub_cost_mean",
+        "future_sub_cost_probe_mean",
+        "future_sub_cost_other_mean",
+        "sub_cost_mean",
+        "episode_cost_delta_mean",
+        "rho_sub_mean",
+        "cost_sign_masked_rate"
+      ]
+    },
+    {
+      "id": "b",
+      "source": "same as panel a",
+      "aggregation": "same_step / total and (future_probe + future_other) / total",
+      "unit": "context-equal aggregate"
+    },
+    {
+      "id": "c",
+      "source": "same as panel a",
+      "fields": [
+        "rho_sub_mean",
+        "episode_cost_delta_mean",
+        "cost_sign_masked_rate",
+        "resource_type"
+      ],
+      "unit": "context"
+    }
+  ],
+  "exports": {
+    "svg": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_4_cost_composition.svg",
+    "pdf": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_4_cost_composition.pdf",
+    "tiff": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_4_cost_composition.tiff",
+    "preview": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_4_cost_composition_preview.png"
+  },
+  "data_exclusions": "none",
+  "interval": "mean +/- 1.96 * sample_standard_deviation / sqrt(n)",
+  "script": "docs/manuscript/action_substitution_cost_identifiability/figures/source/generate_figures.py"
+}

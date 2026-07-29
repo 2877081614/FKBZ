@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "task": "N2_future_coverability_responsibility_certificate",
+  "frozen_at": "2026-07-29",
+  "status": "static_gate_passed",
+  "decision": "N2-E1_enter_frozen_paired_predictive_validation",
+  "online_training_authorized": false,
+  "paired_predictive_validation_authorized": true,
+  "source": "results/air_defense_v1/action_substitution_confirmation",
+  "source_contexts_are_development_only": true,
+  "new_counterfactual_rollouts": 0,
+  "actor_updates": 0,
+  "thresholds": {
+    "minimum_spread_contexts": 30,
+    "minimum_positive_action_rate": 0.15,
+    "maximum_absolute_cost_or_threat_spearman": 0.9,
+    "minimum_same_unit_target_difference_contexts": 20,
+    "maximum_mean_context_ms": 5.0,
+    "maximum_single_context_ms": 25.0
+  },
+  "observed": {
+    "contexts": 108,
+    "legal_action_rows": 243,
+    "positive_externality_actions": 86,
+    "positive_externality_rate": 0.35390946502057613,
+    "spread_contexts": 34,
+    "spearman_externality_vs_unit_cost": 0.4664525890392102,
+    "spearman_externality_vs_target_weight": -0.12793942594566,
+    "spearman_externality_vs_n1_substitution": 0.4792093808457598,
+    "mean_context_audit_ms": 1.0224064817184289,
+    "maximum_context_audit_ms": 5.473299999721348
+  },
+  "propositions": {
+    "N2-P1_formal_implementation_consistency": true,
+    "N2-P2_non_degenerate_signal": true,
+    "N2-P3_not_cost_or_threat_rename": true,
+    "N2-P4_static_compute_budget": true,
+    "N2-P5_provisional_literature_distance": true
+  },
+  "authorized_next_action": {
+    "task_type": "frozen_paired_predictive_validation",
+    "purpose": "Test whether FCRC predicts loss of other-threat coverage or higher conditional damage beyond direct cost, target weight, raw matching score, binary feasibility, and N1 substitution.",
+    "online_policy_update": false,
+    "reward_modification": false,
+    "action_mask_modification": false
+  },
+  "prohibited_actions": [
+    "Do not add FCRC to reward or PPO loss.",
+    "Do not use FCRC to mask actions.",
+    "Do not start 10k, 30k, or 100k training.",
+    "Do not claim performance improvement or an established algorithm contribution.",
+    "Do not introduce GNN before paired predictive validation passes."
+  ],
+  "authoritative_result": "results/air_defense_v1/n2_static_coverability_audit/gate_summary.json"
+}

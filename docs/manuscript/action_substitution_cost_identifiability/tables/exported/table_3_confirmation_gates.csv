@@ -1,0 +1,10 @@
+Gate,Frozen criterion,Observed,Decision
+P-C1,complete ledger residual <= 1e-6; direct cost > 0,8.88e-16; all positive,PASS
+P-C2.1,positive mean Sub_shot >= 12/18,13/18,PASS
+P-C2.2,positive lower95 Sub_shot >= 6/18,13/18,PASS
+P-C2.3,positive seed-block lower95 >= 2/3,3/3,PASS
+P-C2.4,seed masked rate >= 0.5 for >= 2/3,2/3,PASS
+P-C2.5,nonpositive contexts explained >= 0.8,7/7,PASS
+P-C3 missile,positive lower95; >=2 positive seeds; >=3 masked contexts,3 seeds; 2/9 masked,FAIL
+P-C3 laser,same three conditions,3 seeds; 5/9 masked,PASS
+P-C3 overall,both resource types pass,missile fails sign-masking count,FAIL

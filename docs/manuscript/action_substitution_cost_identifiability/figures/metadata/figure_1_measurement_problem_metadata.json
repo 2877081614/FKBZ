@@ -1,0 +1,33 @@
+{
+  "figure": "figure_1_measurement_problem",
+  "backend": "python_matplotlib",
+  "final_width_mm": 183,
+  "conclusion": "Dynamic masked autoregressive suffixes can make episode cost a biased readout of the current local action cost.",
+  "archetype": "schematic-led composite",
+  "panels": [
+    {
+      "id": "a",
+      "role": "dynamic mask and autoregressive target occupancy",
+      "data": "schematic"
+    },
+    {
+      "id": "b",
+      "role": "N/E intervention identities",
+      "data": "schematic"
+    },
+    {
+      "id": "c",
+      "role": "cost-mixing identity",
+      "data": "frozen formula"
+    }
+  ],
+  "exports": {
+    "svg": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_1_measurement_problem.svg",
+    "pdf": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_1_measurement_problem.pdf",
+    "tiff": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_1_measurement_problem.tiff",
+    "preview": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_1_measurement_problem_preview.png"
+  },
+  "data_exclusions": "none",
+  "interval": "mean +/- 1.96 * sample_standard_deviation / sqrt(n)",
+  "script": "docs/manuscript/action_substitution_cost_identifiability/figures/source/generate_figures.py"
+}

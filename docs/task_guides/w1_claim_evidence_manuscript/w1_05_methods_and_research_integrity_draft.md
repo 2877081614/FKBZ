@@ -1,7 +1,7 @@
 # W1-05：Methods 与研究完整性稿
 
 更新时间：2026-07-24  
-任务状态：NOT_STARTED  
+任务状态：PASSED（T05）
 前置任务：W1-03 通过 T03  
 后续任务：W1-08、W1-09  
 允许并行：W1-04、W1-06  
@@ -171,3 +171,53 @@ reproducibility_map.md
 
 通过 T05 后向 W1-08、W1-09 移交四个文件和追溯矩阵更新。
 
+## 9. 执行结果
+
+完成日期：2026-07-28
+
+### 9.1 已生成文件
+
+```text
+docs/manuscript/action_substitution_cost_identifiability/
+  methods_draft_zh.md
+  supplementary_methods.md
+  research_integrity_disclosure.md
+  reproducibility_map.md
+```
+
+同步更新：
+
+```text
+manuscript_traceability_matrix.md
+section_handoff_contracts.md
+docs/task_guides/w1_claim_evidence_manuscript/README.md
+```
+
+### 9.2 T05 验收记录
+
+| 检查项 | 结果 |
+| --- | --- |
+| N/E 身份与 \(\Delta C_{\mathrm{episode}}=C(E)-C(N)\) 方向 | PASS |
+| 环境、来源策略、CRN、目标精确边缘化和随机延续可复现 | PASS |
+| 同一步、未来 probe、未来 other 三类替代成本齐全 | PASS |
+| \(Sub_{\mathrm{shot}}\)、\(\rho_{\mathrm{sub}}\)、cost-sign masking 定义齐全 | PASS |
+| 9 模型、108 上下文、每块 3 missile + 3 laser、32 repeats 齐全 | PASS |
+| P-C1/P-C2/P-C3 阈值和统计层级可重建 | PASS |
+| A/B/C 与短视窗审计仅承担问题收窄 | PASS |
+| `287/7776`、最大残差 `2.0`、扩展误差 `8.88e-16` 透明披露 | PASS |
+| 相同模型、上下文、随机带、门槛和唯一重跑已记录 | PASS |
+| 首轮无效结果归档位置可追溯 | PASS |
+| 未虚构代码、权重或数据发布承诺 | PASS |
+| Methods 未写入 Discussion 式算法有效性结论 | PASS |
+
+### 9.3 移交
+
+```text
+任务编号：W1-05
+状态：PASSED（T05）
+已生成文件：四个主交付文件及 Methods/Supplement 追溯矩阵更新
+已通过门控：T05
+未解决问题：无阻塞项；P-C3 仍为失败门控
+禁止下游假设：不得声称跨环境泛化、跨资源类型普遍性、在线 PPO 改进或 GNN 修复
+下一接收任务：W1-08、W1-09；W1-06 可继续并行
+```

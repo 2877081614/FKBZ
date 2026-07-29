@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-07-29T08:21:48.093960+00:00",
+  "selection_file": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\fcrc_paired_predictive_validation\\context_selection.csv",
+  "selection_file_sha256": "0295c86922355e42587502b89de7b4eb8a9552be09456d99c4ed551c5890615d",
+  "outcome_files_present_when_frozen": false,
+  "prior_hash_count": 135,
+  "selected_context_count": 32,
+  "block_candidate_counts": {
+    "medium|17": 4,
+    "medium|18": 6,
+    "medium|19": 4,
+    "time_pressure|17": 6,
+    "time_pressure|18": 3,
+    "time_pressure|19": 3,
+    "heterogeneity_pressure|17": 3,
+    "heterogeneity_pressure|18": 3,
+    "heterogeneity_pressure|19": 4
+  },
+  "selection_uses_outcomes": false,
+  "preregistration_sha256": "82de91c120343284ea0fea54f0bd5f79594d327e80d824c13979ab02ee61d8f4"
+}

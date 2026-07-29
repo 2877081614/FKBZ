@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "task": "N3_fcrc_frozen_paired_predictive_validation",
+  "created_at_utc": "2026-07-29T08:23:48.821803+00:00",
+  "formal_run": true,
+  "decision": "N3-E3_reject_predictive_proposition",
+  "online_training_authorized": false,
+  "actor_updates": 0,
+  "selection": {
+    "contexts": 32,
+    "block_selected_counts": {
+      "medium|17": 4,
+      "medium|18": 4,
+      "medium|19": 4,
+      "time_pressure|17": 4,
+      "time_pressure|18": 3,
+      "time_pressure|19": 3,
+      "heterogeneity_pressure|17": 3,
+      "heterogeneity_pressure|18": 3,
+      "heterogeneity_pressure|19": 4
+    },
+    "prior_hash_overlap": 0,
+    "outcome_blind": true,
+    "selection_file_sha256": "0295c86922355e42587502b89de7b4eb8a9552be09456d99c4ed551c5890615d"
+  },
+  "observed": {
+    "mean_delta_intercept_harm": 0.01840167563978108,
+    "one_sided_sign_flip_p": 0.35106489351064896,
+    "candidate_fcrc_intercept_harm_spearman": 0.415305762152879,
+    "baseline_leave_block_out_mae": 0.1370410726866523,
+    "full_leave_block_out_mae": 0.13704107268665244,
+    "cv_mae_reduction_fraction": -1.0126736120598202e-15,
+    "scenario_mean_delta_intercept_harm": {
+      "medium": 0.009929671161762472,
+      "time_pressure": 0.12371319649036797,
+      "heterogeneity_pressure": -0.07674343983718347
+    },
+    "positive_scenarios": 2,
+    "mean_delta_damage_harm": -0.05001059539723683,
+    "transitions": 82219,
+    "actor_unchanged": true,
+    "software_tests_passed": true
+  },
+  "propositions": {
+    "N3-P1_independence_and_integrity": true,
+    "N3-P2_causal_direction": false,
+    "N3-P3_incremental_prediction": false,
+    "N3-P4_scenario_and_safety_consistency": false,
+    "N3-P5_execution_integrity": true
+  },
+  "prohibited_actions_remain": [
+    "Do not inspect counterfactual outcomes before context selection is frozen.",
+    "Do not update Actor or Critic parameters.",
+    "Do not add FCRC to reward, loss, action mask, or sampling probability.",
+    "Do not change repeats, thresholds, outcomes, or feature sets after observing results.",
+    "Do not add same-distribution seeds until significance is reached.",
+    "Do not start 10k, 30k, or 100k online training.",
+    "Do not introduce a GNN."
+  ]
+}

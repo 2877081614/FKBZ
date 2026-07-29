@@ -1,0 +1,7 @@
+| Stratum | Level | Contexts | Mean Sub_shot | Mean rho_sub | Masked rate |
+| --- | --- | --- | --- | --- | --- |
+| Scenario | medium | 18 | 0.544 | 0.747 | 0.620 |
+| Scenario | time_pressure | 18 | 0.550 | 0.873 | 0.589 |
+| Scenario | heterogeneity_pressure | 18 | 0.876 | 0.972 | 0.865 |
+| Resource type (time/resource) | missile | 9 | 0.373 | 0.571 | 0.517 |
+| Resource type (time/resource) | laser | 9 | 0.726 | 1.175 | 0.660 |

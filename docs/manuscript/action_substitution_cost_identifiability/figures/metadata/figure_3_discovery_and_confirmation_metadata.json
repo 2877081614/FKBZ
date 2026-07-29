@@ -1,0 +1,60 @@
+{
+  "figure": "figure_3_discovery_and_confirmation",
+  "backend": "python_matplotlib",
+  "final_width_mm": 183,
+  "conclusion": "Positive future substitution discovered in R1 replicates in prespecified R2 contexts from three new policy seeds.",
+  "archetype": "quantitative grid",
+  "panels": [
+    {
+      "id": "a",
+      "source": "results/air_defense_v1/action_substitution_opportunity_cost_audit/context_opportunity_estimates.csv",
+      "filter": "scenario=time_pressure, slot=resource",
+      "unit": "context; n=32 paired repeats per context",
+      "fields": [
+        "sub_shot_mean",
+        "sub_shot_lower",
+        "sub_shot_upper"
+      ]
+    },
+    {
+      "id": "b",
+      "source": "results/air_defense_v1/action_substitution_confirmation/context_substitution_estimates.csv",
+      "filter": "scenario=time_pressure, slot=resource",
+      "unit": "context; n=32 paired repeats per context",
+      "fields": [
+        "sub_shot_mean",
+        "sub_shot_lower",
+        "sub_shot_upper"
+      ]
+    },
+    {
+      "id": "c",
+      "source": "results/air_defense_v1/action_substitution_confirmation/gate_summary.json",
+      "field": "P-C2.seed_block_intervals",
+      "unit": "context within seed block"
+    },
+    {
+      "id": "d",
+      "source": [
+        "results/air_defense_v1/action_substitution_opportunity_cost_audit/gate_summary.json",
+        "results/air_defense_v1/action_substitution_confirmation/gate_summary.json"
+      ],
+      "fields": [
+        "P-R1.nonpositive_total_cost_contexts",
+        "P-R1.explained_nonpositive_cost_contexts",
+        "P-C2.nonpositive_contexts",
+        "P-C2.nonpositive_with_positive_sub_cost"
+      ],
+      "unit": "context"
+    }
+  ],
+  "exports": {
+    "svg": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_3_discovery_and_confirmation.svg",
+    "pdf": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_3_discovery_and_confirmation.pdf",
+    "tiff": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_3_discovery_and_confirmation.tiff",
+    "preview": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_3_discovery_and_confirmation_preview.png"
+  },
+  "data_exclusions": "none",
+  "interval": "mean +/- 1.96 * sample_standard_deviation / sqrt(n)",
+  "script": "docs/manuscript/action_substitution_cost_identifiability/figures/source/generate_figures.py"
+}

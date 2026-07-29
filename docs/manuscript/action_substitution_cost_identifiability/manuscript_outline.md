@@ -207,16 +207,19 @@ R1 只负责机制发现；R2 使用新策略种子和新上下文承担独立�
 - 在没有新算法证据时，可形成完整学位论文章节或方法论文的机制部分；
 - 不以当前结果单独宣称通用反事实信用算法。
 
-## 4. 标题与摘要顺序
+## 4. 标题与摘要（W1-08 冻结）
 
-标题和摘要只做占位，不在 W1-03 定稿：
+主标题：
 
-```text
-Title: [DEFERRED TO W1-08]
-Abstract: [DEFERRED TO W1-08 AFTER W1-04/W1-05/W1-07]
-```
+> **Paired Counterfactual Auditing of Resource-Cost Measurement in Dynamically Masked Sequential Allocation**
 
-原因：标题和摘要必须反映最终 Results、Methods 和 Limitations，不能提前扩大主张。
+中文工作标题：
+
+> **动态掩码序列分配中的资源成本成对反事实审计**
+
+标题候选和风险审计见 `title_candidates.md`，中文摘要见
+`abstract_draft_zh.md`。两者均在 Results、Methods、Discussion 与 Limitations
+稳定后完成，并保持 W1-02 的 L2 测量/诊断定位。
 
 ## 5. 章节修改控制
 

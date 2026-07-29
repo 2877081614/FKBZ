@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "corrected_at": "2026-07-29",
+  "correction_type": "gate_implementation_only",
+  "counterfactual_rollouts_repeated": 0,
+  "selection_changed": false,
+  "outcomes_changed": false,
+  "statistics_changed": false,
+  "incorrect_added_condition": "selected observation hashes must be unique within N3",
+  "reason": "The preregistration requires zero overlap with prior R2/N2 states, but does not prohibit multiple unit-level contexts from sharing one new environment state.",
+  "frozen_requirement": "maximum prior hash overlap equals zero",
+  "observed_prior_hash_overlap": 0,
+  "p1_before": false,
+  "p1_after": true,
+  "decision_before": "N3-E4_invalid_experiment",
+  "decision_after": "N3-E3_reject_predictive_proposition"
+}

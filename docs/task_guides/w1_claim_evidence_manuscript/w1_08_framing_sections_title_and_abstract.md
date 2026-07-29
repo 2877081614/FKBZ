@@ -1,7 +1,7 @@
 # W1-08：框架章节、标题与摘要
 
 更新时间：2026-07-24  
-任务状态：NOT_STARTED  
+任务状态：PASSED（T08）
 前置任务：W1-02 非 L4；W1-04 通过 T04；W1-05 通过 T05；W1-07 通过 T07  
 后续任务：W1-09  
 允许并行：无  
@@ -172,3 +172,41 @@ final_contribution_list.md
 
 通过 T08 后将全部文件、最终主标题和贡献列表移交 W1-09。
 
+## 13. 执行结果（2026-07-28）
+
+已按规定顺序完成 Introduction、Related Work、Conclusion、标题候选与 Abstract，
+并将贡献压缩为三项。主标题冻结为：
+
+> **Paired Counterfactual Auditing of Resource-Cost Measurement in Dynamically Masked Sequential Allocation**
+
+已生成文件：
+
+- `introduction_draft_zh.md`；
+- `related_work_draft_zh.md`；
+- `conclusion_draft_zh.md`；
+- `title_candidates.md`；
+- `abstract_draft_zh.md`；
+- `final_contribution_list.md`。
+
+T08 验收：
+
+- [x] Introduction 的动态后缀与累计成本混合问题由 Results 6.2-6.5 回答；
+- [x] Related Work 按五类机制综合，并明确直接先例与剩余测量缺口；
+- [x] Conclusion 只压缩已冻结证据，没有引入新结果；
+- [x] 主标题保持 L2 测量/诊断定位，不包含优先权或通用算法主张；
+- [x] Abstract 在其他框架章节后撰写，包含定量事实、独立确认和 P-C3 边界；
+- [x] 最终三项贡献与 W1-02 定位一致，已删除或冻结越界候选；
+- [x] 标题、摘要、结论和一句话论证均限于 AirDefense v1 动态掩码序列分配；
+- [x] 未使用未经核验的“首次”、`first`、`universal`、`general` 或 `solves`。
+
+移交信息：
+
+```text
+任务编号：W1-08
+状态：PASSED（T08）
+已生成文件：六项规定交付物，并更新段落工作表、追溯矩阵和稿件目录
+已通过门控：T08
+未解决问题：无阻断项；英文表达与目标期刊格式留给 W1-09/W1-10
+禁止下游假设：不得恢复在线 PPO、通用 opportunity oracle、GNN 或跨环境主张
+下一接收任务：W1-09 中英文整稿集成
+```

@@ -11,6 +11,9 @@
 
 ## 当前任务
 
+- [已完成 N3：FCRC 冻结成对预测验证与 N3-E3 否决](next_research_phase_fcrc_paired_predictive_validation.md)
+- [已完成 N2：未来可覆盖性责任证书与 N2-E1 静态门控](next_research_phase_future_coverability_certificate.md)
+- [已完成 N1：可辨识资源信用定义、离线证伪与 N1-E4 退出](next_research_phase_identifiable_resource_credit.md)
 - [下一研究阶段：场景难度、优化基线与泛化诊断](next_research_phase_difficulty_generalization.md)
 - [下一研究阶段：无冲突联合动作机制](next_research_phase_conflict_free_joint_action.md)
 - [下一研究阶段：顺序式/自回归无冲突联合动作生成](next_research_phase_autoregressive_joint_action.md)
@@ -59,3 +62,9 @@ P-R2/P-R3失败：可靠资源机会价值仅为time 5/18、heterogeneity 2/18�
 R2独立确认已完成。9个全新来源模型和108个零重叠上下文通过完整性门控；
 P-C1/P-C2通过，动作替代测量失真跨新种子复现。P-C3因time/missile仅
 2个符号掩盖上下文而失败，贡献冻结为资源类型与场景条件结论并转入写作。
+
+W1-01至W1-10已经完成，阶段出口为L2/M2。N1以N1-E4否决回报责任候选；
+N2的FCRC通过静态门控，但N3冻结成对验证未通过因果方向、增量预测与安全
+一致性门槛，出口为N3-E3。FCRC只保留为静态解释组件，不进入reward、loss、
+mask或shield。下一主线入口重新回到规范性算法问题定义；BPCE/MCH-PPO不
+恢复，GNN仍需独立的关系估值或跨规模泛化瓶颈证据。

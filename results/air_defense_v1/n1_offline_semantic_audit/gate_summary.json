@@ -1,0 +1,19 @@
+{
+  "context_count": 108,
+  "target_ledger_rows": 7776,
+  "maximum_reconstructed_identity_error": 8.881784197001252e-16,
+  "maximum_direct_cost_error": 0.0,
+  "ambiguous_target_ledger_rows": 4731,
+  "ambiguous_target_ledger_rate": 0.6084104938271605,
+  "N1_propositions": {
+    "N1-P1_label_semantics": true,
+    "N1-P2_defensible_algorithmic_difference": false,
+    "N1-P3_strict_fallback_contract": true,
+    "N1-P4_development_data_boundary": true,
+    "N1-P5_online_stop_rules_frozen": true
+  },
+  "stage_passed": false,
+  "decision": "N1-E4_redefine_mainline_algorithm_problem",
+  "online_training_authorized": false,
+  "decision_reason": "The decomposition is semantically exact, but no candidate both preserves the intended global resource objective and establishes sufficient algorithmic distance from existing causal credit and constrained-RL methods."
+}

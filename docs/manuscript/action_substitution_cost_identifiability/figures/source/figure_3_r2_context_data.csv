@@ -1,0 +1,19 @@
+context_id,policy_seed,resource_type,sub_shot_mean,sub_shot_lower,sub_shot_upper,episode_cost_delta_mean,sub_cost_mean,phase
+confirm_time_pressure_seed17_resource00_e04_t04_u0,17,missile,0.6426547095179558,0.4549394458035889,0.8303699732323226,0.047010313719511,1.9529895670711996,R2 confirmation
+confirm_time_pressure_seed17_resource01_e23_t04_u1,17,missile,0.8033469086512923,0.7389225921119293,0.8677712251906553,-0.0104198660701513,2.0104198064655066,R2 confirmation
+confirm_time_pressure_seed17_resource02_e16_t04_u1,17,missile,0.8206662461161613,0.7421531369179148,0.8991793553144078,-0.0105490460991859,2.0105491057038307,R2 confirmation
+confirm_time_pressure_seed17_resource03_e23_t04_u2,17,laser,0.96875,0.9075,1.03,0.015625,0.484375,R2 confirmation
+confirm_time_pressure_seed17_resource04_e20_t04_u2,17,laser,1.0625,0.7850697559338913,1.3399302440661087,-0.03125,0.53125,R2 confirmation
+confirm_time_pressure_seed17_resource05_e12_t04_u2,17,laser,0.96875,0.9075,1.03,0.015625,0.484375,R2 confirmation
+confirm_time_pressure_seed18_resource00_e14_t39_u1,18,missile,0.0,0.0,0.0,1.65625,0.34375,R2 confirmation
+confirm_time_pressure_seed18_resource01_e14_t38_u1,18,missile,0.59375,0.4208584679492986,0.7666415320507014,0.734375,1.265625,R2 confirmation
+confirm_time_pressure_seed18_resource02_e14_t39_u0,18,missile,0.0,0.0,0.0,1.25,0.75,R2 confirmation
+confirm_time_pressure_seed18_resource03_e14_t39_u2,18,laser,0.0,0.0,0.0,0.5,0.0,R2 confirmation
+confirm_time_pressure_seed18_resource04_e14_t38_u2,18,laser,0.4375,0.2628673209830269,0.6121326790169731,-0.375,0.875,R2 confirmation
+confirm_time_pressure_seed18_resource05_e14_t37_u2,18,laser,0.53125,0.3159596156425601,0.7465403843574399,-0.421875,0.921875,R2 confirmation
+confirm_time_pressure_seed19_resource00_e00_t38_u1,19,missile,0.0,0.0,0.0,2.0,0.0,R2 confirmation
+confirm_time_pressure_seed19_resource01_e00_t38_u0,19,missile,0.0,0.0,0.0,1.0625,0.9375,R2 confirmation
+confirm_time_pressure_seed19_resource02_e00_t37_u1,19,missile,0.5,0.3239868040137606,0.6760131959862394,1.0,1.0,R2 confirmation
+confirm_time_pressure_seed19_resource03_e12_t22_u2,19,laser,0.7194198705255985,0.5117872135222086,0.9270525275289884,0.1392852589488029,0.360714741051197,R2 confirmation
+confirm_time_pressure_seed19_resource04_e00_t24_u2,19,laser,1.030967582948506,0.6501009942265572,1.4118341716704546,-0.5775601216591895,1.0775601365603509,R2 confirmation
+confirm_time_pressure_seed19_resource05_e11_t25_u2,19,laser,0.8154739215970039,0.5937005359652611,1.0372473072287467,-0.0528228431940078,0.5528228431940079,R2 confirmation

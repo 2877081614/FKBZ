@@ -1,0 +1,57 @@
+{
+  "backend": "python_pandas",
+  "script": "docs/manuscript/action_substitution_cost_identifiability/figures/source/generate_figures.py",
+  "tables": {
+    "table_1_task_policy_protocol": {
+      "rows": 11,
+      "exports": {
+        "csv": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_1_task_policy_protocol.csv",
+        "markdown": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_1_task_policy_protocol.md"
+      }
+    },
+    "table_2_independence_integrity": {
+      "rows": 6,
+      "exports": {
+        "csv": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_2_independence_integrity.csv",
+        "markdown": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_2_independence_integrity.md"
+      }
+    },
+    "table_3_confirmation_gates": {
+      "rows": 9,
+      "exports": {
+        "csv": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_3_confirmation_gates.csv",
+        "markdown": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_3_confirmation_gates.md"
+      }
+    },
+    "table_4_scenario_resource_boundaries": {
+      "rows": 5,
+      "exports": {
+        "csv": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_4_scenario_resource_boundaries.csv",
+        "markdown": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_4_scenario_resource_boundaries.md"
+      }
+    },
+    "table_s1_label_semantics": {
+      "rows": 6,
+      "exports": {
+        "csv": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_s1_label_semantics.csv",
+        "markdown": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_s1_label_semantics.md"
+      }
+    },
+    "table_s2_resource_restoration_negative": {
+      "rows": 4,
+      "exports": {
+        "csv": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_s2_resource_restoration_negative.csv",
+        "markdown": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_s2_resource_restoration_negative.md"
+      }
+    },
+    "table_s3_ledger_correction_integrity": {
+      "rows": 6,
+      "exports": {
+        "csv": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_s3_ledger_correction_integrity.csv",
+        "markdown": "docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_s3_ledger_correction_integrity.md"
+      }
+    }
+  },
+  "manual_numeric_entry": false,
+  "new_rollouts": false
+}

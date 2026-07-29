@@ -46,6 +46,8 @@
 - [oob_safety_stop_pareto_calibration.md](algorithms/oob_safety_stop_pareto_calibration.md)：完整 OOB 阈值集合、分组鲁棒约束、Pareto 前沿与种子尺度诊断。
 - [cross_batch_uncertainty_calibration.md](algorithms/cross_batch_uncertainty_calibration.md)：批次-场景-类别平衡 Platt、预测标准误、LCB及其失效边界。
 - [boundary_probed_counterfactual_engagement_ppo.md](algorithms/boundary_probed_counterfactual_engagement_ppo.md)：joint PPO安全主干、边界成对探测、严格退化语义与v0机制结论。
+- [identifiable_resource_credit_candidate_matrix.md](algorithms/identifiable_resource_credit_candidate_matrix.md)：N1 四分量资源信用语义、候选 A/B/C 比较、软件契约和 N1-E4 否决边界。
+- [future_coverability_responsibility_certificate.md](algorithms/future_coverability_responsibility_certificate.md)：N2 未来可覆盖性责任证书、精确匹配公式、软件接口、静态门控和使用边界。
 - [两篇HARL论文创新点与研究借鉴报告.md](algorithms/两篇HARL论文创新点与研究借鉴报告.md)：HARL/HATRPO/HAPPO 论文创新点和研究借鉴。
 
 ## Literature
@@ -53,6 +55,14 @@
 系统查新、论文差异矩阵和创新边界。
 
 - [task13_counterfactual_credit_novelty_review.md](literature/task13_counterfactual_credit_novelty_review.md)：反事实信用、分层 PPO、动作掩码与 GNN-WTA 的公式级查新和 MCH-PPO 收窄结论。
+- [n1_identifiable_resource_credit_search_protocol.md](literature/n1_identifiable_resource_credit_search_protocol.md)：N1 检索边界、查询族、纳入标准、去重规则和核心一手来源。
+- [n1_identifiable_resource_credit_novelty_review.md](literature/n1_identifiable_resource_credit_novelty_review.md)：N1 最近工作五层差异矩阵、伪创新压力测试和 N1-P2 否决结论。
+- [n2_future_coverability_novelty_review.md](literature/n2_future_coverability_novelty_review.md)：N2 相对约束 RL、reachability、shield、自回归分配和动态 WTA 的创新距离审查。
+- [lr_01_counterfactual_effect_decomposition.md](literature/algorithm_innovation_reading/lr_01_counterfactual_effect_decomposition.md)：ICML 2025 反事实效应分解公式卡、R2/N1 路径对照、创新覆盖压力测试与 LR-05 移交边界。
+- [lr_03_gradient_shaping_multi_constraint_safe_rl.md](literature/algorithm_innovation_reading/lr_03_gradient_shaping_multi_constraint_safe_rl.md)：L4DC 2024 GradS 多约束公式、梯度冲突矩阵、AirDefense 约束语义与 cost-critic 前置门控。
+- [lr_04_paspo_constrained_allocation.md](literature/algorithm_innovation_reading/lr_04_paspo_constrained_allocation.md)：NeurIPS 2024 PASPO 可行分配公式、初始化去偏、Task 8–11 差异矩阵与离散强基线判决。
+- [lr_05_capo_sequential_counterfactual_credit.md](literature/algorithm_innovation_reading/lr_05_capo_sequential_counterfactual_credit.md)：arXiv v2 COSAC/SeqAU 公式、版本变化、Gram 覆盖审计及 MCH/BPCE 创新边界。
+- [lr_06_offline_to_online_critic_reconstruction.md](literature/algorithm_innovation_reading/lr_06_offline_to_online_critic_reconstruction.md)：NeurIPS 2024 OCR-CFT 两类错配、Critic 重构、策略对齐、CFT 及 AirDefense 在线接入 no-go 条件。
 
 ## Experiments
 
@@ -80,6 +90,9 @@
 - [air_defense_v1_bpce_short_horizon_label_audit.md](experiments/air_defense_v1_bpce_short_horizon_label_audit.md)：TTI事件窗三态标签、异质资源STOP有效性与跨场景失败结论。
 - [air_defense_v1_action_substitution_opportunity_cost_audit.md](experiments/air_defense_v1_action_substitution_opportunity_cost_audit.md)：N/E/E-R嵌套反事实、未来射击替代、单发弹药机会价值及其跨场景可辨识性边界。
 - [air_defense_v1_action_substitution_confirmation.md](experiments/air_defense_v1_action_substitution_confirmation.md)：新策略种子、新状态和三场景下的动作替代独立确认、成本账本修正与资源类型边界。
+- [air_defense_v1_n1_offline_semantic_audit.md](experiments/air_defense_v1_n1_offline_semantic_audit.md)：冻结 R2 四分量恒等式、标量含混率、候选门控和 N1-E4 判决。
+- [air_defense_v1_n2_static_coverability_audit.md](experiments/air_defense_v1_n2_static_coverability_audit.md)：冻结 R2 的 243 个合法前缀动作、FCRC 非退化性、非冗余性和计算预算审计。
+- [air_defense_v1_n3_fcrc_paired_predictive_validation.md](experiments/air_defense_v1_n3_fcrc_paired_predictive_validation.md)：32 个全新上下文的 FCRC 共同随机数成对验证、增量预测失败和 N3-E3 判决。
 - [air_defense_v1_task14_ranking_refinement.md](experiments/air_defense_v1_task14_ranking_refinement.md)：独立高功效测试、组内动作差异监督、排序改善和 engage/no-op 剩余瓶颈。
 - [air_defense_v1_task14_hierarchical_q.md](experiments/air_defense_v1_task14_hierarchical_q.md)：108 状态显式分层 Q 正式对照、目标层收益与交战层负结果。
 - [air_defense_v1_task14_engagement_utility.md](experiments/air_defense_v1_task14_engagement_utility.md)：风险/约束交战效用正式对照、类别功效与估值失败分析。
@@ -106,6 +119,9 @@
 后续研究阶段的任务拆分、执行顺序、交付物和验收标准。
 
 - [task_guides/README.md](task_guides/README.md)：任务指导目录说明与索引。
+- [next_research_phase_identifiable_resource_credit.md](task_guides/next_research_phase_identifiable_resource_credit.md)：N1 可辨识资源信用定义、系统查新、离线证伪、预注册与 N1-E4 出口。
+- [next_research_phase_future_coverability_certificate.md](task_guides/next_research_phase_future_coverability_certificate.md)：N2 未来可覆盖性责任问题、任务门槛、静态审计和 N2-E1 出口。
+- [next_research_phase_fcrc_paired_predictive_validation.md](task_guides/next_research_phase_fcrc_paired_predictive_validation.md)：N3 样本与统计预注册、共同随机数验证和 N3-E3 否决出口。
 - [next_research_phase_difficulty_generalization.md](task_guides/next_research_phase_difficulty_generalization.md)：场景难度、Hungarian 基线、泛化诊断和图结构算法进入条件。
 - [next_research_phase_conflict_free_joint_action.md](task_guides/next_research_phase_conflict_free_joint_action.md)：任务八无冲突联合动作机制、实施步骤、筛选协议和正式验收门槛。
 - [next_research_phase_autoregressive_joint_action.md](task_guides/next_research_phase_autoregressive_joint_action.md)：任务九顺序式/自回归无冲突动作生成、概率契约、筛选协议和验收标准。

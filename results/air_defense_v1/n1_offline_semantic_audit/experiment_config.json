@@ -1,0 +1,9 @@
+{
+  "task": "N1_offline_semantic_audit",
+  "data_role": "development_only",
+  "input_directory": "results\\air_defense_v1\\action_substitution_confirmation",
+  "output_directory": "results\\air_defense_v1\\n1_offline_semantic_audit",
+  "decomposition_tolerance": 1e-06,
+  "software_tests_passed": true,
+  "online_training_authorized": false
+}

@@ -1,0 +1,43 @@
+{
+  "figure": "figure_2_protocol_and_identity",
+  "backend": "python_matplotlib",
+  "final_width_mm": 183,
+  "conclusion": "The complete same-step and future ledger is required to exactly reconstruct paired episode-cost differences.",
+  "archetype": "asymmetric mixed-modality figure",
+  "panels": [
+    {
+      "id": "a",
+      "role": "paired CRN protocol",
+      "data": "schematic"
+    },
+    {
+      "id": "b",
+      "role": "exact target marginalization",
+      "data": "schematic"
+    },
+    {
+      "id": "c",
+      "role": "frozen three-component identity",
+      "data": "formula freeze"
+    },
+    {
+      "id": "d",
+      "role": "future-only versus complete residual",
+      "source": "results/air_defense_v1/action_substitution_confirmation/gate_summary.json",
+      "fields": [
+        "maximum_future_only_decomposition_error",
+        "maximum_extended_decomposition_error",
+        "target_ledger_rows"
+      ]
+    }
+  ],
+  "exports": {
+    "svg": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_2_protocol_and_identity.svg",
+    "pdf": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_2_protocol_and_identity.pdf",
+    "tiff": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_2_protocol_and_identity.tiff",
+    "preview": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_2_protocol_and_identity_preview.png"
+  },
+  "data_exclusions": "none",
+  "interval": "mean +/- 1.96 * sample_standard_deviation / sqrt(n)",
+  "script": "docs/manuscript/action_substitution_cost_identifiability/figures/source/generate_figures.py"
+}

@@ -108,8 +108,9 @@ supplementary_results_outline.md
 
 ```text
 methods_draft_zh.md
-supplementary_methods_draft_zh.md
-research_integrity_statement.md
+supplementary_methods.md
+research_integrity_disclosure.md
+reproducibility_map.md
 ```
 
 ### 追溯矩阵更新
@@ -159,8 +160,10 @@ research_integrity_statement.md
 figure_table_plan.md
 figures/
 tables/
-figure_data_manifest.md
+figure_data_traceability.md
 figure_caption_draft_zh.md
+table_caption_draft_zh.md
+figure_qa_report.md
 ```
 
 ### 追溯矩阵更新

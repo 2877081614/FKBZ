@@ -1,0 +1,6 @@
+| Gate | Observed | Decision |
+| --- | --- | --- |
+| P-R1 action substitution | 18/18 positive lower95 Sub_shot in time/resource | PASS |
+| P-R2 opportunity value | reliable resource contexts: time=5, heterogeneity=2 | FAIL |
+| P-R3 resource criticality | reliable unit types: missile | FAIL |
+| Route decision | retain substitution; stop general opportunity route | FROZEN |

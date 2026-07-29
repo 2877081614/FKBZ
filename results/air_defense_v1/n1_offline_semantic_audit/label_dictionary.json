@@ -1,0 +1,9 @@
+{
+  "direction": "N_minus_E substitution; E_minus_N episode cost",
+  "direct_cost": "known immediate cost of the probed engage action",
+  "same_step_other_substitution": "other-unit cost in N minus E at the same autoregressive step",
+  "future_probe_substitution": "future probed-unit cost in N minus E",
+  "future_other_substitution": "future other-unit cost in N minus E",
+  "episode_cost_delta": "direct_cost - all substitution components",
+  "prohibited_label_rule": "episode_cost_delta sign must not be converted directly into a local STOP/ENGAGE target"
+}

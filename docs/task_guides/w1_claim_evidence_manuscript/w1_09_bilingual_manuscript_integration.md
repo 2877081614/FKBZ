@@ -1,7 +1,7 @@
 # W1-09：中英文整稿集成
 
 更新时间：2026-07-24  
-任务状态：NOT_STARTED  
+任务状态：PASSED（T09）
 前置任务：W1-04 至 W1-08 全部通过  
 后续任务：W1-10  
 允许并行：中文整合完成后可分节英文重写，但必须统一回收  
@@ -138,3 +138,41 @@ unresolved_placeholders.md
 通过 T09 后向 W1-10 提交六个文件、当前图表包、完整追溯矩阵和所有尚未解决
 但不阻断审稿的问题。
 
+## 11. 执行结果（2026-07-28）
+
+中文科学意图稿先完成集成和反向提纲检查，随后按相同 Paragraph ID 重写英文
+完整初稿。英文稿按段落功能组织，不采用逐句直译。
+
+已生成文件：
+
+- `manuscript_draft_zh.md`；
+- `manuscript_draft_en.md`；
+- `reverse_outline_zh.md`；
+- `reverse_outline_en.md`；
+- `bilingual_consistency_audit.md`；
+- `unresolved_placeholders.md`。
+
+T09 验收：
+
+- [x] 中英文稿均包含 Title、Abstract、Introduction、Related Work、Problem
+      Formulation、Methods、Results、Discussion、Limitations、Conclusion 和
+      References；
+- [x] 两稿共有 66 个相同且唯一的 Paragraph ID；
+- [x] 双语数字、统计单位、场景、资源类型、公式方向和 P-C1/P-C2/P-C3 一致；
+- [x] Abstract 使用整稿后的最终范围，并包含独立确认与 P-C3 失败边界；
+- [x] 两份反向提纲均显示每段只有一个主要功能；
+- [x] P-C3、机会成本、在线 BPCE/MCH-PPO 和 GNN 负边界完整保留；
+- [x] 8 个期刊/投稿格式占位均登记，无未登记科学证据占位；
+- [x] 英文稿未新增科学结论或未经核验的优先权表述。
+
+移交信息：
+
+```text
+任务编号：W1-09
+状态：PASSED（T09）
+已生成文件：六项规定交付物
+已通过门控：T09
+未解决问题：目标期刊、参考文献格式、作者信息和投稿声明，均为非阻断项
+禁止下游假设：不得借期刊适配扩大算法、跨环境、机会成本或 GNN 主张
+下一接收任务：W1-10 审稿压力测试与投稿准备
+```

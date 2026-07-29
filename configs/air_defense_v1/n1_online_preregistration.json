@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "task": "N1_identifiable_resource_credit",
+  "frozen_at": "2026-07-28",
+  "status": "scientific_gate_not_passed",
+  "decision": "N1-E4_redefine_mainline_algorithm_problem",
+  "authorized": false,
+  "online_training_authorized": false,
+  "frozen_baseline": "factorized_joint_ppo_order_012",
+  "selected_algorithm_candidate": null,
+  "formal_training_seeds": null,
+  "formal_evaluation_states": null,
+  "training_budget_steps": null,
+  "numeric_success_thresholds": null,
+  "development_evidence": {
+    "source": "results/air_defense_v1/action_substitution_confirmation",
+    "semantic_audit": "results/air_defense_v1/n1_offline_semantic_audit/gate_summary.json",
+    "contexts": 108,
+    "target_ledger_rows": 7776,
+    "maximum_identity_error": 8.881784197001252e-16,
+    "ambiguous_target_ledger_rate": 0.6084104938271605
+  },
+  "proposition_results": {
+    "N1-P1_label_semantics": true,
+    "N1-P2_defensible_algorithmic_difference": false,
+    "N1-P3_strict_fallback_contract": true,
+    "N1-P4_development_data_boundary": true,
+    "N1-P5_online_stop_rules_frozen": true
+  },
+  "candidate_decisions": {
+    "A_component_preserving_constrained_credit": "method_component_only",
+    "B_global_cmdp_constraint": "required_strong_baseline",
+    "C_controlled_continuation_difference_reward": "rejected"
+  },
+  "blocked_reasons": [
+    "No candidate simultaneously preserves the intended global resource objective and provides a defensible new local-credit mechanism.",
+    "Candidate A has identifiable channels but an unresolved normative objective and insufficient distance from causal effect decomposition.",
+    "Candidate B is methodologically sound but directly covered by constrained policy optimization and safe multi-agent RL.",
+    "Candidate C requires additional causal assumptions and may optimize a counterfactual continuation outside the factual policy distribution."
+  ],
+  "prohibited_actions": [
+    "Do not start 10k, 30k, or 100k online training for any N1 candidate.",
+    "Do not assign seeds, states, budgets, or thresholds after observing candidate training outcomes.",
+    "Do not rename candidate A and treat the ledger decomposition as an established algorithm.",
+    "Do not restore BPCE-PPO, MCH-PPO, or a GNN extension through this task.",
+    "Do not override this file with a command-line flag."
+  ],
+  "reentry_requirements": [
+    "Freeze a new normative objective: global budget, local responsibility, or a formally defined bilevel relation.",
+    "Provide a formula-level novelty matrix against CPO/safe MARL and 2025 counterfactual effect decomposition.",
+    "State one falsifiable mechanism prediction and an equal-capacity non-mechanism control.",
+    "Include global CMDP as a required strong baseline.",
+    "Freeze new non-overlapping seeds, states, budgets, metrics, thresholds, and stop rules before online execution.",
+    "Verify sampling, ratios, clipping, optimizer state, and one-step parameter updates exactly match the frozen baseline when the new coefficient is zero."
+  ],
+  "authoritative_gate": "results/air_defense_v1/n1_offline_semantic_audit/gate_summary.json"
+}

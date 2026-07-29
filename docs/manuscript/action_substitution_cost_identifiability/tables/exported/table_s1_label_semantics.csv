@@ -1,0 +1,7 @@
+Protocol/label,Contexts,Horizon,Frozen interpretation
+A: argmax + deterministic,29,full episode,discovery audit
+B: exact target + deterministic,32,full episode,discovery audit
+C: exact target + stochastic,25,full episode,deterministic continuation rejected
+Short-window ENGAGE,15,TTI-linked horizon,not enough overall actionable labels
+Short-window STOP,16,TTI-linked horizon,not universal resource label
+Short-window AMBIGUOUS,41,TTI-linked horizon,time/resource = 18/18 ambiguous

@@ -1,0 +1,23 @@
+{
+  "context_count": 108,
+  "legal_action_rows": 243,
+  "positive_externality_actions": 86,
+  "positive_externality_rate": 0.35390946502057613,
+  "contexts_with_within_unit_target_spread": 34,
+  "spearman_externality_vs_unit_cost": 0.4664525890392102,
+  "spearman_externality_vs_target_weight": -0.12793942594566,
+  "spearman_externality_vs_n1_substitution": 0.4792093808457598,
+  "mean_context_audit_ms": 1.0224064817184289,
+  "maximum_context_audit_ms": 5.473299999721348,
+  "N2_propositions": {
+    "N2-P1_formal_implementation_consistency": true,
+    "N2-P2_non_degenerate_signal": true,
+    "N2-P3_not_cost_or_threat_rename": true,
+    "N2-P4_static_compute_budget": true,
+    "N2-P5_provisional_literature_distance": true
+  },
+  "stage_passed": true,
+  "decision": "N2-E1_enter_frozen_paired_predictive_validation",
+  "online_training_authorized": false,
+  "paired_predictive_validation_authorized": true
+}

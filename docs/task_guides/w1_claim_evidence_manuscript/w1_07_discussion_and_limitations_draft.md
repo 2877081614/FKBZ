@@ -1,7 +1,7 @@
 # W1-07：Discussion 与 Limitations 中文稿
 
 更新时间：2026-07-24  
-任务状态：NOT_STARTED  
+任务状态：PASSED（T07）
 前置任务：W1-02 定位非 L4；W1-04 通过 T04；W1-06 通过 T06  
 后续任务：W1-08、W1-09  
 允许并行：无  
@@ -133,3 +133,74 @@ rival_explanations_matrix.md
 通过 T07 后向 W1-08 提供用于 Introduction/Conclusion 的中心意义和边界；
 向 W1-09 提供三个交付文件。
 
+## 9. 执行结果
+
+完成日期：2026-07-28
+
+### 9.1 已生成文件
+
+```text
+docs/manuscript/action_substitution_cost_identifiability/
+  discussion_draft_zh.md
+  limitations_draft_zh.md
+  rival_explanations_matrix.md
+```
+
+同步更新：
+
+```text
+paragraph_job_map.md
+manuscript_traceability_matrix.md
+docs/task_guides/w1_claim_evidence_manuscript/README.md
+```
+
+### 9.2 T07 验收记录
+
+| 检查项 | 结果 |
+| --- | --- |
+| Discussion 按意义和机制推进，未逐图复述 Results | PASS |
+| 中心推进与 C1-C4 及 L2 定位一致 | PASS |
+| 10 个 Discussion 段落各承担一个功能 | PASS |
+| 文献 ID 全部来自 W1-02 的 E01-E24 | PASS |
+| difference reward、时序信用、顺序掩码、约束资源和 CRN 五类对话齐全 | PASS |
+| 七类指定竞争解释逐项处理 | PASS |
+| 无法排除的顺序、冲突和成本定义解释进入 Limitations | PASS |
+| missile/laser 正替代与 P-C3 失败同时保留 | PASS |
+| AirDefense v1、三场景、冻结策略和 N/E/CRN 范围完整 | PASS |
+| 机会价值、在线算法和 GNN 负边界完整 | PASS |
+| 方法含义没有冒充已验证性能提升 | PASS |
+| 强动词与证据等级匹配 | PASS |
+| 自动化内容验收 | PASS（27/27） |
+
+### 9.3 W1-08 移交摘要
+
+**中心意义：**
+
+> 动态掩码序列资源分配中的回合累计成本会混合当前直接消耗与同一步、未来
+> 动作介导的资源变化；三分量成对反事实账本将该已知信用问题操作化为可审计
+> 的资源成本测量，并在新策略种子上确认其存在。
+
+**必须并列的边界：**
+
+> 动作替代跨 missile/laser 均存在，但成本符号掩盖没有通过跨资源类型普遍
+> 门控；证据限于 AirDefense v1、冻结 factorized PPO 和三个内部场景。
+
+**不得写入标题、摘要或贡献：**
+
+- 通用反事实信用算法；
+- 已优于 PPO 的 BPCE/MCH-PPO；
+- 已解决 all-noop；
+- 已验证的 GNN 修复；
+- 跨环境、跨算法或跨资源类型普遍性。
+
+### 9.4 移交
+
+```text
+任务编号：W1-07
+状态：PASSED（T07）
+已生成文件：Discussion、Limitations、竞争解释矩阵
+已通过门控：T07
+未解决问题：无阻塞项；正式参考文献格式和目标期刊字数留待 W1-08/W1-09
+禁止下游假设：不得将设计含义写成在线算法或 GNN 已通过
+下一接收任务：W1-08、W1-09
+```

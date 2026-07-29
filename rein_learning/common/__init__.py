@@ -153,6 +153,31 @@ from .action_substitution_confirmation import (
     summarize_confirmation,
     validate_confirmation_contexts,
 )
+from .identifiable_resource_credit import (
+    ResourceCreditComponents,
+    compose_component_auxiliary_loss,
+    scalar_label_is_semantically_ambiguous,
+)
+from .future_coverability import (
+    FutureCoverabilityCertificate,
+    ShotOpportunity,
+    ThreatDemand,
+    future_coverability_externality,
+    maximum_weight_coverability,
+    opportunity_threat_value,
+    snapshot_shot_opportunities,
+    snapshot_threat_demands,
+)
+from .fcrc_predictive_validation import (
+    FCRCBranchTrace,
+    FCRCCandidate,
+    FCRCPredictiveValidationConfig,
+    audit_fcrc_predictive_context,
+    candidate_harm,
+    mean_interval,
+    other_threat_outcomes,
+    select_fcrc_candidate_pair,
+)
 
 __all__ = [
     "BoundaryCounterfactualProbeConfig",
@@ -268,4 +293,23 @@ __all__ = [
     "grouped_summary_rows",
     "summarize_confirmation",
     "validate_confirmation_contexts",
+    "ResourceCreditComponents",
+    "compose_component_auxiliary_loss",
+    "scalar_label_is_semantically_ambiguous",
+    "FutureCoverabilityCertificate",
+    "ShotOpportunity",
+    "ThreatDemand",
+    "future_coverability_externality",
+    "maximum_weight_coverability",
+    "opportunity_threat_value",
+    "snapshot_shot_opportunities",
+    "snapshot_threat_demands",
+    "FCRCBranchTrace",
+    "FCRCCandidate",
+    "FCRCPredictiveValidationConfig",
+    "audit_fcrc_predictive_context",
+    "candidate_harm",
+    "mean_interval",
+    "other_threat_outcomes",
+    "select_fcrc_candidate_pair",
 ]

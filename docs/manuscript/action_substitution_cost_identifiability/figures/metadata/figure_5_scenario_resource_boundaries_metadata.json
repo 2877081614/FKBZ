@@ -1,0 +1,54 @@
+{
+  "figure": "figure_5_scenario_resource_boundaries",
+  "backend": "python_matplotlib",
+  "final_width_mm": 183,
+  "conclusion": "Substitution occurs across scenarios and resource types, but sign-masking strength is resource-type conditional and P-C3 fails.",
+  "archetype": "quantitative grid",
+  "panels": [
+    {
+      "id": "a",
+      "source": "results/air_defense_v1/action_substitution_confirmation/scenario_boundary_summary.csv",
+      "filter": "slot=resource",
+      "unit": "context; n=18 per scenario",
+      "fields": [
+        "rho_sub_mean_aggregate",
+        "rho_sub_mean_lower",
+        "rho_sub_mean_upper"
+      ]
+    },
+    {
+      "id": "b",
+      "source": "results/air_defense_v1/action_substitution_confirmation/resource_type_summary.csv",
+      "filter": "scenario=time_pressure, slot=resource",
+      "unit": "context; n=9 per resource type",
+      "fields": [
+        "sub_shot_mean_aggregate",
+        "sub_shot_mean_lower",
+        "sub_shot_mean_upper"
+      ]
+    },
+    {
+      "id": "c",
+      "source": "results/air_defense_v1/action_substitution_confirmation/gate_summary.json",
+      "fields": [
+        "P-C3.missile.masked_contexts",
+        "P-C3.laser.masked_contexts"
+      ],
+      "unit": "context"
+    },
+    {
+      "id": "d",
+      "source": "same gate summary",
+      "field": "mechanism_gates"
+    }
+  ],
+  "exports": {
+    "svg": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_5_scenario_resource_boundaries.svg",
+    "pdf": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_5_scenario_resource_boundaries.pdf",
+    "tiff": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_5_scenario_resource_boundaries.tiff",
+    "preview": "docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_5_scenario_resource_boundaries_preview.png"
+  },
+  "data_exclusions": "none",
+  "interval": "mean +/- 1.96 * sample_standard_deviation / sqrt(n)",
+  "script": "docs/manuscript/action_substitution_cost_identifiability/figures/source/generate_figures.py"
+}

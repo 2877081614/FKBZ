@@ -1,0 +1,7 @@
+Integrity item,Value,Audit source
+Future-only affected ledger rows,"287 / 7,776",pre_ledger_correction/repeat_cost_ledger.csv
+Future-only maximum residual,2.0,gate_summary.json
+Complete-ledger maximum residual,8.88e-16,gate_summary.json
+Models/contexts/tapes/thresholds,unchanged,research integrity disclosure
+Invalid first result,archived,pre_ledger_correction/
+Complete reruns after correction,1,experiment_config.json

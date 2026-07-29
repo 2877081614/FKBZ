@@ -1,0 +1,16 @@
+{
+  "development_policy_seeds": [
+    17,
+    18,
+    19
+  ],
+  "development_scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "contexts": 108,
+  "target_ledger_rows": 7776,
+  "independent_confirmation_claim_for_new_algorithm": false,
+  "future_rule": "select consecutive unused seeds before observing any online candidate outcome; never replace a preregistered seed"
+}

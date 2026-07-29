@@ -65,7 +65,7 @@ context_substitution_estimates.csv
 scenario_boundary_summary.csv
 ```
 
-主文对应：Fig. 2、RES-6.3-02。
+主文对应：Fig. 2、Fig. 4、RES-6.3-02。
 
 ## Results S4：独立确认完整结果
 
@@ -88,7 +88,7 @@ block_summary.csv
 gate_summary.json
 ```
 
-主文对应：Table 1、Fig. 3、RES-6.4-01 至 RES-6.4-04。
+主文对应：Table 1、Table 2、Fig. 3、RES-6.4-01 至 RES-6.4-04。
 
 ## Results S5：场景与资源类型边界
 
@@ -109,7 +109,7 @@ context_substitution_estimates.csv
 gate_summary.json
 ```
 
-主文对应：Fig. 4、Table 2、RES-6.5-01 至 RES-6.5-03。
+主文对应：Fig. 5、Table 3、Table 4、RES-6.5-01 至 RES-6.5-03。
 
 ## Results S6：资源恢复与在线主张停止边界
 
@@ -128,7 +128,7 @@ results/air_defense_v1/action_substitution_opportunity_cost_audit/
 results/air_defense_v1/bpce_ppo_mechanism_stress_test/
 ```
 
-主文对应：Table 2、RES-6.6-01 至 RES-6.6-04；在线失败细节对应 Limitations。
+主文对应：Table S2、RES-6.6-01 至 RES-6.6-04；在线失败细节对应 Limitations。
 
 ## 补充图表占位
 
@@ -140,10 +140,10 @@ results/air_defense_v1/bpce_ppo_mechanism_stress_test/
 | Fig. S4 | 全部 seed/scenario/slot block 区间 | C3 |
 | Fig. S5 | 资源类型逐上下文 \(\rho_{\mathrm{sub}}\) | C4 |
 | Fig. S6 | E/E-R 行动集合与安全收益配对 | C5 否决 |
-| Table S1 | R1 上下文和标签 | C1/C5 |
-| Table S2 | 受影响的首轮账本摘要 | C2 |
-| Table S3 | R2 完整性和统计单位 | C2/C3 |
-| Table S4 | 独立确认全部块 | C3 |
-| Table S5 | 场景/资源类型完整边界 | C4 |
-| Table S6 | 机会成本及在线算法停止门控 | C5/C6 |
-
+| Table S1 | 标签语义与短视窗前置审计 | C5 |
+| Table S2 | 资源恢复机会价值负结果 | C5 |
+| Table S3 | 首轮账本修正与完整性 | C2 |
+| Table S4（PLANNED） | R1 全部上下文 | C1 |
+| Table S5（PLANNED） | R2 完整性、全部块和统计单位 | C2/C3 |
+| Table S6（PLANNED） | 场景/资源类型完整边界 | C4 |
+| Table S7（PLANNED） | 在线算法停止门控 | C6 |

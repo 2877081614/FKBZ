@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "task": "N2_future_coverability_static_audit",
+  "status": "completed",
+  "created_at_utc": "2026-07-28T17:56:39.928429+00:00",
+  "source": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\action_substitution_confirmation",
+  "source_contexts_are_development_only": true,
+  "context_replay_only": true,
+  "new_context_selection": false,
+  "new_counterfactual_rollouts": 0,
+  "actor_updates": 0,
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "policy_seeds": [
+    17,
+    18,
+    19
+  ],
+  "thresholds": {
+    "minimum_spread_contexts": 30,
+    "minimum_positive_action_rate": 0.15,
+    "maximum_absolute_cost_or_threat_spearman": 0.9,
+    "minimum_same_unit_target_difference_contexts": 20,
+    "maximum_mean_context_ms": 5.0,
+    "maximum_single_context_ms": 25.0
+  }
+}

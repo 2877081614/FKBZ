@@ -1,10 +1,15 @@
 # Academic Project Progress
 
-Updated: 2026-07-22
+Updated: 2026-07-29
 
 ## 1. Current Project Position
 
-The project has completed its engineering foundation and is ready to move from "algorithm sandbox construction" toward "research problem definition and domain simulation".
+The project has completed W1 claim-evidence freeze and the N1/N2/N3 mainline
+falsification gates. N1 rejected return-decomposition and generic CMDP candidates.
+N2 identified a future-coverability responsibility certificate (FCRC) that passed a
+development-only static gate. N3 then rejected its predictive proposition: the frozen
+paired effect was not significant and FCRC added no leave-block-out predictive value.
+No new online algorithm or standalone performance contribution has been established.
 
 The recommended research direction is:
 
@@ -13,7 +18,8 @@ Dynamic Weapon/Resource-Target Assignment for counter-UAV air-defense grouping,
 using deep reinforcement learning and multi-agent reinforcement learning.
 ```
 
-The current work should be regarded as a research scaffold, not yet the final academic contribution.
+The current work now constitutes a traceable scientific manuscript module. Target-journal
+formatting, public release identifiers, and any new online algorithm remain separate tasks.
 
 ## 2. Completed Engineering Foundation
 
@@ -1435,3 +1441,276 @@ missile的`rho_sub=0.571`、掩盖上下文仅2个，未达到3个门槛。当�
 冻结为资源类型与场景条件的测量/可辨识性结论，不是跨资源通用规律，也
 不是PPO性能改进算法。项目停止追加机制实验，进入claim–evidence冻结和
 论文准备。
+
+## 43. W1 主张冻结、双语整稿与对抗性审稿完成
+
+更新时间：2026-07-28。
+
+任务状态：W1-01 至 W1-10 全部完成；T10 通过，阶段出口为 L2/M2。
+
+W1 将 R1/R2 正式证据、三分量成本公式、文献定位、图表、Methods、Results、
+Discussion、Limitations、Introduction、Related Work、Abstract 和 Conclusion
+整合为中英文终稿。两稿保留 66 个对应 Paragraph ID，关键数字、公式方向、
+P-C1/P-C2/P-C3 和所有负边界一致。
+
+W1-10 以三份不同侧重点的模拟审稿完成技术、原创性和可读性压力测试。冻结数据
+只读复核确认 9 个模型无行为筛选、108 个 context、3,456 个 repeat、7,776 条
+账本、Actor 参数差为 0、P-C1/P-C2 通过且 P-C3 失败。所有 R2/R3/RX 问题已经
+关闭；跨环境、跨算法、替代顺序、在线性能和 GNN 仅作为 R4 后续问题登记。
+
+终稿新增 context 选择无结果窥视、小样本正态近似区间边界和真实 Data/Code
+Availability。当前没有公共仓库 DOI、accession 或许可证，因此不声称已达到
+外部投稿格式定稿。正式出口为：
+
+```text
+第一创新测量与可辨识性模块
+        W1/T10通过
+                    ↓
+L2/M2冻结章节、图表、补充材料和证据追溯
+                    ↓
+移交较大方法论文整合任务
+        目标期刊适配和公共发布另行完成
+                    ↓
+新在线算法/GNN问题必须重新定义并预注册
+```
+
+## 44. N1 可辨识资源信用离线门控完成
+
+更新时间：2026-07-28。
+
+任务状态：已完成；N1-P1/P3/P4/P5 通过，N1-P2 失败；阶段出口为
+**N1-E4**，在线训练未授权。
+
+N1 比较了三个候选：分量保持的约束信用、全局 CMDP 约束和受控延续差异
+回报。系统查新显示，动作效应经后续智能体动作与状态路径的分解已有直接
+工作；差异回报和未来条件反事实信用也已覆盖受控延续的主要思想；累计成本
+约束则是 CPO 和安全 MARL 的标准问题。
+
+离线审计复用冻结 R2 的 108 个 context 和 7,776 条目标账本，不增加
+rollout。四分量恒等式最大误差为 `8.88e-16`，说明标签语义和实现接口
+精确；但 4,731 条账本出现正直接成本被非正回合成本差掩盖，含混率为
+60.84%。这支持“回合成本差不是唯一局部信用”的诊断，却不能决定应该
+优化全局成本、局部责任还是二者的双层关系。
+
+候选 A 因此只保留为方法/诊断组件，候选 B 冻结为后续必需强基线，候选 C
+因创新距离与策略分布风险被否决。已生成机器可读 no-go 预注册；种子、状态、
+预算和数值门槛保持为空，任何 10k/30k/100k N1 在线训练均被禁止。
+
+下一主线入口是重新定义规范性算法问题和可证伪机制，而不是继续调节辅助
+损失、恢复 BPCE/MCH-PPO 或提前引入 GNN。
+
+## 45. N2 未来可覆盖性责任证书静态门控通过
+
+更新时间：2026-07-29。
+
+任务状态：N2-P1 至 P5 全部达到进入下一证伪阶段的门槛；出口为
+**N2-E1**。在线训练仍未授权。
+
+N2 将 N1 未解决的“全局预算—局部责任”关系重新定义为未来任务可行域
+外部性。对当前合法动作 \(i\rightarrow j\)，FCRC 从两个比较分支中都
+排除当前目标 \(j\)，再比较消耗该资源前后对其余带 TTI 威胁的最大加权
+一次覆盖值。该定义不执行后续策略，也不分解实现回报。
+
+实现采用目标子集动态规划，人工轨迹 9 项通过。冻结 R2 的 108 个 context
+按原模型、种子和协议重放，`context_id/hash/unit/legal_targets` 全部匹配。
+243 个合法前缀动作中 86 个具有正外部性（35.39%），34 个 context 出现
+同一单元不同目标的责任跨度。FCRC 与单元成本、目标损伤权重的 Spearman
+相关分别为 0.466 和 −0.128；平均计算时间 1.02 ms/context。
+
+查新未发现公式等价工作，但 FCRC 与 WTA 匹配机会价值、reachability 和
+safe shield 相邻，因此当前只称“通过静态开发门控的算法候选”。下一任务
+必须比较高/低 FCRC 同状态动作在共同随机数 continuation 下的其他威胁
+覆盖和条件损伤，并检验其相对成本、威胁、原始匹配分数、二元 shield 和
+N1 替代量的增量预测价值。
+
+FCRC 在预测验证通过前不得进入 reward、PPO loss 或 action mask；GNN、
+10k/30k/100k 在线训练继续冻结。
+
+## 46. N3 FCRC 冻结成对预测验证完成
+
+更新时间：2026-07-29。
+
+任务状态：N3-P1/P5 通过，N3-P2/P3/P4 失败；阶段出口为
+**N3-E3**。在线训练未授权。
+
+N3 使用来源策略种子17/18/19和全新的状态/分支基准种子，在medium、
+time-pressure和heterogeneity-pressure九个区组中先按FCRC跨度冻结选择
+32个上下文。所有状态与此前135个hash零重叠，各区组3–4个上下文；每个
+上下文完成64次no-op/high/low共同随机数比较，共82,219个额外transition，
+Actor参数差为0，全量回归283项通过。
+
+high-FCRC相对low-FCRC的其他威胁截获权重损害差均值为0.0184，但单侧
+符号翻转`p=0.3511`，未通过主方向门槛。候选级FCRC与截获损害的Spearman
+为0.4153，但基线与加入FCRC后的留一区组CV MAE均为0.137041，增量约为0。
+三个场景中medium/time为正、heterogeneity为负；泄漏损伤差均值为−0.0500，
+也未通过安全一致性门槛。
+
+首次门控实现误加“本批hash必须互异”的非预注册条件。修正只重算P1和出口，
+没有重选、重跑或改变统计量；正式判决从错误的E4改为N3-E3。
+
+FCRC只保留为静态可覆盖性解释量，不进入reward、loss、mask、shield或GNN。
+项目不追加同分布种子修补该命题。下一主线入口再次回到规范性算法问题重定义，
+需要提出与已失败的回报责任、机会成本oracle和FCRC不同的新可证伪机制。
+
+## 47. LR-01 反事实效应分解定向阅读完成
+
+更新时间：2026-07-29。
+
+任务状态：`PASSED`；零实验修改，在线训练未授权。
+
+对 ICML 2025 *Counterfactual Effect Decomposition in Multi-Agent Sequential
+Decision Making* 的正文、公式、证明、识别假设和实验附录完成核对。关键公式
+边界为 `TCFE = tot-ASE - r-SSE`；普通 SSE 不能与 tot-ASE 直接相加重建
+总效应。论文已经一般性覆盖动作效应经后续智能体行为和环境状态传播的解释
+问题，因此项目不得声称首次发现一般动作替代或首次完成智能体—状态效应分解。
+
+R2 与该工作的关系判为“部分重合”：N/E 回合成本差是特定结果上的反事实总差，
+但四通道成本恒等式按资源事件身份和时间记账，不构造 tot-ASE/r-SSE，也没有
+单独识别命中和状态路径。论文正文只干预 `t'>t` 的后续动作，未显式表示
+AirDefense 同一步自回归后缀；只有把单元决策展开为 micro-time SCM 后才能
+纳入其框架。
+
+最终判决为：该论文是局部责任研究的 `BASELINE`，micro-time 路径图可
+`ADAPT`，把 TCFE/ASE/Shapley/ICC 直接接入 PPO 必须 `AVOID`；全局资源约束
+与局部解释量之间的规范接口仍为 `OPEN`。结果已移交 LR-05；本节完成时
+LR-05 仍等待 LR-04，后续状态见第 48 节。
+
+## 48. LR-04 PASPO 约束分配定向阅读完成
+
+更新时间：2026-07-29。
+
+任务状态：`PASSED`；零实验修改，未下载或运行外部代码，在线训练未授权。
+
+完成 NeurIPS 2024 *Autoregressive Policy Optimization for Constrained
+Allocation Tasks* 正式论文、证明附录、实验消融和官方仓库静态实现核对。
+PASPO 在固定连续凸多面体上按顺序求每个分量的 LP 可行区间，以缩放 Beta
+条件策略直接生成合法分配；其去偏机制从完整多面体近似均匀采样并拟合各位置
+Beta 参数，只修改输出层初始 bias，不修改 PPO 梯度、目标或采样顺序。
+
+PASPO 已覆盖“自回归硬约束分配”和“完整可行域初始化去偏”的一般叙事，
+项目不得把自回归动作本身称作创新。它不直接适用于 AirDefense 的离散
+unit-target matching、状态依赖合法集、每单元 no-op 和未来弹药责任。Task 10
+观察到的是训练后异质角色参与与资源成本分叉，Task 11–12 还存在 deterministic
+argmax 放大和 PPO 种子级 all-noop，因此不能由 PASPO 的初始化机制直接解释。
+
+最终判决为：PASPO 是 `BASELINE`；完整可行域校准思想可 `ADAPT` 为离散可行
+后缀计数均匀初始化；连续 Beta/LP 的直接移植为 `AVOID`；该初始化能否缓解
+训练后顺序和 no-op 分叉仍为 `OPEN`。报告给出了不改 PPO 的最小可比基线，
+但本任务不授权实现或实验。
+
+LR-05 的 LR-01/LR-04 前置现已齐备，状态从等待 LR-04 改为 `READY`。后续必须
+区分 PASPO 的动作生成初始化偏置与 CAPO/COSAC 的顺序信用估计偏差。
+
+## 49. LR-03 GradS 多约束梯度塑形定向阅读完成
+
+更新时间：2026-07-29。
+
+任务状态：`PASSED`；零实验修改，未下载或运行外部代码，在线训练未授权。
+
+完成 L4DC 2024 *Gradient Shaping for Multi-Constraint Safe Reinforcement
+Learning* 的多约束 CMDP、MOO 统一框架、梯度关系、GradS 算法、理论上界、
+实验与局限核对。GradS 并非构造共同下降投影，而是按 cost-gradient 余弦相似度
+删除过于同向和过于反向的约束，再从候选集合随机抽取一个梯度。它只比较
+cost–cost 关系，不显式处理 reward–cost 冲突。
+
+Theorem 4 在 Slater 可行性和梯度有界光滑条件下给出含删除数和随机采样项的
+梯度范数上界；这些 noise-ball 项不随训练步数自动消失。该结果不是所有约束
+逐次满足、逐轨迹安全或 PPO 深度近似收敛保证。论文实验证明 GradS 在作者构造
+的连续多成本任务上具有较强均值表现，但部分 Cost-N 仍超过阈值，尺度实验也
+主要通过复制相似阈值/边界约束扩维。
+
+项目对照表明，当前状态条件双价值中的成本相关仅为
+`-0.044 / 0.034 / 0.128`，后续跨场景、跨批次和统一校准门控仍失败；
+BPCE 也没有独立 damage/leak/resource cost critics，且标签存在种子级单边
+缺失。因此当前问题首先是约束语义、预算可行性与 cost-gradient 可靠性，而非
+已知正确梯度的组合方式。此时接入 GradS 可能只会把估计噪声误判为冲突或冗余。
+
+最终判决为：GradS 是未来显式多约束 PPO 的 `BASELINE`；分层 cosine 与置信度
+审计可 `ADAPT` 为只读诊断；当前接入 BPCE/MCH/PPO 为 `AVOID`；damage、leak、
+resource 的规范身份、可行预算、可靠 cost critics 与尾部安全接口仍为 `OPEN`。
+
+LR-02 与 LR-03 现已形成完整的规范目标层边界：先建立同结构
+centralized constrained factorized PPO，再把
+`Vanilla / CRPO / Min-Max / GradS` 作为约束梯度聚合消融；在前置门控完成前
+不产生在线算法任务。
+
+## 50. LR-05 COSAC 顺序反事实信用定向阅读完成
+
+更新时间：2026-07-29。
+
+任务状态：`PASSED`；零算法与实验修改，未下载或运行外部代码，在线训练未授权。
+
+核验 arXiv `2604.17693` 的两个版本：2026-04-20 v1 名称为 CAPO，
+2026-05-09 当前 v2 已更名为 COSAC，并新增四个 Qwen3-0.6B 代理的 ARC
+实验。两者核心均为 Sequential Aristocrat Utility，不是两个独立算法。
+v1 的理想 on-policy gradient-MSE theorem 没有保留在 v2，因此当前版本只应
+引用 SeqAU 唯一性、advantage bias 和 variance 结果，不能声称实际深度 PPO
+梯度已获有限样本保证。
+
+COSAC 直接覆盖固定顺序、前缀条件 baseline、上游抵消、direct/indirect
+advantage 和无需环境调用的虚拟策略后缀。其 critic-free 含义是不训练
+Bellman Q/V Critic，但每批仍通过 ridge 拟合 action-only additive team-reward
+surrogate。它避免一种冻结 Critic，却没有消除 batch coverage、非加性残差和
+context/state drift。
+
+理论审计还发现：论文用 `d=KA` 的全 per-agent one-hot 拼接定义
+`G_mu=E[psi psi^T]`，同时假设其最小特征值大于零。当 `K>1` 时，各 agent
+block 的列和均恒等于1，完整设计至少有 `K-1` 个线性依赖，所以
+`lambda_min(G_mu)=0`。ridge 可保证求逆，但不能把正动作边际自动变成完整
+特征空间覆盖；论文的 `N*kappa_mu` 方差收缩需要在 reference/effect coding
+或 action-contrast 子空间中重述。
+
+项目压力测试判定：COSAC 的同一步 downstream indirect effect 与 MCH 叙事
+高度重合，但论文只处理 sequential bandit。AirDefense 的焦点动作还会改变
+后缀动态合法支持，并经命中、目标存活、弹药和冷却影响未来环境步骤。动态
+mask 本身只是已有自回归策略的工程实例；“动态支持变化 + full MDP +
+非加性交互”才是尚未解决的数学问题，目前只够重写研究问题，不足以授权
+新算法。
+
+最终决策为：SeqAU/COSAC 是 `BASELINE`；prefix-conditional estimand 和
+direct/indirect 误差审计可 `ADAPT`；把 action-only ridge、虚拟后缀或独立
+层级 clipping 直接接入当前 PPO 为 `AVOID`；完整 MDP、动态支持、跨时间动作
+替代、多约束规范和严格 joint PPO 接口仍为 `OPEN`。MCH-PPO v0 放弃作为
+主算法，RG-MCH 仅保留 GAE 锚定的机制证据，BPCE 保持暂停；R2 动作替代
+测量贡献继续保留。
+
+LR-06 现已转为 `READY`。下一步审计必须同时比较冻结 Q-Critic、每批 COSAC
+ridge surrogate 和 BPCE/C3 真实 replay 标签的 policy、context/state 与
+feasible-support 三类漂移，并继续要求零辅助系数严格恢复 factorized joint PPO。
+
+## 51. LR-06 OCR-CFT 离线到在线接入审计完成
+
+更新时间：2026-07-29。
+
+任务状态：`PASSED`；LR-01 至 LR-06 阅读任务包全部完成；零算法与实验修改，
+未下载或运行外部代码，在线训练未授权。
+
+完成 NeurIPS 2024 *Optimistic Critic Reconstruction and Constrained
+Fine-Tuning for General Offline-to-Online RL* 的正文、证明、实验、实现细节和
+三套伪代码核对。论文把 O2O 失败拆为 evaluation mismatch、improvement
+mismatch 和后续在线分布漂移：先固定可靠离线 actor，用目标在线算法的评价规则
+重构 Critic；再以 actor 高概率动作为锚压低误导性 Q；最后用历史参考策略的
+KL/MSE 或辅助 advantage 约束在线微调并逐步放松。
+
+审计确认该方法不是 uncertainty penalty。其保证依赖可靠离线 actor、单策略
+覆盖集中性、完整离线转移/轨迹、较小 Bellman 误差和可可靠更新的参考策略；
+内部 value-alignment 区间不是相对真实价值的安全界，CFT 的渐近
+`lambda*=0` 也不是有限步安全或单调改进保证。O2PPO 没有把离线 Q 直接替换
+GAE，而是保留 GAE 并加入参考策略对数概率辅助 advantage。
+
+项目对照把历史叙事进一步收窄：普通 Task 14 Q-Critic 只证明 MAE 改善，未通过
+动作排序；后续只有 target 排序或总体 BA 出现局部强信号。MCH/RG-MCH 的问题
+不是“已正确离线 Critic 上线后突然失效”，而是把固定分布局部能力和 ensemble
+一致性过度外推为在线 policy-improvement certificate。SA-RG 的
+engagement/target support 仅为 `0.1244/0.0218`，且小 KL 不能阻止
+deterministic argmax 跨越 0.5 边界；BPCE 虽更接近当前分布，仍受双向标签覆盖
+和辅助剂量分叉影响。
+
+最终判决为：OCR-CFT 是 `BASELINE` 机制参照；“估值器重构/刷新 → 改进方向
+对齐 → 在线支持与行为约束 → 严格 joint-PPO fallback”可 `ADAPT` 为审计框架；
+直接乐观重构、连续动作 value alignment、小 KL 放行和历史最优 return 选参考
+策略为 `AVOID`；动态 state-prefix-mask 支持、联合 argmax、多约束规范和 exact
+fallback 下的可拒绝改进方向证书仍为 `OPEN`。
+
+任务包出口保持指导文件约束：六篇结果进入人工头脑风暴，只形成覆盖矩阵、强
+基线、no-go 清单和可证伪问题，不自动创建 N4、Critic 重训或在线算法任务。

@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "task": "N3_fcrc_frozen_paired_predictive_validation",
+  "frozen_at": "2026-07-29",
+  "status": "preregistered_before_outcome_rollouts",
+  "predecessor_decision": "N2-E1_enter_frozen_paired_predictive_validation",
+  "online_training_authorized": false,
+  "actor_updates_authorized": false,
+  "reward_modification_authorized": false,
+  "loss_modification_authorized": false,
+  "action_mask_modification_authorized": false,
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "policy_seeds": [
+    17,
+    18,
+    19
+  ],
+  "context_base_seed": 1483000,
+  "branch_base_seed": 1493000,
+  "candidate_contexts_per_block": 12,
+  "selected_contexts_per_block_maximum": 4,
+  "minimum_selected_contexts_per_block": 1,
+  "minimum_selected_contexts_total": 24,
+  "minimum_fcrc_spread": 1e-09,
+  "paired_repeats": 64,
+  "maximum_new_transitions": 400000,
+  "selection": {
+    "outcome_blind": true,
+    "ranking": [
+      "fcrc_spread_descending",
+      "context_id_ascending"
+    ],
+    "high_target": "maximum_fcrc_then_target_index_ascending",
+    "low_target": "minimum_fcrc_then_target_index_ascending"
+  },
+  "primary_outcome": "other_target_intercepted_weight_loss_engage_minus_noop_effect",
+  "secondary_outcome": "other_target_leaked_damage_engage_minus_noop_effect",
+  "statistics": {
+    "sign_flip_permutations": 10000,
+    "sign_flip_seed": 1503000,
+    "sign_flip_alternative": "mean_delta_intercept_harm_greater_than_zero",
+    "cross_validation_group": "scenario_x_policy_seed",
+    "baseline_features": [
+      "unit_resource_cost",
+      "target_threat_weight",
+      "current_hit_probability",
+      "coverability_before",
+      "coverability_after",
+      "legal_target_count"
+    ],
+    "full_model_extra_features": [
+      "fcrc"
+    ]
+  },
+  "thresholds": {
+    "maximum_prior_hash_overlap": 0,
+    "minimum_mean_delta_intercept_harm": 0.0,
+    "maximum_one_sided_sign_flip_p": 0.05,
+    "minimum_candidate_spearman": 0.25,
+    "minimum_cv_mae_reduction_fraction": 0.05,
+    "minimum_positive_scenarios": 2,
+    "minimum_mean_delta_damage_harm": 0.0
+  },
+  "exit_priority": [
+    "N3-E4_invalid_experiment",
+    "N3-E3_reject_predictive_proposition",
+    "N3-E2_diagnostic_only",
+    "N3-E1_enter_constraint_interface_design"
+  ],
+  "prohibited_actions": [
+    "Do not inspect counterfactual outcomes before context selection is frozen.",
+    "Do not update Actor or Critic parameters.",
+    "Do not add FCRC to reward, loss, action mask, or sampling probability.",
+    "Do not change repeats, thresholds, outcomes, or feature sets after observing results.",
+    "Do not add same-distribution seeds until significance is reached.",
+    "Do not start 10k, 30k, or 100k online training.",
+    "Do not introduce a GNN."
+  ]
+}
