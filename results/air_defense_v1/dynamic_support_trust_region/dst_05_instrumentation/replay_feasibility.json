@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "task": "DST-05",
+  "status": "PASS_WITH_SHORT_RUN_REQUIRED",
+  "replay_insufficient": true,
+  "checkpoint_to_update_alignment_exact": false,
+  "target_sequence": {
+    "method": "factorized_engagement_ar_ppo_order_012",
+    "scenario": "heterogeneity_pressure",
+    "policy_seeds": [
+      8,
+      9,
+      10
+    ],
+    "required": "consecutive completed PPO updates"
+  },
+  "task12_existing_evidence": {
+    "training_scenario": "medium",
+    "models": {
+      "8": {
+        "path": "results/air_defense_v1/task12_factorized_screening_30k_3seeds/models/medium/factorized_engagement_ar_ppo_order_012_seed8.zip",
+        "sha256": "dc00d424a3d5183edfb46d74534db13ee7a522ea01b0338d6b49f9da4aa853fb",
+        "completed_timesteps": 30208,
+        "checkpoint_role": "final_only"
+      },
+      "9": {
+        "path": "results/air_defense_v1/task12_factorized_screening_30k_3seeds/models/medium/factorized_engagement_ar_ppo_order_012_seed9.zip",
+        "sha256": "37f7b04bcf4f33cedc66099fe9611a8355b3112ef5b2f411983a2b8df099c306",
+        "completed_timesteps": 30208,
+        "checkpoint_role": "final_only"
+      },
+      "10": {
+        "path": "results/air_defense_v1/task12_factorized_screening_30k_3seeds/models/medium/factorized_engagement_ar_ppo_order_012_seed10.zip",
+        "sha256": "53fea8f23cd72703525cb104195c45d5a41573363976849efbc0a8b36b339132",
+        "completed_timesteps": 30208,
+        "checkpoint_role": "final_only"
+      }
+    },
+    "per_seed": {
+      "8": {
+        "logged_update_diagnostic_rows": 16,
+        "saved_weight_snapshots": 1,
+        "saved_weight_updates": [
+          30208
+        ]
+      },
+      "9": {
+        "logged_update_diagnostic_rows": 16,
+        "saved_weight_snapshots": 1,
+        "saved_weight_updates": [
+          30208
+        ]
+      },
+      "10": {
+        "logged_update_diagnostic_rows": 16,
+        "saved_weight_snapshots": 1,
+        "saved_weight_updates": [
+          30208
+        ]
+      }
+    },
+    "diagnostic_cadence_timesteps": 2048,
+    "diagnostic_logs_contain_weights": false,
+    "diagnostic_logs_contain_ds_weighted_flip_mass": false
+  },
+  "exclusions": [
+    {
+      "source": "Task12 final models",
+      "reason": "one final weight snapshot per seed cannot reconstruct before-after completed updates"
+    },
+    {
+      "source": "Task12 aggregate probe_dynamics.csv",
+      "reason": "aggregate margins omit context-level old/new probabilities and DS-weighted flips"
+    },
+    {
+      "source": "other experiment final models",
+      "reason": "different runs are not a temporal checkpoint sequence"
+    }
+  ],
+  "dst06_new_training_required": true,
+  "dst06_frozen_budget": "heterogeneity_pressure, 10k x seeds 8/9/10",
+  "additional_seeds_allowed": false,
+  "training_performed_by_dst05": false,
+  "next_task": "DST-06"
+}

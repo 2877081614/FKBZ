@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "task": "DST-02",
+  "status": "PASS",
+  "generated_at_utc": "2026-07-29T14:55:31.179480+00:00",
+  "training_performed": false,
+  "environment_legality_rules_modified": false,
+  "scenarios": [
+    "medium",
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "seeds": [
+    51001,
+    51002,
+    51003,
+    51004,
+    51005
+  ],
+  "unit_orders": [
+    "012",
+    "120",
+    "201"
+  ],
+  "states_checked": 60,
+  "prefix_crosscheck_rows": 720,
+  "deterministic_repeat_checks": 720,
+  "cost_matrix_property_checks": 360,
+  "suffix_symmetric_difference_total": 0,
+  "environment_mask_mutation_errors": 0,
+  "duplicate_suffix_total": 0,
+  "generic_jaccard_properties": {
+    "identical_sets_zero": true,
+    "disjoint_nonempty_sets_one": true,
+    "symmetry": true
+  },
+  "implementation_sha256": {
+    "rein_learning/common/dynamic_support_distance.py": "588c254bd6be5b37acba12a8002e9549f0c34e9174e74afc5256b8335d8b89dd",
+    "tests/test_dynamic_support_distance.py": "843f38f590eeea608789a4f398876b38c1570e95021c47854d3bae8d5c0c6200",
+    "scripts/validate_air_defense_v1_dynamic_support_distance.py": "86a8b827e4e9b484bfe9d1f236787b49cb6dc21245117b7de98aca293d8632c7"
+  },
+  "elapsed_seconds": 0.29551790000004985
+}

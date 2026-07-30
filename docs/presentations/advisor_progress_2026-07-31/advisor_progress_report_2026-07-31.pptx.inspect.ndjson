@@ -1,0 +1,312 @@
+{"kind":"deck","id":"pr/yw8p7v","name":"Deck"}
+{"kind":"layout","layoutId":"114a2bd1-b9a9-4c84-8d81-308e6285a919","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"2eac5633-d42c-4f8f-8d62-f6659f10583c","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/jc6kqi","slide":1,"title":"防空资源编组项目","textShapes":4}
+{"kind":"shape","id":"sh/wfah0vq5","slide":1,"bbox":[0,0,20,720]}
+{"kind":"textbox","id":"sh/ve10rqpk","slide":1,"text":"防空资源编组项目","textPreview":"防空资源编组项目","textChars":8,"textLines":1,"bbox":[52,49,500,40]}
+{"kind":"textbox","id":"sh/adszy58z","slide":1,"text":"反事实测量与\n动态支持域创新路线","textPreview":"反事实测量与 | 动态支持域创新路线","textChars":16,"textLines":2,"bbox":[52,184,1060,210]}
+{"kind":"textbox","id":"sh/543ixk7m","slide":1,"text":"工作进展汇报｜AirDefense v1","textPreview":"工作进展汇报｜AirDefense v1","textChars":20,"textLines":1,"bbox":[56,470,620,45]}
+{"kind":"shape","id":"sh/kjuh4f61","slide":1,"bbox":[56,550,1120,2]}
+{"kind":"textbox","id":"sh/ji10vapg","slide":1,"text":"2026.07.31","textPreview":"2026.07.31","textChars":10,"textLines":1,"bbox":[56,580,240,35]}
+{"kind":"notes","id":"nt/jc6kqi","slide":1,"text":"开场先说明本次汇报聚焦两条成果线：资源成本测量专题与算法创新主线。论文部分只介绍内容、结构和证据，不讨论文稿状态。\n\n[Sources]\n- docs/project/academic_project_progress.md\n[/Sources]"}
+{"kind":"slide","id":"sl/g5cyyv","slide":2,"title":"两条成果线正在汇聚到同一个核心问题","textShapes":10}
+{"kind":"textbox","id":"sh/ril4ve5g","slide":2,"name":"slide-2-title","text":"两条成果线正在汇聚到同一个核心问题","textPreview":"两条成果线正在汇聚到同一个核心问题","textChars":17,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/sjul4jm1","slide":2,"text":"阶段概览","textPreview":"阶段概览","textChars":4,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/dk3mxo3m","slide":2,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/elc36t47","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/fm54zyls","slide":2,"text":"如何把动态联合决策的局部解释，转化为可验证、可回退的优化机制？","textPreview":"如何把动态联合决策的局部解释，转化为可验证、可回退的优化机制？","textChars":31,"textLines":1,"bbox":[42,175,1160,70]}
+{"kind":"shape","id":"sh/0nel83mx","slide":2,"bbox":[42,283,548,250]}
+{"kind":"textbox","id":"sh/1onm183i","slide":2,"text":"测量与诊断","textPreview":"测量与诊断","textChars":5,"textLines":1,"bbox":[68,310,260,40]}
+{"kind":"textbox","id":"sh/2pw3ad43","slide":2,"text":"N/E 成对干预\n三分量成本账本\n新种子独立确认","textPreview":"N/E 成对干预 | 三分量成本账本 | 新种子独立确认","textChars":24,"textLines":3,"bbox":[68,382,470,120]}
+{"kind":"shape","id":"sh/nq543ylo","slide":2,"bbox":[650,283,588,250]}
+{"kind":"textbox","id":"sh/nqxkbut0","slide":2,"text":"算法创新主线","textPreview":"算法创新主线","textChars":6,"textLines":1,"bbox":[676,310,300,40]}
+{"kind":"textbox","id":"sh/2po3i9sf","slide":2,"text":"系统否决错误路线\n冻结严格 joint PPO 回退\n主候选收敛到 DS-TR","textPreview":"系统否决错误路线 | 冻结严格 joint PPO 回退 | 主候选收敛到 DS-TR","textChars":39,"textLines":3,"bbox":[676,382,500,120]}
+{"kind":"textbox","id":"sh/psf2d4r6","slide":2,"text":"共同原则：解释相关性 ≠ 规范优化信号；静态机制 ≠ 更新级先行性","textPreview":"共同原则：解释相关性 ≠ 规范优化信号；静态机制 ≠ 更新级先行性","textChars":33,"textLines":1,"bbox":[42,578,1196,45]}
+{"kind":"textbox","id":"sh/or6lkzal","slide":2,"text":"项目内来源：academic_project_progress.md；算法创新综合决策","textPreview":"项目内来源：academic_project_progress.md；算法创新综合决策","textChars":43,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"notes","id":"nt/g5cyyv","slide":2,"text":"这一页建立全场叙事：专题论文解决测量有效性，主线解决优化稳定性。两条线互补，但在证据不足时不提前合并。\n\n[Sources]\n- docs/project/academic_project_progress.md\n- docs/project/air_defense_v1_literature_synthesis_and_algorithm_innovation_decision_2026-07-29.md\n[/Sources]"}
+{"kind":"slide","id":"sl/8hdjnb","slide":3,"title":"当前动作改变后缀合法集，回合成本并非局部读出","textShapes":4}
+{"kind":"textbox","id":"sh/snmpgjal","slide":3,"name":"slide-3-title","text":"当前动作改变后缀合法集，回合成本并非局部读出","textPreview":"当前动作改变后缀合法集，回合成本并非局部读出","textChars":22,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/rmt87e90","slide":3,"text":"专题论文｜研究问题","textPreview":"专题论文｜研究问题","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/qlk7etsv","slide":3,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/5kbq5ora","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/3it83e94","slide":3,"text":"Source: manuscript Fig. 1｜示意图，不承载新增经验数值","textPreview":"Source: manuscript Fig. 1｜示意图，不承载新增经验数值","textChars":39,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"image","id":"im/lsjel036","slide":3,"name":"","alt":"动态动作替代混合局部直接成本与策略介导资源使用","bbox":[42,155,1196,490]}
+{"kind":"notes","id":"nt/8hdjnb","slide":3,"text":"强调三个层次：自回归目标占用改变后续掩码；N/E 分支允许各自重新计算合法动作；总替代成本可能抵消正的直接成本。\n\n[Sources]\n- docs/manuscript/action_substitution_cost_identifiability/final_manuscript_zh.md\n- docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_1_measurement_problem_preview.png\n[/Sources]"}
+{"kind":"slide","id":"sl/vv959z","slide":4,"title":"N/E 配对、CRN 与三分量账本共同构成可复核协议","textShapes":16}
+{"kind":"textbox","id":"sh/h4f2t4bu","slide":4,"name":"slide-4-title","text":"N/E 配对、CRN 与三分量账本共同构成可复核协议","textPreview":"N/E 配对、CRN 与三分量账本共同构成可复核协议","textChars":26,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/u14jy9c3","slide":4,"text":"专题论文｜方法框架","textPreview":"专题论文｜方法框架","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/f2dkruto","slide":4,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/47614ju5","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"shape","id":"sh/p8f2xobq","slide":4,"bbox":[110,322,1035,4]}
+{"kind":"shape","id":"sh/25oj29cf","slide":4,"bbox":[302,306,24,36]}
+{"kind":"shape","id":"sh/36xkvet0","slide":4,"bbox":[548,306,24,36]}
+{"kind":"shape","id":"sh/cbq18juh","slide":4,"bbox":[794,306,24,36]}
+{"kind":"shape","id":"sh/dcz21ob2","slide":4,"bbox":[1040,306,24,36]}
+{"kind":"shape","id":"sh/d832t0fq","slide":4,"bbox":[55,232,190,180]}
+{"kind":"textbox","id":"sh/c7u1kvy5","slide":4,"text":"冻结上下文","textPreview":"冻结上下文","textChars":5,"textLines":1,"bbox":[70,253,160,36]}
+{"kind":"textbox","id":"sh/r6lkrqhk","slide":4,"text":"状态快照\n合法前缀","textPreview":"状态快照 | 合法前缀","textChars":9,"textLines":2,"bbox":[70,310,160,68]}
+{"kind":"shape","id":"sh/q5sji5gz","slide":4,"bbox":[300,232,190,180]}
+{"kind":"textbox","id":"sh/1w32xkfm","slide":4,"text":"N / E 分支","textPreview":"N / E 分支","textChars":8,"textLines":1,"bbox":[315,253,160,36]}
+{"kind":"textbox","id":"sh/0vu1ofyh","slide":4,"text":"no-op 对比\n合法 engage","textPreview":"no-op 对比 | 合法 engage","textChars":18,"textLines":2,"bbox":[315,310,160,68]}
+{"kind":"shape","id":"sh/zulkvaxw","slide":4,"bbox":[545,232,190,180]}
+{"kind":"textbox","id":"sh/etcjm5gb","slide":4,"text":"共同随机数","textPreview":"共同随机数","textChars":5,"textLines":1,"bbox":[560,253,160,36]}
+{"kind":"textbox","id":"sh/h0jilgzi","slide":4,"text":"环境与策略\n随机带对齐","textPreview":"环境与策略 | 随机带对齐","textChars":11,"textLines":2,"bbox":[560,310,160,68]}
+{"kind":"shape","id":"sh/gza1cbyx","slide":4,"bbox":[790,232,190,180]}
+{"kind":"textbox","id":"sh/8ju18b6t","slide":4,"text":"目标边缘化","textPreview":"目标边缘化","textChars":5,"textLines":1,"bbox":[805,253,160,36]}
+{"kind":"textbox","id":"sh/tkn21g7e","slide":4,"text":"合法目标\n条件概率求和","textPreview":"合法目标 | 条件概率求和","textChars":11,"textLines":2,"bbox":[805,310,160,68]}
+{"kind":"shape","id":"sh/6hcj6lon","slide":4,"bbox":[1035,232,190,180]}
+{"kind":"textbox","id":"sh/7ilkzqp8","slide":4,"text":"完整账本","textPreview":"完整账本","textChars":4,"textLines":1,"bbox":[1050,253,160,36]}
+{"kind":"textbox","id":"sh/gne1cv65","slide":4,"text":"same-step\nfuture probe/other","textPreview":"same-step | future probe/other","textChars":28,"textLines":2,"bbox":[1050,310,160,68]}
+{"kind":"shape","id":"sh/h8n2507a","slide":4,"bbox":[150,492,980,88]}
+{"kind":"textbox","id":"sh/ulwjaloz","slide":4,"text":"ΔC_episode = C_direct − (Sub_same + Sub_future,probe + Sub_future,other)","textPreview":"ΔC_episode = C_direct − (Sub_same + Sub_future,probe + Sub_future,other)","textChars":72,"textLines":1,"bbox":[185,514,910,43]}
+{"kind":"textbox","id":"sh/vm5k3qpk","slide":4,"text":"CRN 只降低配对方差；结构解释来自完整动作路径记账","textPreview":"CRN 只降低配对方差；结构解释来自完整动作路径记账","textChars":26,"textLines":1,"bbox":[280,608,720,35]}
+{"kind":"textbox","id":"sh/4by1gv61","slide":4,"text":"Source: manuscript Methods §4；Fig. 2 协议与恒等式","textPreview":"Source: manuscript Methods §4；Fig. 2 协议与恒等式","textChars":43,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"notes","id":"nt/vv959z","slide":4,"text":"共同随机数不是可辨识性的来源。目标精确边缘化消除当前目标抽样误差，完整账本负责重构同一步和未来动作介导路径。\n\n[Sources]\n- docs/manuscript/action_substitution_cost_identifiability/final_manuscript_zh.md\n- docs/manuscript/action_substitution_cost_identifiability/figure_table_plan.md\n[/Sources]"}
+{"kind":"slide","id":"sl/0jfquz","slide":5,"title":"R2 独立确认：新模型、新上下文、零旧观测重叠","textShapes":9}
+{"kind":"textbox","id":"sh/a98bepk7","slide":5,"name":"slide-5-title","text":"R2 独立确认：新模型、新上下文、零旧观测重叠","textPreview":"R2 独立确认：新模型、新上下文、零旧观测重叠","textChars":23,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/xwzup4jy","slide":5,"text":"专题论文｜实验设计","textPreview":"专题论文｜实验设计","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/wbqtgz2d","slide":5,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/jyhcre1o","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/l0jut4ju","slide":5,"text":"3,456","textPreview":"3,456","textChars":5,"textLines":1,"bbox":[910,205,260,70]}
+{"kind":"textbox","id":"sh/kzqdkji9","slide":5,"text":"R2 配对重复","textPreview":"R2 配对重复","textChars":7,"textLines":1,"bbox":[910,283,260,35]}
+{"kind":"textbox","id":"sh/z2xcfa1k","slide":5,"text":"7,776","textPreview":"7,776","textChars":5,"textLines":1,"bbox":[910,370,260,70]}
+{"kind":"textbox","id":"sh/e1ob65kz","slide":5,"text":"目标条件账本行","textPreview":"目标条件账本行","textChars":7,"textLines":1,"bbox":[910,448,260,35]}
+{"kind":"textbox","id":"sh/orm9o76h","slide":5,"text":"ledger row ≠ 独立 context","textPreview":"ledger row ≠ 独立 context","textChars":23,"textLines":1,"bbox":[900,532,280,38]}
+{"kind":"textbox","id":"sh/9svahc72","slide":5,"text":"Source: manuscript Experimental Protocol；Tables 1–2","textPreview":"Source: manuscript Experimental Protocol；Tables 1–2","textChars":51,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"table","id":"tb/n2h87apk","slide":5,"name":"","rows":6,"cols":3,"preview":"协议要素 | R1 机制发现 | R2 独立确认","bbox":[42,180,800,390]}
+{"kind":"notes","id":"nt/0jfquz","slide":5,"text":"特别说明独立确认的含义：新来源策略种子、新上下文、旧 hash 零重叠；但仍属于同一 AirDefense v1 环境和同一来源算法。\n\n[Sources]\n- docs/manuscript/action_substitution_cost_identifiability/final_manuscript_zh.md\n- docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_2_independence_integrity.md\n[/Sources]"}
+{"kind":"slide","id":"sl/tb296b","slide":6,"title":"正动作替代在新策略种子和新上下文中复现","textShapes":4}
+{"kind":"textbox","id":"sh/repwzut0","slide":6,"name":"slide-6-title","text":"正动作替代在新策略种子和新上下文中复现","textPreview":"正动作替代在新策略种子和新上下文中复现","textChars":19,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/sfyxsfal","slide":6,"text":"专题论文｜主要结果","textPreview":"专题论文｜主要结果","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/dg7y1kb6","slide":6,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/ehgfupsr","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/0jixwzah","slide":6,"text":"Source: manuscript Fig. 3｜R2：13/18 下界为正，3/3 seed-block 下界为正","textPreview":"Source: manuscript Fig. 3｜R2：13/18 下界为正，3/3 seed-block 下界为正","textChars":59,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"image","id":"im/65cje98f","slide":6,"name":"","alt":"R1 发现与 R2 独立确认的动作替代结果","bbox":[42,151,1196,510]}
+{"kind":"notes","id":"nt/tb296b","slide":6,"text":"先读上排：R1 旧种子发现、R2 新种子确认；再读下排：三个新 seed block 下界均为正，7/7 非正累计成本上下文都有正总替代。\n\n[Sources]\n- docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_3_discovery_and_confirmation_preview.png\n- docs/manuscript/action_substitution_cost_identifiability/results_evidence_notes.md\n[/Sources]"}
+{"kind":"slide","id":"sl/c4oqqt","slide":7,"title":"完整账本修复遗漏，未来替代占比约 83%","textShapes":4}
+{"kind":"textbox","id":"sh/g3edgv2d","slide":7,"name":"slide-7-title","text":"完整账本修复遗漏，未来替代占比约 83%","textPreview":"完整账本修复遗漏，未来替代占比约 83%","textChars":20,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/f2lwnq1s","slide":7,"text":"专题论文｜成本组成","textPreview":"专题论文｜成本组成","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/u1cvelkn","slide":7,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/psnet0ja","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/365wrq14","slide":7,"text":"Source: manuscript Fig. 4｜future-only 最大残差 2.0；完整账本 8.88×10⁻¹⁶","textPreview":"Source: manuscript Fig. 4｜future-only 最大残差 2.0；完整账本 8.88×10⁻¹⁶","textChars":62,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"image","id":"im/dg3ahk36","slide":7,"name":"","alt":"直接成本、同一步与未来替代成本组成","bbox":[42,151,1196,510]}
+{"kind":"notes","id":"nt/c4oqqt","slide":7,"text":"首轮公式缺少同一步其他单元项，287/7776 条账本出现残差。修正后最大误差达到数值精度；同一步约17%，未来约83%。\n\n[Sources]\n- docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_4_cost_composition_preview.png\n- docs/manuscript/action_substitution_cost_identifiability/results_evidence_notes.md\n[/Sources]"}
+{"kind":"slide","id":"sl/p1szl5","slide":8,"title":"动作替代跨场景存在，但资源类型普遍性未通过","textShapes":4}
+{"kind":"textbox","id":"sh/1wvedc7u","slide":8,"name":"slide-8-title","text":"动作替代跨场景存在，但资源类型普遍性未通过","textPreview":"动作替代跨场景存在，但资源类型普遍性未通过","textChars":21,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/utkvix83","slide":8,"text":"专题论文｜适用边界","textPreview":"专题论文｜适用边界","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/futwb2po","slide":8,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/sr2dgnqd","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/65kvex87","slide":8,"text":"Source: manuscript Fig. 5｜P-C1 PASS；P-C2 PASS；P-C3 FAIL","textPreview":"Source: manuscript Fig. 5｜P-C1 PASS；P-C2 PASS；P-C3 FAIL","textChars":55,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"image","id":"im/0nmh4jyl","slide":8,"name":"","alt":"场景和资源类型条件下的动作替代强度与门控","bbox":[42,151,1196,510]}
+{"kind":"notes","id":"nt/p1szl5","slide":8,"text":"必须同时呈现阳性与失败边界。missile 与 laser 都有正替代，但 missile 只有2/9个掩盖上下文，未达到至少3个的冻结门槛。\n\n[Sources]\n- docs/manuscript/action_substitution_cost_identifiability/figures/exported/figure_5_scenario_resource_boundaries_preview.png\n- docs/manuscript/action_substitution_cost_identifiability/tables/exported/table_3_confirmation_gates.md\n[/Sources]"}
+{"kind":"slide","id":"sl/2cnajt","slide":9,"title":"论文形成“测量—审计—确认—边界”闭环","textShapes":17}
+{"kind":"textbox","id":"sh/q90nmtsb","slide":9,"name":"slide-9-title","text":"论文形成“测量—审计—确认—边界”闭环","textPreview":"论文形成“测量—审计—确认—边界”闭环","textChars":19,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/dwbmx8b2","slide":9,"text":"专题论文｜内容框架","textPreview":"专题论文｜内容框架","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/sb25o3ah","slide":9,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/fytozyts","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/exknqtsn","slide":9,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[55,180,75,40]}
+{"kind":"shape","id":"sh/10b618by","slide":9,"bbox":[145,199,70,2]}
+{"kind":"textbox","id":"sh/0z25s3ad","slide":9,"text":"问题定位","textPreview":"问题定位","textChars":4,"textLines":1,"bbox":[235,178,230,40]}
+{"kind":"textbox","id":"sh/v2p4neto","slide":9,"text":"回合成本混合当前消耗与策略响应","textPreview":"回合成本混合当前消耗与策略响应","textChars":15,"textLines":1,"bbox":[490,180,700,45]}
+{"kind":"textbox","id":"sh/u1gne9s3","slide":9,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[55,285,75,40]}
+{"kind":"shape","id":"sh/wbqpwj65","slide":9,"bbox":[145,304,70,2]}
+{"kind":"textbox","id":"sh/xczq5o7q","slide":9,"text":"方法协议","textPreview":"方法协议","textChars":4,"textLines":1,"bbox":[235,283,230,40]}
+{"kind":"textbox","id":"sh/a987u9oz","slide":9,"text":"N/E + CRN + 目标边缘化 + 三分量账本","textPreview":"N/E + CRN + 目标边缘化 + 三分量账本","textChars":25,"textLines":1,"bbox":[490,285,700,45]}
+{"kind":"textbox","id":"sh/bah83epk","slide":9,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[55,390,75,40]}
+{"kind":"shape","id":"sh/kfap0361","slide":9,"bbox":[145,409,70,2]}
+{"kind":"textbox","id":"sh/lgjq987m","slide":9,"text":"独立确认","textPreview":"独立确认","textChars":4,"textLines":1,"bbox":[235,388,230,40]}
+{"kind":"textbox","id":"sh/yds7ytob","slide":9,"text":"新种子、新模型、新上下文、零旧 hash 重叠","textPreview":"新种子、新模型、新上下文、零旧 hash 重叠","textChars":23,"textLines":1,"bbox":[490,390,700,45]}
+{"kind":"textbox","id":"sh/je187ypg","slide":9,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[55,495,75,40]}
+{"kind":"shape","id":"sh/0j6poz6x","slide":9,"bbox":[145,514,70,2]}
+{"kind":"textbox","id":"sh/1kf6x47i","slide":9,"text":"结论边界","textPreview":"结论边界","textChars":4,"textLines":1,"bbox":[235,493,230,40]}
+{"kind":"textbox","id":"sh/1g7ml0z6","slide":9,"text":"测量诊断模块，不声称在线 PPO 已改进","textPreview":"测量诊断模块，不声称在线 PPO 已改进","textChars":20,"textLines":1,"bbox":[490,495,700,45]}
+{"kind":"shape","id":"sh/gfy5svyl","slide":9,"bbox":[55,600,1135,50]}
+{"kind":"textbox","id":"sh/fep4jqh0","slide":9,"text":"三项贡献：明确测量对象｜给出可复核账本｜确认机制并保留失败边界","textPreview":"三项贡献：明确测量对象｜给出可复核账本｜确认机制并保留失败边界","textChars":31,"textLines":1,"bbox":[80,612,1085,30]}
+{"kind":"textbox","id":"sh/edgnqlgv","slide":9,"text":"Source: final_contribution_list.md；final_manuscript_zh.md","textPreview":"Source: final_contribution_list.md；final_manuscript_zh.md","textChars":57,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"notes","id":"nt/2cnajt","slide":9,"text":"论文不按工作流水账组织，而按问题、协议、证据和边界组织。三项贡献都有限定词，不把一般反事实信用、自回归动作或动态掩码重新命名为创新。\n\n[Sources]\n- docs/manuscript/action_substitution_cost_identifiability/final_contribution_list.md\n- docs/manuscript/action_substitution_cost_identifiability/final_manuscript_zh.md\n[/Sources]"}
+{"kind":"slide","id":"sl/893s43","slide":10,"title":"定向阅读排除了“再加一个信用模块”的伪创新空间","textShapes":5}
+{"kind":"textbox","id":"sh/edsvidgz","slide":10,"name":"slide-10-title","text":"定向阅读排除了“再加一个信用模块”的伪创新空间","textPreview":"定向阅读排除了“再加一个信用模块”的伪创新空间","textChars":23,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/10judsfq","slide":10,"text":"主线任务｜文献基线","textPreview":"主线任务｜文献基线","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/0zadkny5","slide":10,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/rahc7yho","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/dcju98ze","slide":10,"text":"剩余缺口：动态支持域下的优化几何，而不是“有没有顺序反事实信用”","textPreview":"剩余缺口：动态支持域下的优化几何，而不是“有没有顺序反事实信用”","textChars":32,"textLines":1,"bbox":[88,600,1100,40]}
+{"kind":"textbox","id":"sh/cbqdg3yt","slide":10,"text":"Source: 六篇定向阅读综合与算法创新决策（2026-07-29）","textPreview":"Source: 六篇定向阅读综合与算法创新决策（2026-07-29）","textChars":35,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"table","id":"tb/vatg7ul8","slide":10,"name":"","rows":6,"cols":3,"preview":"算法/理论 | 可吸收内容 | 当前不能照搬","bbox":[42,178,1196,390]}
+{"kind":"notes","id":"nt/893s43","slide":10,"text":"文献审计把研究缺口收窄：PASPO覆盖可行自回归采样，COSAC覆盖顺序反事实信用，OCR-CFT强调在线回退。项目差异必须落在动态支持、完整MDP和结构级联。\n\n[Sources]\n- docs/project/air_defense_v1_literature_synthesis_and_algorithm_innovation_decision_2026-07-29.md\n[/Sources]"}
+{"kind":"slide","id":"sl/o8aci3","slide":11,"title":"创新路线由受控失败逐步收敛，而非并行堆叠","textShapes":20}
+{"kind":"textbox","id":"sh/3qhoz6ts","slide":11,"name":"slide-11-title","text":"创新路线由受控失败逐步收敛，而非并行堆叠","textPreview":"创新路线由受控失败逐步收敛，而非并行堆叠","textChars":20,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/4rqp8rad","slide":11,"text":"主线任务｜算法演化","textPreview":"主线任务｜算法演化","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/5sz61wby","slide":11,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/qt87a1sj","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"shape","id":"sh/ruh836t4","slide":11,"bbox":[90,330,1080,4]}
+{"kind":"shape","id":"sh/svqpcbap","slide":11,"bbox":[110,311,38,38]}
+{"kind":"textbox","id":"sh/dwzq5gba","slide":11,"text":"结构合法","textPreview":"结构合法","textChars":4,"textLines":1,"bbox":[45,225,170,35]}
+{"kind":"textbox","id":"sh/mx47yhcf","slide":11,"text":"AR / factorized PPO","textPreview":"AR / factorized PPO","textChars":19,"textLines":1,"bbox":[35,380,190,60]}
+{"kind":"shape","id":"sh/7ydor2t0","slide":11,"bbox":[365,311,38,38]}
+{"kind":"textbox","id":"sh/nyx8ry9s","slide":11,"text":"离线估值","textPreview":"离线估值","textChars":4,"textLines":1,"bbox":[300,225,170,35]}
+{"kind":"textbox","id":"sh/mxoryts7","slide":11,"text":"Q-Critic / MCH","textPreview":"Q-Critic / MCH","textChars":14,"textLines":1,"bbox":[290,380,190,60]}
+{"kind":"shape","id":"sh/90fqt8ry","slide":11,"bbox":[620,311,38,38]}
+{"kind":"textbox","id":"sh/oz6903ad","slide":11,"text":"在线标签","textPreview":"在线标签","textChars":4,"textLines":1,"bbox":[555,225,170,35]}
+{"kind":"textbox","id":"sh/zad83y9w","slide":11,"text":"BPCE","textPreview":"BPCE","textChars":4,"textLines":1,"bbox":[545,380,190,60]}
+{"kind":"shape","id":"sh/e947utsb","slide":11,"bbox":[875,311,38,38]}
+{"kind":"textbox","id":"sh/1wvq5orm","slide":11,"text":"规范责任","textPreview":"规范责任","textChars":4,"textLines":1,"bbox":[810,225,170,35]}
+{"kind":"textbox","id":"sh/0bmpw3a1","slide":11,"text":"FCRC","textPreview":"FCRC","textChars":4,"textLines":1,"bbox":[800,380,190,60]}
+{"kind":"shape","id":"sh/r6d8zetk","slide":11,"bbox":[1130,311,38,38]}
+{"kind":"textbox","id":"sh/q547q9sz","slide":11,"text":"支持几何","textPreview":"支持几何","textChars":4,"textLines":1,"bbox":[1065,225,170,35]}
+{"kind":"textbox","id":"sh/u1kr29cr","slide":11,"text":"DS-TR","textPreview":"DS-TR","textChars":5,"textLines":1,"bbox":[1055,380,190,60]}
+{"kind":"shape","id":"sh/f2t8bedc","slide":11,"bbox":[85,500,130,38]}
+{"kind":"textbox","id":"sh/g3294jux","slide":11,"text":"baseline","textPreview":"baseline","textChars":8,"textLines":1,"bbox":[93,507,114,24]}
+{"kind":"shape","id":"sh/h4badovi","slide":11,"bbox":[345,500,130,38]}
+{"kind":"textbox","id":"sh/25kr6tc3","slide":11,"text":"停止","textPreview":"停止","textChars":2,"textLines":1,"bbox":[353,507,114,24]}
+{"kind":"shape","id":"sh/36dsfydo","slide":11,"bbox":[600,500,130,38]}
+{"kind":"textbox","id":"sh/47m98ju9","slide":11,"text":"停止","textPreview":"停止","textChars":2,"textLines":1,"bbox":[608,507,114,24]}
+{"kind":"shape","id":"sh/p8vahove","slide":11,"bbox":[855,500,130,38]}
+{"kind":"textbox","id":"sh/q94ratcz","slide":11,"text":"停止","textPreview":"停止","textChars":2,"textLines":1,"bbox":[863,507,114,24]}
+{"kind":"shape","id":"sh/rudsjydk","slide":11,"bbox":[1090,500,130,38]}
+{"kind":"textbox","id":"sh/1ofu9sfm","slide":11,"text":"当前主候选","textPreview":"当前主候选","textChars":5,"textLines":1,"bbox":[1098,507,114,24]}
+{"kind":"textbox","id":"sh/036t0neh","slide":11,"text":"每一步都要求：机制门 → 独立门 → 算法门","textPreview":"每一步都要求：机制门 → 独立门 → 算法门","textChars":22,"textLines":1,"bbox":[360,605,560,35]}
+{"kind":"textbox","id":"sh/z2xc7ixw","slide":11,"text":"Source: academic_project_progress.md；算法创新综合决策 §12","textPreview":"Source: academic_project_progress.md；算法创新综合决策 §12","textChars":49,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"notes","id":"nt/o8aci3","slide":11,"text":"说明停止不是研究停滞，而是缩小创新空间：Q-Critic不能排序、BPCE标签覆盖失败、FCRC无增量预测，最终留下动态支持域这一最小可证伪机制。\n\n[Sources]\n- docs/project/academic_project_progress.md\n- docs/project/air_defense_v1_literature_synthesis_and_algorithm_innovation_decision_2026-07-29.md\n[/Sources]"}
+{"kind":"slide","id":"sl/kagjxs","slide":12,"title":"Factorized joint PPO 未消除 no-op 分叉","textShapes":9}
+{"kind":"textbox","id":"sh/yxszexwj","slide":12,"name":"slide-12-title","text":"Factorized joint PPO 未消除 no-op 分叉","textPreview":"Factorized joint PPO 未消除 no-op 分叉","textChars":33,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/l03ipcfa","slide":12,"text":"主线任务｜基础策略","textPreview":"主线任务｜基础策略","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/kzuhg7ep","slide":12,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/ba1gj2x8","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/xwjylcfe","slide":12,"text":"0.4726","textPreview":"0.4726","textChars":6,"textLines":1,"bbox":[820,205,290,65]}
+{"kind":"textbox","id":"sh/cbahc7yt","slide":12,"text":"失败策略仍保留平均交战概率","textPreview":"失败策略仍保留平均交战概率","textChars":13,"textLines":1,"bbox":[770,275,390,40]}
+{"kind":"textbox","id":"sh/n6hgfixw","slide":12,"text":"3 / 5","textPreview":"3 / 5","textChars":5,"textLines":1,"bbox":[820,365,290,65]}
+{"kind":"textbox","id":"sh/258z6dgr","slide":12,"text":"10k 种子发生 deterministic 塌缩","textPreview":"10k 种子发生 deterministic 塌缩","textChars":25,"textLines":1,"bbox":[760,438,410,45]}
+{"kind":"shape","id":"sh/oza5ove5","slide":12,"bbox":[772,520,405,65]}
+{"kind":"textbox","id":"sh/p0j6h0fa","slide":12,"text":"概率碎片化 + 0.5 边界跨越 + PPO 分叉","textPreview":"概率碎片化 + 0.5 边界跨越 + PPO 分叉","textChars":25,"textLines":1,"bbox":[792,536,365,33]}
+{"kind":"textbox","id":"sh/2xsnmlwz","slide":12,"text":"Source: task12_noop_stability.md｜10k seeds 3–7","textPreview":"Source: task12_noop_stability.md｜10k seeds 3–7","textChars":46,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"chart","id":"ch/u1cjqdgr","slide":12,"name":"","chartType":"bar","bbox":[42,175,690,400]}
+{"kind":"notes","id":"nt/kagjxs","slide":12,"text":"红色柱表示deterministic全no-op。关键是策略概率并未完全退化，说明单纯观察argmax会放大现象，但PPO种子分叉仍是真实存在的。\n\n[Sources]\n- docs/experiments/air_defense_v1_task12_noop_stability.md\n[/Sources]"}
+{"kind":"slide","id":"sl/5qoic2","slide":13,"title":"Q-Critic 数值可拟合，交战排序仍失真","textShapes":8}
+{"kind":"textbox","id":"sh/3u1orqlc","slide":13,"name":"slide-13-title","text":"Q-Critic 数值可拟合，交战排序仍失真","textPreview":"Q-Critic 数值可拟合，交战排序仍失真","textChars":22,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/4vapkv2x","slide":13,"text":"主线任务｜Q-Critic","textPreview":"主线任务｜Q-Critic","textChars":13,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/pwj6t03i","slide":13,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/u587elkv","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/g7qpgv2l","slide":13,"text":"MAE","textPreview":"MAE","textChars":3,"textLines":1,"bbox":[840,210,300,45]}
+{"kind":"textbox","id":"sh/h8j6p036","slide":13,"text":"相对 V(s)\n改善 36.4%–40.1%","textPreview":"相对 V(s) | 改善 36.4%–40.1%","textChars":22,"textLines":2,"bbox":[820,275,340,85]}
+{"kind":"textbox","id":"sh/6187a1kj","slide":13,"text":"结论","textPreview":"结论","textChars":2,"textLines":1,"bbox":[840,410,300,45]}
+{"kind":"textbox","id":"sh/72hoj6l4","slide":13,"text":"“选哪个目标”相对可学\n“是否交战”仍是瓶颈","textPreview":"“选哪个目标”相对可学 | “是否交战”仍是瓶颈","textChars":22,"textLines":2,"bbox":[805,475,370,90]}
+{"kind":"textbox","id":"sh/7i18vi50","slide":13,"text":"Source: task14_q_critic.md；task14_hierarchical_q.md","textPreview":"Source: task14_q_critic.md；task14_hierarchical_q.md","textChars":51,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"chart","id":"ch/z65kvmhg","slide":13,"name":"","chartType":"bar","bbox":[42,190,730,390]}
+{"kind":"notes","id":"nt/5qoic2","slide":13,"text":"三项分数的样本定义不同，因此用于展示层级差异而非同一统计检验。主结论是target层明显可学，engage层方向不稳定。\n\n[Sources]\n- docs/experiments/air_defense_v1_task14_q_critic.md\n- docs/experiments/air_defense_v1_task14_hierarchical_q.md\n[/Sources]"}
+{"kind":"slide","id":"sl/4c2yaw","slide":14,"title":"从 MCH 到支持锚定，塌缩始终无法被可靠消除","textShapes":11}
+{"kind":"textbox","id":"sh/e1o3e9gr","slide":14,"name":"slide-14-title","text":"从 MCH 到支持锚定，塌缩始终无法被可靠消除","textPreview":"从 MCH 到支持锚定，塌缩始终无法被可靠消除","textChars":23,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/14fm9ozi","slide":14,"text":"主线任务｜反事实信用算法","textPreview":"主线任务｜反事实信用算法","textChars":12,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/036lgjyx","slide":14,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/n6h4beh8","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/98zmdoze","slide":14,"text":"MCH v0","textPreview":"MCH v0","textChars":6,"textLines":1,"bbox":[800,190,165,35]}
+{"kind":"textbox","id":"sh/o7qlkjyt","slide":14,"text":"冻结 Critic 不能替代在线 joint GAE","textPreview":"冻结 Critic 不能替代在线 joint GAE","textChars":26,"textLines":1,"bbox":[800,233,390,65]}
+{"kind":"textbox","id":"sh/3adkzuh4","slide":14,"text":"RG-MCH","textPreview":"RG-MCH","textChars":6,"textLines":1,"bbox":[800,315,165,35]}
+{"kind":"textbox","id":"sh/29436p0j","slide":14,"text":"局部安全阳性，但仍 2/6 塌缩；成本 125.9%","textPreview":"局部安全阳性，但仍 2/6 塌缩；成本 125.9%","textChars":26,"textLines":1,"bbox":[800,358,390,65]}
+{"kind":"textbox","id":"sh/grqxc3ap","slide":14,"text":"SA-RG","textPreview":"SA-RG","textChars":5,"textLines":1,"bbox":[800,440,165,35]}
+{"kind":"textbox","id":"sh/hsje5ora","slide":14,"text":"support 仅 0.124/0.022；关闭残差仍非严格回退","textPreview":"support 仅 0.124/0.022；关闭残差仍非严格回退","textChars":32,"textLines":1,"bbox":[800,483,390,65]}
+{"kind":"shape","id":"sh/up8fatsj","slide":14,"bbox":[800,565,390,62]}
+{"kind":"textbox","id":"sh/fqhw3y94","slide":14,"text":"冻结契约：辅助关闭时必须逐位恢复 joint PPO","textPreview":"冻结契约：辅助关闭时必须逐位恢复 joint PPO","textChars":26,"textLines":1,"bbox":[820,580,350,34]}
+{"kind":"textbox","id":"sh/4vaxg3al","slide":14,"text":"Source: MCH / RG-MCH / SA-RG / BPCE 10k stress tests","textPreview":"Source: MCH / RG-MCH / SA-RG / BPCE 10k stress tests","textChars":52,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"chart","id":"ch/etonm1gr","slide":14,"name":"","chartType":"bar","bbox":[42,180,690,410]}
+{"kind":"notes","id":"nt/4c2yaw","slide":14,"text":"图中统一使用6个同场景运行的绝对塌缩数。RG-MCH说明GAE锚定方向有效，但SA-RG揭示支持度和小KL都不能替代严格joint PPO回退。\n\n[Sources]\n- docs/experiments/air_defense_v1_mch_ppo_mechanism_stress_test.md\n- docs/experiments/air_defense_v1_rg_mch_ppo_stress_test.md\n- docs/experiments/air_defense_v1_sa_rg_mch_ppo_stress_test.md\n- docs/experiments/air_defense_v1_bpce_ppo_stress_test.md\n[/Sources]"}
+{"kind":"slide","id":"sl/5h15f6","slide":15,"title":"BPCE 改善异质场景安全，但成本升至 1.93×","textShapes":10}
+{"kind":"textbox","id":"sh/bipk32tg","slide":15,"name":"slide-15-title","text":"BPCE 改善异质场景安全，但成本升至 1.93×","textPreview":"BPCE 改善异质场景安全，但成本升至 1.93×","textChars":25,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/wjy1cnu1","slide":15,"text":"主线任务｜在线边界标签","textPreview":"主线任务｜在线边界标签","textChars":11,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/xk725sbm","slide":15,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/mdwj6dcj","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"shape","id":"sh/ofe18nup","slide":15,"bbox":[60,480,350,115]}
+{"kind":"textbox","id":"sh/9gni1sba","slide":15,"text":"2 / 6","textPreview":"2 / 6","textChars":5,"textLines":1,"bbox":[95,495,280,55]}
+{"kind":"textbox","id":"sh/epcj2dcn","slide":15,"text":"同场景运行仍塌缩","textPreview":"同场景运行仍塌缩","textChars":8,"textLines":1,"bbox":[95,553,280,30]}
+{"kind":"shape","id":"sh/zq50vyt8","slide":15,"bbox":[465,480,350,115]}
+{"kind":"textbox","id":"sh/n25svahk","slide":15,"text":"1.940×","textPreview":"1.940×","textChars":6,"textLines":1,"bbox":[500,495,280,55]}
+{"kind":"textbox","id":"sh/21cbm5gz","slide":15,"text":"平均训练时间比","textPreview":"平均训练时间比","textChars":7,"textLines":1,"bbox":[500,553,280,30]}
+{"kind":"shape","id":"sh/ponaxkzq","slide":15,"bbox":[870,480,350,115]}
+{"kind":"textbox","id":"sh/o3etofy5","slide":15,"text":"结论","textPreview":"结论","textChars":2,"textLines":1,"bbox":[905,500,280,35]}
+{"kind":"textbox","id":"sh/bq5szahw","slide":15,"text":"覆盖、方向与剂量均不稳定","textPreview":"覆盖、方向与剂量均不稳定","textChars":12,"textLines":1,"bbox":[895,548,300,32]}
+{"kind":"textbox","id":"sh/apwbq5gb","slide":15,"text":"Source: air_defense_v1_bpce_ppo_stress_test.md","textPreview":"Source: air_defense_v1_bpce_ppo_stress_test.md","textChars":46,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"table","id":"tb/e1gry54v","slide":15,"name":"","rows":3,"cols":6,"preview":"场景 | 奖励差 | 损伤差 | 高威胁突防差 | 成本比 | all-noop 不劣","bbox":[42,200,1196,220]}
+{"kind":"notes","id":"nt/5h15f6","slide":15,"text":"强调BPCE不是工程失败：软件验收和训练成本门通过；真正失败是标签覆盖、种子稳定性、资源门和跨场景探测优势。\n\n[Sources]\n- docs/experiments/air_defense_v1_bpce_ppo_stress_test.md\n[/Sources]"}
+{"kind":"slide","id":"sl/r45g0e","slide":16,"title":"FCRC 独立预测门失败，停止算法化","textShapes":11}
+{"kind":"textbox","id":"sh/18n6xkra","slide":16,"name":"slide-16-title","text":"FCRC 独立预测门失败，停止算法化","textPreview":"FCRC 独立预测门失败，停止算法化","textChars":18,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/e5cn2p8j","slide":16,"text":"主线任务｜规范责任创新","textPreview":"主线任务｜规范责任创新","textChars":11,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/f6lovu94","slide":16,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/s3u50fqt","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"shape","id":"sh/d436tkre","slide":16,"bbox":[42,185,500,370]}
+{"kind":"textbox","id":"sh/q1cny58n","slide":16,"text":"静态审计","textPreview":"静态审计","textChars":4,"textLines":1,"bbox":[72,215,220,45]}
+{"kind":"textbox","id":"sh/r2lora98","slide":16,"text":"35.39%  正动作\n0.466  与成本相关\n1.02 ms  平均计算\n形式/非退化/非换名通过","textPreview":"35.39%  正动作 | 0.466  与成本相关 | 1.02 ms  平均计算 | 形式/非退化/非换名通过","textChars":51,"textLines":4,"bbox":[72,295,410,190]}
+{"kind":"shape","id":"sh/czypcjqx","slide":16,"bbox":[330,220,130,38]}
+{"kind":"textbox","id":"sh/x07654ri","slide":16,"text":"条件通过","textPreview":"条件通过","textChars":4,"textLines":1,"bbox":[338,227,114,24]}
+{"kind":"shape","id":"sh/x0fa50ra","slide":16,"bbox":[570,350,110,36]}
+{"kind":"shape","id":"sh/wz69wvap","slide":16,"bbox":[710,185,528,370]}
+{"kind":"textbox","id":"sh/byx83a94","slide":16,"text":"冻结成对预测","textPreview":"冻结成对预测","textChars":6,"textLines":1,"bbox":[740,215,260,45]}
+{"kind":"textbox","id":"sh/axoru5sj","slide":16,"text":"high–low 损害差  +0.0184\n单侧 p  = 0.351\nCV MAE 改善  ≈ 0%\n泄漏损伤差  −0.050","textPreview":"high–low 损害差  +0.0184 | 单侧 p  = 0.351 | CV MAE 改善  ≈ 0% | 泄漏损伤差  −0.050","textChars":65,"textLines":4,"bbox":[740,295,430,190]}
+{"kind":"shape","id":"sh/9wfq10re","slide":16,"bbox":[1060,220,130,38]}
+{"kind":"textbox","id":"sh/ovm9svat","slide":16,"text":"停止","textPreview":"停止","textChars":2,"textLines":1,"bbox":[1068,227,114,24]}
+{"kind":"textbox","id":"sh/nud8zq98","slide":16,"text":"可计算 + 非退化 + 相关性 仍不足以成为在线优化信号","textPreview":"可计算 + 非退化 + 相关性 仍不足以成为在线优化信号","textChars":28,"textLines":1,"bbox":[210,605,860,38]}
+{"kind":"textbox","id":"sh/mt4rqlsn","slide":16,"text":"Source: N2 static coverability audit；N3 paired predictive validation","textPreview":"Source: N2 static coverability audit；N3 paired predictive validation","textChars":68,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"notes","id":"nt/r45g0e","slide":16,"text":"FCRC是重要的受控阴性：静态门全部通过，但独立成对验证没有因果方向、增量预测和安全一致性，因此按预注册规则停止。\n\n[Sources]\n- docs/experiments/air_defense_v1_n2_static_coverability_audit.md\n- docs/experiments/air_defense_v1_n3_fcrc_paired_predictive_validation.md\n[/Sources]"}
+{"kind":"slide","id":"sl/bfqiau","slide":17,"title":"DS 在两类结构失败上提供增量解释力","textShapes":9}
+{"kind":"textbox","id":"sh/q1w7ehov","slide":17,"name":"slide-17-title","text":"DS 在两类结构失败上提供增量解释力","textPreview":"DS 在两类结构失败上提供增量解释力","textChars":18,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/do769c76","slide":17,"text":"当前主候选｜DS-0","textPreview":"当前主候选｜DS-0","textChars":10,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/cnypg761","slide":17,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/zqpobmpc","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/1s76dw7i","slide":17,"text":"P1 PASS","textPreview":"P1 PASS","textChars":7,"textLines":1,"bbox":[915,205,260,70]}
+{"kind":"textbox","id":"sh/0ryp4r6x","slide":17,"text":"2 / 3 共同结果通过","textPreview":"2 / 3 共同结果通过","textChars":12,"textLines":1,"bbox":[900,287,290,38]}
+{"kind":"textbox","id":"sh/nup8fmpo","slide":17,"text":"p = 0.000999","textPreview":"p = 0.000999","textChars":12,"textLines":1,"bbox":[915,380,260,55]}
+{"kind":"textbox","id":"sh/mtg761o3","slide":17,"text":"max-T FWER（通过结果）","textPreview":"max-T FWER（通过结果）","textChars":16,"textLines":1,"bbox":[890,442,310,35]}
+{"kind":"shape","id":"sh/g3y58vyd","slide":17,"bbox":[905,520,280,75]}
+{"kind":"textbox","id":"sh/h47610fy","slide":17,"text":"普通 argmax flip\n最大增量仅 0.0120","textPreview":"普通 argmax flip | 最大增量仅 0.0120","textChars":27,"textLines":2,"bbox":[925,533,240,50]}
+{"kind":"textbox","id":"sh/u1gn65gn","slide":17,"text":"Source: air_defense_v1_ds0_dynamic_support_audit.md","textPreview":"Source: air_defense_v1_ds0_dynamic_support_audit.md","textChars":51,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"chart","id":"ch/al0ryhkn","slide":17,"name":"","chartType":"bar","bbox":[42,180,820,430]}
+{"kind":"notes","id":"nt/bfqiau","slide":17,"text":"两类正式通过结果都满足增量、bootstrap、场景和seed-block方向门。第三个结果未通过，因此不能外推到所有退化现象。\n\n[Sources]\n- docs/experiments/air_defense_v1_ds0_dynamic_support_audit.md\n[/Sources]"}
+{"kind":"slide","id":"sl/iv6816","slide":18,"title":"DS-1 时间轴冻结与更新级优先性","textShapes":19}
+{"kind":"textbox","id":"sh/0ru903mt","slide":18,"name":"slide-18-title","text":"DS-1 时间轴冻结与更新级优先性","textPreview":"DS-1 时间轴冻结与更新级优先性","textChars":17,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/fqlsry58","slide":18,"text":"当前主候选｜DST-05.5","textPreview":"当前主候选｜DST-05.5","textChars":14,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/epcryt4n","slide":18,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/dojapon2","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"shape","id":"sh/sna9wjmh","slide":18,"bbox":[110,285,1040,4]}
+{"kind":"shape","id":"sh/rm18ny5w","slide":18,"bbox":[125,269,36,36]}
+{"kind":"textbox","id":"sh/qlsrut4b","slide":18,"text":"t=0","textPreview":"t=0","textChars":3,"textLines":1,"bbox":[95,205,96,35]}
+{"kind":"textbox","id":"sh/xkna1s36","slide":18,"text":"训练前基线\n0 / 0","textPreview":"训练前基线 | 0 / 0","textChars":11,"textLines":2,"bbox":[55,330,176,70]}
+{"kind":"shape","id":"sh/cje98nml","slide":18,"bbox":[370,269,36,36]}
+{"kind":"textbox","id":"sh/y583qxsz","slide":18,"text":"t=1","textPreview":"t=1","textChars":3,"textLines":1,"bbox":[340,205,96,35]}
+{"kind":"textbox","id":"sh/z6h4z29k","slide":18,"text":"完成 rollout\n10 / 256","textPreview":"完成 rollout | 10 / 256","textChars":19,"textLines":2,"bbox":[300,330,176,70]}
+{"kind":"shape","id":"sh/0rqls7ap","slide":18,"bbox":[615,269,36,36]}
+{"kind":"textbox","id":"sh/lsjm1cra","slide":18,"text":"t=2","textPreview":"t=2","textChars":3,"textLines":1,"bbox":[585,205,96,35]}
+{"kind":"textbox","id":"sh/q183mxsn","slide":18,"text":"完成 rollout\n20 / 512","textPreview":"完成 rollout | 20 / 512","textChars":19,"textLines":2,"bbox":[545,330,176,70]}
+{"kind":"shape","id":"sh/b2h4v298","slide":18,"bbox":[1040,269,36,36]}
+{"kind":"textbox","id":"sh/c3qlo7at","slide":18,"text":"t=40","textPreview":"t=40","textChars":4,"textLines":1,"bbox":[1010,205,96,35]}
+{"kind":"textbox","id":"sh/d4zmxsre","slide":18,"text":"正式终点\n400 / 10,240","textPreview":"正式终点 | 400 / 10,240","textChars":17,"textLines":2,"bbox":[970,330,176,70]}
+{"kind":"textbox","id":"sh/axs3yhs7","slide":18,"text":"每点 50 回合 CRN 事件评估｜episode seeds 73000…73049","textPreview":"每点 50 回合 CRN 事件评估｜episode seeds 73000…73049","textChars":43,"textLines":1,"bbox":[270,430,740,38]}
+{"kind":"shape","id":"sh/vy147m9c","slide":18,"bbox":[120,510,300,95]}
+{"kind":"textbox","id":"sh/r2d0zep4","slide":18,"text":"K0","textPreview":"K0","textChars":2,"textLines":1,"bbox":[135,530,70,40]}
+{"kind":"textbox","id":"sh/614jq98j","slide":18,"text":"KL + clip + entropy","textPreview":"KL + clip + entropy","textChars":19,"textLines":1,"bbox":[205,530,195,45]}
+{"kind":"shape","id":"sh/t4vi1o7u","slide":18,"bbox":[450,510,300,95]}
+{"kind":"textbox","id":"sh/s3m1sjqp","slide":18,"text":"K1","textPreview":"K1","textChars":2,"textLines":1,"bbox":[465,530,70,40]}
+{"kind":"textbox","id":"sh/f6d03yp0","slide":18,"text":"K0 + 普通翻转","textPreview":"K0 + 普通翻转","textChars":9,"textLines":1,"bbox":[535,530,195,45]}
+{"kind":"shape","id":"sh/e54jut8f","slide":18,"bbox":[780,510,300,95]}
+{"kind":"textbox","id":"sh/18vi5876","slide":18,"text":"K2","textPreview":"K2","textChars":2,"textLines":1,"bbox":[795,530,70,40]}
+{"kind":"textbox","id":"sh/g7m1w3ql","slide":18,"text":"K1 + DS 加权翻转","textPreview":"K1 + DS 加权翻转","textChars":12,"textLines":1,"bbox":[865,530,195,45]}
+{"kind":"textbox","id":"sh/3ax07ypc","slide":18,"text":"Source: DST-05.5 event timeline preflight｜512-step paired routes: exact equivalence","textPreview":"Source: DST-05.5 event timeline preflight｜512-step paired routes: exact equivalence","textChars":83,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"notes","id":"nt/iv6816","slide":18,"text":"唯一分析时间轴是rollout_update_index；SB3的_n_updates每轮增加10，只作追溯。DST-05.5只证明真实Callback不污染训练，不是P2证据。\n\n[Sources]\n- docs/experiments/air_defense_v1_dst05_5_event_timeline_preflight.md\n- docs/task_guides/dynamic_support_trust_region/dst_06_ds1_short_run_precursor_gate.md\n[/Sources]"}
+{"kind":"slide","id":"sl/2mqaed","slide":19,"title":"未来工作：先行性 → 最小干预 → 增量控制","textShapes":14}
+{"kind":"textbox","id":"sh/4ryts7e9","slide":19,"name":"slide-19-title","text":"未来工作：先行性 → 最小干预 → 增量控制","textPreview":"未来工作：先行性 → 最小干预 → 增量控制","textChars":22,"textLines":1,"bbox":[42,31,1125,66]}
+{"kind":"textbox","id":"sh/3q5cz2x4","slide":19,"text":"发展方向与创新思路","textPreview":"发展方向与创新思路","textChars":9,"textLines":1,"bbox":[42,103,700,26]}
+{"kind":"shape","id":"sh/ipwbqxwj","slide":19,"bbox":[42,139,1196,2]}
+{"kind":"textbox","id":"sh/honaxsfy","slide":19,"text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1184,672,54,22]}
+{"kind":"textbox","id":"sh/gnetoned","slide":19,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[55,195,90,65]}
+{"kind":"shape","id":"sh/vm5svixs","slide":19,"bbox":[55,275,350,3]}
+{"kind":"textbox","id":"sh/ulwbmxg7","slide":19,"text":"DS-1 更新级先行性","textPreview":"DS-1 更新级先行性","textChars":11,"textLines":1,"bbox":[55,305,350,45]}
+{"kind":"textbox","id":"sh/1kru9wf2","slide":19,"text":"3×10k\nK2 是否稳定优于 K0/K1","textPreview":"3×10k | K2 是否稳定优于 K0/K1","textChars":21,"textLines":2,"bbox":[55,380,350,95]}
+{"kind":"textbox","id":"sh/0jit0reh","slide":19,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[460,195,90,65]}
+{"kind":"shape","id":"sh/mlw325wj","slide":19,"bbox":[460,275,350,3]}
+{"kind":"textbox","id":"sh/n6pkvax4","slide":19,"text":"DS-TR v0 最小干预","textPreview":"DS-TR v0 最小干预","textChars":13,"textLines":1,"bbox":[460,305,350,45]}
+{"kind":"textbox","id":"sh/87yl4fe9","slide":19,"text":"保留 joint PPO\n零系数逐位回退","textPreview":"保留 joint PPO | 零系数逐位回退","textChars":20,"textLines":2,"bbox":[460,380,350,95]}
+{"kind":"textbox","id":"sh/987mx0fu","slide":19,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[865,195,90,65]}
+{"kind":"shape","id":"sh/yhw3ylw7","slide":19,"bbox":[865,275,350,3]}
+{"kind":"textbox","id":"sh/zi5krqxs","slide":19,"text":"DS-2 与增量控制","textPreview":"DS-2 与增量控制","textChars":10,"textLines":1,"bbox":[865,305,350,45]}
+{"kind":"textbox","id":"sh/0jel0ved","slide":19,"text":"普通 churn / KL\nPASPO 初始化控制","textPreview":"普通 churn / KL | PASPO 初始化控制","textChars":25,"textLines":2,"bbox":[865,380,350,95]}
+{"kind":"shape","id":"sh/lkn2t0fy","slide":19,"bbox":[90,545,1100,82]}
+{"kind":"textbox","id":"sh/id03apwr","slide":19,"text":"目标不是“必须找到新模块”，而是让每一项创新都能被独立验证或否决","textPreview":"目标不是“必须找到新模块”，而是让每一项创新都能被独立验证或否决","textChars":32,"textLines":1,"bbox":[130,568,1020,42]}
+{"kind":"textbox","id":"sh/je943uxw","slide":19,"text":"下一入口：DST-06；DS-TR 是否实现取决于 P2 硬门","textPreview":"下一入口：DST-06；DS-TR 是否实现取决于 P2 硬门","textChars":31,"textLines":1,"bbox":[42,666,1080,22]}
+{"kind":"notes","id":"nt/2mqaed","slide":19,"text":"最后收束到决策：先跑冻结的DS-1；只有先行性通过才实现最小DS-TR；之后必须用普通churn、KL和初始化控制验证增量价值。\n\n[Sources]\n- docs/task_guides/dynamic_support_trust_region/README.md\n- docs/task_guides/dynamic_support_trust_region/dst_06_ds1_short_run_precursor_gate.md\n[/Sources]"}

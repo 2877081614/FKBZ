@@ -1,0 +1,551 @@
+{
+  "schema_version": 1,
+  "contract_version": "1.0.0",
+  "frozen_at": "2026-07-29T00:00:00+08:00",
+  "frozen_before_formal_ds_results": true,
+  "training_authorized_by_dst_01": false,
+  "status_values": [
+    "PASS",
+    "STOPPED",
+    "INCONCLUSIVE",
+    "BLOCKED"
+  ],
+  "core_scenarios": [
+    "time_pressure",
+    "heterogeneity_pressure"
+  ],
+  "descriptive_scenarios": [
+    "medium"
+  ],
+  "formulas": {
+    "state_prefix": "x_k=(s,h_k)",
+    "suffix_set": "F_>k(x_k,a)={a_(k+1:n):(h_k,a,a_(k+1:n)) in F(s)}",
+    "ds_jaccard": "1-|F_>k(x_k,a) intersect F_>k(x_k,b)|/|F_>k(x_k,a) union F_>k(x_k,b)|",
+    "old_structural_risk": "r_old(x_k,a)=sum_b pi_old_bar(b|x_k)*c_DS(x_k;a,b)",
+    "policy_distance": "D_DS=E_x[0.5*sum_a |pi_new_bar(a|x)-pi_old_bar(a|x)|*r_old(x,a)]"
+  },
+  "global_hard_rules": {
+    "eligible_positions": "unit_position < num_units - 1",
+    "last_position_value": "not_applicable",
+    "current_action_requirement": "officially legal and has at least one feasible completion",
+    "suffix_representation": "unique ordered tuples over remaining unit positions including legal no-op",
+    "empty_suffix": "hard_fail",
+    "empty_union": "hard_fail",
+    "illegal_current_action": "exclude_and_log",
+    "action_pair_canonicalization": "unordered pair with action_a < action_b",
+    "context_weighting": "equal weight per unique context_id; action-pair expansion cannot reweight",
+    "forbidden_weighting": [
+      "Q",
+      "reward",
+      "threat",
+      "resource_cost",
+      "empirical_suffix_probability"
+    ],
+    "completion_count_ratio_is_primary": false,
+    "post_result_metric_switch_allowed": false
+  },
+  "dst_01": {
+    "gate_id": "DST01_CONTRACT_COMPLETE",
+    "pass_if_all": [
+      "research_contract.md exists",
+      "field_dictionary.csv exists and has unique field_name",
+      "gate_registry.json parses",
+      "source_manifest.json parses and all listed files match size and SHA-256 at freeze time",
+      "position and empty-set rules are explicit",
+      "P1 P2 P3 thresholds are numeric and frozen",
+      "no training or policy modification occurred"
+    ],
+    "result": "PASS"
+  },
+  "dst_02": {
+    "gate_id": "DST02_ENUMERATOR_AND_METRIC",
+    "pass_if_all": [
+      {
+        "check": "hand_constructed_suffix_sets",
+        "minimum_cases": 6
+      },
+      {
+        "check": "environment_mask_cross_check",
+        "allowed_errors": 0
+      },
+      {
+        "check": "ds_range",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "tolerance": 1e-12
+      },
+      {
+        "check": "ds_symmetry",
+        "max_absolute_error": 1e-12
+      },
+      {
+        "check": "identical_sets_zero",
+        "max_absolute_value": 1e-12
+      },
+      {
+        "check": "disjoint_nonempty_sets_one",
+        "max_absolute_error": 1e-12
+      },
+      {
+        "check": "r_old_range",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "tolerance": 1e-12
+      },
+      {
+        "check": "d_ds_range",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "tolerance": 1e-12
+      },
+      {
+        "check": "same_policy_zero",
+        "max_absolute_value": 1e-12
+      },
+      {
+        "check": "empty_union_raises",
+        "expected_code": "EMPTY_UNION"
+      },
+      {
+        "check": "last_position_excluded",
+        "allowed_numeric_rows": 0
+      }
+    ],
+    "failure_action": "return_to_DST01_with_version_record"
+  },
+  "dst_03": {
+    "gate_id": "DST03_CORPUS_INTEGRITY",
+    "source_priority": [
+      "results/air_defense_v1/task12_probe_corpus/",
+      "results/air_defense_v1/task12_task11_frozen_replay/",
+      "results/air_defense_v1/task10_frozen_model_diagnostics/",
+      "corresponding formal models and experiment_config.json"
+    ],
+    "pass_if_all": [
+      {
+        "check": "core_scenario_coverage",
+        "required": [
+          "time_pressure",
+          "heterogeneity_pressure"
+        ]
+      },
+      {
+        "check": "distinct_policy_seeds",
+        "minimum": 3
+      },
+      {
+        "check": "traceable_main_rows",
+        "required_fraction": 1.0
+      },
+      {
+        "check": "environment_mask_errors",
+        "maximum": 0
+      },
+      {
+        "check": "duplicate_action_pairs_per_context",
+        "maximum": 0
+      },
+      {
+        "check": "empty_suffix_or_union_rows",
+        "maximum": 0
+      },
+      {
+        "check": "last_position_main_rows",
+        "maximum": 0
+      }
+    ],
+    "blocked_if": "exact state-prefix semantics cannot be recovered"
+  },
+  "p1": {
+    "gate_id": "DST04_P1_INCREMENTAL_MECHANISM",
+    "mechanical_control_outcome": "downstream_argmax_changed",
+    "co_primary_outcomes": [
+      "high_threat_legal_but_unassigned_changed",
+      "prefix_denied_changed",
+      "engagement_extreme_direction_nonzero"
+    ],
+    "base_features": [
+      "scenario",
+      "policy_seed",
+      "unit_position",
+      "noop_pair_type",
+      "legal_action_count",
+      "candidate_target_threat_min",
+      "candidate_target_threat_max",
+      "candidate_target_threat_abs_diff",
+      "candidate_target_threat_missing_a",
+      "candidate_target_threat_missing_b",
+      "prefix_engagement_count"
+    ],
+    "incremental_feature": "ds_jaccard",
+    "model": {
+      "family": "logistic_regression",
+      "penalty": "l2",
+      "C": 1.0,
+      "class_weight": "balanced",
+      "probability_threshold": 0.5,
+      "hyperparameter_search": false,
+      "numeric_scaling": "fit_on_training_fold_only",
+      "categorical_encoding": "one_hot_fit_on_training_fold_only"
+    },
+    "outer_split": {
+      "method": "leave_one_scenario_policy_seed_group_out",
+      "expected_core_groups": 6,
+      "atomic_cluster": "context_id",
+      "action_pair_leakage_allowed": false
+    },
+    "nondegeneracy_pass_if_all": [
+      {
+        "metric": "pooled_ds_iqr",
+        "operator": ">=",
+        "value": 0.05
+      },
+      {
+        "metric": "groups_with_ds_iqr_at_least_0_05",
+        "operator": ">=",
+        "value": 4,
+        "denominator": 6
+      },
+      {
+        "metric": "eligible_strata_fraction_with_ds_range_at_least_0_10",
+        "operator": ">=",
+        "value": 0.25,
+        "eligible_stratum_min_rows": 20,
+        "stratum": [
+          "unit_position",
+          "noop_pair_type",
+          "legal_action_count"
+        ]
+      }
+    ],
+    "pass_if_any_co_primary_satisfies_all": [
+      {
+        "metric": "delta_oof_auroc_or_balanced_accuracy",
+        "operator": ">=",
+        "value": 0.02
+      },
+      {
+        "metric": "block_cluster_bootstrap_95ci_lower",
+        "operator": ">",
+        "value": 0.0,
+        "replicates": 10000,
+        "block": "scenario_policy_seed",
+        "cluster": "context_id",
+        "random_seed": 20260729
+      },
+      {
+        "metric": "core_scenarios_with_nonnegative_oof_logloss_improvement",
+        "operator": "==",
+        "value": 2,
+        "denominator": 2
+      },
+      {
+        "metric": "groups_with_nonnegative_oof_logloss_improvement",
+        "operator": ">=",
+        "value": 5,
+        "denominator": 6
+      },
+      {
+        "metric": "stratified_permutation_maxT_fwer_p",
+        "operator": "<=",
+        "value": 0.05,
+        "replicates": 1000,
+        "random_seed": 20260729,
+        "strata": [
+          "scenario",
+          "policy_seed",
+          "unit_position",
+          "noop_pair_type"
+        ]
+      },
+      {
+        "metric": "permuted_delta_median",
+        "operator": "<=",
+        "value": 0.005
+      }
+    ],
+    "mechanical_control_can_pass_p1_alone": false,
+    "failure_result": "STOPPED"
+  },
+  "dst_05": {
+    "gate_id": "DST05_UPDATE_INSTRUMENTATION",
+    "pass_if_all": [
+      "checkpoint-to-update alignment exact",
+      "frozen probe context ids unchanged across checkpoints",
+      "K0 K1 K2 fields reconstruct deterministically",
+      "context-level aggregation is invariant to action-pair row duplication",
+      "event timestamps use completed PPO updates",
+      "replay twice yields bitwise-identical discrete events and tolerance-1e-8 continuous metrics"
+    ]
+  },
+  "p2": {
+    "gate_id": "DST06_P2_PRECURSOR",
+    "scenario": "heterogeneity_pressure",
+    "budget_steps": 10000,
+    "policy_seeds": [
+      8,
+      9,
+      10
+    ],
+    "unit_order": "012",
+    "predictor_sets": {
+      "K0": [
+        "approx_kl",
+        "clip_fraction",
+        "entropy"
+      ],
+      "K1": [
+        "approx_kl",
+        "clip_fraction",
+        "entropy",
+        "unweighted_prefix_flip_rate"
+      ],
+      "K2": [
+        "approx_kl",
+        "clip_fraction",
+        "entropy",
+        "unweighted_prefix_flip_rate",
+        "ds_weighted_flip_mass"
+      ]
+    },
+    "event_definition": {
+      "collapse": "all_noop_episode_rate >= 0.98 OR actionable_engagement_rate < 0.01",
+      "prediction_horizon_completed_updates": [
+        1,
+        3
+      ],
+      "exclude_concurrent_and_post_event": true,
+      "small_kl_threshold": 0.01,
+      "small_kl_provenance": "rounded pre-freeze 95th percentile 0.009492 from task12 role diagnostic training dynamics"
+    },
+    "outer_split": "leave_one_policy_seed_out",
+    "pass_if_all": [
+      {
+        "metric": "event_bearing_seeds",
+        "operator": ">=",
+        "value": 2
+      },
+      {
+        "metric": "K2_minus_K1_oof_auroc_or_balanced_accuracy",
+        "operator": ">=",
+        "value": 0.02
+      },
+      {
+        "metric": "seed_block_bootstrap_95ci_lower",
+        "operator": ">",
+        "value": 0.0,
+        "replicates": 10000,
+        "random_seed": 20260729
+      },
+      {
+        "metric": "event_seeds_with_nonnegative_K1_minus_K2_logloss",
+        "operator": "==",
+        "value": "all_event_bearing_seeds"
+      },
+      {
+        "metric": "event_seeds_with_strict_positive_K1_minus_K2_logloss",
+        "operator": ">=",
+        "value": 2
+      },
+      {
+        "metric": "event_seeds_with_pre_event_ds_median_above_own_baseline",
+        "operator": ">=",
+        "value": 2,
+        "pre_event_window": "t-3:t-1",
+        "baseline_window": "t-6:t-4"
+      },
+      {
+        "metric": "real_pre_event_windows_with_small_kl_and_high_ds",
+        "operator": ">=",
+        "value": 1,
+        "high_ds_threshold": "95th percentile of non-event updates in outer training seeds"
+      },
+      {
+        "metric": "K2_minus_K1_increment_not_explained_by_K1_minus_K0",
+        "operator": "==",
+        "value": true
+      }
+    ],
+    "inconclusive_if_event_bearing_seeds_less_than": 2,
+    "additional_seeds_allowed_after_inconclusive": false,
+    "causal_language_allowed": false
+  },
+  "dst_07": {
+    "gate_id": "DST07_IMPLEMENTATION_AND_EXACT_FALLBACK",
+    "lambda_ds": {
+      "formal_candidate": 1,
+      "exact_fallback": 0,
+      "semantics": "strict implementation switch; zero bypasses all DS computation and backtracking"
+    },
+    "delta_ds": 0.05,
+    "backtracking": {
+      "max_steps": 8,
+      "multiplier": 0.5,
+      "numeric_tolerance": 1e-8
+    },
+    "pass_if_all": [
+      "original factorized joint PPO surrogate retained",
+      "lambda_ds=0 matches baseline loss gradients updated parameters action distribution joint log-prob evaluation action and RNG consumption",
+      "D_DS evaluated on same frozen minibatch state-prefix contexts",
+      "accepted update has D_DS <= 0.05 + 1e-8",
+      "rejected update restores actor parameters bitwise",
+      "rejected update restores optimizer state bitwise",
+      "fallback produces baseline-identical action probabilities and losses",
+      "illegal action conflict and overkill invariants remain zero"
+    ],
+    "forbidden": [
+      "argmax_anchor",
+      "Q_weighting",
+      "reward_weighting",
+      "threat_weighting",
+      "resource_weighting",
+      "optimal_transport",
+      "support_vector_distance",
+      "hierarchical_surrogate_replacement",
+      "reward_shaping",
+      "mask_modification"
+    ],
+    "synthetic_property_failure_action": "return_to_DST01_and_create_version_1_1_0_or_later"
+  },
+  "p3": {
+    "gate_id": "DST08_P3_IMPROVES_NOT_FREEZES",
+    "scenario": "heterogeneity_pressure",
+    "budget_steps": 10000,
+    "policy_seeds": [
+      8,
+      9,
+      10
+    ],
+    "unit_order": "012",
+    "baseline": "factorized_engagement_target_joint_ppo",
+    "candidate": "factorized_engagement_target_joint_ppo_plus_ds_tr_v0",
+    "pass_if_all": [
+      {
+        "metric": "exact_fallback_bitwise_equal",
+        "operator": "==",
+        "value": true
+      },
+      {
+        "metric": "candidate_invalid_actions_conflicts_overkill",
+        "operator": "==",
+        "value": 0
+      },
+      {
+        "metric": "collapsed_candidate_runs",
+        "operator": "==",
+        "value": 0,
+        "collapse_definition": "all_noop_episode_rate >= 0.98 OR actionable_engagement_rate < 0.01"
+      },
+      {
+        "metric": "seeds_with_all_noop_delta_le_0",
+        "operator": ">=",
+        "value": 2,
+        "denominator": 3
+      },
+      {
+        "metric": "mean_all_noop_delta",
+        "operator": "<=",
+        "value": 0.0
+      },
+      {
+        "metric": "seeds_with_high_threat_leak_delta_le_0",
+        "operator": ">=",
+        "value": 2,
+        "denominator": 3
+      },
+      {
+        "metric": "mean_high_threat_leak_delta",
+        "operator": "<=",
+        "value": 0.0
+      },
+      {
+        "metric": "strict_safety_improvement_union",
+        "operator": "any",
+        "conditions": [
+          "mean_high_threat_leak_delta <= -0.02",
+          "mean_total_damage_delta <= -0.20"
+        ]
+      },
+      {
+        "metric": "mean_reward_delta",
+        "operator": ">=",
+        "value": -10.0
+      },
+      {
+        "metric": "mean_total_damage_delta",
+        "operator": "<=",
+        "value": 0.2
+      },
+      {
+        "metric": "mean_resource_cost_ratio",
+        "operator": "<=",
+        "value": 1.1
+      },
+      {
+        "metric": "target_pair_count_each_seed",
+        "operator": ">=",
+        "value": 30
+      },
+      {
+        "metric": "seeds_with_target_pairwise_accuracy_delta_ge_minus_0_02",
+        "operator": ">=",
+        "value": 2,
+        "denominator": 3
+      },
+      {
+        "metric": "mean_target_pairwise_accuracy_delta",
+        "operator": ">=",
+        "value": -0.02
+      },
+      {
+        "metric": "actionable_engagement_rate_each_seed",
+        "operator": ">=",
+        "value": 0.01
+      },
+      {
+        "metric": "joint_argmax_change_rate_each_seed",
+        "operator": ">=",
+        "value": 0.01
+      },
+      {
+        "metric": "seeds_with_beneficial_flip_rate_gt_harmful_flip_rate",
+        "operator": ">=",
+        "value": 2,
+        "denominator": 3
+      },
+      {
+        "metric": "leave_one_seed_out_direction_reversals",
+        "operator": "==",
+        "value": 0,
+        "directions": [
+          "strict_safety_improvement",
+          "all_noop_noninferiority",
+          "not_frozen"
+        ]
+      }
+    ],
+    "additional_seeds_allowed_after_failure": false,
+    "radius_tuning_after_result_allowed": false
+  },
+  "dst_09": {
+    "gate_id": "DST09_INCREMENTAL_CONTROLS_AND_PHASE_EXIT",
+    "control_order": [
+      "matched_generic_kl_or_churn_constraint",
+      "feasible_suffix_count_uniform_initialization",
+      "ds_tr_plus_initialization"
+    ],
+    "one_control_at_a_time": true,
+    "reuse_p3_gates": true,
+    "ds_specific_increment_pass_if_all": [
+      "DS-TR passes all P3 gates against matched generic KL/churn",
+      "DS-TR retains at least 0.75 of its preregistered strict safety improvement",
+      "result is not explained by initialization alone"
+    ],
+    "phase_exits": {
+      "PASS_EXTENSION": "P1 P2 P3 and matched-control increment pass",
+      "PASS_DIAGNOSTIC_ONLY": "P1 or P2 passes but algorithm or control gate fails",
+      "STOPPED": "a hard gate fails with sufficient evidence",
+      "INCONCLUSIVE": "only preregistered event scarcity or exact-state recovery failure"
+    }
+  }
+}

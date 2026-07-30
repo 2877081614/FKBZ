@@ -11,6 +11,7 @@
 
 ## 当前任务
 
+- [DS-TR 拆分执行包：动态支持域诊断、最小算法与增量控制](dynamic_support_trust_region/README.md)
 - [已完成 N3：FCRC 冻结成对预测验证与 N3-E3 否决](next_research_phase_fcrc_paired_predictive_validation.md)
 - [已完成 N2：未来可覆盖性责任证书与 N2-E1 静态门控](next_research_phase_future_coverability_certificate.md)
 - [已完成 N1：可辨识资源信用定义、离线证伪与 N1-E4 退出](next_research_phase_identifiable_resource_credit.md)

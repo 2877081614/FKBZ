@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "task": "DST-05.5",
+  "smoke_training_authorization": "paired 512-step only",
+  "formal_p2_evidence": false,
+  "formal_10k_executed": false,
+  "training_config": {
+    "total_timesteps": 512,
+    "learning_rate": 0.0003,
+    "n_steps": 256,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "gamma": 0.98,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.01,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "net_arch": [
+      128,
+      128
+    ],
+    "seed": 8,
+    "device": "cpu",
+    "verbose": 0,
+    "tensorboard_log": null,
+    "progress_bar": false,
+    "mch_q_critic_paths": [],
+    "mch_engagement_loss_coef": 1.0,
+    "mch_target_loss_coef": 1.0,
+    "rg_mch_engagement_residual_coef": 0.5,
+    "rg_mch_target_residual_coef": 0.5,
+    "rg_mch_residual_clip": 0.5,
+    "rg_mch_reliability_threshold": 0.5,
+    "sa_rg_mch_support_dataset_path": null,
+    "sa_rg_mch_anchor_kl_budget": 0.1,
+    "sa_rg_mch_anchor_kl_coef": 1.0,
+    "bpce_counterfactual_loss_coef": 0.05,
+    "bpce_probe_interval": 2,
+    "bpce_probe_max_contexts": 2,
+    "bpce_probe_repeats": 8,
+    "bpce_probe_margin_radius": 0.62,
+    "bpce_probe_minimum_sign_agreement": 1,
+    "bpce_probe_minimum_informative_repeats": 2,
+    "bpce_probe_maximum_opposite_repeats": 1,
+    "bpce_probe_minimum_return_effect": 1.0,
+    "bpce_probe_base_seed": 73000,
+    "bpce_probe_selection_mode": "boundary"
+  },
+  "provenance": {
+    "input_probe": {
+      "path": "results/air_defense_v1/task12_probe_corpus/probe_states.npz",
+      "sha256": "eb763f4e132b5f08572c762b48919c60a9c24c8d02852a165f7accfa50308999"
+    },
+    "code": {
+      "timeline": {
+        "path": "rein_learning/common/ds1_event_timeline.py",
+        "sha256": "87c85913d0bb2783cab3e557112530fb98e366157d696c9eb1bb0e121218b9bc"
+      },
+      "instrumentation": {
+        "path": "rein_learning/common/dynamic_support_instrumentation.py",
+        "sha256": "cc5bee26935e34c877371ab3eded9ed144b314e757b3cf35459d5bafed4cb2d9"
+      },
+      "timeline_test": {
+        "path": "tests/test_ds1_event_timeline.py",
+        "sha256": "e0e0d142c67d1cf609085d90bf793cecd1a1c97e7eb2e24155ddfd7babbab016"
+      },
+      "preflight_script": {
+        "path": "scripts/run_air_defense_v1_dst05_5_event_timeline_preflight.py",
+        "sha256": "8cc48c821260f952f1e3d1e573021b17a945f6d3c62e0dfecdc3461e24b644a6"
+      }
+    },
+    "environment": {
+      "scenario": "heterogeneity_pressure",
+      "config_sha256": "682120fdce7ccc9306518e8fcca25bcf77d1fe8a0cee2d8a4cacec5b6602246c",
+      "config": {
+        "protected_zones": [
+          {
+            "position": [
+              0.0,
+              0.0
+            ],
+            "radius": 5.0,
+            "value": 1.0,
+            "priority": 1.0,
+            "zone_type": "command"
+          },
+          {
+            "position": [
+              25.0,
+              -10.0
+            ],
+            "radius": 4.0,
+            "value": 0.8,
+            "priority": 0.8,
+            "zone_type": "radar"
+          }
+        ],
+        "defense_units": [
+          {
+            "resource_type": "missile",
+            "position": [
+              -12.0,
+              0.0
+            ],
+            "ammo": 3,
+            "max_range": 92.0,
+            "base_hit_probability": 0.94,
+            "cost": 2.8,
+            "cooldown_after_fire": 1,
+            "energy": 1.0
+          },
+          {
+            "resource_type": "missile",
+            "position": [
+              12.0,
+              0.0
+            ],
+            "ammo": 3,
+            "max_range": 72.0,
+            "base_hit_probability": 0.78,
+            "cost": 1.5,
+            "cooldown_after_fire": 1,
+            "energy": 1.0
+          },
+          {
+            "resource_type": "laser",
+            "position": [
+              3.0,
+              12.0
+            ],
+            "ammo": 10,
+            "max_range": 45.0,
+            "base_hit_probability": 0.5,
+            "cost": 0.25,
+            "cooldown_after_fire": 0,
+            "energy": 1.0
+          }
+        ],
+        "targets": [],
+        "num_random_targets": 5,
+        "map_size": 100.0,
+        "target_spawn_min_distance": 60.0,
+        "target_spawn_max_distance": 100.0,
+        "target_min_speed": 1.0,
+        "target_max_speed": 3.0,
+        "target_min_threat": 0.5,
+        "target_max_threat": 1.0,
+        "target_min_payload": 0.6,
+        "target_max_payload": 1.5,
+        "dt": 1.0,
+        "max_steps": 50,
+        "max_allowed_damage": 2.5,
+        "success_damage_threshold": 0.0,
+        "intercept_reward_weight": 8.0,
+        "damage_penalty_weight": 30.0,
+        "invalid_action_penalty": -5.0,
+        "time_penalty": -0.1,
+        "assignment_conflict_penalty": 1.0,
+        "overkill_penalty": 0.5,
+        "success_bonus": 25.0,
+        "failure_penalty": -25.0
+      }
+    },
+    "evaluation_seed_bank_sha256": "c3d509dde340122953736556a4ff0143aeb388d593958f7065c83efb85b3ac51"
+  },
+  "route_a": {
+    "instrumentation_attached": false,
+    "probe_loaded_during_route": false,
+    "evaluation_environment_calls": 0,
+    "model_saved": false,
+    "num_timesteps": 512
+  },
+  "route_b": {
+    "instrumentation_attached": true,
+    "evaluation_environment_calls": 3,
+    "model_saved": false,
+    "num_timesteps": 512
+  },
+  "initial_parameters_bitwise_equal": true,
+  "rollout_start_rng_bitwise_equal": true,
+  "rollout_fields": {
+    "actions": [
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      }
+    ],
+    "rewards": [
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      }
+    ],
+    "dones": [
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      }
+    ],
+    "advantages": [
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      }
+    ],
+    "returns": [
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      },
+      {
+        "bitwise_equal": true,
+        "max_abs_error": 0.0
+      }
+    ]
+  },
+  "training_metrics": {
+    "loss": [
+      {
+        "absolute_error": 0.0,
+        "equal_within_1e_10": true
+      },
+      {
+        "absolute_error": 0.0,
+        "equal_within_1e_10": true
+      }
+    ],
+    "approx_kl": [
+      {
+        "absolute_error": 0.0,
+        "equal_within_1e_10": true
+      },
+      {
+        "absolute_error": 0.0,
+        "equal_within_1e_10": true
+      }
+    ],
+    "clip_fraction": [
+      {
+        "absolute_error": 0.0,
+        "equal_within_1e_10": true
+      },
+      {
+        "absolute_error": 0.0,
+        "equal_within_1e_10": true
+      }
+    ],
+    "entropy": [
+      {
+        "absolute_error": 0.0,
+        "equal_within_1e_10": true
+      },
+      {
+        "absolute_error": 0.0,
+        "equal_within_1e_10": true
+      }
+    ]
+  },
+  "final_parameters_bitwise_equal": true,
+  "final_optimizer_state_bitwise_equal": true,
+  "callback_update_rows": 2,
+  "callback_event_points": 3,
+  "observed_rollout_update_index": [
+    1,
+    2
+  ],
+  "observed_sb3_n_updates": [
+    10,
+    20
+  ],
+  "observed_num_timesteps": [
+    256,
+    512
+  ],
+  "formal_evaluation_isolation_checks": [
+    {
+      "rollout_update_index": 0,
+      "global_rng_unchanged_before_restore": true,
+      "policy_mode_unchanged": true,
+      "parameters_unchanged": true,
+      "optimizer_unchanged": true,
+      "gradients_unchanged": true,
+      "training_environment_unchanged": true,
+      "training_timesteps_unchanged": true,
+      "scheduler_progress_unchanged": true,
+      "independent_evaluation_environments": true,
+      "evaluation_environment_steps_added_to_training_zero": true
+    },
+    {
+      "rollout_update_index": 1,
+      "global_rng_unchanged_before_restore": true,
+      "policy_mode_unchanged": true,
+      "parameters_unchanged": true,
+      "optimizer_unchanged": true,
+      "gradients_unchanged": true,
+      "training_environment_unchanged": true,
+      "training_timesteps_unchanged": true,
+      "scheduler_progress_unchanged": true,
+      "independent_evaluation_environments": true,
+      "evaluation_environment_steps_added_to_training_zero": true
+    },
+    {
+      "rollout_update_index": 2,
+      "global_rng_unchanged_before_restore": true,
+      "policy_mode_unchanged": true,
+      "parameters_unchanged": true,
+      "optimizer_unchanged": true,
+      "gradients_unchanged": true,
+      "training_environment_unchanged": true,
+      "training_timesteps_unchanged": true,
+      "scheduler_progress_unchanged": true,
+      "independent_evaluation_environments": true,
+      "evaluation_environment_steps_added_to_training_zero": true
+    }
+  ],
+  "passed": true
+}

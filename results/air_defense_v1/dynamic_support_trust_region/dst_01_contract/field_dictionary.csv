@@ -1,0 +1,83 @@
+field_name,data_type,nullable,domain_or_unit,level,role,definition,source_or_derivation,missing_rule,allowed_tasks
+schema_version,string,false,semantic version,dataset,provenance,Row schema version,writer constant,Never missing,DST-03:DST-09
+context_id,string,false,SHA-256 hex,context,identifier,Unique state-order-position-prefix identifier,SHA256(source_run|state_hash|unit_order|unit_position|prefix_hash),Never missing,DST-03:DST-09
+action_pair_id,string,false,SHA-256 hex,action_pair,identifier,Unique canonical action pair within context,SHA256(context_id|min(action_a;action_b)|max(action_a;action_b)),Never missing,DST-03:DST-04
+source_priority,int32,false,1:4,context,provenance,Frozen source precedence,Research contract section 4,Never missing,DST-03:DST-04
+source_kind,category,false,original_history|probe_corpus|replay,context,provenance,How the state-prefix record was obtained,Manifest and reconstruction path,Never missing,DST-03:DST-04
+source_run,string,false,project-relative path or run id,context,provenance,Authoritative source run,Source manifest,Never missing,DST-03:DST-06
+scenario,category,false,medium|time_pressure|heterogeneity_pressure,context,base_feature,Environment scenario,Experiment configuration,Never missing,DST-03:DST-09
+policy_seed,int32,false,nonnegative integer,context,base_feature,Training policy seed,Experiment configuration,Never missing,DST-03:DST-09
+env_seed,int32,false,nonnegative integer,context,provenance,Environment or replay seed,Replay metadata,Never missing,DST-03:DST-09
+episode_id,int32,true,nonnegative integer,context,provenance,Episode index in source or replay,Source trace,Required when source has episodes; otherwise null,DST-03:DST-06
+step,int32,false,nonnegative integer,context,provenance,Environment decision-step index,Source trace,Never missing,DST-03:DST-06
+ppo_update,int32,true,nonnegative integer,update,identifier,Completed PPO update index,Training dynamics,Required for DST-05 and DST-06 only,DST-05:DST-06
+state_hash,string,false,SHA-256 hex,context,identifier,Hash of exact normalized observation and environment decision state,Reconstruction writer,Never missing,DST-03:DST-06
+state_ref,string,false,project-relative path plus row or array index,context,provenance,Resolvable reference to exact state payload,Corpus index,Never missing,DST-03:DST-04
+model_path,string,false,project-relative path,context,provenance,Policy model used for probabilities and argmax,Source manifest,Never missing,DST-03:DST-06
+model_sha256,string,false,SHA-256 hex,context,provenance,Hash of policy model file,Source manifest,Never missing,DST-03:DST-06
+environment_config_path,string,false,project-relative path,context,provenance,Configuration used to reconstruct legality,Source manifest,Never missing,DST-03:DST-06
+environment_config_sha256,string,false,SHA-256 hex,context,provenance,Hash of environment configuration,Source manifest,Never missing,DST-03:DST-06
+unit_order,string,false,concatenated unit ids such as 012,context,structural,Fixed autoregressive decision order,Experiment configuration,Never missing,DST-03:DST-09
+unit_position,int32,false,0 to n-2 for main rows,context,base_feature,Zero-based position in unit_order,Reconstruction,Last position must be excluded from main analysis,DST-03:DST-06
+unit_id,int32,false,environment unit id,context,structural,Unit acting at unit_position,unit_order[unit_position],Never missing,DST-03:DST-06
+prefix,string,false,canonical JSON array,context,structural,Ordered factual actions before current position,Source trace or deterministic replay,Never missing,DST-03:DST-06
+prefix_hash,string,false,SHA-256 hex,context,identifier,Hash of canonical factual prefix,Reconstruction writer,Never missing,DST-03:DST-06
+prefix_engagement_count,int32,false,0 to unit_position,context,base_feature,Number of non-noop actions in prefix,Count over prefix,Never missing,DST-03:DST-04
+legal_action_ids,string,false,canonical JSON array,context,structural,Current actions legal under exact mask and having a feasible completion,Enumerator plus environment mask,Never missing and nonempty,DST-02:DST-04
+legal_action_count,int32,false,positive integer,context,base_feature,Cardinality of legal_action_ids,Length of legal_action_ids,Must be at least 2 for pair rows,DST-03:DST-04
+environment_mask_match,bool,false,true,context,integrity,Enumerator current legality equals official environment mask,Independent cross-check,Must be true,DST-02:DST-03
+eligible_main,bool,false,true|false,action_pair,filter,Whether row enters preregistered main analysis,All frozen inclusion checks,Must be true in main dataset,DST-03:DST-04
+exclusion_reason,category,true,LAST_POSITION|ILLEGAL_CURRENT_ACTION|EMPTY_SUFFIX|EMPTY_UNION|STATE_UNRECOVERABLE|MASK_MISMATCH|DUPLICATE_PAIR,action_pair,integrity,Reason row or attempted row is excluded,Integrity audit,Null only when eligible_main=true,DST-02:DST-04
+action_a,int32,false,environment action id,action_pair,structural,Lower canonical action id of pair,Canonical min of original pair,Never missing,DST-02:DST-04
+action_b,int32,false,environment action id,action_pair,structural,Higher canonical action id of pair,Canonical max of original pair,Never missing and action_b>action_a,DST-02:DST-04
+is_noop_a,bool,false,true|false,action_pair,base_feature,Whether action_a is no-op,Environment action semantics,Never missing,DST-03:DST-04
+is_noop_b,bool,false,true|false,action_pair,base_feature,Whether action_b is no-op,Environment action semantics,Never missing,DST-03:DST-04
+noop_pair_type,category,false,noop_noop|noop_engage|engage_engage,action_pair,base_feature,Symmetric pair encoding of is_noop,Derived from is_noop_a and is_noop_b,Never missing; noop_noop normally absent,DST-03:DST-04
+target_id_a,int32,true,environment target id,action_pair,descriptive,Target selected by action_a,Action decoder,Null iff is_noop_a=true,DST-03:DST-04
+target_id_b,int32,true,environment target id,action_pair,descriptive,Target selected by action_b,Action decoder,Null iff is_noop_b=true,DST-03:DST-04
+candidate_target_threat_a,float64,true,normalized threat score,action_pair,base_feature,Threat of action_a target,Exact state target features,Null iff is_noop_a=true; add missing indicator in model,DST-03:DST-04
+candidate_target_threat_b,float64,true,normalized threat score,action_pair,base_feature,Threat of action_b target,Exact state target features,Null iff is_noop_b=true; add missing indicator in model,DST-03:DST-04
+candidate_target_threat_min,float64,true,normalized threat score,action_pair,base_feature,Minimum observed candidate threat across non-noop branches,Derived from branch fields,Null only when both branches no-op,DST-03:DST-04
+candidate_target_threat_max,float64,true,normalized threat score,action_pair,base_feature,Maximum observed candidate threat across non-noop branches,Derived from branch fields,Null only when both branches no-op,DST-03:DST-04
+candidate_target_threat_abs_diff,float64,true,normalized threat score,action_pair,base_feature,Absolute branch threat difference,Absolute difference of branch fields,Null when either branch is no-op,DST-03:DST-04
+candidate_target_threat_missing_a,bool,false,true|false,action_pair,base_feature,Missingness indicator for branch a threat,is_noop_a or unavailable target field,Never missing,DST-03:DST-04
+candidate_target_threat_missing_b,bool,false,true|false,action_pair,base_feature,Missingness indicator for branch b threat,is_noop_b or unavailable target field,Never missing,DST-03:DST-04
+suffix_count_a,int64,false,positive integer,action_pair,descriptive,Number of unique feasible ordered suffixes after action_a,Exact suffix enumeration,Must be greater than 0,DST-02:DST-04
+suffix_count_b,int64,false,positive integer,action_pair,descriptive,Number of unique feasible ordered suffixes after action_b,Exact suffix enumeration,Must be greater than 0,DST-02:DST-04
+intersection_count,int64,false,nonnegative integer,action_pair,metric_component,Size of suffix-set intersection,Exact set intersection,Never missing,DST-02:DST-04
+union_count,int64,false,positive integer,action_pair,metric_component,Size of suffix-set union,Exact set union,Must be greater than 0,DST-02:DST-04
+completion_count_ratio,float64,false,0 to 1,action_pair,descriptive,Minimum suffix count divided by maximum suffix count,Derived from suffix counts,Description only; never substitute for DS,DST-02:DST-04
+ds_jaccard,float64,false,0 to 1,action_pair,primary_predictor,One minus suffix intersection over union,Exact frozen formula,Never missing for eligible_main rows,DST-02:DST-06
+old_prob_a,float64,false,0 to 1,action_pair,policy,Old policy probability of action_a renormalized on exact legal set,Old policy forward pass,Never missing,DST-03:DST-07
+old_prob_b,float64,false,0 to 1,action_pair,policy,Old policy probability of action_b renormalized on exact legal set,Old policy forward pass,Never missing,DST-03:DST-07
+r_old_a,float64,false,0 to 1,action_pair,metric_component,Expected DS from action_a to an old-policy action,Frozen r_old formula,Never missing,DST-02:DST-07
+r_old_b,float64,false,0 to 1,action_pair,metric_component,Expected DS from action_b to an old-policy action,Frozen r_old formula,Never missing,DST-02:DST-07
+downstream_argmax_a,string,false,canonical JSON array,action_pair,mechanical_outcome,Old-policy deterministic downstream argmax suffix after action_a,Masked old-policy rollout in same decision step,Never missing,DST-03:DST-04
+downstream_argmax_b,string,false,canonical JSON array,action_pair,mechanical_outcome,Old-policy deterministic downstream argmax suffix after action_b,Masked old-policy rollout in same decision step,Never missing,DST-03:DST-04
+downstream_argmax_changed,bool,false,true|false,action_pair,mechanical_outcome,Whether downstream_argmax_a differs from downstream_argmax_b,Exact tuple inequality,Sanity outcome only,DST-03:DST-04
+high_threat_legal_but_unassigned_a,bool,false,true|false,action_pair,primary_outcome,Whether branch a leaves a high-threat target legal somewhere downstream but unassigned,Frozen Task10 high-threat threshold and branch suffix,Never missing,DST-03:DST-04
+high_threat_legal_but_unassigned_b,bool,false,true|false,action_pair,primary_outcome,Whether branch b leaves a high-threat target legal somewhere downstream but unassigned,Frozen Task10 high-threat threshold and branch suffix,Never missing,DST-03:DST-04
+high_threat_legal_but_unassigned_changed,bool,false,true|false,action_pair,primary_outcome,Whether high-threat unassigned state differs across branches,XOR of branch outcomes,Never missing,DST-03:DST-04
+prefix_denied_a,bool,false,true|false,action_pair,primary_outcome,Whether action_a occupies a target otherwise available to at least one downstream unit,Mask comparison against pre-action availability,Never missing,DST-03:DST-04
+prefix_denied_b,bool,false,true|false,action_pair,primary_outcome,Whether action_b occupies a target otherwise available to at least one downstream unit,Mask comparison against pre-action availability,Never missing,DST-03:DST-04
+prefix_denied_changed,bool,false,true|false,action_pair,primary_outcome,Whether prefix denial differs across branches,XOR of branch outcomes,Never missing,DST-03:DST-04
+engagement_count_a,int32,false,0 to n,action_pair,outcome_component,Joint argmax engagement count under branch a,Prefix plus current action plus downstream argmax,Never missing,DST-03:DST-04
+engagement_count_b,int32,false,0 to n,action_pair,outcome_component,Joint argmax engagement count under branch b,Prefix plus current action plus downstream argmax,Never missing,DST-03:DST-04
+engagement_extreme_direction,int8,false,-1|0|1,action_pair,primary_outcome,Canonical a-to-b movement toward all-noop or all-available engagement extreme,Frozen branch comparison,Never missing,DST-03:DST-04
+engagement_extreme_direction_nonzero,bool,false,true|false,action_pair,primary_outcome,Whether the canonical branch comparison crosses either engagement extreme boundary,engagement_extreme_direction != 0,Never missing,DST-03:DST-04
+approx_kl,float64,true,nonnegative,update,baseline_predictor,PPO approximate KL at completed update,Training dynamics,Required for DST-05 and DST-06,DST-05:DST-06
+clip_fraction,float64,true,0 to 1,update,baseline_predictor,PPO clipped-ratio fraction at completed update,Training dynamics,Required for DST-05 and DST-06,DST-05:DST-06
+entropy,float64,true,nats,update,baseline_predictor,Policy entropy at completed update,Training dynamics,Required for DST-05 and DST-06,DST-05:DST-06
+unweighted_prefix_flip_rate,float64,true,0 to 1,update,baseline_predictor,Fraction of eligible contexts whose joint or prefix decision flips without DS weight,Frozen probe comparison,Required for DST-05 and DST-06,DST-05:DST-06
+ds_weighted_flip_mass,float64,true,0 to 1,update,primary_predictor,Mean eligible-context flip indicator weighted by frozen structural risk,Frozen probe comparison,Required for DST-05 and DST-06,DST-05:DST-06
+event_within_3_updates,bool,true,true|false,update,primary_outcome,Whether a first frozen failure event occurs one to three completed updates ahead,Forward event construction,Null for concurrent post-event or censored tail rows,DST-06
+all_noop_episode_rate,float64,true,0 to 1,run,gate_metric,Fraction of evaluation episodes with no engagements,Formal evaluation,Required for DST-06 and DST-08,DST-06:DST-09
+actionable_engagement_rate,float64,true,0 to 1,run,gate_metric,Rate of actionable engagements,Formal evaluation,Required for DST-06 and DST-08,DST-06:DST-09
+high_threat_leak_rate,float64,true,0 to 1,run,gate_metric,High-threat target leak rate under frozen project semantics,Formal evaluation,Required for DST-06 and DST-08,DST-06:DST-09
+avg_reward,float64,true,return per episode,run,gate_metric,Mean evaluation reward,Formal evaluation,Required for DST-08,DST-08:DST-09
+avg_total_damage,float64,true,damage per episode,run,gate_metric,Mean total damage,Formal evaluation,Required for DST-06 and DST-08,DST-06:DST-09
+avg_resource_cost,float64,true,cost per episode,run,gate_metric,Mean resource cost,Formal evaluation,Required for DST-06 and DST-08,DST-06:DST-09
+target_pairwise_accuracy,float64,true,0 to 1,run,gate_metric,Conditional target-logit pair ranking accuracy on frozen counterfactual target pairs,Task14-compatible pairwise evaluation,At least 30 valid pairs per seed,DST-08:DST-09
+joint_argmax_change_rate,float64,true,0 to 1,run,anti_freeze_metric,Fraction of frozen probes whose joint argmax differs from pretraining baseline,Frozen probe comparison,Required for DST-08,DST-08:DST-09
+beneficial_flip_rate,float64,true,0 to 1,run,anti_freeze_metric,Rate of flips improving frozen safety outcome without resource-gate violation,Paired frozen evaluation,Required for DST-08,DST-08:DST-09
+harmful_flip_rate,float64,true,0 to 1,run,anti_freeze_metric,Rate of flips worsening frozen safety outcome or violating resource gate,Paired frozen evaluation,Required for DST-08,DST-08:DST-09

@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "task": "DST-04",
+  "status": "PASS",
+  "stage_exit": "PASS",
+  "training_performed": false,
+  "policy_or_environment_modified": false,
+  "input": {
+    "path": "results/air_defense_v1/dynamic_support_trust_region/dst_03_frozen_corpus/ds0_action_pairs.parquet",
+    "sha256": "21ff3c5bf21b989f4b2df302e667402c5960ac6130ccb14c8f75669d85b8dbc9",
+    "rows_core": 12511,
+    "contexts_core": 1600,
+    "groups": [
+      "heterogeneity_pressure|0",
+      "heterogeneity_pressure|1",
+      "heterogeneity_pressure|2",
+      "time_pressure|0",
+      "time_pressure|1",
+      "time_pressure|2"
+    ]
+  },
+  "model_contract": {
+    "family": "logistic_regression",
+    "penalty": "l2",
+    "C": 1.0,
+    "class_weight": "balanced",
+    "solver": "liblinear",
+    "probability_threshold": 0.5,
+    "outer_split": "leave_one_scenario_policy_seed_group_out",
+    "context_weighting": "equal total weight per context_id",
+    "hyperparameter_search": false
+  },
+  "inference_contract": {
+    "bootstrap": {
+      "replicates": 10000,
+      "resampling": "scenario_policy_seed_groups_then_contexts_within_group",
+      "confidence_interval": "percentile_95",
+      "random_seed": 20260729
+    },
+    "permutation": {
+      "replicates": 1000,
+      "strata": "scenario_policy_seed_unit_position_noop_pair_type",
+      "multiple_testing": "maxT_across_3_outcomes_and_2_metrics",
+      "random_seed_rule": "20260729 + permutation_index + 1"
+    }
+  },
+  "nondegeneracy": {
+    "pooled_ds_iqr": 0.33333333333333337,
+    "pooled_ds_iqr_pass": true,
+    "groups_with_ds_iqr_at_least_0_05": 6,
+    "group_iqr_pass": true,
+    "eligible_strata": 18,
+    "eligible_strata_fraction_with_range_at_least_0_10": 1.0,
+    "strata_range_pass": true,
+    "passed": true
+  },
+  "outcomes": {
+    "high_threat_legal_but_unassigned_changed": {
+      "scenario_logloss_improvements": {
+        "heterogeneity_pressure": 0.12037157676803553,
+        "time_pressure": 0.10433854352570664
+      },
+      "core_scenarios_nonnegative": 2,
+      "blocks_nonnegative": 6,
+      "direction_gate_passed": true,
+      "metrics": {
+        "auroc": {
+          "observed_increment": 0.06652765724937926,
+          "bootstrap_95ci": [
+            0.0393087602712715,
+            0.08670999831874104
+          ],
+          "permutation_median": -0.0001713377006489214,
+          "maxT_fwer_p": 0.000999000999000999,
+          "passed": true
+        },
+        "balanced_accuracy": {
+          "observed_increment": 0.055062188213226615,
+          "bootstrap_95ci": [
+            0.03972420697996428,
+            0.07081211331504768
+          ],
+          "permutation_median": 0.00021695111368236208,
+          "maxT_fwer_p": 0.000999000999000999,
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    "prefix_denied_changed": {
+      "scenario_logloss_improvements": {
+        "heterogeneity_pressure": 0.141652928597429,
+        "time_pressure": 0.09556395956478374
+      },
+      "core_scenarios_nonnegative": 2,
+      "blocks_nonnegative": 6,
+      "direction_gate_passed": true,
+      "metrics": {
+        "auroc": {
+          "observed_increment": 0.08785635107947987,
+          "bootstrap_95ci": [
+            0.07469057125617246,
+            0.09904152645084549
+          ],
+          "permutation_median": -0.0002369509940434722,
+          "maxT_fwer_p": 0.000999000999000999,
+          "passed": true
+        },
+        "balanced_accuracy": {
+          "observed_increment": 0.10078954191827605,
+          "bootstrap_95ci": [
+            0.04056659650245686,
+            0.1594850017397861
+          ],
+          "permutation_median": -0.00022713850906286304,
+          "maxT_fwer_p": 0.000999000999000999,
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    "engagement_extreme_direction_nonzero": {
+      "scenario_logloss_improvements": {
+        "heterogeneity_pressure": 0.0021843014411963165,
+        "time_pressure": 0.0060879526468750195
+      },
+      "core_scenarios_nonnegative": 2,
+      "blocks_nonnegative": 2,
+      "direction_gate_passed": false,
+      "metrics": {
+        "auroc": {
+          "observed_increment": 0.0028417617826012043,
+          "bootstrap_95ci": [
+            -0.00028386803978551755,
+            0.013262761739211633
+          ],
+          "permutation_median": -2.9154327818581294e-05,
+          "maxT_fwer_p": 0.01998001998001998,
+          "passed": false
+        },
+        "balanced_accuracy": {
+          "observed_increment": 0.0,
+          "bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "permutation_median": 0.0,
+          "maxT_fwer_p": 0.999000999000999,
+          "passed": false
+        }
+      },
+      "passed": false
+    }
+  },
+  "passed_outcomes": [
+    "high_threat_legal_but_unassigned_changed",
+    "prefix_denied_changed"
+  ],
+  "p1_passed": true,
+  "next_task": "DST-05",
+  "route_closed": false
+}

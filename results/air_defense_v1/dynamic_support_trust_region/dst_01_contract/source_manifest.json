@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "contract_version": "1.0.0",
+  "workspace_root": "D:/huang/Programs/防空编组",
+  "frozen_at": "2026-07-29T22:39:36+08:00",
+  "hash_algorithm": "sha256",
+  "path_policy": "project_relative_forward_slash",
+  "formal_ds_results_seen": false,
+  "training_or_policy_modification": false,
+  "source_priority": [
+    {
+      "priority": 1,
+      "path": "results/air_defense_v1/task12_probe_corpus/"
+    },
+    {
+      "priority": 2,
+      "path": "results/air_defense_v1/task12_task11_frozen_replay/"
+    },
+    {
+      "priority": 3,
+      "path": "results/air_defense_v1/task10_frozen_model_diagnostics/"
+    },
+    {
+      "priority": 4,
+      "path": "corresponding formal models and experiment_config.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/README.md",
+      "role": "task_package_contract",
+      "size_bytes": 6098,
+      "modified_utc": "2026-07-29T14:39:10.259Z",
+      "sha256": "01f68dc30e157ff5ab17a5d98822d810d7e82c272f6bdb1f7b7ceb1d8965afc5"
+    },
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/dst_01_research_contract_and_formula_freeze.md",
+      "role": "task_instruction",
+      "size_bytes": 5112,
+      "modified_utc": "2026-07-29T14:39:10.718Z",
+      "sha256": "a15a580a781ffc3b0cf945487159f9bb42a2416ed48956697c69dfe208eeca09"
+    },
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/dst_02_suffix_enumerator_and_metric_validation.md",
+      "role": "downstream_gate_input",
+      "size_bytes": 2512,
+      "modified_utc": "2026-07-29T11:55:23.078Z",
+      "sha256": "8d4953e9a6c8332db19b4bd61e441a03c22eb489496c11cc7d0462df8610f233"
+    },
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/dst_03_frozen_corpus_reconstruction.md",
+      "role": "downstream_gate_input",
+      "size_bytes": 2567,
+      "modified_utc": "2026-07-29T11:55:23.604Z",
+      "sha256": "18755c8ac0c7ecef7e0de139be65aa0153e029af6ecd7c7ef9404da2aa6a3e2a"
+    },
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/dst_04_ds0_incremental_mechanism_audit.md",
+      "role": "downstream_gate_input",
+      "size_bytes": 2450,
+      "modified_utc": "2026-07-29T11:55:24.154Z",
+      "sha256": "b038e1e6adb360ab22eafe1ae19c1e38d0c14f67932236d8c06eb4609ad6ce64"
+    },
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/dst_05_update_level_instrumentation.md",
+      "role": "downstream_gate_input",
+      "size_bytes": 2317,
+      "modified_utc": "2026-07-29T11:55:24.696Z",
+      "sha256": "e8820fa889ff62bbea1d76e72e5824b42404abd76ca28a858244d802dfb0f602"
+    },
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/dst_06_ds1_short_run_precursor_gate.md",
+      "role": "downstream_gate_input",
+      "size_bytes": 2214,
+      "modified_utc": "2026-07-29T11:55:25.213Z",
+      "sha256": "2188d0a7b45c46482c46419bb004232d340cebcbb45d47a7e213b5bfda089f9c"
+    },
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/dst_07_ds_tr_v0_implementation.md",
+      "role": "downstream_gate_input",
+      "size_bytes": 2925,
+      "modified_utc": "2026-07-29T11:56:58.068Z",
+      "sha256": "ca78d9de0dc429942cd23c98f6b913b759085b49f6217a6b20bd926c62e1e46e"
+    },
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/dst_08_ds2_heterogeneity_screening.md",
+      "role": "downstream_gate_input",
+      "size_bytes": 2299,
+      "modified_utc": "2026-07-29T11:55:26.298Z",
+      "sha256": "b4679a38345298296afa2afe728c4c3bbcb451b32c203e5e43d8e86224ac20e4"
+    },
+    {
+      "path": "docs/task_guides/dynamic_support_trust_region/dst_09_incremental_controls_and_phase_exit.md",
+      "role": "downstream_gate_input",
+      "size_bytes": 2964,
+      "modified_utc": "2026-07-29T11:55:26.874Z",
+      "sha256": "6dc0cf22c98089238122825d1e3f77670ac34fc3b1f4d83b7dc6c3bd4b54d0f8"
+    },
+    {
+      "path": "docs/project/air_defense_v1_literature_synthesis_and_algorithm_innovation_decision_2026-07-29.md",
+      "role": "upper_level_research_decision",
+      "size_bytes": 34133,
+      "modified_utc": "2026-07-29T11:57:23.200Z",
+      "sha256": "28d405b213c49d83972d3493d372d6e47636ab606e0f734e4c1dd9af5ffeeab1"
+    },
+    {
+      "path": "docs/project/air_defense_v1_algorithm_experiment_status_review_2026-07-29.md",
+      "role": "historical_evidence_review",
+      "size_bytes": 36471,
+      "modified_utc": "2026-07-29T08:53:46.382Z",
+      "sha256": "4296009b108bb92c866c2e216dab187a29414b2243b5a5981eb262296960d2d4"
+    },
+    {
+      "path": "docs/algorithms/factorized_engagement_policy.md",
+      "role": "baseline_algorithm_semantics",
+      "size_bytes": 3681,
+      "modified_utc": "2026-07-17T17:26:17.108Z",
+      "sha256": "ca700112d9e63008a7f792f7fb2279ed9dfdab3ddeece2adea2e4c6adc536519"
+    },
+    {
+      "path": "docs/algorithms/autoregressive_conflict_free_policy.md",
+      "role": "autoregressive_legality_semantics",
+      "size_bytes": 4056,
+      "modified_utc": "2026-07-17T10:41:42.314Z",
+      "sha256": "9f7b7291ac55432349871554d5cc71f85cd396680d8ebe707f54c80071001201"
+    },
+    {
+      "path": "docs/experiments/air_defense_v1_task10_order_diagnostics.md",
+      "role": "order_and_safety_gate_provenance",
+      "size_bytes": 8027,
+      "modified_utc": "2026-07-17T11:47:43.886Z",
+      "sha256": "e17248b5b6c7a0e79f1979f9b78f96457aaefea64208b9f646b88144431c1d89"
+    },
+    {
+      "path": "docs/experiments/air_defense_v1_task12_noop_stability.md",
+      "role": "collapse_gate_provenance",
+      "size_bytes": 5288,
+      "modified_utc": "2026-07-17T17:26:18.050Z",
+      "sha256": "51bbad6a9bfc4287fd8e8983049bb7be86740ae75d2e985c7c569106c807d534"
+    },
+    {
+      "path": "docs/experiments/air_defense_v1_task14_hierarchical_q.md",
+      "role": "target_ranking_gate_provenance",
+      "size_bytes": 5211,
+      "modified_utc": "2026-07-19T16:59:46.568Z",
+      "sha256": "f4eeda0fab6ec93d9e31b2c7b958b4236631952b3a35bb5d62316327db55dde7"
+    },
+    {
+      "path": "results/air_defense_v1/task12_probe_corpus/probe_manifest.json",
+      "role": "source_priority_1_manifest",
+      "size_bytes": 1220,
+      "modified_utc": "2026-07-17T16:11:53.451Z",
+      "sha256": "f473e8db9154e9ee9bfd36fce8987350970ad108a3ba927ad81f844e0dd42a19"
+    },
+    {
+      "path": "results/air_defense_v1/task12_probe_corpus/probe_states.npz",
+      "role": "source_priority_1_state_payload",
+      "size_bytes": 78378,
+      "modified_utc": "2026-07-17T16:11:53.451Z",
+      "sha256": "eb763f4e132b5f08572c762b48919c60a9c24c8d02852a165f7accfa50308999"
+    },
+    {
+      "path": "results/air_defense_v1/task12_probe_corpus/probe_summary.csv",
+      "role": "source_priority_1_coverage_summary",
+      "size_bytes": 284,
+      "modified_utc": "2026-07-17T16:11:53.451Z",
+      "sha256": "c9735baa605a577bda931d8165d6985e4d2a97bf085e17b76347f85dd06efc25"
+    },
+    {
+      "path": "results/air_defense_v1/task12_task11_frozen_replay/experiment_config.json",
+      "role": "source_priority_2_config",
+      "size_bytes": 780,
+      "modified_utc": "2026-07-17T16:20:32.598Z",
+      "sha256": "7696d39b9aa59457fcaf13baeec6c4b97bd3955d0ded52debe7012340d09e97a"
+    },
+    {
+      "path": "results/air_defense_v1/task10_frozen_model_diagnostics/experiment_config.json",
+      "role": "source_priority_3_config",
+      "size_bytes": 9983,
+      "modified_utc": "2026-07-17T11:16:59.187Z",
+      "sha256": "2e14252557cf7e9db1b0f0932e4eb43782af13bd2daaa93fadf56cddc8f832e2"
+    },
+    {
+      "path": "results/air_defense_v1/task10_order_screening_30k_3seeds/experiment_config.json",
+      "role": "source_priority_4_formal_config",
+      "size_bytes": 20605,
+      "modified_utc": "2026-07-17T11:40:13.281Z",
+      "sha256": "d9427d7aa471d2ac2787e7a5fa4ea5dfc46b1e9a31c76cf1a16470e84be7bce7"
+    },
+    {
+      "path": "results/air_defense_v1/task11_role_conditioned_screening_30k_3seeds/experiment_config.json",
+      "role": "source_priority_4_formal_config",
+      "size_bytes": 22998,
+      "modified_utc": "2026-07-17T15:14:56.109Z",
+      "sha256": "6cafb409f42881bd9bfa8104a1e071fe862ea7b098591cc63c3b3d2899a61ffd"
+    },
+    {
+      "path": "results/air_defense_v1/task12_role_diagnostic_10k_5seeds/training_dynamics.csv",
+      "role": "small_kl_threshold_provenance",
+      "size_bytes": 13232,
+      "modified_utc": "2026-07-17T16:31:51.916Z",
+      "sha256": "3d1d9e9c21bef272f12a430b69bc4aac3dcacb4062b1e33872e8b62df8cf1c81"
+    },
+    {
+      "path": "results/air_defense_v1/task10_order_screening_30k_3seeds/models/medium/autoregressive_ppo_order_012_seed0.zip",
+      "role": "source_priority_4_formal_model",
+      "size_bytes": 899819,
+      "modified_utc": "2026-07-17T11:26:09.014Z",
+      "sha256": "26d69bfb0a0453f4fb24c1a03d5fa44334602f426615481be2bcea7e340a5fd8"
+    },
+    {
+      "path": "results/air_defense_v1/task11_role_conditioned_screening_30k_3seeds/models/medium/role_conditioned_ar_ppo_order_012_seed0.zip",
+      "role": "source_priority_4_formal_model",
+      "size_bytes": 887606,
+      "modified_utc": "2026-07-17T14:55:10.109Z",
+      "sha256": "0a7bba29cbb283bdb0bc2e075a1bf6629e98a15fb473dce3c07be76f10668c3a"
+    },
+    {
+      "path": "scripts/run_air_defense_v1_bpce_ppo_stress_test.py",
+      "role": "existing_p3_gate_implementation_provenance",
+      "size_bytes": 14524,
+      "modified_utc": "2026-07-23T06:53:03.077Z",
+      "sha256": "e6badcbb17d458fd71cf4aef6734997d8985bdbfd099326a6756f74858966045"
+    },
+    {
+      "path": "scripts/run_air_defense_v1_mch_ppo_stress_test.py",
+      "role": "existing_p3_gate_implementation_provenance",
+      "size_bytes": 11475,
+      "modified_utc": "2026-07-22T12:05:24.370Z",
+      "sha256": "57d348d739cac23aa9c0933c2f0fd85d84fc4095a547cc0ee46715c3cb1b577e"
+    }
+  ]
+}

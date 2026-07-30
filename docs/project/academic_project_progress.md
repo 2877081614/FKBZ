@@ -1714,3 +1714,182 @@ fallback 下的可拒绝改进方向证书仍为 `OPEN`。
 
 任务包出口保持指导文件约束：六篇结果进入人工头脑风暴，只形成覆盖矩阵、强
 基线、no-go 清单和可证伪问题，不自动创建 N4、Critic 重训或在线算法任务。
+
+## 52. DST-01 动态支持敏感信赖域研究契约冻结完成
+
+更新时间：2026-07-29。
+任务状态：`PASSED`；零训练、零策略修改、零正式 DS 结果读取；`DST-02` 已解锁。
+
+依据 DS-TR 拆分执行包完成了研究契约、字段字典、机器可读门控表和证据源清单。
+v0 主度量固定为可行后缀集合的 Jaccard 距离，并由旧策略概率形成结构风险，再以
+结构风险加权新旧策略总变差。最后决策位置不属于主命题；空后缀或空并集为枚举
+完整性错误；completion count 只作描述，禁止 Q、reward、威胁和资源成本加权。
+
+P1 已冻结为基础变量模型与基础变量加 DS 模型的场景—策略种子分组外增量比较，
+动作对不得跨折泄漏；P2 固定比较 `K0=KL+clip+entropy`、`K1=K0+普通翻转` 和
+`K2=K1+DS 加权翻转`，并将“小 KL”冻结为 `approx_kl <= 0.01`；P3 固定为
+heterogeneity 10k、种子 8/9/10、order 012 的 factorized joint PPO 配对筛选，
+同时要求安全、资源、target 排序和非冻结门通过。
+
+契约产物位于
+`results/air_defense_v1/dynamic_support_trust_region/dst_01_contract/`。下一步只执行
+DST-02 的精确后缀枚举器、DS 度量性质和环境掩码交叉验证；仍无训练授权。
+
+## 53. DST-02 精确后缀枚举器与 DS 度量验证完成
+
+更新时间：2026-07-29。
+任务状态：`PASSED`；零训练、零策略修改、环境合法性规则未修改；`DST-03` 已解锁。
+
+新增独立于策略网络的动态支持模块，直接复用 AirDefense-v1 正式 `action_mask()`，
+并只叠加现有自回归动作头的前缀目标占用语义。模块能够枚举任意事实前缀后的全部
+有序合法后缀，计算 Jaccard 动作对距离、合法动作代价矩阵、旧策略结构风险和
+策略级 DS 距离；最后决策位置、非法动作和空并集保持 DST-01 的显式边界。
+
+定向测试 14 项全部通过；与环境、决策跟踪及 conflict-free joint codec 组合后的
+36 项回归测试全部通过。正式验证覆盖 medium、time pressure、heterogeneity
+pressure，5 个环境种子、3 种 unit order、60 个动态状态和 720 个前缀。枚举后缀
+与 `Discrete(136)` 联合动作真值的对称差为 0，重复后缀为 0，环境掩码副作用为 0，
+720 次重复枚举均确定性一致。
+
+验收产物位于
+`results/air_defense_v1/dynamic_support_trust_region/dst_02_metric_validation/`。
+下一步执行 DST-03，从冻结证据源恢复状态—前缀—动作对语料并进行完整性审计；
+该任务仍不授权训练。
+
+## 54. DST-03 冻结状态—前缀语料重建与完整性审计完成
+
+更新时间：2026-07-29。
+任务状态：`PASSED`；零训练、零环境重新采样；尚未执行 P1 正式统计门；
+`DST-04` 已解锁。
+
+可恢复性审计确认，原 169,887 行顺序诊断以及其他决策/聚合 CSV 没有保存精确
+observation、基础 mask 或 state snapshot，不能直接近似计算 DS，已完整记入排除
+台账。优先级 1 的 Task12 probe corpus 则保存了 768 个互异的冻结 observation 和
+正式 action mask；结合优先级 2 对应的 Task11 order-012 冻结模型种子 0/1/2，
+可以在不重新采样环境的前提下执行确定性诊断重放。
+
+重建语料统一标记为 `replay`，最终包含 19,073 个合法无序动作对、2,432 个
+状态—前缀上下文；time pressure 和 heterogeneity pressure 分别有 811 和 789 个
+上下文。2,176 个上下文因合法动作不足 2 个而没有动作对，2,304 个最后位置按
+DST-01 规则排除。
+
+完整性审计中，环境基础 mask、条件 mask、事实策略 argmax、动作对覆盖、Jaccard
+公式、交换对称性、模型/配置唯一性、重复 ID 和追溯错误全部为 0，主语料追溯率
+为 100%。Parquet、上下文摘要和排除台账连续两次重建哈希一致。
+
+验收产物位于
+`results/air_defense_v1/dynamic_support_trust_region/dst_03_frozen_corpus/`。
+下一步执行 DST-04，只读取这份冻结语料完成 DS-0 非退化与增量机制硬门；不得
+回到原始聚合 CSV 补标签或根据结果修改 DST-01 门槛。
+
+## 55. DST-04 DS-0 增量机制审计与硬门完成
+
+更新时间：2026-07-29。
+任务状态：`PASSED`；零训练、零策略或环境修改；`DST-05` 已解锁。
+
+正式分析只读取 DST-03 冻结语料中的两个核心场景，共 12,511 个合法动作对、
+1,600 个上下文和 6 个场景—策略种子组。每个 `context_id` 在模型和指标中
+具有相同总权重，动作对不跨折泄漏。M0 使用 DST-01 预注册基础变量，M1 只增加
+`ds_jaccard`，按场景×策略种子留一组外推。
+
+DS 非退化门全部通过：pooled IQR 为 `0.333333`，6/6 组 IQR 不低于 0.05，
+18/18 个样本量合格的 position×noop_pair_type×legal_count 分层中 DS 极差
+不低于 0.10。高威胁合法但未分配变化的 AUROC/平衡准确率增量为
+`0.066528/0.055062`，前缀阻断变化为 `0.087856/0.100790`；两者 bootstrap
+95% 区间下界均大于 0、两个核心场景方向均非负、6/6 块 log-loss 改善非负，
+且 1,000 次冻结分层内置换的 max-T FWER p 均为 `0.000999`。因此 P1
+按冻结硬门通过。
+
+防伪检查表明，DS 与合法动作数的 Spearman 相关仅 `-0.013103`；高威胁结果在
+engage-engage/noop-engage 与 position 0/1 子集中均保留正 AUROC 增量，普通
+downstream argmax flip 在两个通过结果上的 AUROC/BA 最大增量只有 `0.012044`。
+因此主结果不能由合法动作数、no-op、单一位置、单一种子或普通确定性翻转单独
+解释。与此同时，`engagement_extreme_direction_nonzero` 未通过增量和分块
+方向门，前缀阻断增量主要来自 noop-engage；这两项限制已作为创新主张边界保留。
+
+正式产物位于
+`results/air_defense_v1/dynamic_support_trust_region/dst_04_ds0_audit/`，
+报告为 `docs/experiments/air_defense_v1_ds0_dynamic_support_audit.md`。
+当前结论只确认冻结重放语料上的增量解释力，不证明时间先行、因果效应或
+DS-TR 算法收益。下一步执行 DST-05，增加更新级只读诊断字段并审计现有轨迹/
+检查点的可重放性；DST-05 仍不授权训练。
+
+## 56. DST-05 更新级诊断仪表与可重放性完成
+
+更新时间：2026-07-30。
+任务状态：`PASSED`；零 PPO 训练、零环境 step、零策略或环境语义修改；
+后续新增 `DST-05.5` 作为 DST-06 前置硬门。
+
+新增通用只读 `DynamicSupportInstrumentationCallback`。它只在显式附加后，于
+`model._n_updates` 表示的完成 PPO update 之后比较新旧策略；关闭时不加载 probe、
+不建立上下文、不写文件。指标包括冻结 K0 的 `approx_kl/clip_fraction/entropy`、
+K1 的 `unweighted_prefix_flip_rate`、K2 的 `ds_weighted_flip_mass`，以及
+margin crossing、双向 engage/noop flip、joint argmax flip、精确后缀数变化和
+三项 probe 退化率。
+
+Task12 的冻结 probe 在 DS 任务前已经生成。本任务保留 time pressure 与
+heterogeneity pressure 的全部 512 状态，不按历史塌缩时刻或结果筛选，并将
+order 012 的所有可行前缀确定性展开为 5,881 个唯一 `context_id`；其中
+1,752 个位置具有下游决策并进入 DS 主指标，最后位置只记录普通边界变化。
+合法动作数覆盖 1—6，高威胁可达/不可达上下文为 2,125/3,756。历史
+timestep-0 probe 聚合确认 seeds 9/10 在核心场景中同时覆盖 engagement margin
+两侧。
+
+`ds_weighted_flip_mass` 落实为唯一合格上下文上的
+`mean[1(a_old != a_new) * r_old(a_new)]`，其中 `r_old` 使用 DST-01 冻结的
+Jaccard 结构风险；同时保留完整概率质量的 `ds_policy_distance` 作为描述量。
+该实现不读取动作对表，所以动作对行复制不会改变更新级聚合。
+
+不干扰性审计使用同一冻结 factorized 模型的两份逐位相同拷贝，执行一次不保存、
+不接触环境的冻结批次合成梯度步。仪表开启/关闭两路的训练 RNG、合成 rollout
+actions、loss 和更新后参数全部逐位一致；两次 probe 重放的离散事件逐位一致，
+连续量最大误差为 0。相关定向与 DS 回归测试 18 项全部通过。
+
+历史重放审计确认 Task12 seeds 8/9/10 各保存了 16 行训练诊断，但每个种子只有
+一个 30,208 步最终模型；日志没有中间权重、上下文级概率或 DS 加权 flip。
+因此 `replay_insufficient=true`，没有把其他实验最终模型拼成伪时间序列。
+DST-05 本身不产生 P2 证据；下一步先执行 DST-05.5，冻结正式事件评估、
+rollout 时间轴，并验证真实 callback 不改变训练轨迹；通过后 DST-06 才能执行
+冻结的 `heterogeneity_pressure, 10k × seeds 8/9/10` 短跑。
+
+机器产物位于
+`results/air_defense_v1/dynamic_support_trust_region/dst_05_instrumentation/`，
+正式报告为
+`docs/experiments/air_defense_v1_ds_update_instrumentation_audit.md`。
+
+## 57. DST-05.5 事件时间轴冻结与真实 Callback 集成预检完成
+
+更新时间：2026-07-30。
+任务状态：`PASSED`；仅执行两路各 512-step 的集成 smoke；未形成 P2 证据，
+未保存模型，未执行正式 10k，未实现 DS-TR；`DST-06` 已解锁。
+
+正式事件与同步 probe 诊断已经分离。塌缩事件只由
+`heterogeneity_pressure` 独立评估环境上的 50 回合 CRN 结果产生，episode
+seeds 固定为 `73000...73049`；事件条件仍为 all-noop episode rate 不低于
+0.98，或 actionable engagement rate 低于 0.01。每个策略种子只选择首次
+onset；训练前已塌缩种子不作为可判定事件种子；未来 1—3 更新标签和
+onset 前 6 更新窗口均只使用新冻结的 `rollout_update_index`。
+
+真实 SB3 时间轴已核对：一轮 256-step rollout 完成 10 epochs PPO train 后，
+`rollout_update_index` 增加 1，而原始 `_n_updates` 增加 10。因此正式 10k
+请求将记录 40 次 rollout 更新、`sb3_n_updates=10...400` 和实际 10,240
+timesteps，禁止再用 `_n_updates±1` 构造窗口。
+
+两路等价性预检使用相同 seed 8 和 512-step 配置：Route A 不附加仪表且不加载
+probe，Route B 附加 DS 仪表和正式事件评估。两轮 actions、rewards、dones、
+advantages、returns 全部逐位一致；loss、KL、clip fraction、entropy 绝对误差
+均为 0；初始/最终参数、最终 optimizer state 和两轮采样前 RNG 均逐位一致。
+Route B 恰好生成 2 行更新与 3 个事件点，时间轴为
+`(1,10,256)`、`(2,20,512)`。三次评估均保持训练环境、timestep、scheduler、
+参数、梯度、optimizer、策略模式和全局 RNG 不变。
+
+11 项事件逻辑测试覆盖 49/50、0.009/0.01、初始塌缩、首次 onset、前向标签、
+并发/事件后/尾部排除、SB3 跳 10、六更新窗口、50 回合完整性和 seed-bank hash，
+全部通过。机器产物位于
+`results/air_defense_v1/dynamic_support_trust_region/dst_05_5_event_timeline_preflight/`，
+正式报告为
+`docs/experiments/air_defense_v1_dst05_5_event_timeline_preflight.md`。
+
+本任务只确认 DST-06 数据接口有效。下一步执行 DST-06 冻结的
+`heterogeneity_pressure, requested 10k × seeds 8/9/10` 诊断短跑；不得把本次
+无事件 smoke 解释为 DS 没有先行性，也不得提前实现 DST-07 的 DS-TR。

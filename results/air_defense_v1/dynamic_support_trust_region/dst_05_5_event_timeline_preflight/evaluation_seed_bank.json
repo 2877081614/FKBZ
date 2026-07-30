@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "task": "DST-05.5",
+  "scenario": "heterogeneity_pressure",
+  "policy_action": "deterministic",
+  "episodes": 50,
+  "episode_seeds": [
+    73000,
+    73001,
+    73002,
+    73003,
+    73004,
+    73005,
+    73006,
+    73007,
+    73008,
+    73009,
+    73010,
+    73011,
+    73012,
+    73013,
+    73014,
+    73015,
+    73016,
+    73017,
+    73018,
+    73019,
+    73020,
+    73021,
+    73022,
+    73023,
+    73024,
+    73025,
+    73026,
+    73027,
+    73028,
+    73029,
+    73030,
+    73031,
+    73032,
+    73033,
+    73034,
+    73035,
+    73036,
+    73037,
+    73038,
+    73039,
+    73040,
+    73041,
+    73042,
+    73043,
+    73044,
+    73045,
+    73046,
+    73047,
+    73048,
+    73049
+  ],
+  "sha256": "c3d509dde340122953736556a4ff0143aeb388d593958f7065c83efb85b3ac51",
+  "reuse_across_updates_and_policy_seeds": true,
+  "provenance": {
+    "input_probe": {
+      "path": "results/air_defense_v1/task12_probe_corpus/probe_states.npz",
+      "sha256": "eb763f4e132b5f08572c762b48919c60a9c24c8d02852a165f7accfa50308999"
+    },
+    "code": {
+      "timeline": {
+        "path": "rein_learning/common/ds1_event_timeline.py",
+        "sha256": "87c85913d0bb2783cab3e557112530fb98e366157d696c9eb1bb0e121218b9bc"
+      },
+      "instrumentation": {
+        "path": "rein_learning/common/dynamic_support_instrumentation.py",
+        "sha256": "cc5bee26935e34c877371ab3eded9ed144b314e757b3cf35459d5bafed4cb2d9"
+      },
+      "timeline_test": {
+        "path": "tests/test_ds1_event_timeline.py",
+        "sha256": "e0e0d142c67d1cf609085d90bf793cecd1a1c97e7eb2e24155ddfd7babbab016"
+      },
+      "preflight_script": {
+        "path": "scripts/run_air_defense_v1_dst05_5_event_timeline_preflight.py",
+        "sha256": "8cc48c821260f952f1e3d1e573021b17a945f6d3c62e0dfecdc3461e24b644a6"
+      }
+    },
+    "environment": {
+      "scenario": "heterogeneity_pressure",
+      "config_sha256": "682120fdce7ccc9306518e8fcca25bcf77d1fe8a0cee2d8a4cacec5b6602246c",
+      "config": {
+        "protected_zones": [
+          {
+            "position": [
+              0.0,
+              0.0
+            ],
+            "radius": 5.0,
+            "value": 1.0,
+            "priority": 1.0,
+            "zone_type": "command"
+          },
+          {
+            "position": [
+              25.0,
+              -10.0
+            ],
+            "radius": 4.0,
+            "value": 0.8,
+            "priority": 0.8,
+            "zone_type": "radar"
+          }
+        ],
+        "defense_units": [
+          {
+            "resource_type": "missile",
+            "position": [
+              -12.0,
+              0.0
+            ],
+            "ammo": 3,
+            "max_range": 92.0,
+            "base_hit_probability": 0.94,
+            "cost": 2.8,
+            "cooldown_after_fire": 1,
+            "energy": 1.0
+          },
+          {
+            "resource_type": "missile",
+            "position": [
+              12.0,
+              0.0
+            ],
+            "ammo": 3,
+            "max_range": 72.0,
+            "base_hit_probability": 0.78,
+            "cost": 1.5,
+            "cooldown_after_fire": 1,
+            "energy": 1.0
+          },
+          {
+            "resource_type": "laser",
+            "position": [
+              3.0,
+              12.0
+            ],
+            "ammo": 10,
+            "max_range": 45.0,
+            "base_hit_probability": 0.5,
+            "cost": 0.25,
+            "cooldown_after_fire": 0,
+            "energy": 1.0
+          }
+        ],
+        "targets": [],
+        "num_random_targets": 5,
+        "map_size": 100.0,
+        "target_spawn_min_distance": 60.0,
+        "target_spawn_max_distance": 100.0,
+        "target_min_speed": 1.0,
+        "target_max_speed": 3.0,
+        "target_min_threat": 0.5,
+        "target_max_threat": 1.0,
+        "target_min_payload": 0.6,
+        "target_max_payload": 1.5,
+        "dt": 1.0,
+        "max_steps": 50,
+        "max_allowed_damage": 2.5,
+        "success_damage_threshold": 0.0,
+        "intercept_reward_weight": 8.0,
+        "damage_penalty_weight": 30.0,
+        "invalid_action_penalty": -5.0,
+        "time_penalty": -0.1,
+        "assignment_conflict_penalty": 1.0,
+        "overkill_penalty": 0.5,
+        "success_bonus": 25.0,
+        "failure_penalty": -25.0
+      }
+    },
+    "evaluation_seed_bank_sha256": "c3d509dde340122953736556a4ff0143aeb388d593958f7065c83efb85b3ac51"
+  }
+}

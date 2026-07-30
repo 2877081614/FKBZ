@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "task": "DST-05",
+  "frozen_before_dst05": true,
+  "selection_uses_failure_outcomes": false,
+  "selection_rule": "all task12 frozen states in time_pressure and heterogeneity_pressure; enumerate every feasible prefix",
+  "unit_order": [
+    0,
+    1,
+    2
+  ],
+  "high_threat_threshold": 0.8,
+  "source": {
+    "path": "results/air_defense_v1/task12_probe_corpus/probe_states.npz",
+    "sha256": "eb763f4e132b5f08572c762b48919c60a9c24c8d02852a165f7accfa50308999",
+    "content_sha256": "2a58e44b9054945fa8e12bc44c8956d43d898b68b2571b3dcf4d237b000be4ef",
+    "num_states": 768,
+    "original_manifest": {
+      "schema_version": 1,
+      "content_sha256": "2a58e44b9054945fa8e12bc44c8956d43d898b68b2571b3dcf4d237b000be4ef",
+      "num_states": 768,
+      "observation_shape": [
+        142
+      ],
+      "action_mask_shape": [
+        18
+      ],
+      "scenario_counts": {
+        "heterogeneity_pressure": 256,
+        "medium": 256,
+        "time_pressure": 256
+      },
+      "source_counts": {
+        "hungarian": 258,
+        "task10_order_012_seed0": 255,
+        "task11_role_order_012_seed0": 255
+      },
+      "phase_counts": {
+        "early": 198,
+        "initial": 200,
+        "middle": 198,
+        "near_terminal": 172
+      },
+      "metadata": {
+        "scenarios": [
+          "medium",
+          "time_pressure",
+          "heterogeneity_pressure"
+        ],
+        "states_per_scenario": 256,
+        "seed_start": 40000,
+        "phase_bins": [
+          "initial",
+          "early",
+          "middle",
+          "near_terminal"
+        ],
+        "task10_model": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task10_order_screening_30k_3seeds\\models\\medium\\autoregressive_ppo_order_012_seed0.zip",
+        "task11_model": "D:\\huang\\Programs\\防空编组\\results\\air_defense_v1\\task11_role_conditioned_screening_30k_3seeds\\models\\medium\\role_conditioned_ar_ppo_order_012_seed0.zip"
+      }
+    }
+  },
+  "context_grid_sha256": "ec6f8defdb6c7604f73694e2a37d87078bc9f67a2f93b5b9c483203da3f50dcc",
+  "coverage": {
+    "states": 512,
+    "contexts": 5881,
+    "eligible_ds_contexts": 1752,
+    "scenario_counts": {
+      "heterogeneity_pressure": 2722,
+      "time_pressure": 3159
+    },
+    "unit_position_counts": {
+      "0": 512,
+      "1": 1240,
+      "2": 4129
+    },
+    "legal_action_count_counts": {
+      "1": 1559,
+      "2": 1254,
+      "3": 1179,
+      "4": 1110,
+      "5": 620,
+      "6": 159
+    },
+    "engagement_margin_negative": 5881,
+    "engagement_margin_nonnegative": 0,
+    "high_threat_reachable_contexts": 2125,
+    "high_threat_unreachable_contexts": 3756,
+    "context_ids_unique": true
+  },
+  "historical_margin_coverage": {
+    "source": "results/air_defense_v1/task12_factorized_screening_30k_3seeds/probe_dynamics.csv",
+    "source_sha256": "ab22858a2dd92e0f8b24462b4815cc892f591b93a7c2fc75b67583e347c0b72f",
+    "filter": "factorized_engagement_ar_ppo_order_012, timesteps=0, core scenarios",
+    "rows": 6,
+    "mixed_margin_rows": 4,
+    "mixed_margin_policy_seeds": [
+      9,
+      10
+    ],
+    "minimum_deterministic_engagement_rate": 0.0670731707317073,
+    "maximum_deterministic_engagement_rate": 1.0,
+    "passed": true
+  },
+  "probe_training_isolation": {
+    "source_created_before_dst01": true,
+    "used_as_training_batch": false,
+    "environment_steps_called_by_instrumentation": 0,
+    "policy_independent_context_enumeration": true
+  }
+}
